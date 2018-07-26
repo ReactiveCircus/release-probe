@@ -1,0 +1,37 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="BaseAppTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorError">@color/colorError</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:overScrollMode">never</item>
+
+        <item name="android:fontFamily">@font/archivo_narrow</item>
+    </style>
+
+    <style name="Theme.RP" parent="BaseAppTheme">
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="Theme.RP.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar" />
+    <style name="Theme.RP.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <style name="Theme.RP.AppBarOverlay.Dark" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+    <style name="Theme.RP.PopupOverlay.Dark" parent="ThemeOverlay.MaterialComponents.Dark" />
+
+    <style name="Theme.RP.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

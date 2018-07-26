@@ -1,0 +1,29 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+    buildToolsVersion buildConfig.buildTools
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+    }
+
+    libraryVariants.all {
+        it.generateBuildConfig.enabled = false
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    // AndroidX
+    implementation "androidx.appcompat:appcompat:${versions.androidx.appCompat}"
+
+    // Material Components
+    implementation "com.google.android.material:material:${versions.material}"
+}

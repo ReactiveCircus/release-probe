@@ -1,0 +1,233 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'project-report'
+apply from: "$project.rootDir/gradle/code-coverage.gradle"
+apply from: "$project.rootDir/gradle/versioning.gradle"
+
+kapt {
+    useBuildCache = true
+    mapDiagnosticLocations = true
+}
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+    buildToolsVersion buildConfig.buildTools
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+
+        applicationId 'ychescale9.releaseprobe'
+        versionCode buildVersionCode()
+        versionName buildVersionName()
+        archivesBaseName = "ReleaseProbe-$versionName"
+
+        testApplicationId 'ychescale9.releaseprobe.test'
+        testInstrumentationRunner "ychescale9.releaseprobe.MainTestRunner"
+
+        // only support English for now
+        resConfigs "en"
+
+        // app name
+        resValue 'string', 'app_name', "ReleaseProbe"
+    }
+
+    dexOptions {
+        // do not pre-dex on CI
+        preDexLibraries !ci
+        dexInProcess = true
+    }
+
+    packagingOptions {
+        exclude 'kotlin/**'
+        exclude '**/*.kotlin_metadata'
+        exclude 'META-INF/*.kotlin_module'
+        exclude 'META-INF/*.version'
+        exclude 'META-INF/*.properties'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        disable 'ParcelCreator'
+        disable 'GoogleAppIndexingWarning'
+        quiet true
+        ignoreWarnings true
+        htmlReport true
+        xmlReport true
+        htmlOutput file("$buildDir/reports/lint/lint-reports.html")
+        xmlOutput file("$buildDir/reports/lint/lint-reports.xml")
+        checkDependencies true
+        ignoreTestSources true
+        checkReleaseBuilds false
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storePassword 'rp-debug'
+            keyAlias 'rp-key'
+            keyPassword 'rp-debug'
+        }
+    }
+
+    bundle {
+        // only support English for now
+        language.enableSplit = false
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles('shrinker-rules.pro')
+            ndk {
+                abiFilters "armeabi-v7a", "arm64-v8a"
+            }
+        }
+        debug {
+            ext.alwaysUpdateBuildId = false
+            testCoverageEnabled true
+            signingConfig signingConfigs.debug
+            ndk {
+                abiFilters "armeabi-v7a", "arm64-v8a", "x86"
+            }
+        }
+    }
+
+    flavorDimensions "environment"
+
+    productFlavors {
+        mock {
+            applicationIdSuffix ".mock"
+            // disable Bugsnag plugin for mock builds
+            ext.enableBugsnag = false
+            // Bugsnag API key for mock builds
+            manifestPlaceholders = [bugsnagApiKey: ""]
+            // disable Bugsnag for mock builds
+            buildConfigField 'boolean', 'ENABLE_BUGSNAG', 'Boolean.parseBoolean("false")'
+            // disable analytics for mock builds
+            buildConfigField 'boolean', 'ENABLE_ANALYTICS', 'Boolean.parseBoolean("false")'
+        }
+        prod {
+            manifestPlaceholders = [
+                    bugsnagApiKey: "efcc1e540bc84957acfb02afc4d27f86"
+            ]
+            buildConfigField 'boolean', 'ENABLE_BUGSNAG', 'Boolean.parseBoolean("true")'
+            buildConfigField 'boolean', 'ENABLE_ANALYTICS', 'Boolean.parseBoolean("true")'
+        }
+    }
+
+    // filter out mockRelease build.
+    android.variantFilter { variant ->
+        variant.getFlavors().each { flavor ->
+            if (flavor.name != 'prod' && variant.buildType.name == 'release') {
+                variant.setIgnore(true)
+            }
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        // customize app name for debug builds
+        if (variant.buildType.name == "debug") {
+            // get app_name field from defaultConfig
+            def appName = variant.mergedFlavor.resValues.get('app_name').getValue()
+
+            // concatenate productFlavor to app name for non-production builds
+            if (variant.flavorName != "prod") {
+                appName += "-${variant.flavorName}"
+            }
+
+            // concatenate buildType to app name for non-release builds
+            appName += "-${variant.buildType.name}"
+
+            // set new app_name
+            variant.resValue 'string', 'app_name', appName
+        }
+    }
+
+    testOptions {
+        // disable animations for instrumented tests
+        animationsDisabled = true
+    }
+}
+
+dependencies {
+    implementation project(path: ':bugsnag-tree')
+    mockImplementation project(path: ':analytics-api-no-op')
+    prodImplementation project(path: ':analytics-api-firebase')
+
+    implementation project(path: ':feature-base')
+    implementation project(path: ':feeds')
+    implementation project(path: ':watchlist')
+    implementation project(path: ':browse')
+    implementation project(path: ':settings')
+
+    // TODO custom source set and javaCompileOptions for room in data module
+    // TODO paging, work, room dependencies in feature-base or tech modules
+
+    // Bugsnag
+    implementation "com.bugsnag:bugsnag-android:${versions.bugsnag}"
+
+    // Dagger
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
+
+    // Firebase core
+    prodImplementation "com.google.firebase:firebase-core:${versions.firebase.core}"
+
+    // Leak detection
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}"
+    debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:${versions.leakCanary}"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakCanary}"
+
+    // Unit tests
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "org.mockito:mockito-inline:${versions.mockito}"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockitoKotlin}"
+    testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
+    testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"
+
+    // Android tests
+    kaptAndroidTest "com.google.dagger:dagger-compiler:${versions.dagger}"
+    kaptAndroidTest "com.google.dagger:dagger-android-processor:${versions.dagger}"
+    androidTestImplementation project(path: ':testing-infra')
+}
+
+// use no-op LeakCanary dependency in tests
+configurations.all { configuration ->
+    if (configuration.name.contains('UnitTest') || configuration.name.contains('AndroidTest')) {
+        configuration.resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'com.squareup.leakcanary' && details.requested.name == 'leakcanary-android') {
+                details.useTarget(group: details.requested.group, name: 'leakcanary-android-no-op', version: details.requested.version)
+            }
+        }
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    // don't count dex methods for debug builds
+    if (task.name.endsWith("DebugDexMethods")) {
+        task.enabled = false
+    }
+    // don't upload Bugsnag mapping if NOT on CI
+    else if (task.name.startsWith("uploadBugsnag") && !ci) {
+        task.enabled = false
+    }
+}
+
+apply plugin: 'com.google.gms.google-services'
+
+apply plugin: 'com.bugsnag.android.gradle'
+
+android.applicationVariants.all { variant ->
+    // disable google services plugin for mock flavor
+    def googleTask = tasks.findByName("process${variant.name.capitalize()}GoogleServices")
+    googleTask.enabled = !variant.name.contains("mock")
+}

@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ychescale9.releaseprobe.testing">
+
+    <application android:theme="@style/Theme.RP">
+        <activity android:name=".SingleFragmentActivity" />
+    </application>
+
+</manifest>

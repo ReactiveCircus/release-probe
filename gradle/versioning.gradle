@@ -1,0 +1,50 @@
+ext {
+
+    /**
+     * Builds an Android version code from the VERSION_NAME.
+     * VERSION_NAME must be in the format of x.y.z, where x≥0, 0≤y≤99, and 0≤z≤99
+     */
+    buildVersionCode = {
+        def versionName = buildVersionName()
+        // error message for invalid VERSION_NAME format
+        def errorMessage = "Invalid VERSION_NAME (must be in the format of x.y.z, where x≥0, 0≤y≤99, and 0≤z≤99)."
+
+        // check that the major, minor and patch version numbers can be extracted from VERSION_NAME
+        if (versionName.tokenize('.').size() != 4) {
+            throw new GradleException(errorMessage)
+        }
+
+        // extract major, minor and patch version numbers
+        def (major, minor, patch) = versionName.tokenize('.')
+
+        // convert version numbers to integers
+        (major, minor, patch) = [major, minor, patch].collect {
+            try {
+                it.toInteger()
+            } catch (Exception e) {
+                // version number can't be converted to an integer
+                throw new GradleException(errorMessage + e)
+            }
+        }
+
+        // validate version numbers are within valid range
+        def validMinorVersionRange = 0..<100
+        def validPatchVersionRange = 0..<100
+
+        if (major < 0 || !validMinorVersionRange.contains(minor) || !validPatchVersionRange.contains(patch)) {
+            throw new GradleException(errorMessage)
+        }
+
+        (major * 10000) + (minor * 100) + (patch)
+    }
+
+
+    buildVersionName = {
+        //Load the versioning information from the properties file.
+        def versioningFile = rootProject.file("version.properties")
+        def versioningProperties = new Properties()
+        versioningProperties.load(new FileInputStream(versioningFile))
+
+        versioningProperties['majorVersion'] + "." +versioningProperties['minorVersion'] + "." + versioningProperties['patch'] + "." + (System.getenv("BUILD_NUMBER") as Integer ?: 0)
+    }
+}

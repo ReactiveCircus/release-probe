@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="title_feeds">Releases</string>
+    <string name="title_watchlist">My Watchlist</string>
+    <string name="title_browse">Browse</string>
+    <string name="title_settings">Settings</string>
+
+    <string name="menu_title_feeds">Releases</string>
+    <string name="menu_title_watchlist">Watchlist</string>
+    <string name="menu_title_browse">Browse</string>
+    <string name="menu_title_settings">Settings</string>
+
+</resources>

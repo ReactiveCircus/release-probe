@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_feeds"
+        android:icon="@drawable/ic_round_fiber_new_black_24dp"
+        android:title="@string/menu_title_feeds" />
+
+    <item
+        android:id="@+id/nav_watchlist"
+        android:icon="@drawable/ic_round_library_books_black_24dp"
+        android:title="@string/menu_title_watchlist" />
+
+    <item
+        android:id="@+id/nav_browse"
+        android:icon="@drawable/ic_round_search_black_24dp"
+        android:title="@string/menu_title_browse" />
+
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_round_settings_black_24dp"
+        android:title="@string/menu_title_settings" />
+
+</menu>

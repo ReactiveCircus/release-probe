@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/nav_feeds">
+
+    <fragment
+        android:id="@+id/nav_feeds"
+        android:name="ychescale9.releaseprobe.feeds.FeedsFragment"
+        android:label="@string/title_feeds"
+        tools:layout="@layout/fragment_feeds"/>
+
+    <fragment
+        android:id="@+id/nav_watchlist"
+        android:name="ychescale9.releaseprobe.watchlist.WatchlistFragment"
+        android:label="@string/title_watchlist"
+        tools:layout="@layout/fragment_watchlist"/>
+
+    <fragment
+        android:id="@+id/nav_browse"
+        android:name="ychescale9.releaseprobe.browse.BrowseFragment"
+        android:label="@string/title_browse"
+        tools:layout="@layout/fragment_browse"/>
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="ychescale9.releaseprobe.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings"/>
+
+</navigation>

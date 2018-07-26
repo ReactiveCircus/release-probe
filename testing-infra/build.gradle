@@ -1,0 +1,54 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    useBuildCache = true
+    mapDiagnosticLocations = true
+}
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+    buildToolsVersion buildConfig.buildTools
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+    }
+
+    libraryVariants.all {
+        it.generateBuildConfig.enabled = false
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(path: ':feature-base')
+    implementation project(path: ':feeds')
+    implementation project(path: ':watchlist')
+    implementation project(path: ':browse')
+    implementation project(path: ':settings')
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+
+    // Retrofit TODO change to implementation remove if bringing in data module dependency
+    api "com.squareup.retrofit2:retrofit-mock:${versions.retrofit}"
+
+    // Dagger
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
+
+    api "androidx.test:runner:${versions.androidx.test}"
+    api "androidx.test:rules:${versions.androidx.test}"
+    api "androidx.test.espresso:espresso-core:${versions.androidx.espresso}"
+    api "androidx.test.espresso:espresso-contrib:${versions.androidx.espresso}"
+    api "androidx.test.espresso:espresso-intents:${versions.androidx.espresso}"
+    api "android.arch.navigation:navigation-testing-ktx:${versions.androidx.navigation}"
+    api project(path: ':analytics-api-no-op')
+    api project(path: ':ui-test-helper')
+}

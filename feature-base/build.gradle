@@ -1,0 +1,65 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+    buildToolsVersion buildConfig.buildTools
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+    }
+
+    libraryVariants.all {
+        it.generateBuildConfig.enabled = false
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    api project(path: ':core-infra')
+    api project(path: ':core-infra-android')
+
+    api project(path: ':resources')
+    api project(path: ':analytics-api-base')
+
+    // Kotlin
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+
+    // AndroidX
+    api "androidx.annotation:annotation:${versions.androidx.annotation}"
+    api "androidx.appcompat:appcompat:${versions.androidx.appCompat}"
+    api "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintLayout}"
+    api "androidx.coordinatorlayout:coordinatorlayout:${versions.androidx.coordinatorLayout}"
+    api "androidx.fragment:fragment-ktx:${versions.androidx.fragment}"
+    api "androidx.core:core-ktx:${versions.androidx.core}"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.androidx.lifecycle}"
+    api "androidx.lifecycle:lifecycle-livedata:${versions.androidx.lifecycle}"
+    api "androidx.lifecycle:lifecycle-common-java8:${versions.androidx.lifecycle}"
+    api "android.arch.navigation:navigation-fragment-ktx:${versions.androidx.navigation}"
+    api "android.arch.navigation:navigation-ui-ktx:${versions.androidx.navigation}"
+
+    // Material Components
+    api "com.google.android.material:material:${versions.material}"
+
+    // rx
+    api "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
+    api "io.reactivex.rxjava2:rxkotlin:${versions.rxKotlin}"
+    api "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}"
+
+    // rxlint
+    debugApi "nl.littlerobots.rxlint:rxlint:${versions.rxLint}"
+
+    // timber
+    api "com.jakewharton.timber:timber:${versions.timber}"
+
+    // Dagger
+    api "com.google.dagger:dagger:${versions.dagger}"
+    api "com.google.dagger:dagger-android:${versions.dagger}"
+    api "com.google.dagger:dagger-android-support:${versions.dagger}"
+}

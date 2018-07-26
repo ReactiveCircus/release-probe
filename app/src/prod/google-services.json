@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "436919122769",
+    "firebase_url": "https://releaseprobe.firebaseio.com",
+    "project_id": "releaseprobe",
+    "storage_bucket": "releaseprobe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436919122769:android:91aa3dadbdf25859",
+        "android_client_info": {
+          "package_name": "ychescale9.releaseprobe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "436919122769-cdcfag26um70i099dr5f86hvhd44kai7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8cJ-HjXcGSr7AhSXRyWg9DbC9QNEHQ7I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

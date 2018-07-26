@@ -1,0 +1,97 @@
+buildscript {
+    ext.ci = System.getenv("CI") == "true"
+
+    ext.buildConfig = [
+            minSdk: 22,
+            targetSdk: 28,
+            compileSdk: 28,
+            buildTools: '28.0.1'
+    ]
+
+    ext.versions = [
+            androidGradlePlugin: '3.3.0-alpha03',
+            googleServicesGradlePlugin: '4.0.1',
+            dexcountGradlePlugin: '0.8.3',
+            bugsnagGradlePlugin: '3.2.8',
+            bugsnag: '4.5.0',
+            firebase: [
+                    core: '16.0.1'
+            ],
+            leakCanary: '1.6.1',
+            kotlin: '1.2.51',
+            kotlinCoroutines: '0.23.4',
+            androidx: [
+                    core: '1.0.0-beta01',
+                    annotation: '1.0.0-beta01',
+                    appCompat: '1.0.0-beta01',
+                    vectorDrawable: '1.0.0-beta01',
+                    fragment: '1.0.0-beta01',
+                    coordinatorLayout: '1.0.0-beta01',
+                    constraintLayout: '1.1.2',
+                    arch: '2.0.0-beta01',
+                    lifecycle: '2.0.0-beta01',
+                    room: '2.0.0-beta01',
+                    paging: '2.0.0-beta01',
+                    navigation: '1.0.0-alpha04',
+                    work: '1.0.0-alpha05',
+                    test: '1.1.0-alpha4',
+                    espresso: '3.1.0-alpha4'
+            ],
+            material: '1.0.0-beta01',
+            okhttp: '3.11.0',
+            retrofit: '2.4.0',
+            moshi: '1.6.0',
+            rxJava: '2.1.17',
+            rxKotlin: '2.2.0',
+            rxAndroid: '2.0.2',
+            rxLint: '1.6.1',
+            dagger: '2.16',
+            timber: '4.7.1',
+            store: '3.1.0',
+            glide: '4.7.1',
+            junit: '4.12',
+            mockito: '2.19.0',
+            mockitoKotlin: '2.0.0-RC1',
+            kluent: '1.39'
+    ]
+
+    repositories {
+        mavenCentral()
+        google()
+        gradlePluginPortal()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:${versions.androidGradlePlugin}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+        classpath "com.google.gms:google-services:${versions.googleServicesGradlePlugin}"
+        classpath "com.bugsnag:bugsnag-android-gradle-plugin:${versions.bugsnagGradlePlugin}"
+        classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${versions.dexcountGradlePlugin}"
+
+        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:${versions.androidx.navigation}"
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        google()
+        jcenter()
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
+
+    tasks.withType(Test) {
+        testLogging {
+            events 'passed', 'skipped', 'failed'
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

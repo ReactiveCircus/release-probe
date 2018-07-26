@@ -1,0 +1,29 @@
+include ':app'
+include ':resources'
+include ':feature-base'
+include ':feeds'
+include ':watchlist'
+include ':browse'
+include ':settings'
+include ':testing-infra'
+
+include ':core-infra'
+project(':core-infra').projectDir = new File(rootDir, 'library/core-infra')
+
+include ':core-infra-android'
+project(':core-infra-android').projectDir = new File(rootDir, 'library/core-infra-android')
+
+include ':bugsnag-tree'
+project(':bugsnag-tree').projectDir = new File(rootDir, 'library/bugsnag-tree')
+
+include ':analytics-api-base'
+project(':analytics-api-base').projectDir = new File(rootDir, 'library/analytics/analytics-api-base')
+
+include ':analytics-api-firebase'
+project(':analytics-api-firebase').projectDir = new File(rootDir, 'library/analytics/analytics-api-firebase')
+
+include ':analytics-api-no-op'
+project(':analytics-api-no-op').projectDir = new File(rootDir, 'library/analytics/analytics-api-no-op')
+
+include ':ui-test-helper'
+project(':ui-test-helper').projectDir = new File(rootDir, 'library/ui-test-helper')
