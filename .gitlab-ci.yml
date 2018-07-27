@@ -1,0 +1,95 @@
+image: ychescale9/android-sdk:1.0
+
+stages:
+- build
+- ui_tests
+- coverage
+- deploy
+
+before_script:
+  - export GRADLE_USER_HOME=$(pwd)/.gradle
+  - chmod +x ./gradlew
+
+cache:
+  key: ${CI_PROJECT_ID}
+  paths:
+    - .gradle/
+
+assemble:
+  stage: build
+  script:
+    - export BUILD_NUMBER=${CI_JOB_ID}
+    - mkdir tmp/
+    - echo "$BUILD_NUMBER" > tmp/build_number
+    - ./gradlew assemble bundle
+  artifacts:
+    expire_in: 2 hrs
+    paths:
+      - tmp/
+      - app/build/outputs/bundle/prodRelease/ReleaseProbe-*.aab
+      - app/build/outputs/apk/prod/release/ReleaseProbe-*-prod-release-unsigned.apk
+      - app/build/outputs/mapping/r8/prod/release/mapping.txt
+
+static_analysis:
+  stage: build
+  script:
+    - ./gradlew :app:lint
+  artifacts:
+    when: on_failure
+    paths:
+      - app/build/reports/lint/
+
+unit_tests:
+  stage: build
+  script:
+    - ./gradlew test
+  artifacts:
+    when: on_failure
+    paths:
+      - app/build/reports/tests/
+
+api_22:
+  stage: ui_tests
+  variables:
+    GIT_STRATEGY: none
+  before_script: []
+  cache: {}
+  script:
+    - echo "Firebase Test Lab..."
+
+api_28:
+  stage: ui_tests
+  variables:
+    GIT_STRATEGY: none
+  before_script: []
+  cache: {}
+  script:
+    - echo "Firebase Test Lab..."
+
+coverage_report:
+  stage: coverage
+  cache: {}
+  dependencies:
+    - unit_tests
+    - api_22
+    - api_28
+  script:
+    - echo "Merged Jacoco report..."
+
+deploy:
+  stage: deploy
+  variables:
+    BUILD_NUMBER: $(cat tmp/build_number)
+  cache: {}
+  dependencies:
+    - assemble
+  script:
+    - echo "Sign APK and Bundle, archive..."
+    - echo "Deploy signed bundle to Google Play (Internal Test channel)..."
+    - majorVersion=`sed '/^\#/d' version.properties | grep 'majorVersion'  | tail -n 1 | cut -d "=" -f2- | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'`
+    - minorVersion=`sed '/^\#/d' version.properties | grep 'minorVersion'  | tail -n 1 | cut -d "=" -f2- | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'`
+    - patch=`sed '/^\#/d' version.properties | grep 'patch'  | tail -n 1 | cut -d "=" -f2- | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'`
+    - export APK_VERSION="${majorVersion}.${minorVersion}.${patch}.${BUILD_NUMBER}"
+  artifacts:
+    paths:
+      - app/build/outputs/mapping/r8/prod/release/mapping.txt
