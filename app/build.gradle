@@ -75,6 +75,12 @@ android {
             keyAlias 'rp-key'
             keyPassword 'rp-debug'
         }
+        release {
+            storeFile file('release-probe.keystore')
+            storePassword propOrEmpty('RELEASE_PROBE_STORE_PASSWORD')
+            keyAlias 'releaseprobe'
+            keyPassword propOrEmpty('RELEASE_PROBE_KEY_PASSWORD')
+        }
     }
 
     bundle {
@@ -83,20 +89,23 @@ android {
     }
 
     buildTypes {
-        release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles('shrinker-rules.pro')
-            ndk {
-                abiFilters "armeabi-v7a", "arm64-v8a"
-            }
-        }
         debug {
             ext.alwaysUpdateBuildId = false
             testCoverageEnabled true
             signingConfig signingConfigs.debug
             ndk {
                 abiFilters "armeabi-v7a", "arm64-v8a", "x86"
+            }
+        }
+        release {
+            if (file('release-probe.keystore').exists()) {
+                signingConfig signingConfigs.release
+            }
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles('shrinker-rules.pro')
+            ndk {
+                abiFilters "armeabi-v7a", "arm64-v8a"
             }
         }
     }
@@ -117,8 +126,9 @@ android {
         }
         prod {
             manifestPlaceholders = [
-                    bugsnagApiKey: "efcc1e540bc84957acfb02afc4d27f86"
+                    bugsnagApiKey: "${propOrEmpty('RELEASE_PROBE_BUGSNAG_API_KEY')}"
             ]
+
             buildConfigField 'boolean', 'ENABLE_BUGSNAG', 'Boolean.parseBoolean("true")'
             buildConfigField 'boolean', 'ENABLE_ANALYTICS', 'Boolean.parseBoolean("true")'
         }

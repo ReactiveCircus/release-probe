@@ -95,3 +95,8 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+def propOrEmpty(String name) {
+    def propertyValue = project.properties[name]
+    return propertyValue != null ? propertyValue : ''
+}
