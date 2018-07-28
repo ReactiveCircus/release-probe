@@ -1,5 +1,5 @@
 buildscript {
-    ext.ci = System.getenv("CI") == "true"
+    ext.isCiBuild = System.getenv("CI") == "true"
 
     ext.buildConfig = [
             minSdk: 22,
@@ -12,7 +12,7 @@ buildscript {
             androidGradlePlugin: '3.3.0-alpha03',
             googleServicesGradlePlugin: '4.0.1',
             dexcountGradlePlugin: '0.8.3',
-            bugsnagGradlePlugin: '3.2.8',
+            bugsnagGradlePlugin: '3.3.0',
             bugsnag: '4.5.0',
             firebase: [
                     core: '16.0.1'
@@ -52,13 +52,13 @@ buildscript {
             junit: '4.12',
             mockito: '2.19.0',
             mockitoKotlin: '2.0.0-RC1',
-            kluent: '1.39'
+            kluent: '1.40'
     ]
 
     repositories {
         mavenCentral()
         google()
-        gradlePluginPortal()
+        jcenter()
     }
 
     dependencies {
@@ -67,7 +67,6 @@ buildscript {
         classpath "com.google.gms:google-services:${versions.googleServicesGradlePlugin}"
         classpath "com.bugsnag:bugsnag-android-gradle-plugin:${versions.bugsnagGradlePlugin}"
         classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${versions.dexcountGradlePlugin}"
-
         classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:${versions.androidx.navigation}"
     }
 }

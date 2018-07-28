@@ -37,8 +37,7 @@ android {
 
     dexOptions {
         // do not pre-dex on CI
-        preDexLibraries !ci
-        dexInProcess = true
+        preDexLibraries !isCiBuild
     }
 
     packagingOptions {
@@ -227,7 +226,7 @@ tasks.whenTaskAdded { task ->
         task.enabled = false
     }
     // don't upload Bugsnag mapping if NOT on CI
-    else if (task.name.startsWith("uploadBugsnag") && !ci) {
+    else if (task.name.startsWith("uploadBugsnag") && !isCiBuild) {
         task.enabled = false
     }
 }

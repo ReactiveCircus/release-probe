@@ -1,18 +1,20 @@
 version: 2.0
 
+defaults: &defaults
+  working_directory: ~/release-probe
+  docker:
+      - image: ychescale9/android-sdk:1.0
+  environment:
+    JAVA_TOOL_OPTIONS: "-Xmx2g"
+    GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.parallel=false -Dkotlin.incremental=false"
+    TERM: dumb
+
 cache_key: &cache_key
   key: jars-{{ checksum "build.gradle" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
 
 jobs:
   build:
-    working_directory: ~/release-probe
-
-    docker:
-      - image: ychescale9/android-sdk:1.0
-
-    environment:
-      JAVA_TOOL_OPTIONS: "-Xmx4g"
-      TERM: dumb
+    <<: *defaults
 
     steps:
       - checkout
@@ -22,7 +24,7 @@ jobs:
 
       - run:
           name: Assemble
-          command: ./gradlew assemble bundle
+          command: ./gradlew clean assemble bundle
       - store_artifacts:
           path: app/build/outputs/
 
