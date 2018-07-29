@@ -35,3 +35,6 @@ captures/
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
+
+# Ignore plain keystore files
+secrets/release-probe.keystore

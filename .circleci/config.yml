@@ -17,16 +17,30 @@ jobs:
     <<: *defaults
 
     steps:
+      - run:
+          name: Setup Environment Variables
+          command: |
+            echo 'export BUILD_NUMBER="$CIRCLE_BUILD_NUM"' >> $BASH_ENV
+
       - checkout
 
       - restore_cache:
           <<: *cache_key
 
       - run:
+          name: Decrypt Secrets
+          command: |
+            openssl aes-256-cbc -md sha256 -d -in secrets/release-probe.aes -out secrets/release-probe.keystore -k $ENCRYPT_KEY
+
+      - run:
           name: Assemble
-          command: ./gradlew clean assemble bundle
+          command: ./gradlew clean assemble bundleProdRelease
       - store_artifacts:
           path: app/build/outputs/
+
+      - run:
+          name: Cleanup Secrets
+          command: rm -f secrets/release-probe.keystore
 
       - run:
           name: Test
@@ -59,4 +73,4 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                # TODO - master

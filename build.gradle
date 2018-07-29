@@ -95,7 +95,7 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-def propOrEmpty(String name) {
-    def propertyValue = project.properties[name]
-    return propertyValue != null ? propertyValue : ''
+def envOrProp(String name) {
+    def value = System.getenv(name)
+    value != null ? value : hasProperty(name) ? getProperty(name) : ''
 }
