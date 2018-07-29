@@ -9,8 +9,15 @@ defaults: &defaults
     GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.parallel=false -Dkotlin.incremental=false"
     TERM: dumb
 
-cache_key: &cache_key
-  key: jars-{{ checksum "build.gradle" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+save_gradle_cache: &save_gradle_cache
+  save_cache:
+    key: jars-{{ checksum "build.gradle" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+    paths:
+      - ~/.gradle
+
+restore_gradle_cache: &restore_gradle_cache
+  restore_cache:
+    key: jars-{{ checksum "build.gradle" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
 
 jobs:
   build:
@@ -24,8 +31,13 @@ jobs:
 
       - checkout
 
-      - restore_cache:
-          <<: *cache_key
+      - *restore_gradle_cache
+
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+
+      - *save_gradle_cache
 
       - run:
           name: Decrypt Secrets
@@ -34,7 +46,7 @@ jobs:
 
       - run:
           name: Assemble
-          command: ./gradlew clean assemble bundleProdRelease
+          command: ./gradlew assemble bundleProdRelease
       - store_artifacts:
           path: app/build/outputs/
 
@@ -58,12 +70,6 @@ jobs:
           command: ./gradlew :app:lint
       - store_artifacts:
           path: app/build/reports/lint-results.html
-
-      - save_cache:
-          <<: *cache_key
-          paths:
-            - ~/.gradle/caches
-            - ~/.gradle/wrapper
 
 workflows:
   version: 2
