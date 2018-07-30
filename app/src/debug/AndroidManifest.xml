@@ -2,6 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ychescale9.releaseprobe">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         tools:replace="android:name"
         android:name=".DebugReleaseProbeApp">

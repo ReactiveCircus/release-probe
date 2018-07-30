@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'project-report'
-apply from: "$project.rootDir/gradle/code-coverage.gradle"
 apply from: "$project.rootDir/gradle/versioning.gradle"
 
 kapt {

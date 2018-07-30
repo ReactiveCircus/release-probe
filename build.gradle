@@ -19,7 +19,7 @@ buildscript {
             ],
             leakCanary: '1.6.1',
             kotlin: '1.2.51',
-            kotlinCoroutines: '0.23.4',
+            kotlinCoroutines: '0.24.0',
             androidx: [
                     core: '1.0.0-beta01',
                     annotation: '1.0.0-beta01',
@@ -41,7 +41,7 @@ buildscript {
             okhttp: '3.11.0',
             retrofit: '2.4.0',
             moshi: '1.6.0',
-            rxJava: '2.1.17',
+            rxJava: '2.2.0',
             rxKotlin: '2.2.0',
             rxAndroid: '2.0.2',
             rxLint: '1.6.1',

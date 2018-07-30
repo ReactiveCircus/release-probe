@@ -1,5 +1,4 @@
 apply plugin: 'kotlin'
-apply plugin: 'jacoco'
 
 dependencies {
 
