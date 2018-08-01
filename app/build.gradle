@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'project-report'
-apply from: "$project.rootDir/gradle/code-coverage.gradle"
 apply from: "$project.rootDir/gradle/versioning.gradle"
 
 kapt {
@@ -69,16 +68,16 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file('debug.keystore')
+            storeFile rootProject.file('secrets/debug.keystore')
             storePassword 'rp-debug'
             keyAlias 'rp-key'
             keyPassword 'rp-debug'
         }
         release {
-            storeFile file('release-probe.keystore')
-            storePassword propOrEmpty('RELEASE_PROBE_STORE_PASSWORD')
+            storeFile rootProject.file('secrets/release-probe.keystore')
+            storePassword envOrProp('RELEASE_PROBE_STORE_PASSWORD')
             keyAlias 'releaseprobe'
-            keyPassword propOrEmpty('RELEASE_PROBE_KEY_PASSWORD')
+            keyPassword envOrProp('RELEASE_PROBE_KEY_PASSWORD')
         }
     }
 
@@ -97,7 +96,7 @@ android {
             }
         }
         release {
-            if (file('release-probe.keystore').exists()) {
+            if (rootProject.file('secrets/release-probe.keystore').exists()) {
                 signingConfig signingConfigs.release
             }
             minifyEnabled true
@@ -125,7 +124,7 @@ android {
         }
         prod {
             manifestPlaceholders = [
-                    bugsnagApiKey: "${propOrEmpty('RELEASE_PROBE_BUGSNAG_API_KEY')}"
+                    bugsnagApiKey: "${envOrProp('RELEASE_PROBE_BUGSNAG_API_KEY')}"
             ]
 
             buildConfigField 'boolean', 'ENABLE_BUGSNAG', 'Boolean.parseBoolean("true")'
@@ -133,10 +132,11 @@ android {
         }
     }
 
-    // filter out mockRelease build.
+    // filter out mockRelease and prodDebug (when on CI) builds.
     android.variantFilter { variant ->
         variant.getFlavors().each { flavor ->
-            if (flavor.name != 'prod' && variant.buildType.name == 'release') {
+            if (flavor.name != 'prod' && variant.buildType.name == 'release' ||
+                    isCiBuild && flavor.name == 'prod' && variant.buildType.name == 'debug') {
                 variant.setIgnore(true)
             }
         }

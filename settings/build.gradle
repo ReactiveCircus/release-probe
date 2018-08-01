@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
-apply from: "$project.rootDir/gradle/code-coverage.gradle"
 
 kapt {
     useBuildCache = true
