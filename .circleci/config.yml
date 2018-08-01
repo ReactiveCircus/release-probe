@@ -121,12 +121,9 @@ workflows:
   version: 2
   build_test_deploy:
     jobs:
-      - build:
-          <<: *master_only
-      - unit_tests:
-          <<: *master_only
-      - static_analysis:
-          <<: *master_only
+      - build
+      - unit_tests
+      - static_analysis
       - deploy_to_play:
           <<: *master_only
           requires:
