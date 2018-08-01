@@ -10,13 +10,6 @@ android_config: &android_config
     GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2g" -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
     TERM: dumb
 
-gcloud_config: &gcloud_config
-  working_directory: ~/release-probe
-  docker:
-    - image: google/cloud-sdk:latest
-  environment:
-    TERM: dumb
-
 # Cache
 save_gradle_cache: &save_gradle_cache
   save_cache:
@@ -37,14 +30,15 @@ persist_android_workspace: &persist_android_workspace
   persist_to_workspace:
     root: ~/release-probe
     paths:
-      - app/build/outputs/apk/mock/debug
-      - test_apks
+      - app/build/outputs/apk/
+      - app/build/outputs/bundle/
+      - app/build/outputs/mapping/
 
 # Branching filters
 master_only: &master_only
   filters:
     branches:
-      only: # TODO master
+      only: master
 
 jobs:
   build:
@@ -68,9 +62,7 @@ jobs:
       - run:
           name: Assemble
           command: |
-            ./gradlew assemble bundleProdRelease assembleAndroidTest
-            mkdir -p test_apks/
-            find . -type f -regex ".*/build/outputs/apk/androidTest/.*debug/.*apk" -exec cp {} test_apks/ \;
+            ./gradlew assemble bundleProdRelease
       - store_artifacts:
           path: app/build/outputs/
       - run:
@@ -113,33 +105,6 @@ jobs:
       - store_artifacts:
           path: app/build/reports/lint-results.html
 
-  instrumented_tests:
-    <<: *gcloud_config
-    steps:
-      - *attach_workspace
-      - run:
-          name: Authenticate Google Cloud Account
-          command: |
-            echo $GCLOUD_SERVICE_KEY | base64 -di > client-secret.json
-            gcloud config set project releaseprobe
-            gcloud auth activate-service-account firebase-adminsdk-l2zcp@releaseprobe.iam.gserviceaccount.com --key-file client-secret.json
-            rm client-secret.json
-      - run:
-          name: Run Instrumented Tests on Firebase Test Lab
-          command: |
-            for testApkPath in test_apks/*.apk; do
-              gcloud firebase test android run \
-                --type instrumentation \
-                --app app/build/outputs/apk/mock/debug/*.apk \
-                --test $testApkPath \
-                --device model=Nexus6,version=22,locale=en_AU,orientation=portrait \
-                --device model=Pixel2,version=28,locale=en_AU,orientation=portrait \
-                --directories-to-pull=/sdcard/ \
-                --timeout 20m \
-                --no-record-video \
-                --no-performance-metrics
-            done
-
   deploy_to_play:
     <<: *android_config
     steps:
@@ -150,6 +115,7 @@ jobs:
           command: ./gradlew androidDependencies
       - *save_gradle_cache
       - *attach_workspace
+      # TODO use gradle-play-publisher once custom archivesBaseName is supported for app bundles, and publishing existing apk without building is supported.
 
 workflows:
   version: 2
@@ -161,14 +127,9 @@ workflows:
           <<: *master_only
       - static_analysis:
           <<: *master_only
-      - instrumented_tests:
-          <<: *master_only
-          requires:
-            - build
       - deploy_to_play:
           <<: *master_only
           requires:
             - build
             - unit_tests
             - static_analysis
-            - instrumented_tests
