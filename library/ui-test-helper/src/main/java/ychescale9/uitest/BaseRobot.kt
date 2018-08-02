@@ -1,3 +1,5 @@
+@file:Suppress("TooManyFunctions")
+
 package ychescale9.uitest
 
 import android.app.Activity
@@ -7,7 +9,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.InstrumentationRegistry
+import androidx.test.InstrumentationRegistry.getTargetContext
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
@@ -19,12 +21,17 @@ import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers
 import org.hamcrest.CoreMatchers
-import org.hamcrest.core.*
+import org.hamcrest.CoreMatchers.allOf
+import org.hamcrest.core.AllOf
+import org.hamcrest.core.Is
+import org.hamcrest.core.IsNot
+import org.hamcrest.core.StringContains
+import org.hamcrest.core.StringStartsWith
 import org.junit.Assert
 
 abstract class BaseRobot<out A : RobotActions, out S : RobotAssertions>(
-        private val robotActions: A,
-        private val robotAssertions: S
+    private val robotActions: A,
+    private val robotAssertions: S
 ) {
     fun given(block: () -> Unit) = block()
     fun perform(block: A.() -> Unit) = robotActions.apply { block() }
@@ -99,7 +106,8 @@ open class RobotActions {
         scrollToItemInRecyclerView(recyclerViewId, position)
 
         Espresso.onView(ViewMatchers.withId(recyclerViewId))
-                .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, ViewActions.click()))
+                .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                        position, ViewActions.click()))
     }
 
     fun clickRadioButton(@IdRes radioGroupId: Int, buttonText: String) {
@@ -145,71 +153,99 @@ open class RobotActions {
 open class RobotAssertions {
 
     fun viewDisplayed(@IdRes vararg viewIds: Int) {
-        viewIds.forEach { viewId -> Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(ViewMatchers.isDisplayed())) }
+        viewIds.forEach {
+            viewId -> Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        }
     }
 
     fun viewNotDisplayed(@IdRes vararg viewIds: Int) {
-        viewIds.forEach { viewId -> Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(IsNot.not<View>(ViewMatchers.isDisplayed()))) }
+        viewIds.forEach {
+            viewId -> Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(IsNot.not<View>(ViewMatchers.isDisplayed())))
+        }
     }
 
     fun textDisplayed(@StringRes vararg textResIds: Int) {
-        textResIds.forEach { textResId -> Espresso.onView(ViewMatchers.withText(textResId)).check(ViewAssertions.matches(ViewMatchers.isDisplayed())) }
+        textResIds.forEach {
+            textResId -> Espresso.onView(ViewMatchers.withText(textResId))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        }
     }
 
     fun textDisplayed(vararg texts: String) {
-        texts.forEach { text -> Espresso.onView(ViewMatchers.withText(text)).check(ViewAssertions.matches(ViewMatchers.isDisplayed())) }
+        texts.forEach {
+            text -> Espresso.onView(ViewMatchers.withText(text))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        }
     }
 
     fun viewHasText(@IdRes viewId: Int, expected: String) {
-        Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(ViewMatchers.withText(expected)))
+        Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(ViewMatchers.withText(expected)))
     }
 
     fun viewHasText(@IdRes viewId: Int, @StringRes messageResId: Int) {
-        Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(ViewMatchers.withText(messageResId)))
+        Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(ViewMatchers.withText(messageResId)))
     }
 
     fun viewContainsText(@IdRes viewId: Int, expected: String) {
-        Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(ViewMatchers.withText(StringContains.containsString(expected))))
+        Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(ViewMatchers.withText(StringContains.containsString(expected))))
     }
 
     fun viewStartsWithText(expected: String, @IdRes parentResId: Int) {
-        Espresso.onView(AllOf.allOf<View>(ViewMatchers.withText(StringStartsWith.startsWith(expected)), ViewMatchers.isDescendantOfA(ViewMatchers.withId(parentResId)))).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Espresso.onView(
+                AllOf.allOf<View>(
+                        ViewMatchers.withText(StringStartsWith.startsWith(expected)),
+                        ViewMatchers.isDescendantOfA(ViewMatchers.withId(parentResId))))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
     fun viewHasHint(@IdRes viewId: Int, @StringRes messageResId: Int) {
-        Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(ViewMatchers.withHint(messageResId)))
+        Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(ViewMatchers.withHint(messageResId)))
     }
 
     fun textInputLayoutHasError(@IdRes viewId: Int, errorMessage: String) {
-        Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(hasTextInputLayoutErrorText(errorMessage)))
+        Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(hasTextInputLayoutErrorText(errorMessage)))
     }
 
     fun textInputLayoutHasError(@IdRes viewId: Int, @StringRes errorMessageResId: Int) {
-        Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(hasTextInputLayoutErrorText(errorMessageResId)))
+        Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(hasTextInputLayoutErrorText(errorMessageResId)))
     }
 
     fun textInputLayoutHasNoError(@IdRes viewId: Int) {
-        Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(noTextInputLayoutError()))
+        Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(noTextInputLayoutError()))
     }
 
     fun keyboardInputTypeIsEmail(@IdRes viewId: Int) {
-        Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(withEmailInputType()))
+        Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(withEmailInputType()))
     }
 
     fun viewEnabled(@IdRes viewId: Int) {
-        Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(ViewMatchers.isEnabled()))
+        Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(ViewMatchers.isEnabled()))
     }
 
     fun viewDisabled(@IdRes viewId: Int) {
-        Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(IsNot.not<View>(ViewMatchers.isEnabled())))
+        Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(IsNot.not<View>(ViewMatchers.isEnabled())))
     }
 
     fun viewClickable(@IdRes viewId: Int) {
-        Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(ViewMatchers.isClickable()))
+        Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(ViewMatchers.isClickable()))
     }
 
     fun viewNotClickable(@IdRes viewId: Int) {
-        Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(IsNot.not<View>(ViewMatchers.isClickable())))
+        Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(IsNot.not<View>(ViewMatchers.isClickable())))
     }
 
     fun dialogWithButton1Displayed(@StringRes buttonTextResId: Int) {
@@ -264,7 +300,9 @@ open class RobotAssertions {
 
     fun toolbarHasTitle(@StringRes titleTextResId: Int) {
         Espresso.onView(ViewMatchers.isAssignableFrom(Toolbar::class.java))
-                .check(ViewAssertions.matches(withToolbarTitle(Is.`is`<CharSequence>(InstrumentationRegistry.getTargetContext().getString(titleTextResId)))))
+                .check(ViewAssertions.matches(
+                        withToolbarTitle(Is.`is`<CharSequence>(
+                                getTargetContext().getString(titleTextResId)))))
     }
 
     fun toolbarHasSubtitle(subtitle: String) {
@@ -291,15 +329,18 @@ open class RobotAssertions {
     }
 
     fun radioGroupHasSelections(@IdRes radioGroupId: Int) {
-        Espresso.onView(AllOf.allOf(ViewMatchers.isDisplayed(), ViewMatchers.withId(radioGroupId))).check(RadioGroupAssertion.hasSelections())
+        Espresso.onView(AllOf.allOf(ViewMatchers.isDisplayed(), ViewMatchers.withId(radioGroupId)))
+                .check(RadioGroupAssertion.hasSelections())
     }
 
     fun radioGroupHasNoSelections(@IdRes radioGroupId: Int) {
-        Espresso.onView(AllOf.allOf(ViewMatchers.isDisplayed(), ViewMatchers.withId(radioGroupId))).check(ViewAssertions.matches(IsNot.not<Any>(RadioGroupAssertion.hasSelections())))
+        Espresso.onView(AllOf.allOf(ViewMatchers.isDisplayed(), ViewMatchers.withId(radioGroupId)))
+                .check(ViewAssertions.matches(IsNot.not<Any>(RadioGroupAssertion.hasSelections())))
     }
 
     fun drawableDisplayed(@IdRes resourceId: Int) {
-        Espresso.onView(withDrawable(resourceId)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Espresso.onView(withDrawable(resourceId))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
     fun bottomNavigationViewItemSelected(@IdRes bottomNavigationViewResId: Int, @IdRes selectedItemResId: Int) {
@@ -308,28 +349,35 @@ open class RobotAssertions {
     }
 
     fun drawerOpened(@IdRes drawerId: Int) {
-        Espresso.onView(ViewMatchers.withId(drawerId)).check(ViewAssertions.matches(DrawerMatchers.isOpen()))
+        Espresso.onView(ViewMatchers.withId(drawerId))
+                .check(ViewAssertions.matches(DrawerMatchers.isOpen()))
     }
 
     fun drawerClosed(@IdRes drawerId: Int) {
-        Espresso.onView(ViewMatchers.withId(drawerId)).check(ViewAssertions.matches(DrawerMatchers.isClosed()))
+        Espresso.onView(ViewMatchers.withId(drawerId))
+                .check(ViewAssertions.matches(DrawerMatchers.isClosed()))
     }
 
     fun snackBarDisplayed(text: String) {
-        Espresso.onView(AllOf.allOf(ViewMatchers.withId(com.google.android.material.R.id.snackbar_text), ViewMatchers.withText(text)))
+        Espresso.onView(allOf(
+                ViewMatchers.withId(com.google.android.material.R.id.snackbar_text),
+                ViewMatchers.withText(text)))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
     fun viewChecked(@IdRes viewId: Int) {
-        Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(ViewMatchers.isChecked()))
+        Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(ViewMatchers.isChecked()))
     }
 
     fun viewNotChecked(@IdRes viewId: Int) {
-        Espresso.onView(ViewMatchers.withId(viewId)).check(ViewAssertions.matches(ViewMatchers.isNotChecked()))
+        Espresso.onView(ViewMatchers.withId(viewId))
+                .check(ViewAssertions.matches(ViewMatchers.isNotChecked()))
     }
 
     fun spinnerHasText(@IdRes spinnerId: Int, text: String) {
-        Espresso.onView(ViewMatchers.withId(spinnerId)).check(ViewAssertions.matches(ViewMatchers.withSpinnerText(text)))
+        Espresso.onView(ViewMatchers.withId(spinnerId))
+                .check(ViewAssertions.matches(ViewMatchers.withSpinnerText(text)))
     }
 
     fun noScreenDisplayed() {

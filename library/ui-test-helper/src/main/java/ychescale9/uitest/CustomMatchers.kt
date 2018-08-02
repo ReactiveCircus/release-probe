@@ -1,3 +1,5 @@
+@file:Suppress("TooManyFunctions", "ReturnCount")
+
 package ychescale9.uitest
 
 import android.annotation.SuppressLint
@@ -19,10 +21,15 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.matcher.BoundedMatcher
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA
+import androidx.test.espresso.matcher.ViewMatchers.withClassName
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withParent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputLayout
-import org.hamcrest.CoreMatchers.*
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.allOf
+import org.hamcrest.CoreMatchers.anyOf
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
@@ -42,13 +49,11 @@ fun noTextInputLayoutError(): Matcher<View> {
 fun hasTextInputLayoutErrorText(@StringRes errorMessageResId: Int): Matcher<View> {
     return object : TypeSafeMatcher<View>() {
         public override fun matchesSafely(view: View): Boolean {
-            if (view !is TextInputLayout) {
+            if (view !is TextInputLayout || view.error == null) {
                 return false
             }
 
-            val error = view.error ?: return false
-
-            val hint = error.toString()
+            val hint = view.error.toString()
 
             return view.getResources().getString(errorMessageResId) == hint
         }
@@ -62,13 +67,11 @@ fun hasTextInputLayoutErrorText(@StringRes errorMessageResId: Int): Matcher<View
 fun hasTextInputLayoutErrorText(expectedErrorText: String): Matcher<View> {
     return object : TypeSafeMatcher<View>() {
         public override fun matchesSafely(view: View): Boolean {
-            if (view !is TextInputLayout) {
+            if (view !is TextInputLayout || view.error == null) {
                 return false
             }
 
-            val error = view.error ?: return false
-
-            val hint = error.toString()
+            val hint = view.error.toString()
 
             return expectedErrorText == hint
         }
@@ -222,7 +225,10 @@ fun withForegroundDrawable(@IdRes resourceId: Int): Matcher<View> {
     return DrawableMatcher(DrawableMatcher.Type.FOREGROUND_DRAWABLE, resourceId)
 }
 
-class DrawableMatcher constructor(private val type: Type, private val expectedId: Int) : TypeSafeMatcher<View>(View::class.java) {
+class DrawableMatcher constructor(
+    private val type: Type,
+    private val expectedId: Int
+) : TypeSafeMatcher<View>(View::class.java) {
 
     private var resourceName: String? = null
 
@@ -256,17 +262,26 @@ class DrawableMatcher constructor(private val type: Type, private val expectedId
                 }
                 constantState = target.drawable.constantState
                 expectedConstantState = expectedDrawable.constantState
-                return constantState != null && expectedConstantState != null && constantState == expectedConstantState || getBitmap(target.drawable).sameAs(getBitmap(expectedDrawable))
+                return constantState != null &&
+                        expectedConstantState != null &&
+                        constantState == expectedConstantState ||
+                        getBitmap(target.drawable).sameAs(getBitmap(expectedDrawable))
             }
             Type.BACKGROUND_DRAWABLE -> {
                 constantState = target.background.constantState
                 expectedConstantState = expectedDrawable.constantState
-                return constantState != null && expectedConstantState != null && constantState == expectedConstantState || getBitmap(target.background).sameAs(getBitmap(expectedDrawable))
+                return constantState != null &&
+                        expectedConstantState != null &&
+                        constantState == expectedConstantState ||
+                        getBitmap(target.background).sameAs(getBitmap(expectedDrawable))
             }
             Type.FOREGROUND_DRAWABLE -> {
                 constantState = target.foreground.constantState
                 expectedConstantState = expectedDrawable.constantState
-                return constantState != null && expectedConstantState != null && constantState == expectedConstantState || getBitmap(target.foreground).sameAs(getBitmap(expectedDrawable))
+                return constantState != null &&
+                        expectedConstantState != null &&
+                        constantState == expectedConstantState ||
+                        getBitmap(target.foreground).sameAs(getBitmap(expectedDrawable))
             }
         }
     }

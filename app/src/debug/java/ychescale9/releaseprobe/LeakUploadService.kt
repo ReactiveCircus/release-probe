@@ -10,7 +10,6 @@ import java.io.PrintWriter
 import java.io.StringWriter
 import java.security.MessageDigest
 
-
 /**
  * Upload LeakCanary trace as exception to Bugsnag.
  */
@@ -31,14 +30,14 @@ class LeakUploadService : DisplayLeakService() {
             beforeNotify { error ->
                 // Bugsnag does smart grouping of exceptions, which we don't want for leak traces.
                 // So instead we rely on the SHA-1 of the stacktrace, which has a low risk of collision.
-                val exceptionAsString = StringWriter().let {
-                    error.exception.printStackTrace(PrintWriter(it))
-                    it.toString()
+                val exceptionAsString = StringWriter().let { sw ->
+                    error.exception.printStackTrace(PrintWriter(sw))
+                    sw.toString()
                 }
 
                 val uniqueHash = MessageDigest.getInstance("SHA-1")
                         .digest(exceptionAsString.toByteArray(Charsets.UTF_8))
-                        .fold("") { str, it -> str + "%02x".format(it) }
+                        .fold("") { str, byte -> str + "%02x".format(byte) }
 
                 error.setGroupingHash(uniqueHash)
                 true

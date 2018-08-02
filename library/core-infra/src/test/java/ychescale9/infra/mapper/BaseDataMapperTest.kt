@@ -1,8 +1,8 @@
 package ychescale9.infra.mapper
 
+import java.util.Collections.emptyList
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
-import java.util.Collections.emptyList
 
 class BaseDataMapperTest {
 
@@ -10,7 +10,7 @@ class BaseDataMapperTest {
 
     @Test
     fun `should return empty list for empty collection`() {
-        mapper.transform(emptyList()) shouldEqual  emptyList<Any>()
+        mapper.transform(emptyList()) shouldEqual emptyList<Any>()
     }
 
     @Test

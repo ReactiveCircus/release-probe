@@ -5,11 +5,11 @@ import android.app.Application
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import io.reactivex.plugins.RxJavaPlugins
+import javax.inject.Inject
 import timber.log.Timber
 import ychescale9.analytics.AnalyticsApi
 import ychescale9.releaseprobe.testing.di.component.DaggerScreenTestAppComponent
 import ychescale9.releaseprobe.testing.di.component.ScreenTestAppComponent
-import javax.inject.Inject
 
 open class ScreenTestApp : Application(), HasActivityInjector {
 

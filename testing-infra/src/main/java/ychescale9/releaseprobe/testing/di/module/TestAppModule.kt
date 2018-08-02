@@ -2,6 +2,7 @@ package ychescale9.releaseprobe.testing.di.module
 
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 import ychescale9.infra.executor.PostExecutionThread
 import ychescale9.infra.executor.ThreadExecutor
 import ychescale9.infra.executor.UiThread
@@ -10,7 +11,6 @@ import ychescale9.infra.util.Clock
 import ychescale9.infra.util.RealClock
 import ychescale9.releaseprobe.testing.helper.ScreenTestJobExecutor
 import ychescale9.releaseprobe.testing.helper.ScreenTestSchedulerProvider
-import javax.inject.Singleton
 
 @Module
 object TestAppModule {

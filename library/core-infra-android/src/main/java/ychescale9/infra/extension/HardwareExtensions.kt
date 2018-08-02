@@ -7,7 +7,7 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 
 fun Context.vibrate(duration: Long) {
-    if (Build.VERSION.SDK_INT >= 26) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         (getSystemService(VIBRATOR_SERVICE) as Vibrator)
                 .vibrate(VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE))
     } else {

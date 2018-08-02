@@ -1,13 +1,13 @@
 package ychescale9.infra.domain
 
-import ychescale9.infra.executor.PostExecutionThread
-import ychescale9.infra.executor.ThreadExecutor
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.observers.TestObserver
 import io.reactivex.schedulers.Schedulers
 import org.amshove.kluent.shouldBe
 import org.junit.Test
+import ychescale9.infra.executor.PostExecutionThread
+import ychescale9.infra.executor.ThreadExecutor
 
 const val dummyResult1 = "result1"
 const val dummyResult2 = "result2"
@@ -62,8 +62,10 @@ class UseCaseTest {
     }
 }
 
-private class UseCaseImpl(threadExecutor: ThreadExecutor,
-                          postExecutionThread: PostExecutionThread) : UseCase<UseCaseImpl.RequestValues, String>(threadExecutor, postExecutionThread) {
+private class UseCaseImpl(
+    threadExecutor: ThreadExecutor,
+    postExecutionThread: PostExecutionThread
+) : UseCase<UseCaseImpl.RequestValues, String>(threadExecutor, postExecutionThread) {
 
     override fun createUseCase(): Observable<String> {
         // return different results based on request values
@@ -77,8 +79,10 @@ private class UseCaseImpl(threadExecutor: ThreadExecutor,
     class RequestValues(val flag: Boolean) : UseCase.RequestValues
 }
 
-private class NoRequestValuesUseCaseImpl(threadExecutor: ThreadExecutor,
-                                         postExecutionThread: PostExecutionThread) : UseCase<EmptyRequestValues, String>(threadExecutor, postExecutionThread) {
+private class NoRequestValuesUseCaseImpl(
+    threadExecutor: ThreadExecutor,
+    postExecutionThread: PostExecutionThread
+) : UseCase<EmptyRequestValues, String>(threadExecutor, postExecutionThread) {
 
     override fun createUseCase(): Observable<String> {
         return Observable.just(dummyResult1)

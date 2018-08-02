@@ -17,7 +17,8 @@ class JobExecutor : ThreadExecutor {
     private val threadPoolExecutor: ThreadPoolExecutor
 
     init {
-        threadPoolExecutor = ThreadPoolExecutor(corePoolSize, maxPoolSize, keepAliveTime, keepAliveTimeUnit, LinkedBlockingQueue())
+        threadPoolExecutor = ThreadPoolExecutor(
+                corePoolSize, maxPoolSize, keepAliveTime, keepAliveTimeUnit, LinkedBlockingQueue())
     }
 
     override fun execute(command: Runnable) {

@@ -1,0 +1,14 @@
+apply plugin: "io.gitlab.arturbosch.detekt"
+
+dependencies {
+    detekt "io.gitlab.arturbosch.detekt:detekt-formatting:${versions.detekt}"
+}
+
+detekt {
+    defaultProfile {
+        output = file("$project.buildDir/reports/detekt")
+        outputName = "$project.name"
+        config = "$project.rootDir/detekt-config.yml"
+        filters = ".*/test/.*,.*/androidTest/.*,.*/resources/.*,.*/build/.*,.*/tmp/.*"
+    }
+}

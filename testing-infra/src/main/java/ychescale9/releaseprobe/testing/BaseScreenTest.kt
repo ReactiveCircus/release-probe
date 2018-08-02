@@ -10,6 +10,7 @@ import androidx.test.espresso.base.DefaultFailureHandler
 import androidx.test.espresso.intent.Intents
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.screenshot.Screenshot
+import javax.inject.Inject
 import org.hamcrest.Matcher
 import org.junit.After
 import org.junit.Assume
@@ -19,7 +20,6 @@ import org.junit.rules.TestName
 import retrofit2.mock.NetworkBehavior
 import ychescale9.uitest.annotation.PhoneTest
 import ychescale9.uitest.annotation.TabletTest
-import javax.inject.Inject
 
 abstract class BaseScreenTest {
 

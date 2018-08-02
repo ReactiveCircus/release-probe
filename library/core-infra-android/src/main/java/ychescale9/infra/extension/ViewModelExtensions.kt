@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 
-inline fun <reified T: ViewModel> ViewModelStoreOwner.getViewModel(crossinline block : () -> T): T {
+inline fun <reified T : ViewModel> ViewModelStoreOwner.getViewModel(crossinline block: () -> T): T {
     val viewModelClass = T::class.java
     val factory = object : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")

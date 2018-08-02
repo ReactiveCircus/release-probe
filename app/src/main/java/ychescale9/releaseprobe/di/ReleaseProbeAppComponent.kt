@@ -3,9 +3,9 @@ package ychescale9.releaseprobe.di
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
+import javax.inject.Singleton
 import ychescale9.infra.di.module.AppModule
 import ychescale9.releaseprobe.ReleaseProbeApp
-import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [

@@ -1,8 +1,8 @@
 package ychescale9.releaseprobe.testing.helper
 
 import android.os.AsyncTask
-import ychescale9.infra.executor.ThreadExecutor
 import java.util.concurrent.ThreadPoolExecutor
+import ychescale9.infra.executor.ThreadExecutor
 
 /**
  * Implementation of [ThreadExecutor] for running android tests.

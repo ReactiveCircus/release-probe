@@ -12,7 +12,8 @@ class FirebaseAnalyticsApi(context: Context) : AnalyticsApi {
     /**
      * By default Firebase uses the class name of the activity for automatic screen reporting.
      * Call this in Activity.onResume() to set a custom name for the current screen.
-     * Also call this to define new screens within an Activity triggered by changing Fragments, navigating in ViewPager, etc.
+     * Also call this to define new screens within an Activity triggered by changing
+     * Fragments, navigating in ViewPager, etc.
      */
     override fun setCurrentScreenName(activity: Activity, name: String, className: String?) {
         firebaseAnalytics.setCurrentScreen(activity, name, className)
@@ -31,18 +32,16 @@ class FirebaseAnalyticsApi(context: Context) : AnalyticsApi {
     }
 
     override fun logEvent(name: String, params: Map<String, *>?) {
-        val bundle = Bundle().takeIf { params != null }
-                ?.apply {
-                    params?.apply {
-                        for (entry in entries) {
-                            when (entry.value) {
-                                is String -> putString(entry.key, (entry.value as String))
-                                is Long -> putLong(entry.key, (entry.value as Long))
-                                is Double -> putDouble(entry.key, (entry.value as Double))
-                            }
-                        }
-                    }
+        val bundle = Bundle()
+        params?.run {
+            entries.forEach { entry ->
+                when (entry.value) {
+                    is String -> bundle.putString(entry.key, (entry.value as String))
+                    is Long -> bundle.putLong(entry.key, (entry.value as Long))
+                    is Double -> bundle.putDouble(entry.key, (entry.value as Double))
                 }
+            }
+        }
 
         firebaseAnalytics.logEvent(name, bundle)
     }

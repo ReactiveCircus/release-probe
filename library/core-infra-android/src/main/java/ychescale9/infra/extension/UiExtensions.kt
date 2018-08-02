@@ -41,9 +41,9 @@ fun Activity.showKeyboard() {
  * @return
  */
 fun Context.tintVectorDrawable(
-        theme: Resources.Theme,
-        @DrawableRes resId: Int,
-        @ColorInt tint: Int
+    theme: Resources.Theme,
+    @DrawableRes resId: Int,
+    @ColorInt tint: Int
 ): Drawable {
     val drawable: Drawable = VectorDrawableCompat.create(resources, resId, theme) as Drawable
     val wrapped = DrawableCompat.wrap(drawable)

@@ -1,12 +1,15 @@
 package ychescale9.bugsnag
 
 import android.util.Log
-import android.util.Log.*
+import android.util.Log.ERROR
+import android.util.Log.INFO
+import android.util.Log.WARN
 import com.bugsnag.android.Client
 import com.bugsnag.android.Error
 import com.bugsnag.android.Severity
+import java.util.ArrayDeque
+import java.util.Locale
 import timber.log.Timber
-import java.util.*
 
 /**
  * A logging implementation which buffers the last 200 messages and notifies on error exceptions.
@@ -16,13 +19,16 @@ class BugsnagTree(private val client: Client) : Timber.Tree() {
     // Adding one to the initial size accounts for the add before remove.
     private val buffer = ArrayDeque<String>(BUFFER_SIZE + 1)
 
+    private val capacityOffset = 16
+
     override fun isLoggable(tag: String?, priority: Int): Boolean {
         // only log WARN, ERROR, and WTF
         return priority == Log.WARN || priority == Log.ERROR || priority == Log.ASSERT
     }
 
     override fun log(priority: Int, tag: String?, message: String, throwable: Throwable?) {
-        val log = buildString(message.length + 16) {
+
+        val log = buildString(message.length + capacityOffset) {
             append(System.currentTimeMillis())
             append(' ')
             append(when (priority) {

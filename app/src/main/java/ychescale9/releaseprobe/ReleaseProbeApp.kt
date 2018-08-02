@@ -8,12 +8,12 @@ import com.squareup.leakcanary.LeakCanary
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import io.reactivex.plugins.RxJavaPlugins
+import javax.inject.Inject
 import timber.log.Timber
 import ychescale9.analytics.AnalyticsApi
 import ychescale9.bugsnag.BugsnagTree
 import ychescale9.releaseprobe.di.DaggerReleaseProbeAppComponent
 import ychescale9.releaseprobe.di.ReleaseProbeAppComponent
-import javax.inject.Inject
 
 open class ReleaseProbeApp : Application(), HasActivityInjector {
 
@@ -67,8 +67,8 @@ open class ReleaseProbeApp : Application(), HasActivityInjector {
     protected open fun initializeTimber() {
         val tree = BugsnagTree(bugsnagClient)
         Timber.plant(tree)
-        bugsnagClient.beforeNotify {
-            tree.update(it)
+        bugsnagClient.beforeNotify { error ->
+            tree.update(error)
             return@beforeNotify true
         }
     }
