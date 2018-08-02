@@ -49,13 +49,13 @@ We use CircleCI 2.0 for CI/CD.
 
 ### Workflow
 
-#### On all branches
+#### All pull requests
 
 * **build** - assembles the release APK and App Bundle
 * **unit_tests** - runs all unit tests
 * **static_analysis** - runs Android Lint and detekt
 
-#### On master only
+#### On master branch only
 
 * **deploy_to_play** - deploys the release App Bundle to Google Play's internal 
 
