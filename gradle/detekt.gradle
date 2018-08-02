@@ -8,7 +8,7 @@ detekt {
     defaultProfile {
         output = file("$project.buildDir/reports/detekt")
         outputName = "$project.name"
-        config = "$project.rootDir/detekt-config.yml"
+        config = "$project.rootDir/detekt.yml"
         filters = ".*/test/.*,.*/androidTest/.*,.*/resources/.*,.*/build/.*,.*/tmp/.*"
     }
 }
