@@ -6,8 +6,8 @@ android_config: &android_config
   docker:
       - image: ychescale9/android-sdk:api-28
   environment:
-    _JAVA_OPTIONS: "-Xmx2g -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
-    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2g" -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
+    JAVA_TOOL_OPTIONS: "-Xmx1g"
+    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1g" -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
     TERM: dumb
 
 # Cache
@@ -19,7 +19,7 @@ save_gradle_cache: &save_gradle_cache
 
 restore_gradle_cache: &restore_gradle_cache
   restore_cache:
-    key: jars-{{ checksum "build.gradle" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+    key: $CACHE_VERSION-gradle-{{ checksum "build.gradle" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
 
 # Workspace
 attach_workspace: &attach_workspace
