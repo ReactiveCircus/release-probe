@@ -13,8 +13,8 @@ import ychescale9.infra.executor.ThreadExecutor
  * Upon subscription a use case will execute its job in a background thread and will post the result in the UI thread.
  */
 abstract class UseCase<Q : UseCase.RequestValues, T>(
-        private val threadExecutor: ThreadExecutor,
-        private val postExecutionThread: PostExecutionThread
+    private val threadExecutor: ThreadExecutor,
+    private val postExecutionThread: PostExecutionThread
 ) {
     lateinit var requestValues: Q
 

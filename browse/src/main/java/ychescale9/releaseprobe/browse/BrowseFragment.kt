@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ychescale9.releaseprobe.base.BaseFragment
 import javax.inject.Inject
+import ychescale9.releaseprobe.base.BaseFragment
 
 class BrowseFragment : BaseFragment() {
 

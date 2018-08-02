@@ -1,7 +1,9 @@
 package ychescale9.infra.extension
 
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 /**
  * Converts the timestamp to a formatted String

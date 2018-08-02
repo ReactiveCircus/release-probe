@@ -14,12 +14,13 @@ buildscript {
             dexcountGradlePlugin: '0.8.3',
             bugsnagGradlePlugin: '3.3.0',
             bugsnag: '4.5.0',
-            firebase: [
-                    core: '16.0.1'
-            ],
+            detekt: '1.0.0.RC8',
             leakCanary: '1.6.1',
             kotlin: '1.2.51',
             kotlinCoroutines: '0.24.0',
+            firebase: [
+                    core: '16.0.1'
+            ],
             androidx: [
                     core: '1.0.0-beta01',
                     annotation: '1.0.0-beta01',
@@ -58,7 +59,7 @@ buildscript {
     repositories {
         mavenCentral()
         google()
-        jcenter()
+        gradlePluginPortal()
     }
 
     dependencies {
@@ -67,6 +68,7 @@ buildscript {
         classpath "com.google.gms:google-services:${versions.googleServicesGradlePlugin}"
         classpath "com.bugsnag:bugsnag-android-gradle-plugin:${versions.bugsnagGradlePlugin}"
         classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${versions.dexcountGradlePlugin}"
+        classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${versions.detekt}"
         classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:${versions.androidx.navigation}"
     }
 }
@@ -89,6 +91,10 @@ allprojects {
             events 'passed', 'skipped', 'failed'
         }
     }
+}
+
+subprojects {
+    apply from: "$project.rootDir/gradle/detekt.gradle"
 }
 
 task clean(type: Delete) {

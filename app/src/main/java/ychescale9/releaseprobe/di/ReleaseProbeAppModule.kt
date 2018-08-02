@@ -4,8 +4,8 @@ import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import ychescale9.releaseprobe.ReleaseProbeApp
 import javax.inject.Singleton
+import ychescale9.releaseprobe.ReleaseProbeApp
 
 @Module
 class ReleaseProbeAppModule {

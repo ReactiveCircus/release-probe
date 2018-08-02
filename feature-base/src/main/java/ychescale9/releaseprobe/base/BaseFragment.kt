@@ -1,8 +1,8 @@
 package ychescale9.releaseprobe.base
 
 import dagger.android.support.DaggerFragment
-import ychescale9.analytics.AnalyticsApi
 import javax.inject.Inject
+import ychescale9.analytics.AnalyticsApi
 
 abstract class BaseFragment : DaggerFragment() {
 

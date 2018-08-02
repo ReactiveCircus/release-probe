@@ -2,10 +2,9 @@ package ychescale9.releaseprobe.testing.di.module
 
 import dagger.Module
 import dagger.Provides
-import retrofit2.mock.NetworkBehavior
-
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+import retrofit2.mock.NetworkBehavior
 
 @Module
 object TestApiModule {

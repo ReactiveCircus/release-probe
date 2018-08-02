@@ -2,6 +2,7 @@ package ychescale9.infra.di.module
 
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 import ychescale9.infra.executor.JobExecutor
 import ychescale9.infra.executor.PostExecutionThread
 import ychescale9.infra.executor.ThreadExecutor
@@ -9,7 +10,6 @@ import ychescale9.infra.executor.UiThread
 import ychescale9.infra.rx.SchedulerProvider
 import ychescale9.infra.util.Clock
 import ychescale9.infra.util.RealClock
-import javax.inject.Singleton
 
 @Module
 object AppModule {

@@ -10,7 +10,10 @@ import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito.*
+import org.mockito.Mockito.anyInt
+import org.mockito.Mockito.never
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
 import ychescale9.infra.lifecycle.SingleLiveData
 
 class SingleLiveDataTest {

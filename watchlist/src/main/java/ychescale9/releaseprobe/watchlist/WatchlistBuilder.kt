@@ -8,5 +8,4 @@ abstract class WatchlistBuilder {
 
     @ContributesAndroidInjector()
     abstract fun bindWatchlistFragment(): WatchlistFragment
-
 }
