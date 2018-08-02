@@ -1,7 +1,7 @@
 ReleaseProbe
 ============
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c7758b4093a84f3ea89ec4ab83385ec7)](https://www.codacy.com/project/ychescale9/release-probe/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ychescale9/release-probe&amp;utm_campaign=Badge_Grade_Dashboard) [![Android API](https://img.shields.io/badge/API-22%2B-blue.svg?style=flat-square&label=API&maxAge=300)](https://www.android.com/history/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square&maxAge=3600)](https://opensource.org/licenses/MIT)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/620bc7570cd44f30a9973836cc36df0d)](https://www.codacy.com/project/ychescale9/release-probe/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ychescale9/release-probe&amp;utm_campaign=Badge_Grade_Dashboard) [![Android API](https://img.shields.io/badge/API-22%2B-blue.svg?style=flat-square&label=API&maxAge=300)](https://www.android.com/history/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square&maxAge=3600)](https://opensource.org/licenses/MIT)
 
 An Android app for monitoring new releases of libraries and dependencies such as AndroidX, Firebase and other popular 3rd party libraries on GitHub. Get notified when your favorite library has a new release.
 

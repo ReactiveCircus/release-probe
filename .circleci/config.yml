@@ -4,7 +4,7 @@ version: 2.0
 android_config: &android_config
   working_directory: ~/release-probe
   docker:
-      - image: ychescale9/android-sdk:1.0
+      - image: ychescale9/android-sdk:api-28
   environment:
     _JAVA_OPTIONS: "-Xmx2g -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
     GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2g" -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
