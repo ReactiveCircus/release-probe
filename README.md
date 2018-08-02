@@ -13,11 +13,15 @@ Tech Stack
 ----------
 
 ### Language
-100% Kotlin
+100% Kotlin.
 
 TODO
 
 ### Architecture Guideline
+
+TODO
+
+### Core Libraries
 
 TODO
 
@@ -31,17 +35,29 @@ Testing
 
 TODO
 
+Code Quality
+------------
+
+In addition to Android Lint, [detekt](https://github.com/arturbosch/detekt) has been configured for Kotlin static analysis.
+
+We also use [Codacy](https://app.codacy.com/project/ychescale9/release-probe/dashboard) for automatic PR quality review.
+
 Continuous Integration
 ----------------------
 
-We use CircleCI 2.0 for CI/CD. The workflow described below is triggered by changes on the **master** branch.
+We use CircleCI 2.0 for CI/CD.
 
 ### Workflow
+
+#### On all branches
 
 * **build** - assembles the release APK and App Bundle
 * **unit_tests** - runs all unit tests
 * **static_analysis** - runs Android Lint and detekt
-* **deploy_to_play** - deploys the release App Bundle to Google Play's internal testing channel
+
+#### On master only
+
+* **deploy_to_play** - deploys the release App Bundle to Google Play's internal 
 
 ### Docker Container
 [ychescale9/android-sdk](https://hub.docker.com/r/ychescale9/android-sdk/) is used for running CI jobs. Dockerfiles are available on [GitHub](https://github.com/ychescale9/docker-android-images)
