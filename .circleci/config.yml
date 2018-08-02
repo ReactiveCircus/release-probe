@@ -11,15 +11,22 @@ android_config: &android_config
     TERM: dumb
 
 # Cache
+extract_cache_version: &extract_cache_version
+  run:
+    name: Extract cache version from environment variable
+    command: |
+      echo "Cache version: $CACHE_VERSION"
+      echo "$CACHE_VERSION" > cacheVersion
+
 save_gradle_cache: &save_gradle_cache
   save_cache:
-    key: $CACHE_VERSION-gradle-{{ checksum "build.gradle" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+    key: gradle-{{ checksum "cacheVersion" }}-{{ checksum "build.gradle" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
     paths:
       - ~/.gradle
 
 restore_gradle_cache: &restore_gradle_cache
   restore_cache:
-    key: $CACHE_VERSION-gradle-{{ checksum "build.gradle" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+    key: gradle-{{ checksum "cacheVersion" }}-{{ checksum "build.gradle" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
 
 # Workspace
 attach_workspace: &attach_workspace
@@ -47,9 +54,9 @@ jobs:
       - run:
           name: Setup Environment Variables
           command: |
-            echo "Cache version: $CACHE_VERSION"
             echo 'export BUILD_NUMBER="$CIRCLE_BUILD_NUM"' >> $BASH_ENV
       - checkout
+      - *extract_cache_version
       - *restore_gradle_cache
       - run:
           name: Download Dependencies
@@ -74,6 +81,7 @@ jobs:
     <<: *android_config
     steps:
       - checkout
+      - *extract_cache_version
       - *restore_gradle_cache
       - run:
           name: Download Dependencies
@@ -94,6 +102,7 @@ jobs:
     <<: *android_config
     steps:
       - checkout
+      - *extract_cache_version
       - *restore_gradle_cache
       - run:
           name: Download Dependencies
@@ -117,6 +126,7 @@ jobs:
     <<: *android_config
     steps:
       - checkout
+      - *extract_cache_version
       - *restore_gradle_cache
       - run:
           name: Download Dependencies
