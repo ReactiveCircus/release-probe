@@ -1,10 +1,12 @@
--dontoptimize
+-android
 -dontpreverify
--dontobfuscate
 -dontskipnonpubliclibraryclasses
 -verbose
 
 -keepattributes *Annotation*
+
+# For crash reporting
+-keepattributes LineNumberTable, SourceFile
 
 # For native methods, see http://proguard.sourceforge.net/manual/examples.html#native
 -keepclasseswithmembernames class * {

@@ -55,6 +55,10 @@ jobs:
           name: Setup Environment Variables
           command: |
             echo 'export BUILD_NUMBER="$CIRCLE_BUILD_NUM"' >> $BASH_ENV
+            echo 'export APP_VERSION_CODE="$(./gradlew -q showVersionCode | tail -1)"' >> $BASH_ENV
+            echo 'export APP_VERSION_NAME="$(./gradlew -q showVersionName | tail -1)"' >> $BASH_ENV
+            echo 'export APP_ID="ychescale9.releaseprobe"' >> $BASH_ENV
+
       - checkout
       - *extract_cache_version
       - *restore_gradle_cache
@@ -72,6 +76,17 @@ jobs:
             ./gradlew -Pkapt.use.worker.api=false assemble bundleProdRelease
       - store_artifacts:
           path: app/build/outputs/
+      - run:
+          name: Upload Mapping File to Bugsnag
+          command: |
+            # TODO upload currently not working with R8: https://github.com/bugsnag/bugsnag-android-gradle-plugin/issues/121
+            curl https://upload.bugsnag.com/ \
+              -F proguard=@app/build/outputs/mapping/r8/prod/release/mapping.txt \
+              -F apiKey=$RELEASE_PROBE_BUGSNAG_API_KEY \
+              -F appId=$APP_ID \
+              -F versionCode=$APP_VERSION_CODE \
+              -F versionName=$APP_VERSION_NAME \
+              -F overwrite=true
       - run:
           name: Cleanup Secrets
           command: rm -f secrets/release-probe.keystore
