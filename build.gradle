@@ -49,6 +49,7 @@ buildscript {
             store: '3.1.0',
             glide: '4.7.1',
             junit: '4.12',
+            mockk: '1.8.6',
             mockito: '2.19.0',
             mockitoKotlin: '2.0.0-RC1',
             kluent: '1.40'

@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+    buildToolsVersion buildConfig.buildTools
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    flavorDimensions "environment"
+
+    productFlavors {
+        mock {
+
+        }
+        prod {
+
+        }
+    }
+
+    // filter out mockRelease and prodDebug (when on CI) builds.
+    android.variantFilter { variant ->
+        variant.getFlavors().each { flavor ->
+            if (flavor.name != 'prod' && variant.buildType.name == 'release' ||
+                    isCiBuild && flavor.name == 'prod' && variant.buildType.name == 'debug') {
+                variant.setIgnore(true)
+            }
+        }
+    }
+}
+
+dependencies {
+    prodApi project(path: ':remote-api-real')
+    mockApi project(path: ':remote-api-mock')
+    api project(path: ':persistence')
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+
+    // rx
+    implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
+
+    // Dagger
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+
+    // NYTimes store
+    implementation "com.nytimes.android:store3:${versions.store}"
+    implementation "com.nytimes.android:store-kotlin3:${versions.store}"
+
+    // Unit tests
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "io.mockk:mockk:${versions.mockk}"
+    testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
+}

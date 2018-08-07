@@ -7,6 +7,12 @@ include ':browse'
 include ':settings'
 include ':testing-infra'
 
+include ':data'
+include ':remote-api-base'
+include ':remote-api-real'
+include ':remote-api-mock'
+include ':persistence'
+
 include ':core-infra'
 project(':core-infra').projectDir = new File(rootDir, 'library/core-infra')
 

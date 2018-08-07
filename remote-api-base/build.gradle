@@ -1,0 +1,29 @@
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    useBuildCache = true
+    mapDiagnosticLocations = true
+}
+
+dependencies {
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+
+    // rx
+    implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
+
+    // OkHttp
+    implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+
+    // Moshi
+    implementation "com.squareup.moshi:moshi:${versions.moshi}"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
