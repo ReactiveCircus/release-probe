@@ -16,7 +16,7 @@ android {
         targetSdkVersion buildConfig.targetSdk
 
         testApplicationId 'ychescale9.releaseprobe.persistence.test'
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         kapt {
             arguments {

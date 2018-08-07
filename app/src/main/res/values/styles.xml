@@ -12,7 +12,7 @@
         <item name="itemTextColor">@color/bottom_nav_color</item>
     </style>
 
-    <style name="Theme.RP.BottomNavigationView.TextAppearanceActive" parent="TextAppearance.MaterialComponents.BottomNavigationView.Active">
+    <style name="Theme.RP.BottomNavigationView.TextAppearanceActive" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textSize">@dimen/text_body</item>
         <item name="android:textStyle">bold</item>
     </style>

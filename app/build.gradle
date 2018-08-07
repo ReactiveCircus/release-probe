@@ -183,10 +183,12 @@ dependencies {
     // -- TODO move following dependencies to appropriate modules once started using.
 
     // Paging
-    implementation "android.arch.paging:runtime:${versions.androidx.paging}"
-    implementation "android.arch.paging:rxjava2:${versions.androidx.paging}"
+    implementation "androidx.paging:paging-runtime:${versions.androidx.paging}"
+    implementation "androidx.paging:paging-rxjava2:${versions.androidx.paging}"
     // Work
     implementation "android.arch.work:work-runtime-ktx:${versions.androidx.work}"
+    // TODO remove this once work is stable or in-sync with room
+    implementation "androidx.room:room-runtime:${versions.androidx.room}"
     androidTestImplementation "android.arch.work:work-testing:${versions.androidx.work}"
     // TODO move above dependencies to appropriate modules once started using.
 

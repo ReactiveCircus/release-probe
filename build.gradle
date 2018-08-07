@@ -5,7 +5,7 @@ buildscript {
             minSdk: 22,
             targetSdk: 28,
             compileSdk: 28,
-            buildTools: '28.0.1'
+            buildTools: '28.0.2'
     ]
 
     ext.versions = [
@@ -21,22 +21,22 @@ buildscript {
                     core: '16.0.1'
             ],
             androidx: [
-                    core: '1.0.0-beta01',
-                    annotation: '1.0.0-beta01',
-                    appCompat: '1.0.0-beta01',
-                    fragment: '1.0.0-beta01',
-                    coordinatorLayout: '1.0.0-beta01',
+                    core: '1.0.0-rc01',
+                    annotation: '1.0.0-rc01',
+                    appCompat: '1.0.0-rc01',
+                    fragment: '1.0.0-rc01',
+                    coordinatorLayout: '1.0.0-rc01',
                     constraintLayout: '1.1.2',
-                    arch: '2.0.0-beta01',
-                    lifecycle: '2.0.0-beta01',
-                    room: '2.0.0-beta01',
-                    paging: '2.0.0-beta01',
+                    arch: '2.0.0-rc01',
+                    lifecycle: '2.0.0-rc01',
+                    room: '2.0.0-rc01',
+                    paging: '2.0.0-rc01',
                     navigation: '1.0.0-alpha04',
                     work: '1.0.0-alpha06',
                     test: '1.1.0-alpha4',
                     espresso: '3.1.0-alpha4'
             ],
-            material: '1.0.0-beta01',
+            material: '1.0.0-rc01',
             okhttp: '3.11.0',
             retrofit: '2.4.0',
             moshi: '1.6.0',
