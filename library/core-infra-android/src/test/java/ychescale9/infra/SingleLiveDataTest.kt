@@ -5,15 +5,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.Observer
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito.anyInt
-import org.mockito.Mockito.never
-import org.mockito.Mockito.times
-import org.mockito.Mockito.verify
 import ychescale9.infra.lifecycle.SingleLiveData
 
 class SingleLiveDataTest {
@@ -22,11 +19,11 @@ class SingleLiveDataTest {
     @JvmField
     val instantExecutorRule = InstantTaskExecutorRule()
 
-    val owner = mock<LifecycleOwner>()
-
     lateinit var lifecycle: LifecycleRegistry
 
-    val observer = mock<Observer<Int>>()
+    val owner = mockk<LifecycleOwner>()
+
+    val observer = mockk<Observer<Int>>(relaxed = true)
 
     val singleLiveData = SingleLiveData<Int>()
 
@@ -34,7 +31,7 @@ class SingleLiveDataTest {
     fun setUp() {
         // Link custom lifecycle owner with the lifecyle register.
         lifecycle = LifecycleRegistry(owner)
-        whenever(owner.lifecycle).thenReturn(lifecycle)
+        every { owner.lifecycle } returns lifecycle
 
         // Start observing
         singleLiveData.observe(owner, observer)
@@ -49,7 +46,7 @@ class SingleLiveDataTest {
         lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
 
         // no update should be emitted because no value has been set
-        verify<Observer<Int>>(observer, never()).onChanged(anyInt())
+        verify(exactly = 0) { observer.onChanged(any()) }
     }
 
     @Test
@@ -65,7 +62,7 @@ class SingleLiveDataTest {
         lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
 
         // Check that the observer is called once
-        verify<Observer<Int>>(observer, times(1)).onChanged(anyInt())
+        verify(exactly = 1) { observer.onChanged(42) }
     }
 
     @Test
@@ -80,7 +77,7 @@ class SingleLiveDataTest {
         singleLiveData.value = 23
 
         // Check that the observer has been called twice
-        verify<Observer<Int>>(observer, times(2)).onChanged(anyInt())
+        verify(exactly = 2) { observer.onChanged(any()) }
     }
 
     @Test
@@ -89,7 +86,7 @@ class SingleLiveDataTest {
         singleLiveData.value = 42
 
         // which doesn't emit a change
-        verify<Observer<Int>>(observer, never()).onChanged(42)
+        verify(exactly = 0) { observer.onChanged(any()) }
 
         // and set it again
         singleLiveData.value = 42
@@ -98,6 +95,6 @@ class SingleLiveDataTest {
         lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
 
         // Check that the observer is called only once
-        verify<Observer<Int>>(observer, times(1)).onChanged(anyInt())
+        verify(exactly = 1) { observer.onChanged(42) }
     }
 }
