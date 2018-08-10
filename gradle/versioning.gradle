@@ -35,7 +35,7 @@ ext {
             throw new GradleException(errorMessage)
         }
 
-        (major * 10000) + (minor * 100) + (patch)
+        return versionCode = (major * 10000) + (minor * 100) + (patch)
     }
 
 
@@ -45,6 +45,18 @@ ext {
         def versioningProperties = new Properties()
         versioningProperties.load(new FileInputStream(versioningFile))
 
-        versioningProperties['majorVersion'] + "." +versioningProperties['minorVersion'] + "." + versioningProperties['patch'] + "." + (System.getenv("BUILD_NUMBER") as Integer ?: 0)
+        return versioningProperties['majorVersion'] + "." +versioningProperties['minorVersion'] + "." + versioningProperties['patch'] + "." + (System.getenv("BUILD_NUMBER") as Integer ?: 0)
+    }
+}
+
+task showVersionCode {
+    doLast {
+        println(buildVersionCode())
+    }
+}
+
+task showVersionName {
+    doLast {
+        println(buildVersionName())
     }
 }

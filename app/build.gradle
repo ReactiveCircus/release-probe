@@ -254,15 +254,9 @@ tasks.whenTaskAdded { task ->
     if (task.name.endsWith("DebugDexMethods")) {
         task.enabled = false
     }
-    // don't upload Bugsnag mapping if NOT on CI
-    else if (task.name.startsWith("uploadBugsnag") && !isCiBuild) {
-        task.enabled = false
-    }
 }
 
 apply plugin: 'com.google.gms.google-services'
-
-apply plugin: 'com.bugsnag.android.gradle'
 
 android.applicationVariants.all { variant ->
     // disable google services plugin for mock flavor

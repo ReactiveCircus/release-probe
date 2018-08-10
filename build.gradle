@@ -9,11 +9,10 @@ buildscript {
     ]
 
     ext.versions = [
-            androidGradlePlugin: '3.3.0-alpha03',
+            androidGradlePlugin: '3.3.0-alpha04',
             googleServicesGradlePlugin: '4.0.1',
             dexcountGradlePlugin: '0.8.3',
-            bugsnagGradlePlugin: '3.3.0',
-            bugsnag: '4.5.0',
+            bugsnag: '4.6.0',
             detekt: '1.0.0.RC8',
             leakCanary: '1.6.1',
             kotlin: '1.2.60',
@@ -65,7 +64,6 @@ buildscript {
         classpath "com.android.tools.build:gradle:${versions.androidGradlePlugin}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath "com.google.gms:google-services:${versions.googleServicesGradlePlugin}"
-        classpath "com.bugsnag:bugsnag-android-gradle-plugin:${versions.bugsnagGradlePlugin}"
         classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${versions.dexcountGradlePlugin}"
         classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${versions.detekt}"
         classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:${versions.androidx.navigation}"
