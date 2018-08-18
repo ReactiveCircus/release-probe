@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    useBuildCache = true
+    mapDiagnosticLocations = true
+}
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+    buildToolsVersion buildConfig.buildTools
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(path: ':domain')
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+
+    // Work
+    implementation "android.arch.work:work-runtime-ktx:${versions.androidx.work}"
+
+    // Explicitly declare room-runtime dependency used by work transitively
+    implementation "androidx.room:room-runtime:${versions.androidx.room}"
+
+    // rx
+    implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
+
+    // timber
+    implementation "com.jakewharton.timber:timber:${versions.timber}"
+
+    // Dagger
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+
+    // Android tests
+    androidTestImplementation "androidx.test:runner:${versions.androidx.test}"
+    androidTestImplementation "androidx.test:rules:${versions.androidx.test}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.androidx.espresso}"
+    androidTestImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
+    androidTestImplementation "android.arch.work:work-testing:${versions.androidx.work}"
+}

@@ -7,6 +7,8 @@ include ':browse'
 include ':settings'
 include ':testing-infra'
 
+include ':tasks'
+
 include ':data'
 include ':remote-api-base'
 include ':remote-api-real'
