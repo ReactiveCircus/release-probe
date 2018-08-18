@@ -1,5 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    useBuildCache = true
+    mapDiagnosticLocations = true
+}
 
 android {
     compileSdkVersion buildConfig.compileSdk
@@ -8,38 +14,27 @@ android {
     defaultConfig {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
+
+        // expiration time for store - 2 hours
+        buildConfigField "long", "STORE_EXPIRY_DURATION_HOURS", "2"
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
     }
 
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
-
-    flavorDimensions "environment"
-
-    productFlavors {
-        mock {
-
-        }
-        prod {
-
-        }
-    }
-
-    // filter out mockRelease and prodDebug (when on CI) builds.
-    android.variantFilter { variant ->
-        variant.getFlavors().each { flavor ->
-            if (flavor.name != 'prod' && variant.buildType.name == 'release' ||
-                    isCiBuild && flavor.name == 'prod' && variant.buildType.name == 'debug') {
-                variant.setIgnore(true)
-            }
-        }
-    }
 }
 
 dependencies {
-    prodApi project(path: ':remote-api-real')
-    mockApi project(path: ':remote-api-mock')
+    implementation project(path: ':domain')
+    implementation project(path: ':core-infra')
+    implementation project(path: ':remote-api-base')
     api project(path: ':persistence')
 
     // Kotlin
@@ -48,12 +43,15 @@ dependencies {
     // rx
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
 
+    // timber
+    implementation "com.jakewharton.timber:timber:${versions.timber}"
+
     // Dagger
     implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
     // NYTimes store
-    implementation "com.nytimes.android:store3:${versions.store}"
-    implementation "com.nytimes.android:store-kotlin3:${versions.store}"
+    api "com.nytimes.android:store3:${versions.store}"
 
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"

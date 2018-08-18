@@ -33,11 +33,11 @@ dependencies {
     implementation project(path: ':browse')
     implementation project(path: ':settings')
 
+    implementation project(path: ':data')
+    implementation project(path: ':remote-api-mock')
+
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
-
-    // Retrofit TODO change to implementation remove if bringing in data module dependency
-    api "com.squareup.retrofit2:retrofit-mock:${versions.retrofit}"
 
     // Dagger
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"

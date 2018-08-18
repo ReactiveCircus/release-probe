@@ -6,6 +6,7 @@ import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 import ychescale9.infra.di.module.AppModule
 import ychescale9.releaseprobe.ReleaseProbeApp
+import ychescale9.releaseprobe.data.di.DataModule
 import ychescale9.releaseprobe.persistence.di.PersistenceModule
 import ychescale9.releaseprobe.remote.di.ApiModule
 
@@ -17,6 +18,7 @@ import ychescale9.releaseprobe.remote.di.ApiModule
     ThirdPartyApiModule::class,
     ApiModule::class,
     PersistenceModule::class,
+    DataModule::class,
     MainBuilder::class])
 interface ReleaseProbeAppComponent {
 

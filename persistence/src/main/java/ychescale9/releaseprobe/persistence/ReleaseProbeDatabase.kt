@@ -2,20 +2,23 @@ package ychescale9.releaseprobe.persistence
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import ychescale9.releaseprobe.persistence.dao.ArtifactGroupDao
-import ychescale9.releaseprobe.persistence.entity.ArtifactEntity
-import ychescale9.releaseprobe.persistence.entity.ArtifactGroupEntity
-import ychescale9.releaseprobe.persistence.entity.VersionEntity
+import androidx.room.TypeConverters
+import ychescale9.releaseprobe.persistence.artifact.dao.ArtifactDao
+import ychescale9.releaseprobe.persistence.artifact.dao.ArtifactGroupDao
+import ychescale9.releaseprobe.persistence.artifact.entity.ArtifactEntity
+import ychescale9.releaseprobe.persistence.artifact.entity.ArtifactGroupEntity
 
 @Database(
         entities = [
             ArtifactGroupEntity::class,
-            ArtifactEntity::class,
-            VersionEntity::class
+            ArtifactEntity::class
         ],
         version = BuildConfig.DATABASE_SCHEMA_VERSION
 )
+@TypeConverters(Converters::class)
 abstract class ReleaseProbeDatabase : RoomDatabase() {
 
     abstract fun artifactGroupDao(): ArtifactGroupDao
+
+    abstract fun artifactDao(): ArtifactDao
 }

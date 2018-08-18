@@ -45,6 +45,7 @@ android {
         exclude 'META-INF/*.kotlin_module'
         exclude 'META-INF/*.version'
         exclude 'META-INF/*.properties'
+        exclude 'META-INF/proguard/*' // TODO https://issuetracker.google.com/issues/109857884
     }
 
     compileOptions {
@@ -179,6 +180,8 @@ dependencies {
     implementation project(path: ':settings')
 
     implementation project(path: ':data')
+    prodImplementation project(path: ':remote-api-real')
+    mockImplementation project(path: ':remote-api-mock')
 
     // -- TODO move following dependencies to appropriate modules once started using.
 
@@ -233,6 +236,10 @@ configurations.all { configuration ->
 tasks.whenTaskAdded { task ->
     // don't count dex methods for debug builds
     if (task.name.endsWith("DebugDexMethods")) {
+        task.enabled = false
+    }
+    // don't run instrumented tests against prod flavor
+    if (task.name.contains("Prod") && task.name.contains("AndroidTest")) {
         task.enabled = false
     }
 }

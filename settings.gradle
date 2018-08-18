@@ -13,6 +13,8 @@ include ':remote-api-real'
 include ':remote-api-mock'
 include ':persistence'
 
+include ':domain'
+
 include ':core-infra'
 project(':core-infra').projectDir = new File(rootDir, 'library/core-infra')
 

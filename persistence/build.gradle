@@ -29,6 +29,10 @@ android {
         buildConfigField "int", "DATABASE_SCHEMA_VERSION", "1"
     }
 
+    sourceSets {
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
+
     buildTypes {
         debug {
             testCoverageEnabled true
@@ -51,11 +55,19 @@ dependencies {
 
     // Dagger
     implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
     // Room
     implementation "androidx.room:room-runtime:${versions.androidx.room}"
     kapt "androidx.room:room-compiler:${versions.androidx.room}"
     implementation "androidx.room:room-rxjava2:${versions.androidx.room}"
+
+    // timber
+    implementation "com.jakewharton.timber:timber:${versions.timber}"
+
+    // Unit tests
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
 
     // Android tests
     androidTestImplementation "androidx.test:runner:${versions.androidx.test}"
@@ -64,5 +76,4 @@ dependencies {
     androidTestImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
     androidTestImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"
     androidTestImplementation "androidx.room:room-testing:${versions.androidx.room}"
-
 }

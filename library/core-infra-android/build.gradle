@@ -1,5 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    useBuildCache = true
+    mapDiagnosticLocations = true
+}
 
 android {
     compileSdkVersion buildConfig.compileSdk
@@ -44,6 +50,7 @@ dependencies {
 
     // Dagger
     implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"

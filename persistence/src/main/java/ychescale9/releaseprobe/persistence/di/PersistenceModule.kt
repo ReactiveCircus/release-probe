@@ -25,4 +25,9 @@ object PersistenceModule {
     @Singleton
     @JvmStatic
     fun provideArtifactGroupDao(db: ReleaseProbeDatabase) = db.artifactGroupDao()
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun provideArtifactDao(db: ReleaseProbeDatabase) = db.artifactDao()
 }

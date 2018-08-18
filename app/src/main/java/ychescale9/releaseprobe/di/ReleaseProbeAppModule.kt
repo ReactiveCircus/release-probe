@@ -8,13 +8,15 @@ import javax.inject.Singleton
 import ychescale9.releaseprobe.ReleaseProbeApp
 
 @Module
-class ReleaseProbeAppModule {
+object ReleaseProbeAppModule {
 
     @Provides
     @Singleton
+    @JvmStatic
     fun provideApp(app: ReleaseProbeApp): Application = app
 
     @Provides
     @Singleton
+    @JvmStatic
     fun provideContext(app: ReleaseProbeApp): Context = app.applicationContext
 }

@@ -1,5 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    useBuildCache = true
+    mapDiagnosticLocations = true
+}
 
 android {
     compileSdkVersion buildConfig.compileSdk
@@ -11,6 +17,12 @@ android {
 
         buildConfigField "long", "NETWORK_TIMEOUT_SECONDS", "10"
         buildConfigField "String", "API_BASE_URL", "\"https://dl.google.com/dl/android/maven2/\""
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
     }
 
     compileOptions {
@@ -37,8 +49,15 @@ dependencies {
     // Moshi
     api "com.squareup.moshi:moshi:${versions.moshi}"
 
+    // Json
+    implementation "org.json:json:${versions.json}"
+
     // Dagger
     implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+
+    // timber
+    implementation "com.jakewharton.timber:timber:${versions.timber}"
 
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"

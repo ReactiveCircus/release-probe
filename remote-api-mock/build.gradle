@@ -1,5 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    useBuildCache = true
+    mapDiagnosticLocations = true
+}
 
 android {
     compileSdkVersion buildConfig.compileSdk
@@ -30,13 +36,13 @@ dependencies {
 
     // Retrofit
     api "com.squareup.retrofit2:retrofit:${versions.retrofit}"
-    api "com.squareup.retrofit2:converter-moshi:${versions.retrofit}"
     api "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
     api "com.squareup.retrofit2:retrofit-mock:${versions.retrofit}"
 
-    // Moshi
-    api "com.squareup.moshi:moshi:${versions.moshi}"
-
     // Dagger
     implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+
+    // timber
+    implementation "com.jakewharton.timber:timber:${versions.timber}"
 }
