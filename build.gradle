@@ -43,7 +43,7 @@ buildscript {
             json: '20180130',
             rxJava: '2.2.0',
             rxKotlin: '2.3.0',
-            rxAndroid: '2.0.2',
+            rxAndroid: '2.1.0',
             rxLint: '1.6.1',
             dagger: '2.16',
             timber: '4.7.1',
