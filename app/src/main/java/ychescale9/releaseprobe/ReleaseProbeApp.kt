@@ -2,11 +2,14 @@ package ychescale9.releaseprobe
 
 import android.app.Activity
 import android.app.Application
+import android.os.Looper
 import com.bugsnag.android.Bugsnag
 import com.bugsnag.android.Client
 import com.squareup.leakcanary.LeakCanary
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.plugins.RxJavaPlugins
 import javax.inject.Inject
 import timber.log.Timber
@@ -33,6 +36,10 @@ open class ReleaseProbeApp : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
+
+        // ask RxAndroid to use async main thread scheduler
+        val asyncMainThreadScheduler = AndroidSchedulers.from(Looper.getMainLooper(), true)
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler { asyncMainThreadScheduler }
 
         // inject dependencies required for initialization
         appComponent.inject(this)
