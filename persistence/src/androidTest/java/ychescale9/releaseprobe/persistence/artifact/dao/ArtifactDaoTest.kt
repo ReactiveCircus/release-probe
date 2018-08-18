@@ -64,14 +64,14 @@ class ArtifactDaoTest : BaseDaoTest() {
                 artifactGroupWithArtifacts2
         ))
 
-        artifactDao.artifactsByGroupId(artifactGroup1.groupId).test().assertValue{
+        artifactDao.artifactsByGroupId(artifactGroup1.groupId).test().assertValue { artifacts ->
             // order doesn't matter
-            it.containsAll(listOf(artifactA, artifactB))
+            artifacts.containsAll(listOf(artifactA, artifactB))
         }
 
-        artifactDao.artifactsByGroupId(artifactGroup2.groupId).test().assertValue {
+        artifactDao.artifactsByGroupId(artifactGroup2.groupId).test().assertValue { artifacts ->
             // order doesn't matter
-            it.containsAll(listOf(artifactC, artifactD))
+            artifacts.containsAll(listOf(artifactC, artifactD))
         }
     }
 

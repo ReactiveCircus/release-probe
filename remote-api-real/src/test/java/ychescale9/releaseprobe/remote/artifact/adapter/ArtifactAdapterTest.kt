@@ -18,7 +18,7 @@ class ArtifactAdapterTest {
     @Test
     fun `should convert json to list of Artifacts`() {
         val reader = JsonReader.of(Buffer().writeUtf8(artifactsJson))
-        adapter.fromJson(reader).sortedWith(compareBy {it.artifactId}).run {
+        adapter.fromJson(reader).sortedWith(compareBy { it.artifactId }).run {
             size shouldEqual 3
             get(0).groupId shouldEqual "android.arch.lifecycle"
             get(0).artifactId shouldEqual "compiler"

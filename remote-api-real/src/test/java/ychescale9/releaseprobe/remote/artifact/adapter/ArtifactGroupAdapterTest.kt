@@ -18,7 +18,7 @@ class ArtifactGroupAdapterTest {
     @Test
     fun `should convert json to list of ArtifactGroups`() {
         val reader = JsonReader.of(Buffer().writeUtf8(artifactGroupsJson))
-        adapter.fromJson(reader).sortedWith(compareBy {it.groupId}).run {
+        adapter.fromJson(reader).sortedWith(compareBy { it.groupId }).run {
             size shouldEqual 3
             get(0).groupId shouldEqual "androidx.core"
             get(1).groupId shouldEqual "androidx.room"

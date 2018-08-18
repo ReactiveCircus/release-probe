@@ -9,6 +9,6 @@ detekt {
         output = file("$project.buildDir/reports/detekt")
         outputName = "$project.name"
         config = "$project.rootDir/detekt.yml"
-        filters = ".*/test/.*,.*/androidTest/.*,.*/resources/.*,.*/build/.*,.*/tmp/.*"
+        filters = ".*/resources/.*,.*/build/.*,.*/tmp/.*"
     }
 }

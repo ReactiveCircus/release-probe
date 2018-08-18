@@ -133,9 +133,9 @@ class ArtifactGroupDaoTest : BaseDaoTest() {
         )
         dao.insertArtifactGroupsWithArtifacts(listOf(newArtifactGroupWithArtifacts1))
 
-        dao.allArtifactGroupsWithArtifacts().test().assertValue {
+        dao.allArtifactGroupsWithArtifacts().test().assertValue { artifacts ->
             // order doesn't matter
-            it.containsAll(listOf(
+            artifacts.containsAll(listOf(
                     newArtifactGroupWithArtifacts1,
                     artifactGroupWithArtifacts2,
                     artifactGroupWithArtifacts3)

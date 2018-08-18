@@ -6,6 +6,7 @@ import io.mockk.mockk
 import io.mockk.verify
 import io.reactivex.Single
 import io.reactivex.schedulers.TestScheduler
+import java.util.concurrent.TimeUnit
 import org.junit.Test
 import ychescale9.infra.SchedulerProvider
 import ychescale9.releaseprobe.data.artifact.mapper.ArtifactGroupWithArtifactsDtosToEntity
@@ -15,7 +16,6 @@ import ychescale9.releaseprobe.persistence.artifact.entity.ArtifactGroupWithArti
 import ychescale9.releaseprobe.remote.artifact.api.GoogleMavenService
 import ychescale9.releaseprobe.remote.artifact.dto.ArtifactDTO
 import ychescale9.releaseprobe.remote.artifact.dto.ArtifactGroupDTO
-import java.util.concurrent.TimeUnit
 
 class ArtifactGroupsWithArtifactsFetcherTest {
 
