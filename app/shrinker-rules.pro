@@ -1,10 +1,12 @@
--dontoptimize
+-android
 -dontpreverify
--dontobfuscate
 -dontskipnonpubliclibraryclasses
 -verbose
 
 -keepattributes *Annotation*
+
+# For crash reporting
+-keepattributes LineNumberTable, SourceFile
 
 # For native methods, see http://proguard.sourceforge.net/manual/examples.html#native
 -keepclasseswithmembernames class * {
@@ -12,25 +14,13 @@
 }
 
 # Enum.valueOf(Class, String) and others invoke this method reflectively.
--keepclassmembers enum * {
+-keepclassmembers,allowoptimization enum * {
     public static **[] values();
 }
 
 # Parcelable CREATOR fields are looked up reflectively when de-parceling.
 -keepclassmembers class * implements android.os.Parcelable {
   public static final android.os.Parcelable$Creator CREATOR;
-}
-
-# For androidx library @Keep annotation. Remove once embedded rules ship.
--keep @androidx.annotation.Keep class * {*;}
--keepclasseswithmembers class * {
-    @androidx.annotation.Keep <methods>;
-}
--keepclasseswithmembers class * {
-    @androidx.annotation.Keep <fields>;
-}
--keepclasseswithmembers class * {
-    @androidx.annotation.Keep <init>(...);
 }
 
 # Retrofit does reflection on generic parameters and InnerClass is required to use Signature.

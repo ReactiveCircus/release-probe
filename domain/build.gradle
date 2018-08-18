@@ -1,0 +1,25 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation project(path: ':core-infra')
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+
+    // rx
+    implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
+
+    // OkHttp
+    implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
+
+    // Dagger
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+
+    // Unit tests
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "io.mockk:mockk:${versions.mockk}"
+    testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8

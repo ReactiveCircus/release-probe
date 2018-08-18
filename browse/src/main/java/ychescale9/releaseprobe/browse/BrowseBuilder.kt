@@ -17,7 +17,9 @@ internal object BrowseModule {
 
     @Provides
     @JvmStatic
-    fun provideBrowseViewModel(fragment: BrowseFragment): ArtifactCollectionsViewModel {
+    fun provideBrowseViewModel(
+        fragment: BrowseFragment
+    ): ArtifactCollectionsViewModel {
         return fragment.getViewModel {
             ArtifactCollectionsViewModel()
         }

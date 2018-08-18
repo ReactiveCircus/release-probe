@@ -6,10 +6,7 @@
     <color name="colorPrimaryLight">#48BBCD</color>
     <color name="colorPrimaryDark">#18191B</color>
 
-    <!-- TODO choose secondary colors -->
-    <color name="colorSecondary">#5CA6FF</color>
-    <color name="colorSecondaryLight">#E5F2FF</color>
-    <color name="colorSecondaryDark">#4E74EA</color>
+    <color name="colorSecondary">#48BBCD</color>
 
     <color name="colorError">#F75E5B</color>
 </resources>

@@ -1,36 +1,30 @@
 package ychescale9.infra.domain
 
 import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
-import ychescale9.infra.executor.PostExecutionThread
-import ychescale9.infra.executor.ThreadExecutor
+import ychescale9.infra.SchedulerProvider
 
 /**
- * Abstract class for a Use Case (Interactor in terms of Clean Architecture).
- * This interface represents a execution unit for different use cases (this means any use case
- * in the application should implement this contract).
- *
- * Upon subscription a use case will execute its job in a background thread and will post the result in the UI thread.
+ * Abstract class for a use case, representing an execution unit of asynchronous work.
+ * Upon subscription a use case will execute its job in the io thread of the schedulerProvider
+ * and will post the result in the UI thread.
  */
-abstract class UseCase<Q : UseCase.RequestValues, T>(
-    private val threadExecutor: ThreadExecutor,
-    private val postExecutionThread: PostExecutionThread
-) {
-    lateinit var requestValues: Q
+abstract class UseCase<P : UseCase.Params, T>(private val schedulerProvider: SchedulerProvider) {
+
+    lateinit var params: P
 
     protected abstract fun createUseCase(): Observable<T>
 
     /**
      * Return the created use case observable with the provided execution thread and post execution thread
-     * @param requestValues
+     * @param params
      * @return
      */
-    fun get(requestValues: Q): Observable<T> {
-        // update request values for the next execution
-        this.requestValues = requestValues
+    fun get(params: P): Observable<T> {
+        // update params for the next execution
+        this.params = params
         return createUseCase()
-                .subscribeOn(Schedulers.from(threadExecutor))
-                .observeOn(postExecutionThread.scheduler)
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
     }
 
     /**
@@ -38,19 +32,19 @@ abstract class UseCase<Q : UseCase.RequestValues, T>(
      *
      * NOTE: use this cautiously and only when you are sure that
      * it's fast and safe to run the use case on the current thread.
-     * @param requestValues
+     * @param params
      * @return
      */
-    fun getBlocking(requestValues: Q): Observable<T> {
-        // update request values for the next execution
-        this.requestValues = requestValues
+    fun getBlocking(params: P): Observable<T> {
+        // update params for the next execution
+        this.params = params
         return createUseCase()
     }
 
     /**
-     * Request values passed in for a use case.
+     * Params passed in for a use case.
      */
-    interface RequestValues
+    interface Params
 }
 
-class EmptyRequestValues : UseCase.RequestValues
+class EmptyParams : UseCase.Params

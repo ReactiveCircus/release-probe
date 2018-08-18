@@ -25,7 +25,7 @@ class SingleFragmentActivity : DaggerAppCompatActivity() {
     }
 
     fun setFragment(fragment: Fragment) {
-        supportFragmentManager.transaction {
+        supportFragmentManager.transaction(allowStateLoss = true) {
             replace(R.id.container, fragment)
         }
     }

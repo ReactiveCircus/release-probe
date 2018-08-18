@@ -1,0 +1,104 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "a9ab48a8b17e7771de4c1970a1376254",
+    "entities": [
+      {
+        "tableName": "artifact_group",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`group_id` TEXT NOT NULL, PRIMARY KEY(`group_id`))",
+        "fields": [
+          {
+            "fieldPath": "groupId",
+            "columnName": "group_id",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "group_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_artifact_group_group_id",
+            "unique": true,
+            "columnNames": [
+              "group_id"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_artifact_group_group_id` ON `${TABLE_NAME}` (`group_id`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "artifact",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`group_id` TEXT NOT NULL, `artifact_id` TEXT NOT NULL, `versions` TEXT NOT NULL, PRIMARY KEY(`group_id`, `artifact_id`), FOREIGN KEY(`group_id`) REFERENCES `artifact_group`(`group_id`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "groupId",
+            "columnName": "group_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artifactId",
+            "columnName": "artifact_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "versions",
+            "columnName": "versions",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "group_id",
+            "artifact_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_artifact_group_id",
+            "unique": false,
+            "columnNames": [
+              "group_id"
+            ],
+            "createSql": "CREATE  INDEX `index_artifact_group_id` ON `${TABLE_NAME}` (`group_id`)"
+          },
+          {
+            "name": "index_artifact_artifact_id",
+            "unique": false,
+            "columnNames": [
+              "artifact_id"
+            ],
+            "createSql": "CREATE  INDEX `index_artifact_artifact_id` ON `${TABLE_NAME}` (`artifact_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "artifact_group",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "group_id"
+            ],
+            "referencedColumns": [
+              "group_id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a9ab48a8b17e7771de4c1970a1376254\")"
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    useBuildCache = true
+    mapDiagnosticLocations = true
+}
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+    buildToolsVersion buildConfig.buildTools
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+
+        buildConfigField "long", "NETWORK_TIMEOUT_SECONDS", "10"
+        buildConfigField "String", "API_BASE_URL", "\"https://dl.google.com/dl/android/maven2/\""
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    api project(path: ':remote-api-base')
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+
+    // OkHttp
+    api "com.squareup.okhttp3:okhttp:${versions.okhttp}"
+    api "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
+
+    // Retrofit
+    api "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    api "com.squareup.retrofit2:converter-moshi:${versions.retrofit}"
+    api "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
+
+    // Moshi
+    api "com.squareup.moshi:moshi:${versions.moshi}"
+
+    // Json
+    implementation "org.json:json:${versions.json}"
+
+    // Dagger
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+
+    // timber
+    implementation "com.jakewharton.timber:timber:${versions.timber}"
+
+    // Unit tests
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "io.mockk:mockk:${versions.mockk}"
+    testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
+    testImplementation "com.squareup.okhttp3:mockwebserver:${versions.okhttp}"
+}

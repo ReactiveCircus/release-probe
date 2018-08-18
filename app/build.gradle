@@ -45,6 +45,7 @@ android {
         exclude 'META-INF/*.kotlin_module'
         exclude 'META-INF/*.version'
         exclude 'META-INF/*.properties'
+        exclude 'META-INF/proguard/*' // TODO https://issuetracker.google.com/issues/109857884
     }
 
     compileOptions {
@@ -169,8 +170,8 @@ android {
 
 dependencies {
     implementation project(path: ':bugsnag-tree')
-    mockImplementation project(path: ':analytics-api-no-op')
     prodImplementation project(path: ':analytics-api-firebase')
+    mockImplementation project(path: ':analytics-api-no-op')
 
     implementation project(path: ':feature-base')
     implementation project(path: ':feeds')
@@ -178,35 +179,19 @@ dependencies {
     implementation project(path: ':browse')
     implementation project(path: ':settings')
 
-    // TODO custom source set and javaCompileOptions for room in data module
+    implementation project(path: ':data')
+    prodImplementation project(path: ':remote-api-real')
+    mockImplementation project(path: ':remote-api-mock')
 
     // -- TODO move following dependencies to appropriate modules once started using.
-    // Glide
-    implementation "com.github.bumptech.glide:glide:${versions.glide}"
-    // NYTimes store
-    implementation "com.nytimes.android:store3:${versions.store}"
-    implementation "com.nytimes.android:store-kotlin3:${versions.store}"
-    // OkHttp
-    implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
-    implementation "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
-    testImplementation "com.squareup.okhttp3:mockwebserver:${versions.okhttp}"
-    // Retrofit
-    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
-    implementation "com.squareup.retrofit2:converter-moshi:${versions.retrofit}"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
-    // Moshi
-    implementation "com.squareup.moshi:moshi:${versions.moshi}"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
-    // Room
-    implementation "androidx.room:room-runtime:${versions.androidx.room}"
-    kapt "androidx.room:room-compiler:${versions.androidx.room}"
-    implementation "androidx.room:room-rxjava2:${versions.androidx.room}"
-    testImplementation "androidx.room:room-testing:${versions.androidx.room}"
+
     // Paging
-    implementation "android.arch.paging:runtime:${versions.androidx.paging}"
-    implementation "android.arch.paging:rxjava2:${versions.androidx.paging}"
+    implementation "androidx.paging:paging-runtime:${versions.androidx.paging}"
+    implementation "androidx.paging:paging-rxjava2:${versions.androidx.paging}"
     // Work
     implementation "android.arch.work:work-runtime-ktx:${versions.androidx.work}"
+    // TODO remove this once work is stable or in-sync with room
+    implementation "androidx.room:room-runtime:${versions.androidx.room}"
     androidTestImplementation "android.arch.work:work-testing:${versions.androidx.work}"
     // TODO move above dependencies to appropriate modules once started using.
 
@@ -227,8 +212,7 @@ dependencies {
 
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"
-    testImplementation "org.mockito:mockito-inline:${versions.mockito}"
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockitoKotlin}"
+    testImplementation "io.mockk:mockk:${versions.mockk}"
     testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
     testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"
 
@@ -254,15 +238,13 @@ tasks.whenTaskAdded { task ->
     if (task.name.endsWith("DebugDexMethods")) {
         task.enabled = false
     }
-    // don't upload Bugsnag mapping if NOT on CI
-    else if (task.name.startsWith("uploadBugsnag") && !isCiBuild) {
+    // don't run instrumented tests against prod flavor
+    if (task.name.contains("Prod") && task.name.contains("AndroidTest")) {
         task.enabled = false
     }
 }
 
 apply plugin: 'com.google.gms.google-services'
-
-apply plugin: 'com.bugsnag.android.gradle'
 
 android.applicationVariants.all { variant ->
     // disable google services plugin for mock flavor

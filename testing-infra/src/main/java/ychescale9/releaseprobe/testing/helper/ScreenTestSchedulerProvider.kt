@@ -3,12 +3,12 @@ package ychescale9.releaseprobe.testing.helper
 import android.os.AsyncTask
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
-import ychescale9.infra.rx.SchedulerProvider
+import ychescale9.infra.rx.AndroidSchedulerProvider
 
 /**
  * SchedulerProvider for screen tests
  */
-class ScreenTestSchedulerProvider : SchedulerProvider() {
+class ScreenTestSchedulerProvider : AndroidSchedulerProvider() {
 
     override fun io(): Scheduler {
         // override default Schedulers.io() with AsyncTask.THREAD_POOL_EXECUTOR

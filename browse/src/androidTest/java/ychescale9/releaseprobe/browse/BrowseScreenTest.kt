@@ -19,10 +19,4 @@ class BrowseScreenTest : BaseScreenTest() {
         launchActivityWithFragment(activityRule, BrowseFragment())
         // TODO
     }
-
-    @Test
-    fun openBrowseScreenFirstTimeWithNoConnectivity_errorMessageAndRetryButtonDisplayed() {
-        launchActivityWithFragment(activityRule, BrowseFragment())
-        // TODO
-    }
 }
