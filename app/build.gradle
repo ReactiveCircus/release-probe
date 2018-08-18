@@ -92,9 +92,6 @@ android {
             ext.alwaysUpdateBuildId = false
             testCoverageEnabled true
             signingConfig signingConfigs.debug
-            ndk {
-                abiFilters "armeabi-v7a", "arm64-v8a", "x86"
-            }
         }
         release {
             if (rootProject.file('secrets/release-probe.keystore').exists()) {
@@ -103,9 +100,6 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles('shrinker-rules.pro')
-            ndk {
-                abiFilters "armeabi-v7a", "arm64-v8a"
-            }
         }
     }
 
