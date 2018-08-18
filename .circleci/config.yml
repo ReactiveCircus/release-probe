@@ -63,10 +63,6 @@ jobs:
       - *extract_cache_version
       - *restore_gradle_cache
       - run:
-          name: Download Dependencies
-          command: ./gradlew -Pkapt.use.worker.api=false androidDependencies
-      - *save_gradle_cache
-      - run:
           name: Decrypt Secrets
           command: |
             openssl aes-256-cbc -md sha256 -d -in secrets/release-probe.aes -out secrets/release-probe.keystore -k $ENCRYPT_KEY
@@ -91,6 +87,7 @@ jobs:
           name: Cleanup Secrets
           command: rm -f secrets/release-probe.keystore
       - *persist_android_workspace
+      - *save_gradle_cache
 
   unit_tests:
     <<: *android_config
@@ -98,10 +95,6 @@ jobs:
       - checkout
       - *extract_cache_version
       - *restore_gradle_cache
-      - run:
-          name: Download Dependencies
-          command: ./gradlew -Pkapt.use.worker.api=false androidDependencies
-      - *save_gradle_cache
       - run:
           name: Test
           command: |
@@ -112,6 +105,7 @@ jobs:
           path: ~/junit
       - store_artifacts:
           path: ~/junit
+      - *save_gradle_cache
 
   static_analysis:
     <<: *android_config
@@ -119,10 +113,6 @@ jobs:
       - checkout
       - *extract_cache_version
       - *restore_gradle_cache
-      - run:
-          name: Download Dependencies
-          command: ./gradlew -Pkapt.use.worker.api=false androidDependencies
-      - *save_gradle_cache
       - run:
           name: Android Lint
           command: ./gradlew -Pkapt.use.worker.api=false :app:lint
@@ -136,6 +126,7 @@ jobs:
             find . -type f -regex ".*/build/reports/detekt/.*html" -exec cp {} ~/detekt/ \;
       - store_artifacts:
           path: ~/detekt
+      - *save_gradle_cache
 
   deploy_to_play:
     <<: *android_config
@@ -143,12 +134,9 @@ jobs:
       - checkout
       - *extract_cache_version
       - *restore_gradle_cache
-      - run:
-          name: Download Dependencies
-          command: ./gradlew -Pkapt.use.worker.api=false androidDependencies
-      - *save_gradle_cache
       - *attach_workspace
       # TODO use gradle-play-publisher once custom archivesBaseName is supported for app bundles, and publishing existing apk without building is supported.
+      - *save_gradle_cache
 
 workflows:
   version: 2
