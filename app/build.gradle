@@ -229,9 +229,3 @@ tasks.whenTaskAdded { task ->
 }
 
 apply plugin: 'com.google.gms.google-services'
-
-android.applicationVariants.all { variant ->
-    // disable google services plugin for mock flavor
-    def googleTask = tasks.findByName("process${variant.name.capitalize()}GoogleServices")
-    googleTask.enabled = !variant.name.contains("mock")
-}
