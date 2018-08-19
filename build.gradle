@@ -2,7 +2,7 @@ buildscript {
     ext.isCiBuild = System.getenv("CI") == "true"
 
     ext.buildConfig = [
-            minSdk: 22,
+            minSdk: 23,
             targetSdk: 28,
             compileSdk: 28,
             buildTools: '28.0.2'
