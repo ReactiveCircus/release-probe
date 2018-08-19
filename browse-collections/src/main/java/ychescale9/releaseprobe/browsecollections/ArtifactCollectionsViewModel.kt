@@ -1,4 +1,4 @@
-package ychescale9.releaseprobe.browse
+package ychescale9.releaseprobe.browsecollections
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

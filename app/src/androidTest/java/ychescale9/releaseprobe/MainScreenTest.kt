@@ -59,10 +59,10 @@ class MainScreenTest : BaseScreenTest() {
                 watchlistDestinationSelected()
             }
             perform {
-                selectBrowseNavItem()
+                selectBrowseCollectionsNavItem()
             }
             check {
-                browseDestinationSelected()
+                browseCollectionsDestinationSelected()
             }
             perform {
                 selectSettingsNavItem()

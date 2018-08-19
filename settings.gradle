@@ -3,7 +3,7 @@ include ':resources'
 include ':feature-base'
 include ':feeds'
 include ':watchlist'
-include ':browse'
+include ':browse-collections'
 include ':settings'
 include ':testing-infra'
 

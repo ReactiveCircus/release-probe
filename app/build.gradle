@@ -170,7 +170,7 @@ dependencies {
     implementation project(path: ':feature-base')
     implementation project(path: ':feeds')
     implementation project(path: ':watchlist')
-    implementation project(path: ':browse')
+    implementation project(path: ':browse-collections')
     implementation project(path: ':settings')
 
     implementation project(path: ':data')
