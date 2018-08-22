@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dimen_16"
+    android:layout_marginStart="@dimen/dimen_24"
+    android:layout_marginEnd="@dimen/dimen_24"
+    app:cardCornerRadius="@dimen/dimen_8"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_16"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/artifactCollectionNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="AndroidX"
+            android:textSize="@dimen/text_headline"
+            android:textStyle="bold"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/artifactCollectionDescriptionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8"
+            tools:text="Android extension libraries - a repackage of the Android Support Library, following semantic versioning"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="@dimen/text_subheading"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

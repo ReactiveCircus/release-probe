@@ -84,11 +84,6 @@ open class RobotActions {
         Espresso.onView(ViewMatchers.withId(viewId)).perform(ViewActions.swipeDown())
     }
 
-    fun scrollToItemInRecyclerView(@IdRes viewId: Int, itemIndex: Int) {
-        Espresso.onView(AllOf.allOf(ViewMatchers.withId(viewId), ViewMatchers.isDisplayed()))
-                .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(itemIndex))
-    }
-
     fun clickDialogButton1() {
         Espresso.onView(ViewMatchers.withId(android.R.id.button1)).perform(ViewActions.click())
     }

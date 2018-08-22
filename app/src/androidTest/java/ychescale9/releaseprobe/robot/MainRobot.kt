@@ -24,7 +24,7 @@ class MainRobotActions : RobotActions() {
         selectBottomNavigationItem(R.id.bottomNavigationView, navItemTitle)
     }
 
-    fun selectBrowseNavItem() {
+    fun selectBrowseCollectionsNavItem() {
         val navItemTitle = getTargetContext().resources.getString(R.string.menu_title_browse)
         selectBottomNavigationItem(R.id.bottomNavigationView, navItemTitle)
     }
@@ -49,7 +49,7 @@ class MainRobotAssertions : RobotAssertions() {
         bottomNavigationViewItemSelected(R.id.bottomNavigationView, R.id.nav_watchlist)
     }
 
-    fun browseDestinationSelected() {
+    fun browseCollectionsDestinationSelected() {
         val titleString = getTargetContext().resources.getString(R.string.title_browse)
         toolbarHasTitle(titleString)
         bottomNavigationViewItemSelected(R.id.bottomNavigationView, R.id.nav_browse)

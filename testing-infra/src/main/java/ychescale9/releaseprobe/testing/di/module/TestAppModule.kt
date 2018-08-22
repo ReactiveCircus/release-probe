@@ -6,7 +6,9 @@ import javax.inject.Singleton
 import ychescale9.infra.SchedulerProvider
 import ychescale9.infra.util.Clock
 import ychescale9.infra.util.RealClock
+import ychescale9.releaseprobe.testing.helper.ScreenTestAnimationHelper
 import ychescale9.releaseprobe.testing.helper.ScreenTestSchedulerProvider
+import ychescale9.releaseprobe.util.AnimationHelper
 
 @Module
 object TestAppModule {
@@ -20,4 +22,9 @@ object TestAppModule {
     @Singleton
     @JvmStatic
     fun provideClock(): Clock = RealClock()
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun provideAnimationHelper(): AnimationHelper = ScreenTestAnimationHelper()
 }
