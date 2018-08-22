@@ -18,6 +18,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.rules.TestName
 import retrofit2.mock.NetworkBehavior
+import ychescale9.releaseprobe.data.artifactcollection.DefaultArtifactCollections
 import ychescale9.uitest.annotation.PhoneTest
 import ychescale9.uitest.annotation.TabletTest
 
@@ -25,6 +26,9 @@ abstract class BaseScreenTest {
 
     @Inject
     lateinit var networkBehavior: NetworkBehavior
+
+    @Inject
+    lateinit var defaultArtifactCollections: DefaultArtifactCollections
 
     @Rule
     @JvmField

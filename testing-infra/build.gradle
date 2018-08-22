@@ -33,7 +33,7 @@ dependencies {
     implementation project(path: ':browse-collections')
     implementation project(path: ':settings')
 
-    implementation project(path: ':data')
+    api project(path: ':data')
     implementation project(path: ':remote-api-mock')
 
     // Kotlin
@@ -49,6 +49,7 @@ dependencies {
     api "androidx.test.espresso:espresso-contrib:${versions.androidx.espresso}"
     api "androidx.test.espresso:espresso-intents:${versions.androidx.espresso}"
     api "android.arch.navigation:navigation-testing-ktx:${versions.androidx.navigation}"
+    api "org.amshove.kluent:kluent-android:${versions.kluent}"
     api project(path: ':analytics-api-no-op')
     api project(path: ':ui-test-helper')
 }

@@ -12,8 +12,10 @@ import ychescale9.releaseprobe.data.BuildConfig
 import ychescale9.releaseprobe.data.artifact.fetcher.ArtifactGroupsWithArtifactsFetcher
 import ychescale9.releaseprobe.data.artifact.persister.ArtifactGroupsWithArtifactsPersister
 import ychescale9.releaseprobe.data.artifact.repository.ArtifactRepositoryImpl
+import ychescale9.releaseprobe.data.artifactcollection.repository.ArtifactCollectionRepositoryImpl
 import ychescale9.releaseprobe.domain.artifact.model.ArtifactGroup
 import ychescale9.releaseprobe.domain.artifact.repository.ArtifactRepository
+import ychescale9.releaseprobe.domain.artifactcollection.repository.ArtifactCollectionRepository
 
 @Module
 object DataModule {
@@ -34,6 +36,15 @@ object DataModule {
                         .setExpireAfterTimeUnit(TimeUnit.HOURS)
                         .build()
         )
+    }
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun provideArtifactCollectionRepository(
+        artifactCollectionRepository: ArtifactCollectionRepositoryImpl
+    ): ArtifactCollectionRepository {
+        return artifactCollectionRepository
     }
 
     @Provides

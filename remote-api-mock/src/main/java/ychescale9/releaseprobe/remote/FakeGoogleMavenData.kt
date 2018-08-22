@@ -34,8 +34,6 @@ object FakeGoogleMavenData {
                     ArtifactGroupDTO("com.android.support.constraint"),
                     // Android Things
                     ArtifactGroupDTO("com.google.android.things"),
-                    // Android Wearable
-                    ArtifactGroupDTO("com.google.android.wearable"),
                     // AR
                     ArtifactGroupDTO("com.google.ar"),
                     ArtifactGroupDTO("com.google.ar.sceneform")
@@ -314,12 +312,6 @@ object FakeGoogleMavenData {
                             "com.google.android.things",
                             "androidthings",
                             "0.6.1-devpreview, 0.7-devpreview, 0.8-devpreview, 1.0"
-                    ),
-                    // Android Wearable
-                    ArtifactDTO(
-                            "com.google.android.wearable",
-                            "wearable",
-                            "2.1.0, 2.2.0, 2.3.0"
                     ),
                     // AR
                     ArtifactDTO(

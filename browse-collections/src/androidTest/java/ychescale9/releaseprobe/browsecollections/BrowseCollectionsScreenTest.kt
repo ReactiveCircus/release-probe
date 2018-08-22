@@ -4,6 +4,7 @@ import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import org.junit.Rule
 import org.junit.Test
+import ychescale9.releaseprobe.browsecollections.robot.browseArtifactCollectionsScreen
 import ychescale9.releaseprobe.testing.BaseScreenTest
 import ychescale9.releaseprobe.testing.SingleFragmentActivity
 
@@ -16,7 +17,25 @@ class BrowseCollectionsScreenTest : BaseScreenTest() {
 
     @Test
     fun openBrowseCollectionsScreen_artifactCollectionsDisplayed() {
-        launchActivityWithFragment(activityRule, BrowseCollectionsFragment())
-        // TODO
+        browseArtifactCollectionsScreen {
+            perform {
+                launchActivityWithFragment(activityRule, BrowseCollectionsFragment())
+            }
+            check {
+                artifactCollectionsDisplayed(defaultArtifactCollections.get())
+            }
+        }
+    }
+
+    @Test
+    fun clickArtifactCollection_browseArtifactsScreenLaunched() {
+        browseArtifactCollectionsScreen {
+            perform {
+                launchActivityWithFragment(activityRule, BrowseCollectionsFragment())
+                // select the first artifact collection
+                clickArtifactCollection(0)
+            }
+            // TODO
+        }
     }
 }

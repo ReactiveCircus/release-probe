@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import ychescale9.infra.extension.getViewModel
+import ychescale9.releaseprobe.domain.artifactcollection.usecase.GetOrCreateArtifactCollections
 
 @Module
 abstract class BrowseCollectionsBuilder {
@@ -18,10 +19,11 @@ internal object BrowseCollectionsModule {
     @Provides
     @JvmStatic
     fun provideArtifactCollectionsViewModel(
-        fragment: BrowseCollectionsFragment
+        fragment: BrowseCollectionsFragment,
+        getOrCreateArtifactCollections: GetOrCreateArtifactCollections
     ): ArtifactCollectionsViewModel {
         return fragment.getViewModel {
-            ArtifactCollectionsViewModel()
+            ArtifactCollectionsViewModel(getOrCreateArtifactCollections)
         }
     }
 }

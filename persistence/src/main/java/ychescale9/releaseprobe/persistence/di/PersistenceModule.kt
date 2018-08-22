@@ -24,6 +24,11 @@ object PersistenceModule {
     @Provides
     @Singleton
     @JvmStatic
+    fun provideArtifactCollectionDao(db: ReleaseProbeDatabase) = db.artifactCollectionDao()
+
+    @Provides
+    @Singleton
+    @JvmStatic
     fun provideArtifactGroupDao(db: ReleaseProbeDatabase) = db.artifactGroupDao()
 
     @Provides
