@@ -27,10 +27,6 @@ android {
         }
     }
 
-    libraryVariants.all {
-        it.generateBuildConfig.enabled = false
-    }
-
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
