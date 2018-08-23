@@ -19,6 +19,7 @@ import org.junit.Rule
 import org.junit.rules.TestName
 import retrofit2.mock.NetworkBehavior
 import ychescale9.releaseprobe.data.artifactcollection.DefaultArtifactCollections
+import ychescale9.releaseprobe.resources.R as ResourcesR
 import ychescale9.uitest.annotation.PhoneTest
 import ychescale9.uitest.annotation.TabletTest
 
@@ -90,9 +91,9 @@ abstract class BaseScreenTest {
     private fun assertDeviceOrSkip() {
         val m = javaClass.getMethod(testName.methodName)
         if (m.isAnnotationPresent(PhoneTest::class.java)) {
-            Assume.assumeFalse(InstrumentationRegistry.getInstrumentation().targetContext.resources.getBoolean(R.bool.isTablet))
+            Assume.assumeFalse(InstrumentationRegistry.getInstrumentation().targetContext.resources.getBoolean(ResourcesR.bool.isTablet))
         } else if (m.isAnnotationPresent(TabletTest::class.java)) {
-            Assume.assumeTrue(InstrumentationRegistry.getInstrumentation().targetContext.resources.getBoolean(R.bool.isTablet))
+            Assume.assumeTrue(InstrumentationRegistry.getInstrumentation().targetContext.resources.getBoolean(ResourcesR.bool.isTablet))
         }
     }
 }

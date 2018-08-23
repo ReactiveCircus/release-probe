@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_artifact_collection.view.*
 import ychescale9.infra.extension.isAnimationOn
 import ychescale9.releaseprobe.domain.artifactcollection.model.ArtifactCollection
+import ychescale9.releaseprobe.resources.R as ResourcesR
 import ychescale9.releaseprobe.util.AnimationHelper
 
 class ArtifactCollectionsAdapter(
@@ -35,7 +36,7 @@ class ArtifactCollectionsAdapter(
         holder.bind(artifactCollection, actionListener)
 
         if (holder.adapterPosition > lastAnimatedPosition && holder.itemView.context.isAnimationOn()) {
-            val animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.slide_in_and_fade_in)
+            val animation = AnimationUtils.loadAnimation(holder.itemView.context, ResourcesR.anim.slide_in_and_fade_in)
             animation.startOffset = (animationHelper.defaultListItemAnimationStartOffset *
                     holder.adapterPosition).toLong()
             holder.itemView.startAnimation(animation)
