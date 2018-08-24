@@ -18,10 +18,6 @@ android {
         buildConfigField "long", "NETWORK_TIMEOUT_SECONDS", "10"
     }
 
-    libraryVariants.all {
-        it.generateBuildConfig.enabled = true
-    }
-
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8

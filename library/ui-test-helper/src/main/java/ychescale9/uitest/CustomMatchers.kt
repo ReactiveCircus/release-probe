@@ -340,7 +340,7 @@ class RecyclerViewMatcher(private val recyclerViewId: Int) {
                 var idDescription = Integer.toString(recyclerViewId)
                 if (resources != null) {
                     idDescription = try {
-                        this.resources?.getResourceName(recyclerViewId)
+                        requireNotNull(resources).getResourceName(recyclerViewId)
                     } catch (var4: Resources.NotFoundException) {
                         String.format("%s (resource name not found)", recyclerViewId)
                     }
