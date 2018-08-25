@@ -1,38 +1,27 @@
 package ychescale9.releaseprobe
 
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.app.Application
 import android.os.Looper
 import com.bugsnag.android.Bugsnag
 import com.bugsnag.android.Client
 import com.squareup.leakcanary.LeakCanary
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.plugins.RxJavaPlugins
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
+import org.koin.android.ext.android.startKoin
 import timber.log.Timber
 import ychescale9.analytics.AnalyticsApi
 import ychescale9.bugsnag.BugsnagTree
-import ychescale9.releaseprobe.di.DaggerReleaseProbeAppComponent
-import ychescale9.releaseprobe.di.ReleaseProbeAppComponent
+import ychescale9.releaseprobe.di.modules
 
-open class ReleaseProbeApp : Application(), HasActivityInjector {
-
-    private val appComponent: ReleaseProbeAppComponent by lazy {
-        DaggerReleaseProbeAppComponent.builder()
-                .app(this)
-                .build()
-    }
+@SuppressLint("Registered")
+open class ReleaseProbeApp : Application() {
 
     private lateinit var bugsnagClient: Client
 
-    @Inject
-    lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
-
-    @Inject
-    lateinit var analyticsApi: AnalyticsApi
+    private val analyticsApi: AnalyticsApi by inject()
 
     override fun onCreate() {
         super.onCreate()
@@ -41,8 +30,8 @@ open class ReleaseProbeApp : Application(), HasActivityInjector {
         val asyncMainThreadScheduler = AndroidSchedulers.from(Looper.getMainLooper(), true)
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { asyncMainThreadScheduler }
 
-        // inject dependencies required for initialization
-        appComponent.inject(this)
+        // start Koin context
+        startKoin(this, modules, logger = TimberLogger())
 
         // initialize Bugsnag
         if (BuildConfig.ENABLE_BUGSNAG) {
@@ -64,8 +53,6 @@ open class ReleaseProbeApp : Application(), HasActivityInjector {
         // set up global uncaught error handler for RxJava
         setUpRxJavaUncaughtErrorHandler()
     }
-
-    override fun activityInjector() = dispatchingActivityInjector
 
     protected open fun installLeakCanary() {
         // no-op, LeakCanary is disabled in production

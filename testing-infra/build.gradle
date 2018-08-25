@@ -1,11 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-
-kapt {
-    useBuildCache = true
-    mapDiagnosticLocations = true
-}
 
 android {
     compileSdkVersion buildConfig.compileSdk
@@ -40,9 +34,12 @@ dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
 
-    // Dagger
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
-    kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
+    // Koin
+    implementation "org.koin:koin-android:${versions.koin}"
+    implementation "org.koin:koin-androidx-viewmodel:${versions.koin}"
+
+    // retrofit-mock
+    implementation "com.squareup.retrofit2:retrofit-mock:${versions.retrofit}"
 
     api "androidx.test:runner:${versions.androidx.test}"
     api "androidx.test:rules:${versions.androidx.test}"

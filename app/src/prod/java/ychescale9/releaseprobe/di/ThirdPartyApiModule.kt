@@ -1,17 +1,10 @@
 package ychescale9.releaseprobe.di
 
-import android.content.Context
-import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
+import org.koin.android.ext.koin.androidContext
+import org.koin.dsl.module.module
 import ychescale9.analytics.AnalyticsApi
 import ychescale9.analytics.FirebaseAnalyticsApi
 
-@Module
-object ThirdPartyApiModule {
-
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun provideAnalyticsApi(context: Context): AnalyticsApi = FirebaseAnalyticsApi(context)
+val thirdPartyApiModule = module {
+    single<AnalyticsApi> { FirebaseAnalyticsApi(androidContext()) }
 }

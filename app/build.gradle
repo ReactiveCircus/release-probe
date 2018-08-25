@@ -1,15 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'project-report'
 apply from: "$project.rootDir/gradle/versioning.gradle"
-
-kapt {
-    useBuildCache = true
-    mapDiagnosticLocations = true
-}
 
 android {
     compileSdkVersion buildConfig.compileSdk
@@ -157,7 +151,6 @@ android {
     }
 
     testOptions {
-        // disable animations for instrumented tests
         animationsDisabled = true
     }
 }
@@ -182,9 +175,10 @@ dependencies {
     // Bugsnag
     implementation "com.bugsnag:bugsnag-android:${versions.bugsnag}"
 
-    // Dagger
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
-    kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
+    // Koin
+    implementation "org.koin:koin-android:${versions.koin}"
+    implementation "org.koin:koin-androidx-viewmodel:${versions.koin}"
+    implementation "org.koin:koin-androidx-scope:${versions.koin}"
 
     // Firebase core
     prodImplementation "com.google.firebase:firebase-core:${versions.firebase.core}"
@@ -197,12 +191,14 @@ dependencies {
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "io.mockk:mockk:${versions.mockk}"
+    // TODO remove once koin-test uses mockito-inline
+    testImplementation "org.mockito:mockito-inline:2.21.0"
+
     testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
     testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"
+    testImplementation "org.koin:koin-test:${versions.koin}"
 
     // Android tests
-    kaptAndroidTest "com.google.dagger:dagger-compiler:${versions.dagger}"
-    kaptAndroidTest "com.google.dagger:dagger-android-processor:${versions.dagger}"
     androidTestImplementation project(path: ':testing-infra')
 }
 

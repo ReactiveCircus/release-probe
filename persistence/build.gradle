@@ -43,6 +43,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+
+    testOptions {
+        animationsDisabled = true
+    }
 }
 
 dependencies {
@@ -53,9 +57,8 @@ dependencies {
     // rx
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
 
-    // Dagger
-    implementation "com.google.dagger:dagger:${versions.dagger}"
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    // Koin
+    implementation "org.koin:koin-android:${versions.koin}"
 
     // Room
     implementation "androidx.room:room-runtime:${versions.androidx.room}"
@@ -73,7 +76,7 @@ dependencies {
     androidTestImplementation "androidx.test:runner:${versions.androidx.test}"
     androidTestImplementation "androidx.test:rules:${versions.androidx.test}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${versions.androidx.espresso}"
-    androidTestImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
     androidTestImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"
     androidTestImplementation "androidx.room:room-testing:${versions.androidx.room}"
+    androidTestImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
 }

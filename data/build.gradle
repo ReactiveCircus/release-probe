@@ -1,11 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-
-kapt {
-    useBuildCache = true
-    mapDiagnosticLocations = true
-}
 
 android {
     compileSdkVersion buildConfig.compileSdk
@@ -46,12 +40,11 @@ dependencies {
     // timber
     implementation "com.jakewharton.timber:timber:${versions.timber}"
 
-    // Dagger
-    implementation "com.google.dagger:dagger:${versions.dagger}"
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    // Koin
+    implementation "org.koin:koin-android:${versions.koin}"
 
     // NYTimes store
-    api "com.nytimes.android:store3:${versions.store}"
+    implementation "com.nytimes.android:store3:${versions.store}"
 
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"

@@ -1,30 +1,21 @@
 package ychescale9.releaseprobe.testing
 
-import android.app.Activity
 import android.app.Application
 import android.os.Looper
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.plugins.RxJavaPlugins
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
+import org.koin.android.ext.android.startKoin
+import org.koin.dsl.module.Module
+import org.koin.log.EmptyLogger
 import timber.log.Timber
 import ychescale9.analytics.AnalyticsApi
-import ychescale9.releaseprobe.testing.di.component.DaggerScreenTestAppComponent
-import ychescale9.releaseprobe.testing.di.component.ScreenTestAppComponent
+import ychescale9.releaseprobe.testing.di.testModules
 
-open class ScreenTestApp : Application(), HasActivityInjector {
+open class ScreenTestApp : Application() {
 
-    private val testAppComponent: ScreenTestAppComponent by lazy {
-        loadTestAppComponent()
-    }
-
-    @Inject
-    lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
-
-    @Inject
-    lateinit var analyticsApi: AnalyticsApi
+    private val analyticsApi: AnalyticsApi by inject()
 
     override fun onCreate() {
         super.onCreate()
@@ -33,8 +24,8 @@ open class ScreenTestApp : Application(), HasActivityInjector {
         val asyncMainThreadScheduler = AndroidSchedulers.from(Looper.getMainLooper(), true)
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { asyncMainThreadScheduler }
 
-        // inject dependencies required for initialization
-        testAppComponent.inject(this)
+        // start Koin context
+        startKoin(this, loadKoinModules(), logger = EmptyLogger())
 
         // initialize Timber
         Timber.plant(TestDebugTree())
@@ -46,16 +37,8 @@ open class ScreenTestApp : Application(), HasActivityInjector {
         setUpRxJavaUncaughtErrorHandler()
     }
 
-    override fun activityInjector() = dispatchingActivityInjector
-
-    protected open fun loadTestAppComponent(): ScreenTestAppComponent {
-        return DaggerScreenTestAppComponent.builder()
-                .testApp(this)
-                .build()
-    }
-
-    fun testAppComponent(): ScreenTestAppComponent {
-        return testAppComponent
+    protected open fun loadKoinModules(): List<Module> {
+        return testModules
     }
 
     private fun setUpRxJavaUncaughtErrorHandler() {

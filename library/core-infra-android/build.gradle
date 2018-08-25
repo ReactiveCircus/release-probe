@@ -1,11 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-
-kapt {
-    useBuildCache = true
-    mapDiagnosticLocations = true
-}
 
 android {
     compileSdkVersion buildConfig.compileSdk
@@ -36,8 +30,6 @@ dependencies {
     // AndroidX
     implementation "androidx.appcompat:appcompat:${versions.androidx.appCompat}"
     implementation "androidx.fragment:fragment-ktx:${versions.androidx.fragment}"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.androidx.lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-common-java8:${versions.androidx.lifecycle}"
 
     // rx
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
@@ -48,10 +40,6 @@ dependencies {
 
     // timber
     implementation "com.jakewharton.timber:timber:${versions.timber}"
-
-    // Dagger
-    implementation "com.google.dagger:dagger:${versions.dagger}"
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"

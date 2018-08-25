@@ -1,12 +1,10 @@
 package ychescale9.releaseprobe.remote.di
 
 import com.squareup.moshi.Moshi
-import dagger.Module
-import dagger.Provides
 import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -18,22 +16,17 @@ import ychescale9.releaseprobe.remote.artifact.api.GoogleMavenService
 import ychescale9.releaseprobe.remote.artifact.interceptor.GoogleMavenResponseInterceptor
 import ychescale9.releaseprobe.remote.extension.build
 
-@Module
-object ApiModule {
+val apiModule = module {
 
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun provideMoshi() = Moshi.Builder()
-            .add(ArtifactGroupAdapter())
-            .add(ArtifactAdapter())
-            .build()
+    single {
+        Moshi.Builder()
+                .add(ArtifactGroupAdapter())
+                .add(ArtifactAdapter())
+                .build()
+    }
 
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun provideOkHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder().build {
+    single {
+        OkHttpClient.Builder().build {
             connectTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
             writeTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
             readTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
@@ -44,22 +37,16 @@ object ApiModule {
         }
     }
 
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun provideRetrofit(client: OkHttpClient, moshi: Moshi): Retrofit {
-        return Retrofit.Builder().build {
+    single {
+        Retrofit.Builder().build {
             baseUrl(BuildConfig.API_BASE_URL)
             addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            addConverterFactory(MoshiConverterFactory.create(moshi))
-            client(client)
+            addConverterFactory(MoshiConverterFactory.create(get()))
+            client(get())
         }
     }
 
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun provideGoogleMavenService(retrofit: Retrofit): GoogleMavenService {
-        return retrofit.create(GoogleMavenService::class.java)
+    single<GoogleMavenService> {
+        get<Retrofit>().create(GoogleMavenService::class.java)
     }
 }

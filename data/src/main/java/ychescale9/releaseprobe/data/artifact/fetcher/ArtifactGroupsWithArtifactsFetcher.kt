@@ -3,14 +3,12 @@ package ychescale9.releaseprobe.data.artifact.fetcher
 import com.nytimes.android.external.store3.base.Fetcher
 import com.nytimes.android.external.store3.base.impl.BarCode
 import io.reactivex.Single
-import javax.inject.Inject
 import ychescale9.infra.SchedulerProvider
 import ychescale9.releaseprobe.data.artifact.mapper.ArtifactGroupWithArtifactsDtosToEntity
 import ychescale9.releaseprobe.persistence.artifact.entity.ArtifactGroupWithArtifactsEntity
 import ychescale9.releaseprobe.remote.artifact.api.GoogleMavenService
 
-class ArtifactGroupsWithArtifactsFetcher @Inject
-constructor(
+class ArtifactGroupsWithArtifactsFetcher(
     private val googleMavenService: GoogleMavenService,
     private val mapper: ArtifactGroupWithArtifactsDtosToEntity,
     private val schedulerProvider: SchedulerProvider

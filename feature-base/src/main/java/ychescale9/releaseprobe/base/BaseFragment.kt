@@ -1,13 +1,12 @@
 package ychescale9.releaseprobe.base
 
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
+import androidx.fragment.app.Fragment
+import org.koin.android.ext.android.inject
 import ychescale9.analytics.AnalyticsApi
 
-abstract class BaseFragment : DaggerFragment() {
+abstract class BaseFragment : Fragment() {
 
-    @Inject
-    lateinit var analyticsApi: AnalyticsApi
+    private val analyticsApi: AnalyticsApi by inject()
 
     override fun onResume() {
         super.onResume()

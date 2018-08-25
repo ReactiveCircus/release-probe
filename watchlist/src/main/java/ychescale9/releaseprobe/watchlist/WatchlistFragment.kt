@@ -4,17 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.koin.androidx.scope.ext.android.scopedWith
+import org.koin.dsl.path.moduleName
 import ychescale9.releaseprobe.base.BaseFragment
 
 class WatchlistFragment : BaseFragment() {
 
 //    private lateinit var watchlistAdapter: WatchlistAdapter
 //
-//    @Inject
-//    lateinit var viewModel: WatchlistViewModel
+//    private val viewModel by viewModel<WatchlistViewModel>()
 //
-//    @Inject
-//    lateinit var animationHelper: AnimationHelper
+//    private val animationHelper: AnimationHelper by inject()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        scopedWith(javaClass.kotlin.moduleName)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_watchlist, container, false)

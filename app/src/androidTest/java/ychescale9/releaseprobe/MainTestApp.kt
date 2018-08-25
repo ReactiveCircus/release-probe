@@ -1,14 +1,19 @@
 package ychescale9.releaseprobe
 
-import ychescale9.releaseprobe.di.component.DaggerMainTestAppComponent
+import org.koin.dsl.module.Module
+import org.koin.dsl.module.module
+import org.koin.dsl.path.moduleName
+import ychescale9.releaseprobe.main.MainActivity
 import ychescale9.releaseprobe.testing.ScreenTestApp
-import ychescale9.releaseprobe.testing.di.component.ScreenTestAppComponent
+import ychescale9.releaseprobe.testing.di.testModules
 
 class MainTestApp : ScreenTestApp() {
 
-    override fun loadTestAppComponent(): ScreenTestAppComponent {
-        return DaggerMainTestAppComponent.builder()
-                .testApp(this)
-                .build()
+    private val mainModule = module(MainActivity::class.moduleName, true) {
+        // TODO
+    }
+
+    override fun loadKoinModules(): List<Module> {
+        return testModules + mainModule
     }
 }

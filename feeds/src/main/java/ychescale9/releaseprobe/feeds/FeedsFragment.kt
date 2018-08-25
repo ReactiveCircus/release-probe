@@ -4,17 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.koin.androidx.scope.ext.android.scopedWith
+import org.koin.dsl.path.moduleName
 import ychescale9.releaseprobe.base.BaseFragment
 
 class FeedsFragment : BaseFragment() {
 
 //    private lateinit var feedsAdapter: FeedsAdapter
 //
-//    @Inject
-//    lateinit var viewModel: FeedsViewModel
+//    private val viewModel: FeedsViewModel
 //
-//    @Inject
-//    lateinit var animationHelper: AnimationHelper
+//    private val animationHelper: AnimationHelper
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        scopedWith(javaClass.kotlin.moduleName)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_feeds, container, false)
@@ -22,6 +27,8 @@ class FeedsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        scopedWith(javaClass.kotlin.moduleName)
         // TODO
     }
 }

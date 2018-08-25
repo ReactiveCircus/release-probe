@@ -225,7 +225,7 @@ fun withForegroundDrawable(@IdRes resourceId: Int): Matcher<View> {
     return DrawableMatcher(DrawableMatcher.Type.FOREGROUND_DRAWABLE, resourceId)
 }
 
-class DrawableMatcher constructor(
+class DrawableMatcher(
     private val type: Type,
     private val expectedId: Int
 ) : TypeSafeMatcher<View>(View::class.java) {
