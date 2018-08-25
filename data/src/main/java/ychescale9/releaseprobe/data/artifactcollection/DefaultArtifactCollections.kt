@@ -2,11 +2,9 @@
 
 package ychescale9.releaseprobe.data.artifactcollection
 
-import javax.inject.Inject
 import ychescale9.releaseprobe.persistence.artifactcollection.entity.ArtifactCollectionEntity
 
-class DefaultArtifactCollections @Inject
-constructor() {
+class DefaultArtifactCollections {
 
     fun get(): List<ArtifactCollectionEntity> {
         return listOf(

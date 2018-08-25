@@ -10,26 +10,25 @@ import androidx.test.espresso.base.DefaultFailureHandler
 import androidx.test.espresso.intent.Intents
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.screenshot.Screenshot
-import javax.inject.Inject
 import org.hamcrest.Matcher
 import org.junit.After
 import org.junit.Assume
 import org.junit.Before
 import org.junit.Rule
 import org.junit.rules.TestName
+import org.koin.standalone.KoinComponent
+import org.koin.standalone.inject
 import retrofit2.mock.NetworkBehavior
 import ychescale9.releaseprobe.data.artifactcollection.DefaultArtifactCollections
 import ychescale9.releaseprobe.resources.R as ResourcesR
 import ychescale9.uitest.annotation.PhoneTest
 import ychescale9.uitest.annotation.TabletTest
 
-abstract class BaseScreenTest {
+abstract class BaseScreenTest : KoinComponent {
 
-    @Inject
-    lateinit var networkBehavior: NetworkBehavior
+    val networkBehavior: NetworkBehavior by inject()
 
-    @Inject
-    lateinit var defaultArtifactCollections: DefaultArtifactCollections
+    val defaultArtifactCollections: DefaultArtifactCollections by inject()
 
     @Rule
     @JvmField
@@ -41,11 +40,6 @@ abstract class BaseScreenTest {
 
         // skip if the test is not for the current device type
         assertDeviceOrSkip()
-
-        val instrumentation = InstrumentationRegistry.getInstrumentation()
-        val testApp = instrumentation.targetContext.applicationContext as ScreenTestApp
-        val component = testApp.testAppComponent()
-        component.inject(this)
 
         // set up global failure handler
         Espresso.setFailureHandler(GlobalFailureHandler(InstrumentationRegistry.getInstrumentation().targetContext))

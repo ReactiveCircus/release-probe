@@ -1,38 +1,29 @@
 package ychescale9.releaseprobe.persistence.di
 
-import android.content.Context
 import androidx.room.Room
-import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
+import org.koin.android.ext.koin.androidContext
+import org.koin.dsl.module.module
 import ychescale9.releaseprobe.persistence.BuildConfig
 import ychescale9.releaseprobe.persistence.ReleaseProbeDatabase
 
-@Module
-object PersistenceModule {
+val persistenceModule = module {
 
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun provideDatabase(context: Context): ReleaseProbeDatabase {
-        return Room.databaseBuilder(
-                context,
+    single {
+        Room.databaseBuilder(
+                androidContext(),
                 ReleaseProbeDatabase::class.java,
                 BuildConfig.DATABASE_NAME).build()
     }
 
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun provideArtifactCollectionDao(db: ReleaseProbeDatabase) = db.artifactCollectionDao()
+    single {
+        get<ReleaseProbeDatabase>().artifactCollectionDao()
+    }
 
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun provideArtifactGroupDao(db: ReleaseProbeDatabase) = db.artifactGroupDao()
+    single {
+        get<ReleaseProbeDatabase>().artifactGroupDao()
+    }
 
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun provideArtifactDao(db: ReleaseProbeDatabase) = db.artifactDao()
+    single {
+        get<ReleaseProbeDatabase>().artifactDao()
+    }
 }

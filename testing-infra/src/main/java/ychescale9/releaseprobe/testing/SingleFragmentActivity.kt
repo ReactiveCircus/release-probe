@@ -4,14 +4,15 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.transaction
-import dagger.android.support.DaggerAppCompatActivity
+import androidx.test.InstrumentationRegistry
 
 /**
  * Used for testing a fragment inside an activity.
  */
-class SingleFragmentActivity : DaggerAppCompatActivity() {
+class SingleFragmentActivity : AppCompatActivity() {
 
     private val containerId = View.generateViewId()
 
@@ -29,8 +30,10 @@ class SingleFragmentActivity : DaggerAppCompatActivity() {
     }
 
     fun setFragment(fragment: Fragment) {
-        supportFragmentManager.transaction(allowStateLoss = true) {
-            replace(containerId, fragment)
+        InstrumentationRegistry.getInstrumentation().runOnMainSync {
+            supportFragmentManager.transaction(now = true, allowStateLoss = true) {
+                replace(containerId, fragment)
+            }
         }
     }
 }

@@ -1,15 +1,13 @@
 package ychescale9.releaseprobe.domain.artifactcollection.usecase
 
 import io.reactivex.Observable
-import javax.inject.Inject
 import ychescale9.infra.SchedulerProvider
 import ychescale9.infra.domain.EmptyParams
 import ychescale9.infra.domain.UseCase
 import ychescale9.releaseprobe.domain.artifactcollection.model.ArtifactCollection
 import ychescale9.releaseprobe.domain.artifactcollection.repository.ArtifactCollectionRepository
 
-class GetOrCreateArtifactCollections @Inject
-constructor(
+class GetOrCreateArtifactCollections(
     private val artifactCollectionRepository: ArtifactCollectionRepository,
     schedulerProvider: SchedulerProvider
 ) : UseCase<EmptyParams, List<ArtifactCollection>>(schedulerProvider = schedulerProvider) {

@@ -45,7 +45,7 @@ buildscript {
             rxKotlin: '2.3.0',
             rxAndroid: '2.1.0',
             rxLint: '1.6.1',
-            dagger: '2.16',
+            koin: '1.0.0-beta-8',
             timber: '4.7.1',
             store: '3.1.0',
             junit: '4.12',

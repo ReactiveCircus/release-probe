@@ -4,30 +4,42 @@ import com.nytimes.android.external.store3.base.impl.BarCode
 import com.nytimes.android.external.store3.base.impl.MemoryPolicy
 import com.nytimes.android.external.store3.base.impl.StalePolicy
 import com.nytimes.android.external.store3.base.impl.room.StoreRoom
-import dagger.Module
-import dagger.Provides
 import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
+import org.koin.dsl.module.module
 import ychescale9.releaseprobe.data.BuildConfig
 import ychescale9.releaseprobe.data.artifact.fetcher.ArtifactGroupsWithArtifactsFetcher
+import ychescale9.releaseprobe.data.artifact.mapper.ArtifactGroupWithArtifactsDtosToEntity
+import ychescale9.releaseprobe.data.artifact.mapper.ArtifactGroupWithArtifactsEntityToModel
 import ychescale9.releaseprobe.data.artifact.persister.ArtifactGroupsWithArtifactsPersister
 import ychescale9.releaseprobe.data.artifact.repository.ArtifactRepositoryImpl
+import ychescale9.releaseprobe.data.artifactcollection.DefaultArtifactCollections
+import ychescale9.releaseprobe.data.artifactcollection.mapper.ArtifactCollectionEntityToModel
 import ychescale9.releaseprobe.data.artifactcollection.repository.ArtifactCollectionRepositoryImpl
 import ychescale9.releaseprobe.domain.artifact.model.ArtifactGroup
 import ychescale9.releaseprobe.domain.artifact.repository.ArtifactRepository
 import ychescale9.releaseprobe.domain.artifactcollection.repository.ArtifactCollectionRepository
 
-@Module
-object DataModule {
+val dataModule = module {
 
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun provideArtifactGroupsWithArtifactsStore(
-        fetcher: ArtifactGroupsWithArtifactsFetcher,
-        persister: ArtifactGroupsWithArtifactsPersister
-    ): StoreRoom<List<ArtifactGroup>, BarCode> {
-        return StoreRoom.from(
+    single<ArtifactCollectionEntityToModel>()
+
+    single<ArtifactGroupWithArtifactsDtosToEntity>()
+
+    single<ArtifactGroupWithArtifactsEntityToModel>()
+
+    single {
+        create<ArtifactGroupsWithArtifactsFetcher>()
+    }
+
+    single {
+        create<ArtifactGroupsWithArtifactsPersister>()
+    }
+
+    single<StoreRoom<List<ArtifactGroup>, BarCode>> {
+        val fetcher: ArtifactGroupsWithArtifactsFetcher = get()
+        val persister: ArtifactGroupsWithArtifactsPersister = get()
+
+        StoreRoom.from(
                 fetcher,
                 persister,
                 StalePolicy.NETWORK_BEFORE_STALE,
@@ -38,19 +50,13 @@ object DataModule {
         )
     }
 
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun provideArtifactCollectionRepository(
-        artifactCollectionRepository: ArtifactCollectionRepositoryImpl
-    ): ArtifactCollectionRepository {
-        return artifactCollectionRepository
+    single<DefaultArtifactCollections>()
+
+    single<ArtifactCollectionRepository> {
+        create<ArtifactCollectionRepositoryImpl>()
     }
 
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun provideArtifactRepository(artifactRepository: ArtifactRepositoryImpl): ArtifactRepository {
-        return artifactRepository
+    single<ArtifactRepository> {
+        create<ArtifactRepositoryImpl>()
     }
 }

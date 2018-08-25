@@ -1,11 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-
-kapt {
-    useBuildCache = true
-    mapDiagnosticLocations = true
-}
 
 android {
     compileSdkVersion buildConfig.compileSdk
@@ -14,6 +8,9 @@ android {
     defaultConfig {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
+
+        testApplicationId 'ychescale9.releaseprobe.tasks.test'
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -30,6 +27,10 @@ android {
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        animationsDisabled = true
     }
 }
 
@@ -51,14 +52,13 @@ dependencies {
     // timber
     implementation "com.jakewharton.timber:timber:${versions.timber}"
 
-    // Dagger
-    implementation "com.google.dagger:dagger:${versions.dagger}"
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    // Koin
+    implementation "org.koin:koin-android:${versions.koin}"
 
     // Android tests
     androidTestImplementation "androidx.test:runner:${versions.androidx.test}"
     androidTestImplementation "androidx.test:rules:${versions.androidx.test}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${versions.androidx.espresso}"
-    androidTestImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
     androidTestImplementation "android.arch.work:work-testing:${versions.androidx.work}"
+    androidTestImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
 }

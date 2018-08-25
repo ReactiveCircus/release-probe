@@ -11,9 +11,7 @@ fun currentActivity(): Activity? {
     getInstrumentation().runOnMainSync {
         val resumedActivities = ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(RESUMED)
         if (resumedActivities.iterator().hasNext()) {
-            if (currentActivityReference.get() == null) {
-                currentActivityReference.set(resumedActivities.iterator().next() as Activity)
-            }
+            currentActivityReference.set(resumedActivities.iterator().next() as Activity)
         }
     }
 

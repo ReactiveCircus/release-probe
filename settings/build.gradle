@@ -1,13 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
-
-kapt {
-    useBuildCache = true
-    mapDiagnosticLocations = true
-}
 
 android {
     compileSdkVersion buildConfig.compileSdk
@@ -36,14 +30,14 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+
+    testOptions {
+        animationsDisabled = true
+    }
 }
 
 dependencies {
     implementation project(path: ':feature-base')
-
-    // Dagger
-    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
-    kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
 
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"

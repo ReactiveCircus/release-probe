@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_browse_collections.*
+import org.koin.android.ext.android.inject
+import org.koin.androidx.scope.ext.android.scopedWith
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.dsl.path.moduleName
 import ychescale9.releaseprobe.base.BaseFragment
 import ychescale9.releaseprobe.domain.artifactcollection.model.ArtifactCollection
 import ychescale9.releaseprobe.util.AnimationHelper
@@ -16,11 +19,14 @@ class BrowseCollectionsFragment : BaseFragment() {
 
     private lateinit var artifactCollectionsAdapter: ArtifactCollectionsAdapter
 
-    @Inject
-    lateinit var viewModel: ArtifactCollectionsViewModel
+    private val viewModel by viewModel<ArtifactCollectionsViewModel>()
 
-    @Inject
-    lateinit var animationHelper: AnimationHelper
+    private val animationHelper: AnimationHelper by inject()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        scopedWith(javaClass.kotlin.moduleName)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_browse_collections, container, false)

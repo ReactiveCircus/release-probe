@@ -1,17 +1,22 @@
 package ychescale9.releaseprobe.main
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.androidx.scope.ext.android.scopedWith
+import org.koin.dsl.path.moduleName
 import ychescale9.releaseprobe.R
 
-class MainActivity : DaggerAppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        scopedWith(javaClass.kotlin.moduleName)
+
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
