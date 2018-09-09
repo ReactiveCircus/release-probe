@@ -75,7 +75,6 @@ jobs:
       - run:
           name: Upload Mapping File to Bugsnag
           command: |
-            # TODO upload currently not working with R8: https://github.com/bugsnag/bugsnag-android-gradle-plugin/issues/121
             curl https://upload.bugsnag.com/ \
               -F proguard=@app/build/outputs/mapping/r8/prod/release/mapping.txt \
               -F apiKey=$RELEASE_PROBE_BUGSNAG_API_KEY \
