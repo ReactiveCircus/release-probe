@@ -5,10 +5,10 @@ dependencies {
 }
 
 detekt {
-    defaultProfile {
-        output = file("$project.buildDir/reports/detekt")
-        outputName = "$project.name"
-        config = "$project.rootDir/detekt.yml"
-        filters = ".*/resources/.*,.*/build/.*,.*/tmp/.*"
+    toolVersion = versions.detekt
+    config = files("${project.rootDir}/detekt.yml")
+    filters = ".*/resources/.*,.*/build/.*,.*/tmp/.*"
+    reports {
+        html.destination = file("${project.buildDir}/reports/detekt/${project.name}.html")
     }
 }
