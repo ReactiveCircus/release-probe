@@ -6,6 +6,8 @@ import com.nytimes.android.external.store3.base.impl.StalePolicy
 import com.nytimes.android.external.store3.base.impl.room.StoreRoom
 import java.util.concurrent.TimeUnit
 import org.koin.dsl.module.module
+import org.koin.experimental.builder.create
+import org.koin.experimental.builder.single
 import ychescale9.releaseprobe.data.BuildConfig
 import ychescale9.releaseprobe.data.artifact.fetcher.ArtifactGroupsWithArtifactsFetcher
 import ychescale9.releaseprobe.data.artifact.mapper.ArtifactGroupWithArtifactsDtosToEntity

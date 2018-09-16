@@ -42,6 +42,7 @@ dependencies {
 
     // Koin
     implementation "org.koin:koin-android:${versions.koin}"
+    implementation "org.koin:koin-core-ext:${versions.koin}"
 
     // NYTimes store
     implementation "com.nytimes.android:store3:${versions.store}"

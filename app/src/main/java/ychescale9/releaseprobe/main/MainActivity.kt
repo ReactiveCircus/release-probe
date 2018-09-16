@@ -6,16 +6,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
-import org.koin.androidx.scope.ext.android.scopedWith
-import org.koin.dsl.path.moduleName
 import ychescale9.releaseprobe.R
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        scopedWith(javaClass.kotlin.moduleName)
 
         setContentView(R.layout.activity_main)
 
