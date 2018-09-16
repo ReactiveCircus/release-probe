@@ -5,10 +5,10 @@ import io.mockk.mockk
 import org.junit.Test
 import org.koin.dsl.module.module
 import org.koin.test.AutoCloseKoinTest
-import org.koin.test.check
+import org.koin.test.checkModules
 import ychescale9.releaseprobe.di.modules
 
-class KoinCheckTest : AutoCloseKoinTest() {
+class KoinCheckModulesTest : AutoCloseKoinTest() {
 
     private val mockAndroid = module {
         single { mockk<Context>() }
@@ -16,6 +16,6 @@ class KoinCheckTest : AutoCloseKoinTest() {
 
     @Test
     fun `check Koin configuration`() {
-        check(modules + mockAndroid)
+        checkModules(modules + mockAndroid)
     }
 }

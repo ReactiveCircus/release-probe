@@ -37,6 +37,7 @@ dependencies {
     // Koin
     implementation "org.koin:koin-android:${versions.koin}"
     implementation "org.koin:koin-androidx-viewmodel:${versions.koin}"
+    implementation "org.koin:koin-core-ext:${versions.koin}"
 
     // retrofit-mock
     implementation "com.squareup.retrofit2:retrofit-mock:${versions.retrofit}"

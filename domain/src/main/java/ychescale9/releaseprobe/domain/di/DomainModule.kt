@@ -1,6 +1,7 @@
 package ychescale9.releaseprobe.domain.di
 
 import org.koin.dsl.module.module
+import org.koin.experimental.builder.single
 import ychescale9.releaseprobe.domain.artifact.usecase.FetchArtifactGroups
 import ychescale9.releaseprobe.domain.artifact.usecase.GetArtifactGroups
 import ychescale9.releaseprobe.domain.artifactcollection.usecase.GetOrCreateArtifactCollections

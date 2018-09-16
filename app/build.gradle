@@ -178,7 +178,7 @@ dependencies {
     // Koin
     implementation "org.koin:koin-android:${versions.koin}"
     implementation "org.koin:koin-androidx-viewmodel:${versions.koin}"
-    implementation "org.koin:koin-androidx-scope:${versions.koin}"
+    implementation "org.koin:koin-core-ext:${versions.koin}"
 
     // Firebase core
     prodImplementation "com.google.firebase:firebase-core:${versions.firebase.core}"
@@ -191,8 +191,6 @@ dependencies {
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "io.mockk:mockk:${versions.mockk}"
-    // TODO remove once koin-test uses mockito-inline
-    testImplementation "org.mockito:mockito-inline:2.21.0"
 
     testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
     testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"

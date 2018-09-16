@@ -120,7 +120,7 @@ jobs:
       - run:
           name: detekt
           command: |
-            ./gradlew -Pkapt.use.worker.api=false detektCheck
+            ./gradlew -Pkapt.use.worker.api=false detekt
             mkdir -p ~/detekt/
             find . -type f -regex ".*/build/reports/detekt/.*html" -exec cp {} ~/detekt/ \;
       - store_artifacts:

@@ -9,14 +9,13 @@ buildscript {
     ]
 
     ext.versions = [
-            androidGradlePlugin: '3.3.0-alpha08',
+            androidGradlePlugin: '3.3.0-alpha10',
             googleServicesGradlePlugin: '4.1.0',
             dexcountGradlePlugin: '0.8.3',
             bugsnag: '4.6.1',
-            detekt: '1.0.0.RC8',
+            detekt: '1.0.0.RC9',
             leakCanary: '1.6.1',
-            kotlin: '1.2.61',
-            kotlinCoroutines: '0.24.0',
+            kotlin: '1.2.70',
             firebase: [
                     core: '16.0.3'
             ],
@@ -45,7 +44,7 @@ buildscript {
             rxKotlin: '2.3.0',
             rxAndroid: '2.1.0',
             rxLint: '1.6.1',
-            koin: '1.0.0-beta-8',
+            koin: '1.0.0',
             timber: '4.7.1',
             store: '3.1.0',
             junit: '4.12',
