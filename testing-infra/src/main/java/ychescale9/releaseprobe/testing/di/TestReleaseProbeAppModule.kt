@@ -1,9 +1,7 @@
 package ychescale9.releaseprobe.testing.di
 
 import org.koin.androidx.viewmodel.experimental.builder.viewModel
-import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
-import org.koin.experimental.builder.create
 import ychescale9.infra.SchedulerProvider
 import ychescale9.infra.util.Clock
 import ychescale9.infra.util.RealClock

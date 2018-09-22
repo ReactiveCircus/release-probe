@@ -85,9 +85,11 @@ abstract class BaseScreenTest : KoinComponent {
     private fun assertDeviceOrSkip() {
         val m = javaClass.getMethod(testName.methodName)
         if (m.isAnnotationPresent(PhoneTest::class.java)) {
-            Assume.assumeFalse(InstrumentationRegistry.getInstrumentation().targetContext.resources.getBoolean(ResourcesR.bool.isTablet))
+            Assume.assumeFalse(InstrumentationRegistry.getInstrumentation()
+                    .targetContext.resources.getBoolean(ResourcesR.bool.isTablet))
         } else if (m.isAnnotationPresent(TabletTest::class.java)) {
-            Assume.assumeTrue(InstrumentationRegistry.getInstrumentation().targetContext.resources.getBoolean(ResourcesR.bool.isTablet))
+            Assume.assumeTrue(InstrumentationRegistry.getInstrumentation()
+                    .targetContext.resources.getBoolean(ResourcesR.bool.isTablet))
         }
     }
 }
