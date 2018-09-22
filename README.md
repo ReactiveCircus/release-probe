@@ -62,11 +62,6 @@ We use CircleCI 2.0 for CI/CD.
 ### Docker Container
 [ychescale9/android-sdk](https://hub.docker.com/r/ychescale9/android-sdk/) is used for running CI jobs. Dockerfiles are available on [GitHub](https://github.com/ychescale9/docker-android-images)
 
-* Build are run within **Docker** containers on **Kubernetes**
-* Build agent is an internal Linux machine
-* Main build pipeline which runs on every merge into **develop** and **release** branches - **Build** -> **Run UI Tests (stub and dev, phone and tablet)** -> **Sign** -> **Deploy**
-* Nightly build pipeline which runs on every merge into **develop** at night - **Run UI Tests on other versions of the emulators (stub and dev, phone and tablet)**
-
 ### A Note on Running Instrumented Tests
 
 Running proper automated UI tests on CI remains a challenge especially when operating with free plans for side projects. We are not running UI tests on CI at this point for lack of feasible options:
