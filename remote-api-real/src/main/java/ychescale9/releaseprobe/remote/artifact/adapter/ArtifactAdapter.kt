@@ -17,7 +17,7 @@ class ArtifactAdapter {
         while (jsonReader.hasNext()) {
             val artifactId = jsonReader.nextName()
             jsonReader.beginObject()
-            jsonReader.nextName()
+            jsonReader.skipName()
             val versions = jsonReader.nextString()
             artifactDTOs.add(ArtifactDTO(groupId, artifactId, versions))
             jsonReader.endObject()
