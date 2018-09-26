@@ -12,7 +12,7 @@ class ArtifactGroupAdapter {
     fun fromJson(jsonReader: JsonReader): List<ArtifactGroupDTO> {
         val artifactGroupDTOs = mutableListOf<ArtifactGroupDTO>()
         jsonReader.beginObject()
-        jsonReader.nextName()
+        jsonReader.skipName()
         jsonReader.beginObject()
         while (jsonReader.hasNext()) {
             val groupId = jsonReader.nextName()
