@@ -33,8 +33,12 @@ buildscript {
                     paging           : '2.0.0',
                     navigation       : '1.0.0-alpha06',
                     work             : '1.0.0-alpha09',
-                    test             : '1.1.0-alpha4',
-                    espresso         : '3.1.0-alpha4'
+                    test             : [
+                            monitor: '1.1.0-beta01',
+                            rules  : '1.1.0-beta01',
+                            runner : '1.1.0-beta01'
+                    ],
+                    espresso         : '3.1.0-beta01'
             ],
             material                  : '1.0.0',
             okhttp                    : '3.11.0',

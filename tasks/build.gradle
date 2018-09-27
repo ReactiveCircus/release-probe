@@ -53,8 +53,8 @@ dependencies {
     implementation "org.koin:koin-android:${versions.koin}"
 
     // Android tests
-    androidTestImplementation "androidx.test:runner:${versions.androidx.test}"
-    androidTestImplementation "androidx.test:rules:${versions.androidx.test}"
+    androidTestImplementation "androidx.test:runner:${versions.androidx.test.runner}"
+    androidTestImplementation "androidx.test:rules:${versions.androidx.test.rules}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${versions.androidx.espresso}"
     androidTestImplementation "android.arch.work:work-testing:${versions.androidx.work}"
     androidTestImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
