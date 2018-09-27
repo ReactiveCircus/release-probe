@@ -3,7 +3,7 @@ package ychescale9.releaseprobe.testing.helper
 import android.os.AsyncTask
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
-import ychescale9.infra.rx.AndroidSchedulerProvider
+import ychescale9.infra.android.rx.AndroidSchedulerProvider
 
 /**
  * SchedulerProvider for screen tests

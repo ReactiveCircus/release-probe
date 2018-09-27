@@ -9,7 +9,6 @@ import ychescale9.releaseprobe.browsecollections.ArtifactCollectionsViewModel
 import ychescale9.releaseprobe.data.di.dataModule
 import ychescale9.releaseprobe.domain.di.domainModule
 import ychescale9.releaseprobe.persistence.di.persistenceModule
-import ychescale9.releaseprobe.remote.di.apiModule
 import ychescale9.releaseprobe.testing.helper.ScreenTestAnimationHelper
 import ychescale9.releaseprobe.testing.helper.ScreenTestSchedulerProvider
 import ychescale9.releaseprobe.util.AnimationHelper
@@ -50,6 +49,6 @@ val testModules = viewModelModules + listOf(
         domainModule,
         dataModule,
         persistenceModule,
-        apiModule,
+        testApiModule,
         testThirdPartyApiModule
 )
