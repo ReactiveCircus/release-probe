@@ -7,7 +7,6 @@ import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commitNow
-import androidx.fragment.app.transaction
 import androidx.test.platform.app.InstrumentationRegistry
 
 /**

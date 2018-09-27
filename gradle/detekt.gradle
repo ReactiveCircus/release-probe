@@ -2,9 +2,7 @@ apply plugin: "io.gitlab.arturbosch.detekt"
 
 if (!isCiBuild) {
     dependencies {
-        detekt "io.gitlab.arturbosch.detekt:detekt-formatting:${versions.detekt}"
-        // TODO remove once https://github.com/arturbosch/detekt/pull/1147 is released
-        detekt("io.gitlab.arturbosch.detekt:detekt-cli:${versions.detekt}")
+        detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:${versions.detekt}"
     }
 }
 

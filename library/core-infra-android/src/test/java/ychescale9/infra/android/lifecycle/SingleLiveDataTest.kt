@@ -18,13 +18,13 @@ class SingleLiveDataTest {
     @JvmField
     val instantExecutorRule = InstantTaskExecutorRule()
 
-    lateinit var lifecycle: LifecycleRegistry
+    private lateinit var lifecycle: LifecycleRegistry
 
-    val owner = mockk<LifecycleOwner>()
+    private val owner = mockk<LifecycleOwner>()
 
-    val observer = mockk<Observer<Int>>(relaxed = true)
+    private val observer = mockk<Observer<Int>>(relaxed = true)
 
-    val singleLiveData = SingleLiveData<Int>()
+    private val singleLiveData = SingleLiveData<Int>()
 
     @Before
     fun setUp() {

@@ -33,7 +33,7 @@ class GetOrCreateArtifactCollectionsTest {
         every { insertDefaultArtifactCollections() } returns Single.just(true)
     }
 
-    val getOrCreateArtifactCollections = GetOrCreateArtifactCollections(
+    private val getOrCreateArtifactCollections = GetOrCreateArtifactCollections(
             artifactCollectionRepository,
             TestSchedulerProvider()
     )

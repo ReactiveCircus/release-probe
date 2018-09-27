@@ -6,7 +6,7 @@ import org.junit.Test
 
 class BaseDataMapperTest {
 
-    val mapper = TestDataMapper()
+    private val mapper = TestDataMapper()
 
     @Test
     fun `should return empty list for empty collection`() {

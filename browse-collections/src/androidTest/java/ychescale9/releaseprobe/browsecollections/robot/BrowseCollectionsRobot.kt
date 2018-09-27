@@ -31,9 +31,8 @@ class BrowseCollectionsRobotActions : RobotActions() {
 class BrowseCollectionsRobotAssertions : RobotAssertions() {
 
     fun artifactCollectionsDisplayed(artifactCollections: List<ArtifactCollectionEntity>) {
-        val recyclerView = requireNotNull(currentActivity())
-                .findViewById(R.id.artifactCollectionsRecyclerView) as RecyclerView
         val recyclerViewId = R.id.artifactCollectionsRecyclerView
+        val recyclerView: RecyclerView = requireNotNull(currentActivity()).findViewById(recyclerViewId)
         val artifactCollectionNameTextViewId = R.id.artifactCollectionNameTextView
         val artifactCollectionDescriptionTextViewId = R.id.artifactCollectionDescriptionTextView
         val adapter = requireNotNull(recyclerView.adapter)
