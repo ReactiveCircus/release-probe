@@ -1,5 +1,7 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
 
 android {
     compileSdkVersion buildConfig.compileSdk
@@ -8,11 +10,6 @@ android {
     defaultConfig {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
-    }
-
-    libraryVariants.all {
-        // TODO replace with https://issuetracker.google.com/issues/72050365 once released.
-        it.generateBuildConfig.enabled = false
     }
 
     compileOptions {

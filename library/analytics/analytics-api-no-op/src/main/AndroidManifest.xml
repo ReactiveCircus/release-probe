@@ -1,2 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ychescale9.analytics" />
+    package="ychescale9.analytics.noop" />

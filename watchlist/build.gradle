@@ -1,7 +1,9 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'androidx.navigation.safeargs'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'androidx.navigation.safeargs'
+}
 
 android {
     compileSdkVersion buildConfig.compileSdk
@@ -13,11 +15,6 @@ android {
 
         testApplicationId 'ychescale9.releaseprobe.watchlist.test'
         testInstrumentationRunner "ychescale9.releaseprobe.testing.ScreenTestRunner"
-    }
-
-    libraryVariants.all {
-        // TODO replace with https://issuetracker.google.com/issues/72050365 once released.
-        it.generateBuildConfig.enabled = false
     }
 
     compileOptions {
