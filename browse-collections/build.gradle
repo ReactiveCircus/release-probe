@@ -36,6 +36,9 @@ android {
 dependencies {
     implementation project(path: ':feature-base')
 
+    // AndroidX
+    implementation "androidx.recyclerview:recyclerview:${versions.androidx.recyclerView}"
+
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "io.mockk:mockk:${versions.mockk}"

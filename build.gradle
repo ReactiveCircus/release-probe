@@ -15,7 +15,7 @@ buildscript {
             bugsnag: '4.6.1',
             detekt: '1.0.0.RC9',
             leakCanary: '1.6.1',
-            kotlin: '1.3.0-rc-57',
+            kotlin: '1.3.0-rc-116',
             firebase: [
                     core: '16.0.3'
             ],
@@ -25,6 +25,7 @@ buildscript {
                     appCompat: '1.0.0',
                     fragment: '1.0.0',
                     coordinatorLayout: '1.0.0',
+                    recyclerView: '1.0.0',
                     constraintLayout: '1.1.3',
                     arch: '2.0.0',
                     lifecycle: '2.0.0',
