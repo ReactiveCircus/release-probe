@@ -2,55 +2,55 @@ buildscript {
     ext.isCiBuild = System.getenv("CI") == "true"
 
     ext.buildConfig = [
-            minSdk: 23,
-            targetSdk: 28,
+            minSdk    : 23,
+            targetSdk : 28,
             compileSdk: 28,
             buildTools: '28.0.3'
     ]
 
     ext.versions = [
-            androidGradlePlugin: '3.3.0-alpha13',
+            androidGradlePlugin       : '3.3.0-alpha13',
             googleServicesGradlePlugin: '4.1.0',
-            dexcountGradlePlugin: '0.8.3',
-            bugsnag: '4.6.1',
-            detekt: '1.0.0.RC9',
-            leakCanary: '1.6.1',
-            kotlin: '1.3.0-rc-116',
-            firebase: [
+            dexcountGradlePlugin      : '0.8.3',
+            bugsnag                   : '4.6.1',
+            detekt                    : '1.0.0.RC9',
+            leakCanary                : '1.6.1',
+            kotlin                    : '1.3.0-rc-116',
+            firebase                  : [
                     core: '16.0.3'
             ],
-            androidx: [
-                    core: '1.0.0',
-                    annotation: '1.0.0',
-                    appCompat: '1.0.0',
-                    fragment: '1.0.0',
+            androidx                  : [
+                    core             : '1.0.0',
+                    annotation       : '1.0.0',
+                    appCompat        : '1.0.0',
+                    fragment         : '1.0.0',
                     coordinatorLayout: '1.0.0',
-                    recyclerView: '1.0.0',
-                    constraintLayout: '1.1.3',
-                    arch: '2.0.0',
-                    lifecycle: '2.0.0',
-                    room: '2.0.0',
-                    paging: '2.0.0',
-                    navigation: '1.0.0-alpha06',
-                    work: '1.0.0-alpha09',
-                    test: '1.1.0-alpha4',
-                    espresso: '3.1.0-alpha4'
+                    recyclerView     : '1.0.0',
+                    constraintLayout : '1.1.3',
+                    arch             : '2.0.0',
+                    lifecycle        : '2.0.0',
+                    room             : '2.0.0',
+                    paging           : '2.0.0',
+                    navigation       : '1.0.0-alpha06',
+                    work             : '1.0.0-alpha09',
+                    test             : '1.1.0-alpha4',
+                    espresso         : '3.1.0-alpha4'
             ],
-            material: '1.0.0',
-            okhttp: '3.11.0',
-            retrofit: '2.4.0',
-            moshi: '1.7.0',
-            json: '20180130',
-            rxJava: '2.2.2',
-            rxKotlin: '2.3.0',
-            rxAndroid: '2.1.0',
-            rxLint: '1.6.1',
-            koin: '1.0.0',
-            timber: '4.7.1',
-            store: '3.1.0',
-            junit: '4.12',
-            mockk: '1.8.7',
-            kluent: '1.41'
+            material                  : '1.0.0',
+            okhttp                    : '3.11.0',
+            retrofit                  : '2.4.0',
+            moshi                     : '1.7.0',
+            json                      : '20180130',
+            rxJava                    : '2.2.2',
+            rxKotlin                  : '2.3.0',
+            rxAndroid                 : '2.1.0',
+            rxLint                    : '1.6.1',
+            koin                      : '1.0.0',
+            timber                    : '4.7.1',
+            store                     : '3.1.0',
+            junit                     : '4.12',
+            mockk                     : '1.8.7',
+            kluent                    : '1.41'
     ]
 
     repositories {
