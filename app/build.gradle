@@ -215,6 +215,7 @@ configurations.all { configuration ->
 }
 
 tasks.whenTaskAdded { task ->
+    // TODO use dexcount { enabled = false } in debug config once 0.8.4 is released
     // don't count dex methods for debug builds
     if (task.name.endsWith("DebugDexMethods")) {
         task.enabled = false
