@@ -11,7 +11,7 @@ buildscript {
     ext.versions = [
             androidGradlePlugin       : '3.3.0-alpha13',
             googleServicesGradlePlugin: '4.1.0',
-            dexcountGradlePlugin      : '0.8.3',
+            dexcountGradlePlugin      : '0.8.4',
             bugsnag                   : '4.6.1',
             detekt                    : '1.0.0.RC9',
             leakCanary                : '1.6.1',
@@ -81,7 +81,7 @@ allprojects {
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         kotlinOptions {
             jvmTarget = "1.8"
-            freeCompilerArgs = ["-Xprogressive"]
+            freeCompilerArgs = ["-progressive"]
         }
     }
 
