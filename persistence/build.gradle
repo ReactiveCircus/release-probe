@@ -77,8 +77,9 @@ dependencies {
     testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
 
     // Android tests
-    androidTestImplementation "androidx.test:runner:${versions.androidx.test}"
-    androidTestImplementation "androidx.test:rules:${versions.androidx.test}"
+    androidTestImplementation "androidx.test:monitor:${versions.androidx.test.monitor}"
+    androidTestImplementation "androidx.test:runner:${versions.androidx.test.runner}"
+    androidTestImplementation "androidx.test:rules:${versions.androidx.test.rules}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${versions.androidx.espresso}"
     androidTestImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"
     androidTestImplementation "androidx.room:room-testing:${versions.androidx.room}"

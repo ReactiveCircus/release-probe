@@ -1,7 +1,7 @@
 package ychescale9.uitest
 
 import android.app.Activity
-import androidx.test.InstrumentationRegistry.getInstrumentation
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
 import androidx.test.runner.lifecycle.Stage.RESUMED
 import java.util.concurrent.atomic.AtomicReference

@@ -3,11 +3,11 @@ package ychescale9.releaseprobe.testing
 import android.content.Context
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.test.InstrumentationRegistry
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.FailureHandler
 import androidx.test.espresso.base.DefaultFailureHandler
 import androidx.test.espresso.intent.Intents
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.screenshot.Screenshot
 import org.hamcrest.Matcher
@@ -42,7 +42,7 @@ abstract class BaseScreenTest : KoinComponent {
         assertDeviceOrSkip()
 
         // set up global failure handler
-        Espresso.setFailureHandler(GlobalFailureHandler(InstrumentationRegistry.getInstrumentation().targetContext))
+        Espresso.setFailureHandler(GlobalFailureHandler(getInstrumentation().targetContext))
     }
 
     @After
@@ -57,7 +57,7 @@ abstract class BaseScreenTest : KoinComponent {
             launchActivity(null)
             activity.setFragment(fragment)
         }
-        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+        getInstrumentation().waitForIdleSync()
     }
 
     fun givenNetworkIsConnected() {
@@ -85,10 +85,10 @@ abstract class BaseScreenTest : KoinComponent {
     private fun assertDeviceOrSkip() {
         val m = javaClass.getMethod(testName.methodName)
         if (m.isAnnotationPresent(PhoneTest::class.java)) {
-            Assume.assumeFalse(InstrumentationRegistry.getInstrumentation()
+            Assume.assumeFalse(getInstrumentation()
                     .targetContext.resources.getBoolean(ResourcesR.bool.isTablet))
         } else if (m.isAnnotationPresent(TabletTest::class.java)) {
-            Assume.assumeTrue(InstrumentationRegistry.getInstrumentation()
+            Assume.assumeTrue(getInstrumentation()
                     .targetContext.resources.getBoolean(ResourcesR.bool.isTablet))
         }
     }

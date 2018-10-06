@@ -1,6 +1,6 @@
 package ychescale9.releaseprobe.robot
 
-import androidx.test.InstrumentationRegistry.getTargetContext
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import ychescale9.releaseprobe.R
 import ychescale9.uitest.BaseRobot
 import ychescale9.uitest.RobotActions
@@ -15,22 +15,22 @@ class MainRobot : BaseRobot<MainRobotActions, MainRobotAssertions>(
 class MainRobotActions : RobotActions() {
 
     fun selectFeedsNavItem() {
-        val navItemTitle = getTargetContext().resources.getString(R.string.menu_title_feeds)
+        val navItemTitle = getInstrumentation().targetContext.resources.getString(R.string.menu_title_feeds)
         selectBottomNavigationItem(R.id.bottomNavigationView, navItemTitle)
     }
 
     fun selectWatchlistNavItem() {
-        val navItemTitle = getTargetContext().resources.getString(R.string.menu_title_watchlist)
+        val navItemTitle = getInstrumentation().targetContext.resources.getString(R.string.menu_title_watchlist)
         selectBottomNavigationItem(R.id.bottomNavigationView, navItemTitle)
     }
 
     fun selectBrowseCollectionsNavItem() {
-        val navItemTitle = getTargetContext().resources.getString(R.string.menu_title_browse)
+        val navItemTitle = getInstrumentation().targetContext.resources.getString(R.string.menu_title_browse)
         selectBottomNavigationItem(R.id.bottomNavigationView, navItemTitle)
     }
 
     fun selectSettingsNavItem() {
-        val navItemTitle = getTargetContext().resources.getString(R.string.menu_title_settings)
+        val navItemTitle = getInstrumentation().targetContext.resources.getString(R.string.menu_title_settings)
         selectBottomNavigationItem(R.id.bottomNavigationView, navItemTitle)
     }
 }
@@ -38,25 +38,25 @@ class MainRobotActions : RobotActions() {
 class MainRobotAssertions : RobotAssertions() {
 
     fun feedsDestinationSelected() {
-        val titleString = getTargetContext().resources.getString(R.string.title_feeds)
+        val titleString = getInstrumentation().targetContext.resources.getString(R.string.title_feeds)
         toolbarHasTitle(titleString)
         bottomNavigationViewItemSelected(R.id.bottomNavigationView, R.id.nav_feeds)
     }
 
     fun watchlistDestinationSelected() {
-        val titleString = getTargetContext().resources.getString(R.string.title_watchlist)
+        val titleString = getInstrumentation().targetContext.resources.getString(R.string.title_watchlist)
         toolbarHasTitle(titleString)
         bottomNavigationViewItemSelected(R.id.bottomNavigationView, R.id.nav_watchlist)
     }
 
     fun browseCollectionsDestinationSelected() {
-        val titleString = getTargetContext().resources.getString(R.string.title_browse)
+        val titleString = getInstrumentation().targetContext.resources.getString(R.string.title_browse)
         toolbarHasTitle(titleString)
         bottomNavigationViewItemSelected(R.id.bottomNavigationView, R.id.nav_browse)
     }
 
     fun settingsDestinationSelected() {
-        val titleString = getTargetContext().resources.getString(R.string.title_settings)
+        val titleString = getInstrumentation().targetContext.resources.getString(R.string.title_settings)
         toolbarHasTitle(titleString)
         bottomNavigationViewItemSelected(R.id.bottomNavigationView, R.id.nav_settings)
     }
