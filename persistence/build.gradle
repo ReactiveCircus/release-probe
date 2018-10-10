@@ -64,7 +64,7 @@ dependencies {
 
     // AndroidX
     implementation "androidx.annotation:annotation:${versions.androidx.annotation}"
-    implementation "androidx.arch.core:core-runtime:${versions.androidx.arch}"
+    implementation "androidx.arch.core:core-runtime:${versions.androidx.arch.coreRuntime}"
     implementation "androidx.room:room-runtime:${versions.androidx.room}"
     kapt "androidx.room:room-compiler:${versions.androidx.room}"
     implementation "androidx.room:room-rxjava2:${versions.androidx.room}"
@@ -81,7 +81,7 @@ dependencies {
     androidTestImplementation "androidx.test:runner:${versions.androidx.test.runner}"
     androidTestImplementation "androidx.test:rules:${versions.androidx.test.rules}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${versions.androidx.espresso}"
-    androidTestImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"
+    androidTestImplementation "androidx.arch.core:core-testing:${versions.androidx.arch.coreTesting}"
     androidTestImplementation "androidx.room:room-testing:${versions.androidx.room}"
     androidTestImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
 }

@@ -196,7 +196,7 @@ dependencies {
     testImplementation "io.mockk:mockk:${versions.mockk}"
 
     testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
-    testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"
+    testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch.coreTesting}"
     testImplementation "org.koin:koin-test:${versions.koin}"
 
     // Android tests

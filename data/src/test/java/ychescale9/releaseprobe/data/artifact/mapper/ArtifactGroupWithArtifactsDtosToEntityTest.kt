@@ -35,7 +35,7 @@ class ArtifactGroupWithArtifactsDtosToEntityTest {
 
         actual.run {
             artifactGroup shouldNotEqual null
-            artifactGroup?.groupId shouldEqual artifactGroupDTO.groupId
+            artifactGroup.groupId shouldEqual artifactGroupDTO.groupId
             artifacts.run {
                 get(0).groupId shouldEqual artifactGroupDTO.groupId
                 get(0).artifactId shouldEqual "core"

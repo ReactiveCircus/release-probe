@@ -44,7 +44,7 @@ dependencies {
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "io.mockk:mockk:${versions.mockk}"
     testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
-    testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"
+    testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch.coreTesting}"
 
     // Android tests
     androidTestImplementation project(path: ':testing-infra')
