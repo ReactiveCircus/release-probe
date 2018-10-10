@@ -29,7 +29,7 @@ abstract class ArtifactGroupDao {
 
     @Transaction
     open fun insertArtifactGroupsWithArtifacts(artifactGroupWithArtifacts: List<ArtifactGroupWithArtifactsEntity>) {
-        artifactGroupWithArtifacts.mapNotNull { it.artifactGroup }.run {
+        artifactGroupWithArtifacts.map { it.artifactGroup }.run {
             insertArtifactGroups(this)
         }
         artifactGroupWithArtifacts.forEach {
