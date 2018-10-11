@@ -38,6 +38,7 @@ dependencies {
 
     // AndroidX
     implementation "androidx.recyclerview:recyclerview:${versions.androidx.recyclerView}"
+    implementation "androidx.cardview:cardview:${versions.androidx.cardView}"
 
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"
