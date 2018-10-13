@@ -38,11 +38,15 @@ buildscript {
                     navigation       : '1.0.0-alpha06',
                     work             : '1.0.0-alpha10',
                     test             : [
-                            monitor: '1.1.0-beta01',
-                            rules  : '1.1.0-beta01',
-                            runner : '1.1.0-beta01'
+                            core   : '1.0.0-beta02',
+                            monitor: '1.1.0-beta02',
+                            rules  : '1.1.0-beta02',
+                            runner : '1.1.0-beta02',
+                            ext    : [
+                                    junit: '1.0.0-beta02'
+                            ]
                     ],
-                    espresso         : '3.1.0-beta01'
+                    espresso         : '3.1.0-beta02'
             ],
             material                  : '1.0.0',
             okhttp                    : '3.11.0',

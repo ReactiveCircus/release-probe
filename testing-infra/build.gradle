@@ -39,6 +39,7 @@ dependencies {
     // retrofit-mock
     implementation "com.squareup.retrofit2:retrofit-mock:${versions.retrofit}"
 
+    api "androidx.test:core:${versions.androidx.test.core}"
     api "androidx.test:monitor:${versions.androidx.test.monitor}"
     api "androidx.test:runner:${versions.androidx.test.runner}"
     api "androidx.test:rules:${versions.androidx.test.rules}"
