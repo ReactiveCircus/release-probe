@@ -40,8 +40,9 @@ dependencies {
     // Work
     implementation "android.arch.work:work-runtime-ktx:${versions.androidx.work}"
 
-    // Explicitly declare room-runtime dependency used by work transitively
+    // Explicitly declare room-runtime and lifecycle-common dependencies used by work transitively
     implementation "androidx.room:room-runtime:${versions.androidx.room}"
+    implementation "androidx.lifecycle:lifecycle-common-java8:${versions.androidx.lifecycle}"
 
     // rx
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
@@ -53,6 +54,7 @@ dependencies {
     implementation "org.koin:koin-android:${versions.koin}"
 
     // Android tests
+    androidTestImplementation "androidx.test:core:${versions.androidx.test.core}"
     androidTestImplementation "androidx.test:runner:${versions.androidx.test.runner}"
     androidTestImplementation "androidx.test:rules:${versions.androidx.test.rules}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${versions.androidx.espresso}"
