@@ -37,8 +37,8 @@ dependencies {
     implementation project(path: ':feature-base')
 
     // Paging
-    implementation "androidx.paging:paging-runtime:${versions.androidx.paging}"
-    implementation "androidx.paging:paging-rxjava2:${versions.androidx.paging}"
+    implementation "androidx.paging:paging-runtime-ktx:${versions.androidx.paging}"
+    implementation "androidx.paging:paging-rxjava2-ktx:${versions.androidx.paging}"
 
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"
