@@ -69,7 +69,7 @@ jobs:
       - run:
           name: Assemble
           command: |
-            ./gradlew -Pkapt.use.worker.api=false assemble bundleProdRelease
+            ./gradlew assemble bundleProdRelease
       - store_artifacts:
           path: app/build/outputs/
       - run:
@@ -97,7 +97,7 @@ jobs:
       - run:
           name: Test
           command: |
-            ./gradlew -Pkapt.use.worker.api=false test
+            ./gradlew test
             mkdir -p ~/junit/
             find . -type f -regex ".*/build/test-results/.*xml" -exec cp --parents {} ~/junit/ \;
       - store_test_results:
@@ -114,13 +114,13 @@ jobs:
       - *restore_gradle_cache
       - run:
           name: Android Lint
-          command: ./gradlew -Pkapt.use.worker.api=false :app:lint
+          command: ./gradlew :app:lint
       - store_artifacts:
           path: app/build/reports/lint-results.html
       - run:
           name: detekt
           command: |
-            ./gradlew -Pkapt.use.worker.api=false detekt
+            ./gradlew detekt
             mkdir -p ~/detekt/
             find . -type f -regex ".*/build/reports/detekt/.*html" -exec cp {} ~/detekt/ \;
       - store_artifacts:
