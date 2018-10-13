@@ -36,7 +36,7 @@ buildscript {
                     room             : '2.1.0-alpha01',
                     paging           : '2.0.0',
                     navigation       : '1.0.0-alpha06',
-                    work             : '1.0.0-alpha09',
+                    work             : '1.0.0-alpha10',
                     test             : [
                             monitor: '1.1.0-beta01',
                             rules  : '1.1.0-beta01',
