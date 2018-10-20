@@ -76,7 +76,7 @@ jobs:
           name: Upload Mapping File to Bugsnag
           command: |
             curl https://upload.bugsnag.com/ \
-              -F proguard=@app/build/outputs/mapping/r8/prod/release/mapping.txt \
+              -F proguard=@app/build/outputs/mapping/prod/release/mapping.txt \
               -F apiKey=$RELEASE_PROBE_BUGSNAG_API_KEY \
               -F appId=$APP_ID \
               -F versionCode=$APP_VERSION_CODE \
