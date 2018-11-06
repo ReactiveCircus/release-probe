@@ -37,7 +37,7 @@ buildscript {
                     lifecycle        : '2.0.0',
                     room             : '2.1.0-alpha01',
                     paging           : '2.1.0-alpha01',
-                    navigation       : '1.0.0-alpha06',
+                    navigation       : '1.0.0-alpha07',
                     work             : '1.0.0-alpha10',
                     test             : [
                             core   : '1.0.0',

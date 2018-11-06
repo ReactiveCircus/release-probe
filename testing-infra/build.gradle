@@ -46,7 +46,7 @@ dependencies {
     api "androidx.test.espresso:espresso-core:${versions.androidx.espresso}"
     api "androidx.test.espresso:espresso-contrib:${versions.androidx.espresso}"
     api "androidx.test.espresso:espresso-intents:${versions.androidx.espresso}"
-    api "android.arch.navigation:navigation-testing-ktx:${versions.androidx.navigation}"
+    api "android.arch.navigation:navigation-testing:${versions.androidx.navigation}"
     api "org.amshove.kluent:kluent-android:${versions.kluent}"
     api project(path: ':analytics-api-no-op')
     api project(path: ':ui-test-helper')
