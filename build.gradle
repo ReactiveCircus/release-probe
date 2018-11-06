@@ -58,7 +58,7 @@ buildscript {
             rxJava                    : '2.2.3',
             rxKotlin                  : '2.3.0',
             rxAndroid                 : '2.1.0',
-            rxLint                    : '1.6.1',
+            rxLint                    : '1.7.1',
             koin                      : '1.0.1',
             timber                    : '4.7.1',
             store                     : '3.1.0',
