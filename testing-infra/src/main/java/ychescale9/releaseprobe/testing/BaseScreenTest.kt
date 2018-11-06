@@ -1,14 +1,17 @@
 package ychescale9.releaseprobe.testing
 
 import android.content.Context
+import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentFactory
+import androidx.fragment.app.testing.FragmentScenario
+import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.FailureHandler
 import androidx.test.espresso.base.DefaultFailureHandler
 import androidx.test.espresso.intent.Intents
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
-import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.screenshot.Screenshot
 import org.hamcrest.Matcher
 import org.junit.After
@@ -52,12 +55,13 @@ abstract class BaseScreenTest : KoinComponent {
         givenNetworkIsConnected()
     }
 
-    fun launchActivityWithFragment(activityTestRule: ActivityTestRule<SingleFragmentActivity>, fragment: Fragment) {
-        activityTestRule.apply {
-            launchActivity(null)
-            activity.setFragment(fragment)
+    inline fun <reified F : Fragment> launchFragment(
+        fragmentArgs: Bundle? = null,
+        factory: FragmentFactory? = null
+    ): FragmentScenario<F> {
+        return launchFragmentInContainer<F>(fragmentArgs, factory).also {
+            getInstrumentation().waitForIdleSync()
         }
-        getInstrumentation().waitForIdleSync()
     }
 
     fun givenNetworkIsConnected() {
@@ -85,11 +89,15 @@ abstract class BaseScreenTest : KoinComponent {
     private fun assertDeviceOrSkip() {
         val m = javaClass.getMethod(testName.methodName)
         if (m.isAnnotationPresent(PhoneTest::class.java)) {
-            Assume.assumeFalse(getInstrumentation()
-                    .targetContext.resources.getBoolean(ResourcesR.bool.isTablet))
+            Assume.assumeFalse(
+                getInstrumentation()
+                    .targetContext.resources.getBoolean(ResourcesR.bool.isTablet)
+            )
         } else if (m.isAnnotationPresent(TabletTest::class.java)) {
-            Assume.assumeTrue(getInstrumentation()
-                    .targetContext.resources.getBoolean(ResourcesR.bool.isTablet))
+            Assume.assumeTrue(
+                getInstrumentation()
+                    .targetContext.resources.getBoolean(ResourcesR.bool.isTablet)
+            )
         }
     }
 }
