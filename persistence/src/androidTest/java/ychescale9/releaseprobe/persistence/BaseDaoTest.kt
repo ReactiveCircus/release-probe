@@ -1,10 +1,10 @@
-package ychescale9.releaseprobe.persistence.artifact.dao
+package ychescale9.releaseprobe.persistence
 
+import android.content.Context
 import androidx.room.Room
-import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
+import androidx.test.core.app.ApplicationProvider
 import org.junit.After
 import org.junit.Before
-import ychescale9.releaseprobe.persistence.ReleaseProbeDatabase
 
 abstract class BaseDaoTest {
 
@@ -13,10 +13,11 @@ abstract class BaseDaoTest {
     @Before
     open fun setUp() {
         database = Room.inMemoryDatabaseBuilder(
-                getInstrumentation().targetContext,
-                ReleaseProbeDatabase::class.java)
-                .allowMainThreadQueries()
-                .build()
+            ApplicationProvider.getApplicationContext<Context>(),
+            ReleaseProbeDatabase::class.java
+        )
+            .allowMainThreadQueries()
+            .build()
     }
 
     @After

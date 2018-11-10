@@ -22,6 +22,7 @@ dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
 
+    implementation "androidx.test:core:${versions.androidx.test.core}"
     implementation "androidx.test.espresso:espresso-core:${versions.androidx.espresso}"
     implementation "androidx.test.espresso:espresso-contrib:${versions.androidx.espresso}"
     implementation "androidx.test.espresso:espresso-intents:${versions.androidx.espresso}"

@@ -3,12 +3,14 @@
 package ychescale9.uitest
 
 import android.app.Activity
+import android.content.Context
 import android.view.View
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
@@ -19,7 +21,6 @@ import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import org.hamcrest.CoreMatchers
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.core.AllOf
@@ -297,7 +298,7 @@ open class RobotAssertions {
         Espresso.onView(ViewMatchers.isAssignableFrom(Toolbar::class.java))
                 .check(ViewAssertions.matches(
                         withToolbarTitle(Is.`is`<CharSequence>(
-                                getInstrumentation().targetContext.getString(titleTextResId)))))
+                            getApplicationContext<Context>().getString(titleTextResId)))))
     }
 
     fun toolbarHasSubtitle(subtitle: String) {

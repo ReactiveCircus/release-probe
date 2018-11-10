@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.MediumTest
 import org.junit.Rule
 import org.junit.Test
+import ychescale9.releaseprobe.persistence.BaseDaoTest
 import ychescale9.releaseprobe.persistence.artifact.entity.ArtifactEntity
 import ychescale9.releaseprobe.persistence.artifact.entity.ArtifactGroupEntity
 import ychescale9.releaseprobe.persistence.artifact.entity.ArtifactGroupWithArtifactsEntity
