@@ -24,7 +24,7 @@ buildscript {
             androidx                  : [
                     core             : '1.0.1',
                     annotation       : '1.0.0',
-                    appCompat        : '1.0.1',
+                    appCompat        : '1.0.2',
                     fragment         : '1.1.0-alpha01',
                     coordinatorLayout: '1.0.0',
                     recyclerView     : '1.0.0',
