@@ -1,8 +1,8 @@
 <resources>
 
     <style name="Theme.RP.Splash" parent="BaseAppTheme">
-        <item name="android:statusBarColor">@color/colorSecondary</item>
-        <item name="android:navigationBarColor">@color/colorPrimary</item>
+        <item name="android:statusBarColor">?colorSecondary</item>
+        <item name="android:navigationBarColor">?colorPrimary</item>
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
 

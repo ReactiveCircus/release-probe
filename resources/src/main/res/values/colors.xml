@@ -3,10 +3,11 @@
     <!-- TODO https://material.io/develop/android/theming/color/-->
 
     <color name="colorPrimary">#254449</color>
-    <color name="colorPrimaryLight">#48BBCD</color>
     <color name="colorPrimaryDark">#18191B</color>
+    <color name="colorPrimaryVariant">#506F74</color>
 
     <color name="colorSecondary">#48BBCD</color>
+    <color name="colorSecondaryVariant">#81EEFF</color>
 
     <color name="colorError">#F75E5B</color>
 </resources>
