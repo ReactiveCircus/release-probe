@@ -1,19 +1,14 @@
 package ychescale9.releaseprobe
 
 import androidx.test.filters.LargeTest
-import androidx.test.rule.ActivityTestRule
-import org.junit.Rule
 import org.junit.Test
 import ychescale9.releaseprobe.main.MainActivity
 import ychescale9.releaseprobe.robot.mainScreen
 import ychescale9.releaseprobe.testing.BaseScreenTest
 
+
 @LargeTest
 class MainScreenTest : BaseScreenTest() {
-
-    @Rule
-    @JvmField
-    val activityRule = ActivityTestRule(MainActivity::class.java, true, false)
 
     @Test
     fun openMainScreenWithEmptyFeedsAndWatchlist_watchlistDestinationSelected() {
@@ -22,7 +17,7 @@ class MainScreenTest : BaseScreenTest() {
                 // TODO given empty feeds and empty watchlist
             }
             perform {
-                activityRule.launchActivity(null)
+                launchActivity<MainActivity>()
             }
             check {
                 // TODO watchlistDestinationSelected()
@@ -37,7 +32,7 @@ class MainScreenTest : BaseScreenTest() {
                 // TODO given some feeds and watchlist
             }
             perform {
-                activityRule.launchActivity(null)
+                launchActivity<MainActivity>()
             }
             check {
                 feedsDestinationSelected()
@@ -52,7 +47,7 @@ class MainScreenTest : BaseScreenTest() {
                 // TODO given some feeds and watchlist
             }
             perform {
-                activityRule.launchActivity(null)
+                launchActivity<MainActivity>()
                 selectWatchlistNavItem()
             }
             check {

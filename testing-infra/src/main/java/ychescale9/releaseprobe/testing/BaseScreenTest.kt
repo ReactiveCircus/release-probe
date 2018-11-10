@@ -1,5 +1,6 @@
 package ychescale9.releaseprobe.testing
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.View
@@ -7,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
+import androidx.test.core.app.ActivityScenario
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.FailureHandler
 import androidx.test.espresso.base.DefaultFailureHandler
@@ -45,7 +48,7 @@ abstract class BaseScreenTest : KoinComponent {
         assertDeviceOrSkip()
 
         // set up global failure handler
-        Espresso.setFailureHandler(GlobalFailureHandler(getInstrumentation().targetContext))
+        Espresso.setFailureHandler(GlobalFailureHandler(ApplicationProvider.getApplicationContext<Context>()))
     }
 
     @After
@@ -53,6 +56,10 @@ abstract class BaseScreenTest : KoinComponent {
         Intents.release()
         // reset network connectivity
         givenNetworkIsConnected()
+    }
+
+    inline fun <reified A : Activity> launchActivity(): ActivityScenario<A> {
+        return ActivityScenario.launch(A::class.java)
     }
 
     inline fun <reified F : Fragment> launchFragment(
@@ -90,13 +97,13 @@ abstract class BaseScreenTest : KoinComponent {
         val m = javaClass.getMethod(testName.methodName)
         if (m.isAnnotationPresent(PhoneTest::class.java)) {
             Assume.assumeFalse(
-                getInstrumentation()
-                    .targetContext.resources.getBoolean(ResourcesR.bool.isTablet)
+                ApplicationProvider.getApplicationContext<Context>()
+                    .resources.getBoolean(ResourcesR.bool.isTablet)
             )
         } else if (m.isAnnotationPresent(TabletTest::class.java)) {
             Assume.assumeTrue(
-                getInstrumentation()
-                    .targetContext.resources.getBoolean(ResourcesR.bool.isTablet)
+                ApplicationProvider.getApplicationContext<Context>()
+                    .resources.getBoolean(ResourcesR.bool.isTablet)
             )
         }
     }
