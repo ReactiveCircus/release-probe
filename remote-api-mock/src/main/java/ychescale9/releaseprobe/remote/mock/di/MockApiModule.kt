@@ -20,9 +20,7 @@ val mockApiModule = module {
 
     single {
         OkHttpClient.Builder().build {
-            connectTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            writeTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            readTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+            callTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
             // add logging interceptor
             addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
         }
@@ -50,7 +48,7 @@ val mockApiModule = module {
     single<GoogleMavenService> {
         MockGoogleMavenService(MockRetrofit.Builder(get())
                 .apply { networkBehavior(get()) }
-                .let { it.build().create(GoogleMavenService::class.java) }
+                .let { builder -> builder.build().create(GoogleMavenService::class.java) }
         )
     }
 }
