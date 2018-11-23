@@ -8,6 +8,7 @@ import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.create
 import ychescale9.releaseprobe.remote.artifact.api.GoogleMavenService
 import ychescale9.releaseprobe.remote.extension.build
 import ychescale9.releaseprobe.remote.real.BuildConfig
@@ -27,9 +28,7 @@ val realApiModule = module {
 
     single {
         OkHttpClient.Builder().build {
-            connectTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            writeTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            readTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+            callTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
             // add interceptor for converting xml response to json
             addInterceptor(GoogleMavenResponseInterceptor())
             // add logging interceptor
@@ -46,7 +45,7 @@ val realApiModule = module {
         }
     }
 
-    single<GoogleMavenService> {
-        get<Retrofit>().create(GoogleMavenService::class.java)
+    single {
+        get<Retrofit>().create<GoogleMavenService>()
     }
 }
