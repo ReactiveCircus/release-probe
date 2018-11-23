@@ -317,7 +317,7 @@ naming:
     propertyPattern: '[A-Za-z][_A-Za-z0-9]*'
     constantPattern: '[A-Za-z][_A-Za-z0-9]*'
   PackageNaming:
-    active: false
+    active: true
     packagePattern: '^[a-z0-9]+(\.[a-z][a-z0-9]*)*$'
   TopLevelPropertyNaming:
     active: true
