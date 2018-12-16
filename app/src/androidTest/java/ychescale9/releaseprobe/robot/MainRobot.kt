@@ -2,7 +2,6 @@ package ychescale9.releaseprobe.robot
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
-import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import ychescale9.releaseprobe.R
 import ychescale9.uitest.BaseRobot
 import ychescale9.uitest.RobotActions
@@ -40,26 +39,22 @@ class MainRobotActions : RobotActions() {
 class MainRobotAssertions : RobotAssertions() {
 
     fun feedsDestinationSelected() {
-        val titleString = getApplicationContext<Context>().resources.getString(R.string.title_feeds)
-        toolbarHasTitle(titleString)
+        toolbarHasTitle(R.string.title_feeds)
         bottomNavigationViewItemSelected(R.id.bottomNavigationView, R.id.nav_feeds)
     }
 
     fun watchlistDestinationSelected() {
-        val titleString = getApplicationContext<Context>().resources.getString(R.string.title_watchlist)
-        toolbarHasTitle(titleString)
+        toolbarHasTitle(R.string.title_watchlist)
         bottomNavigationViewItemSelected(R.id.bottomNavigationView, R.id.nav_watchlist)
     }
 
     fun browseCollectionsDestinationSelected() {
-        val titleString = getApplicationContext<Context>().resources.getString(R.string.title_browse)
-        toolbarHasTitle(titleString)
+        toolbarHasTitle(R.string.title_browse)
         bottomNavigationViewItemSelected(R.id.bottomNavigationView, R.id.nav_browse)
     }
 
     fun settingsDestinationSelected() {
-        val titleString = getApplicationContext<Context>().resources.getString(R.string.title_settings)
-        toolbarHasTitle(titleString)
+        toolbarHasTitle(R.string.title_settings)
         bottomNavigationViewItemSelected(R.id.bottomNavigationView, R.id.nav_settings)
     }
 }
