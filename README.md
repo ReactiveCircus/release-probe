@@ -1,16 +1,13 @@
-ReleaseProbe
-============
+# ReleaseProbe
 
 [![CircleCI](https://circleci.com/gh/ychescale9/release-probe.svg?style=svg)](https://circleci.com/gh/ychescale9/release-probe) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/620bc7570cd44f30a9973836cc36df0d)](https://www.codacy.com/project/ychescale9/release-probe/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ychescale9/release-probe&amp;utm_campaign=Badge_Grade_Dashboard) [![Android API](https://img.shields.io/badge/API-23%2B-blue.svg?style=flat-square&label=API&maxAge=300)](https://www.android.com/history/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square&maxAge=3600)](https://opensource.org/licenses/MIT)
 
 An Android app for monitoring new releases of libraries and dependencies such as AndroidX, Firebase and other popular 3rd party libraries on GitHub. Get notified when your favourite library has a new release.
 
-Goals
------
+## Goals
 The main goal of this project is to experiment with some of the latest technologies including, libraries, architecture, infrastructure, tooling, design patterns in Android development, and apply them in a non-trivial project. Therefore it's expected that the focus will be mostly on the technologies rather than adding new features. Current tech stack is documented below.
 
-Tech Stack
-----------
+## Tech Stack
 
 ### Language
 100% Kotlin.
@@ -25,25 +22,31 @@ TODO
 
 TODO
 
-Microservices Architecture
---------------------------
+### Microservices Architecture
 
 TODO
 
-Testing
--------
+### Project Dependency Graph
+
+To get a visualization of the project's dependency graph ([Graphviz](https://brewinstall.org/Install-graphviz-on-Mac-with-Brew/) required):
+
+```
+./gradlew projectDependencyGraph
+```
+
+The generated project dependency graph is available at `./build/reports/dependency-graph/project.dot.png`.
+
+### Testing
 
 TODO
 
-Code Quality
-------------
+### Code Quality
 
 In addition to Android Lint, [detekt](https://github.com/arturbosch/detekt) has been configured for Kotlin static analysis.
 
 We also use [Codacy](https://app.codacy.com/project/ychescale9/release-probe/dashboard) for automatic PR quality review.
 
-Continuous Integration
-----------------------
+### Continuous Integration
 
 We use CircleCI 2.0 for CI/CD.
 
@@ -71,8 +74,8 @@ Running proper automated UI tests on CI remains a challenge especially when oper
 
 Apparently Google / Robolectric are working on support for running Espresso tests off-device as part of [Nitrogen](https://youtu.be/wYMIadv9iF8?t=1843), which might change the landscape quite a bit depending on what we value in doing automated UI testing.
 
-Building
---------
+## Building
+
 ### Bugsnag
 
 A Bugsnag API key is required. Place the following in `~/.gradle/gradle.properties`:
@@ -88,5 +91,4 @@ The following will generate the unsigned APK and AAB (App Bundle) files.
 
 Signed APK and AAB will be generated when the release keystore and signing credentials are provided, which happens on CI builds.
 
-TODO
-----
+## TODO

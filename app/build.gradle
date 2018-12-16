@@ -134,7 +134,7 @@ android {
         }
     }
 
-    android.applicationVariants.all { variant ->
+    android.applicationVariants.configureEach { variant ->
         // customize app name for debug builds
         if (variant.buildType.name == "debug") {
             // get app_name field from defaultConfig
@@ -195,7 +195,7 @@ dependencies {
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "io.mockk:mockk:${versions.mockk}"
 
-    testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
+    testImplementation "org.amshove.kluent:kluent:${versions.kluent}"
     testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch.coreTesting}"
     testImplementation "org.koin:koin-test:${versions.koin}"
 
@@ -204,7 +204,7 @@ dependencies {
 }
 
 // use no-op LeakCanary dependency in tests
-configurations.all { configuration ->
+configurations.configureEach { configuration ->
     if (configuration.name.contains('UnitTest') || configuration.name.contains('AndroidTest')) {
         configuration.resolutionStrategy.eachDependency { details ->
             if (details.requested.group == 'com.squareup.leakcanary' && details.requested.name == 'leakcanary-android') {
@@ -217,16 +217,15 @@ configurations.all { configuration ->
 tasks.whenTaskAdded { task ->
     // don't count dex methods for debug builds
     if (task.name.endsWith("DebugDexMethods")) {
-        task.enabled = false
-    }
-    // don't run instrumented tests against prod flavor
-    if (task.name.contains("Prod") && task.name.contains("AndroidTest")) {
-        task.enabled = false
+        task.configure {
+            it.enabled = false
+        }
     }
 }
 
-android.applicationVariants.all { variant ->
+android.applicationVariants.configureEach { variant ->
     // disable google services plugin for mock flavor
-    def googleTask = tasks.findByName("process${variant.name.capitalize()}GoogleServices")
-    googleTask.enabled = !variant.name.contains("mock")
+    tasks.named("process${variant.name.capitalize()}GoogleServices").configure {
+        it.enabled = !variant.name.contains("mock")
+    }
 }

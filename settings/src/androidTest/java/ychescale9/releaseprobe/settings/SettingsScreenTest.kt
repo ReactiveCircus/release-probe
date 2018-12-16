@@ -9,7 +9,7 @@ class SettingsScreenTest : BaseScreenTest() {
 
     @Test
     fun openSettingsScreenWithDefaultSettings_defaultSettingsDisplayed() {
-        launchFragment<SettingsFragment>()
+        launchFragmentScenario<SettingsFragment>()
         // TODO
     }
 }

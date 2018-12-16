@@ -10,6 +10,7 @@ import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.core.app.launchActivity
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.FailureHandler
 import androidx.test.espresso.base.DefaultFailureHandler
@@ -24,15 +25,13 @@ import org.junit.Rule
 import org.junit.rules.TestName
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
-import retrofit2.mock.NetworkBehavior
 import ychescale9.releaseprobe.data.artifactcollection.DefaultArtifactCollections
 import ychescale9.releaseprobe.resources.R as ResourcesR
+import ychescale9.releaseprobe.testing.assumption.assumeNetworkDisconnected
 import ychescale9.uitest.annotation.PhoneTest
 import ychescale9.uitest.annotation.TabletTest
 
 abstract class BaseScreenTest : KoinComponent {
-
-    val networkBehavior: NetworkBehavior by inject()
 
     val defaultArtifactCollections: DefaultArtifactCollections by inject()
 
@@ -55,28 +54,24 @@ abstract class BaseScreenTest : KoinComponent {
     open fun tearDown() {
         Intents.release()
         // reset network connectivity
-        givenNetworkIsConnected()
+        assumeNetworkDisconnected()
     }
 
-    inline fun <reified A : Activity> launchActivity(): ActivityScenario<A> {
-        return ActivityScenario.launch(A::class.java)
+    inline fun <reified A : Activity> launchActivityScenario(
+        intent: android.content.Intent? = null
+    ): ActivityScenario<A> {
+        return launchActivity<A>(intent).also {
+            getInstrumentation().waitForIdleSync()
+        }
     }
 
-    inline fun <reified F : Fragment> launchFragment(
+    inline fun <reified F : Fragment> launchFragmentScenario(
         fragmentArgs: Bundle? = null,
         factory: FragmentFactory? = null
     ): FragmentScenario<F> {
         return launchFragmentInContainer<F>(fragmentArgs, factory).also {
             getInstrumentation().waitForIdleSync()
         }
-    }
-
-    fun givenNetworkIsConnected() {
-        networkBehavior.setFailurePercent(0)
-    }
-
-    fun givenNetworkIsNotConnected() {
-        networkBehavior.setFailurePercent(100)
     }
 
     private class GlobalFailureHandler(targetContext: Context) : FailureHandler {

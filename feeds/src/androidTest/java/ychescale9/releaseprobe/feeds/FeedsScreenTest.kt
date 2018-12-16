@@ -9,13 +9,13 @@ class FeedsScreenTest : BaseScreenTest() {
 
     @Test
     fun openFeedsScreenWithExistingFeeds_feedsDisplayed() {
-        launchFragment<FeedsFragment>()
+        launchFragmentScenario<FeedsFragment>()
         // TODO
     }
 
     @Test
     fun openFeedsScreenWithoutExistingFeeds_emptyStateDisplayed() {
-        launchFragment<FeedsFragment>()
+        launchFragmentScenario<FeedsFragment>()
         // TODO
     }
 }

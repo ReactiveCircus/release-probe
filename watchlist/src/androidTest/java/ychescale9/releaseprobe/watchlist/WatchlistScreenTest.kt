@@ -9,13 +9,13 @@ class WatchlistScreenTest : BaseScreenTest() {
 
     @Test
     fun openWatchlistScreenWithExistingItems_watchlistDisplayed() {
-        launchFragment<WatchlistFragment>()
+        launchFragmentScenario<WatchlistFragment>()
         // TODO
     }
 
     @Test
     fun openWatchlistScreenWithoutExistingItems_emptyStateDisplayed() {
-        launchFragment<WatchlistFragment>()
+        launchFragmentScenario<WatchlistFragment>()
         // TODO
     }
 }
