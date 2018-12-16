@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         // TODO check bottom navigation view behavior https://issuetracker.google.com/issues/80029773
         // TODO SDK bug - fragments should NOT be recreated when re-selecting item in bottom navigation view
-        navController.addOnNavigatedListener { _, _ ->
+        navController.addOnDestinationChangedListener { _, _, _ ->
             supportActionBar?.setDisplayHomeAsUpEnabled(false)
         }
 

@@ -17,7 +17,7 @@ class MainScreenTest : BaseScreenTest() {
                 // TODO given empty feeds and empty watchlist
             }
             perform {
-                launchActivity<MainActivity>()
+                launchActivityScenario<MainActivity>()
             }
             check {
                 // TODO watchlistDestinationSelected()
@@ -32,7 +32,7 @@ class MainScreenTest : BaseScreenTest() {
                 // TODO given some feeds and watchlist
             }
             perform {
-                launchActivity<MainActivity>()
+                launchActivityScenario<MainActivity>()
             }
             check {
                 feedsDestinationSelected()
@@ -47,7 +47,7 @@ class MainScreenTest : BaseScreenTest() {
                 // TODO given some feeds and watchlist
             }
             perform {
-                launchActivity<MainActivity>()
+                launchActivityScenario<MainActivity>()
                 selectWatchlistNavItem()
             }
             check {

@@ -49,13 +49,13 @@ ext {
     }
 }
 
-task showVersionCode {
+tasks.register("showVersionCode") {
     doLast {
         println(buildVersionCode())
     }
 }
 
-task showVersionName {
+tasks.register("showVersionName") {
     doLast {
         println(buildVersionName())
     }

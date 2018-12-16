@@ -36,14 +36,10 @@ android {
 dependencies {
     implementation project(path: ':feature-base')
 
-    // AndroidX
-    implementation "androidx.recyclerview:recyclerview:${versions.androidx.recyclerView}"
-    implementation "androidx.cardview:cardview:${versions.androidx.cardView}"
-
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "io.mockk:mockk:${versions.mockk}"
-    testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
+    testImplementation "org.amshove.kluent:kluent:${versions.kluent}"
     testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch.coreTesting}"
 
     // Android tests

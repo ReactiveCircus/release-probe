@@ -12,7 +12,7 @@ class BrowseCollectionsScreenTest : BaseScreenTest() {
     fun openBrowseCollectionsScreen_artifactCollectionsDisplayed() {
         browseArtifactCollectionsScreen {
             perform {
-                launchFragment<BrowseCollectionsFragment>()
+                launchFragmentScenario<BrowseCollectionsFragment>()
             }
             check {
                 artifactCollectionsDisplayed(defaultArtifactCollections.get())
@@ -24,7 +24,7 @@ class BrowseCollectionsScreenTest : BaseScreenTest() {
     fun clickArtifactCollection_browseArtifactsScreenLaunched() {
         browseArtifactCollectionsScreen {
             perform {
-                launchFragment<BrowseCollectionsFragment>()
+                launchFragmentScenario<BrowseCollectionsFragment>()
                 // select the first artifact collection
                 clickArtifactCollection(0)
             }
