@@ -165,7 +165,7 @@ fun withToolbarTitle(textMatcher: Matcher<String>): Matcher<Any> {
 fun withToolbarSubtitle(textMatcher: Matcher<CharSequence>): Matcher<Any> {
     return object : BoundedMatcher<Any, Toolbar>(Toolbar::class.java) {
         public override fun matchesSafely(toolbar: Toolbar): Boolean {
-            return textMatcher.matches(toolbar.subtitle)
+            return textMatcher.matches(toolbar.subtitle.toString())
         }
 
         override fun describeTo(description: Description) {
