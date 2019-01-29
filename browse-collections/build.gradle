@@ -44,4 +44,7 @@ dependencies {
 
     // Android tests
     androidTestImplementation project(path: ':testing-infra')
+    debugImplementation("androidx.fragment:fragment-testing:${versions.androidx.fragment}") {
+        exclude group: 'androidx.test'
+    }
 }

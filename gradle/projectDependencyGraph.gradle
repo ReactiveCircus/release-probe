@@ -40,7 +40,7 @@ tasks.register("projectDependencyGraph") {
                 javaProjects.add(project)
             }
 
-            project.configurations.configureEach { config ->
+            project.configurations.all { config ->
                 config.dependencies
                         .withType(ProjectDependency)
                         .collect { it.dependencyProject }
