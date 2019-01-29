@@ -69,7 +69,11 @@ abstract class BaseScreenTest : KoinComponent {
         fragmentArgs: Bundle? = null,
         factory: FragmentFactory? = null
     ): FragmentScenario<F> {
-        return launchFragmentInContainer<F>(fragmentArgs, factory).also {
+        return launchFragmentInContainer<F>(
+            fragmentArgs = fragmentArgs,
+            themeResId = ResourcesR.style.Theme_RP,
+            factory = factory
+        ).also {
             getInstrumentation().waitForIdleSync()
         }
     }

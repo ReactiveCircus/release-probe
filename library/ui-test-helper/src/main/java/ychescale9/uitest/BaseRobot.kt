@@ -312,7 +312,7 @@ open class RobotAssertions {
 
     fun toolbarHasTitle(title: String) {
         Espresso.onView(ViewMatchers.isAssignableFrom(Toolbar::class.java))
-            .check(ViewAssertions.matches(withToolbarTitle(Is.`is`<CharSequence>(title))))
+            .check(ViewAssertions.matches(withToolbarTitle(Is.`is`<String>(title))))
     }
 
     fun toolbarHasTitle(@StringRes titleTextResId: Int) {
@@ -320,7 +320,7 @@ open class RobotAssertions {
             .check(
                 ViewAssertions.matches(
                     withToolbarTitle(
-                        Is.`is`<CharSequence>(
+                        Is.`is`<String>(
                             getApplicationContext<Context>().getString(titleTextResId)
                         )
                     )
