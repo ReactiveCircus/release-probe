@@ -47,7 +47,7 @@ dependencies {
     api "androidx.test.espresso:espresso-core:${versions.androidx.espresso}"
     api "androidx.test.espresso:espresso-contrib:${versions.androidx.espresso}"
     api "androidx.test.espresso:espresso-intents:${versions.androidx.espresso}"
-    debugImplementation("androidx.fragment:fragment-testing:${versions.androidx.fragment}") {
+    implementation("androidx.fragment:fragment-testing:${versions.androidx.fragment}") {
         exclude group: 'androidx.test'
     }
     api "org.amshove.kluent:kluent-android:${versions.kluent}"
