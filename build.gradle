@@ -116,3 +116,14 @@ def envOrProp(String name) {
 }
 
 apply from: "$project.rootDir/gradle/projectDependencyGraph.gradle"
+
+/**
+ * Disable debug and mock tests to avoid running the same tests repeatedly in different build variants.
+ * ./gradlew test -PslimTests will run unit tests for *ProdRelease and *Release in Android App and Library projects,
+ * and all tests in JVM projects.
+ */
+gradle.taskGraph.whenReady { graph ->
+    if (project.hasProperty('slimTests')) {
+        graph.allTasks.findAll { it.name ==~ /test.*(?i)(debug|mock).*/ }*.enabled = false
+    }
+}

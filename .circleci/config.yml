@@ -97,7 +97,7 @@ jobs:
       - run:
           name: Test
           command: |
-            ./gradlew test
+            ./gradlew test -PslimTests
             mkdir -p ~/junit/
             find . -type f -regex ".*/build/test-results/.*xml" -exec cp --parents {} ~/junit/ \;
       - store_test_results:
