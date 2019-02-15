@@ -8,6 +8,7 @@ if (!isCiBuild) {
 
 detekt {
     toolVersion = versions.detekt
+    failFast = true
     config = files("${project.rootDir}/detekt.yml")
     filters = ".*/resources/.*,.*/build/.*,.*/tmp/.*"
     reports {

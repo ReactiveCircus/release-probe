@@ -1,3 +1,5 @@
+@file:Suppress("LargeClass")
+
 package ychescale9.releaseprobe.remote
 
 import ychescale9.releaseprobe.remote.artifact.dto.ArtifactDTO

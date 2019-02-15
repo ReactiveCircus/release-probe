@@ -13,7 +13,7 @@ import ychescale9.releaseprobe.remote.extension.build
 import ychescale9.releaseprobe.remote.mock.BuildConfig.NETWORK_TIMEOUT_SECONDS
 import ychescale9.releaseprobe.remote.mock.artifact.api.MockGoogleMavenService
 
-private const val MOCK_SERVER_PORT = 5000
+private const val MOCK_SERVER_PORT = 5_000
 private const val DUMMY_URL = "http://localhost:$MOCK_SERVER_PORT/"
 
 val mockApiModule = module {
