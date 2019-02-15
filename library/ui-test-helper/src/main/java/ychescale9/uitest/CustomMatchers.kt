@@ -1,4 +1,4 @@
-@file:Suppress("TooManyFunctions", "ReturnCount")
+@file:Suppress("TooManyFunctions", "ReturnCount", "LongMethod")
 
 package ychescale9.uitest
 
@@ -90,7 +90,7 @@ fun hasSelectedNavigationItem(@IdRes itemResId: Int): Matcher<View> {
 
         override fun matchesSafely(bottomNavigationView: BottomNavigationView): Boolean {
             triedMatching = true
-            with (bottomNavigationView.menu) {
+            with(bottomNavigationView.menu) {
                 for (index in 0 until size()) {
                     val menuItem = getItem(index)
                     if (menuItem.isChecked) {
@@ -142,11 +142,14 @@ fun withEmailInputType(): Matcher<View> {
  */
 fun withToolbarNavigationButton(): Matcher<View> {
     return allOf(
-            withParent(withClassName(`is`(Toolbar::class.java.name))),
-            withClassName(anyOf(
-                    `is`(ImageButton::class.java.name),
-                    `is`(AppCompatImageButton::class.java.name)
-            )))
+        withParent(withClassName(`is`(Toolbar::class.java.name))),
+        withClassName(
+            anyOf(
+                `is`(ImageButton::class.java.name),
+                `is`(AppCompatImageButton::class.java.name)
+            )
+        )
+    )
 }
 
 fun withToolbarTitle(textMatcher: Matcher<String>): Matcher<Any> {
