@@ -23,14 +23,8 @@
   public static final android.os.Parcelable$Creator CREATOR;
 }
 
-# Retrofit does reflection on generic parameters and InnerClass is required to use Signature.
--keepattributes Signature, InnerClasses, EnclosingMethod
-
-# Many libraries use JSR 305 annotations for embedding nullability information.
--dontwarn javax.annotation.**
-
-# Many libraries use Animal Sniffer to ensure they're API compatible with older versions of Java.
--dontwarn org.codehaus.mojo.animal_sniffer.*
-
-# OkHttp platform used only on JVM and when Conscrypt dependency is available.
--dontwarn okhttp3.internal.platform.ConscryptPlatform
+# TODO Remove after updating to Retrofit 2.6.0. See https://github.com/square/retrofit/issues/3005.
+# With R8 full mode, it sees no subtypes of Retrofit interfaces since they are created with a Proxy
+# and replaces all potential values with null. Explicitly keeping the interfaces prevents this.
+-if interface * { @retrofit2.http.* <methods>; }
+-keep,allowobfuscation interface <1>
