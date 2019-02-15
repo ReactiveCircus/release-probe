@@ -26,7 +26,7 @@ class BugsnagTree(private val client: Client) : Timber.Tree() {
         return priority == Log.WARN || priority == Log.ERROR || priority == Log.ASSERT
     }
 
-    @Suppress("LongMethod")
+    @Suppress("LongMethod", "ComplexMethod")
     override fun log(priority: Int, tag: String?, message: String, throwable: Throwable?) {
 
         val log = buildString(message.length + capacityOffset) {
