@@ -37,7 +37,7 @@ android {
 
     buildTypes {
         debug {
-            testCoverageEnabled true
+            testCoverageEnabled !isIdeBuild
         }
     }
 
