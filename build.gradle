@@ -1,5 +1,6 @@
 buildscript {
     ext.isCiBuild = System.getenv("CI") == "true"
+    ext.isIdeBuild = project.hasProperty('android.injected.invoked.from.ide')
 
     ext.buildConfig = [
             minSdk    : 23,
@@ -112,7 +113,7 @@ tasks.register("clean", Delete) {
 
 def envOrProp(String name) {
     def value = System.getenv(name)
-    value != null ? value : hasProperty(name) ? getProperty(name) : ''
+    value != null ? value : project.hasProperty(name) ? project.getProperty(name) : ''
 }
 
 apply from: "$project.rootDir/gradle/projectDependencyGraph.gradle"

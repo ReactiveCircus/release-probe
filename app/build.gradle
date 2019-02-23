@@ -87,7 +87,7 @@ android {
     buildTypes {
         debug {
             ext.alwaysUpdateBuildId = false
-            testCoverageEnabled true
+            testCoverageEnabled !isIdeBuild
             signingConfig signingConfigs.debug
         }
         release {
