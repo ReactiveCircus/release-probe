@@ -124,7 +124,7 @@ jobs:
       - run:
           name: Setup Android Emulator
           command: |
-            $ANDROID_HOME/tools/bin/avdmanager create avd --force --name "api-${API_LEVEL_28}" --abi "${IMG_TYPE}/${SYS_IMG}" --package "system-images;android-${API_LEVEL_28};${IMG_TYPE};${SYS_IMG}" --device "${DEVICE_PHONE}"
+            $ANDROID_HOME/tools/bin/avdmanager create avd --force --name "api-${API_LEVEL_28}" --abi "${IMG_TYPE}/${SYS_IMG}" --package "system-images;android-${API_LEVEL_28};${IMG_TYPE};${SYS_IMG}" --device "Nexus 6P"
             $ANDROID_HOME/emulator/emulator-headless -avd "api-${API_LEVEL_28}" -no-snapshot -noaudio -no-accel -no-window -gpu swiftshader_indirect -no-boot-anim -timezone Australia/Melbourne &
             $ANDROID_HOME/platform-tools/adb devices
             sleep 30
