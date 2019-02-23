@@ -10,6 +10,15 @@ android_config: &android_config
     GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1g" -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
     TERM: dumb
 
+android_emulator_config: &android_emulator_config
+  working_directory: ~/release-probe
+  docker:
+    - image: ychescale9/android-emulator-28:latest
+  environment:
+    JAVA_TOOL_OPTIONS: "-Xmx1g"
+    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1g" -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
+    TERM: dumb
+
 # Cache
 extract_cache_version: &extract_cache_version
   run:
@@ -95,7 +104,7 @@ jobs:
       - *extract_cache_version
       - *restore_gradle_cache
       - run:
-          name: Test
+          name: Unit Tests
           command: |
             ./gradlew test -PslimTests
             mkdir -p ~/junit/
@@ -104,6 +113,26 @@ jobs:
           path: ~/junit
       - store_artifacts:
           path: ~/junit
+      - *save_gradle_cache
+
+  instrumented_tests:
+    <<: *android_emulator_config
+    steps:
+      - checkout
+      - *extract_cache_version
+      - *restore_gradle_cache
+      - run:
+          name: Instrumented Tests
+          command: |
+            $ANDROID_HOME/tools/bin/avdmanager create avd --force --name "api-${API_LEVEL_28}" --abi "${IMG_TYPE}/${SYS_IMG}" --package "system-images;android-${API_LEVEL_28};${IMG_TYPE};${SYS_IMG}" --device "Nexus 6P"
+            $ANDROID_HOME/emulator/emulator-headless -avd "api-${API_LEVEL_28}" -no-snapshot -noaudio -no-accel -no-window -gpu swiftshader_indirect -no-boot-anim -timezone Australia/Melbourne &
+            $ANDROID_HOME/platform-tools/adb devices
+            sleep 180
+            $ANDROID_HOME/platform-tools/adb shell settings put global window_animation_scale 0.0
+            $ANDROID_HOME/platform-tools/adb shell settings put global transition_animation_scale 0.0
+            $ANDROID_HOME/platform-tools/adb shell settings put global animator_duration_scale 0.0
+            ./gradlew connectedDebugAndroidTest
+            ./gradlew connectedMockDebugAndroidTest
       - *save_gradle_cache
 
   static_analysis:
@@ -143,10 +172,12 @@ workflows:
     jobs:
       - build
       - unit_tests
+      - instrumented_tests
       - static_analysis
       - deploy_to_play:
           <<: *master_only
           requires:
             - build
             - unit_tests
+            - instrumented_tests
             - static_analysis
