@@ -128,9 +128,6 @@ jobs:
             $ANDROID_HOME/emulator/emulator-headless -avd "api-${API_LEVEL_28}" -no-snapshot -noaudio -no-accel -no-window -gpu swiftshader_indirect -no-boot-anim -timezone Australia/Melbourne &
             $ANDROID_HOME/platform-tools/adb devices
             sleep 30
-            $ANDROID_HOME/platform-tools/adb shell settings put global window_animation_scale 0.0
-            $ANDROID_HOME/platform-tools/adb shell settings put global transition_animation_scale 0.0
-            $ANDROID_HOME/platform-tools/adb shell settings put global animator_duration_scale 0.0
       - run:
           name: Instrumented Tests
           command: |
