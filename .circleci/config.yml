@@ -15,8 +15,8 @@ android_emulator_config: &android_emulator_config
   docker:
     - image: ychescale9/android-emulator-28:latest
   environment:
-    JAVA_TOOL_OPTIONS: "-Xmx2g"
-    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2g" -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
+    JAVA_TOOL_OPTIONS: "-Xmx1g"
+    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1g" -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
     TERM: dumb
 
 # Cache
