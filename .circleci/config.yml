@@ -125,8 +125,11 @@ jobs:
           name: Instrumented Tests
           command: |
             $ANDROID_HOME/tools/bin/avdmanager create avd --force --name "api-${API_LEVEL_28}" --abi "${IMG_TYPE}/${SYS_IMG}" --package "system-images;android-${API_LEVEL_28};${IMG_TYPE};${SYS_IMG}" --device "Nexus 6P"
-            $ANDROID_HOME/emulator/emulator-headless -avd "api-${API_LEVEL_28}" -no-snapshot -noaudio -no-accel -no-window -gpu swiftshader_indirect -no-boot-anim -timezone Australia/Melbourne &
+            $ANDROID_HOME/emulator/emulator-headless -verbose -show-kernel -avd "api-${API_LEVEL_28}" -no-snapshot -noaudio -no-accel -no-window -gpu swiftshader_indirect -no-boot-anim -timezone Australia/Melbourne
             $ANDROID_HOME/platform-tools/adb devices
+            $ANDROID_HOME/platform-tools/adb shell settings put global window_animation_scale 0.0
+            $ANDROID_HOME/platform-tools/adb shell settings put global transition_animation_scale 0.0
+            $ANDROID_HOME/platform-tools/adb shell settings put global animator_duration_scale 0.0
             ./gradlew connectedDebugAndroidTest
             ./gradlew connectedMockDebugAndroidTest
       - *save_gradle_cache
