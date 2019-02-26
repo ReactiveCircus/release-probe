@@ -22,7 +22,7 @@ buildscript {
             ],
             androidx                  : [
                     core             : '1.1.0-alpha04',
-                    annotation       : '1.0.1',
+                    annotation       : '1.0.2',
                     appCompat        : '1.1.0-alpha02',
                     activity         : '1.0.0-alpha04',
                     fragment         : '1.1.0-alpha04',
@@ -54,7 +54,7 @@ buildscript {
             retrofit                  : '2.5.0',
             moshi                     : '1.8.0',
             json                      : '20180130',
-            rxJava                    : '2.2.6',
+            rxJava                    : '2.2.7',
             rxKotlin                  : '2.3.0',
             rxAndroid                 : '2.1.1',
             rxLint                    : '1.7.3',
