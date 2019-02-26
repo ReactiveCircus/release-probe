@@ -14,7 +14,7 @@ buildscript {
             googleServicesGradlePlugin: '4.2.0',
             dexcountGradlePlugin      : '0.8.5',
             bugsnag                   : '4.11.0',
-            detekt                    : '1.0.0-RC13',
+            detekt                    : '1.0.0-RC14',
             leakCanary                : '1.6.3',
             kotlin                    : '1.3.21',
             firebase                  : [
