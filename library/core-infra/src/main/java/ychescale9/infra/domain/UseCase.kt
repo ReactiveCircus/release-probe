@@ -15,30 +15,17 @@ abstract class UseCase<P : UseCase.Params, T>(private val schedulerProvider: Sch
     protected abstract fun createUseCase(): Observable<T>
 
     /**
-     * Return the created use case observable with the provided execution thread and post execution thread
+     * Build a use case observable with the provided execution thread and post execution thread
      * @param params
+     * @param blocking - when set to true the observable will be subscribed and observed on the current thread.
      * @return
      */
-    fun get(params: P): Observable<T> {
+    fun buildObservable(params: P, blocking: Boolean = false): Observable<T> {
         // update params for the next execution
         this.params = params
         return createUseCase()
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
-    }
-
-    /**
-     * Return the created use case observable without any changes to threading (blocking)
-     *
-     * NOTE: use this cautiously and only when you are sure that
-     * it's fast and safe to run the use case on the current thread.
-     * @param params
-     * @return
-     */
-    fun getBlocking(params: P): Observable<T> {
-        // update params for the next execution
-        this.params = params
-        return createUseCase()
     }
 
     /**
