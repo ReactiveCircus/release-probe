@@ -38,8 +38,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
 
     // Work
-    implementation "android.arch.work:work-runtime-ktx:${versions.androidx.work}"
-    implementation "android.arch.work:work-rxjava2:${versions.androidx.work}"
+    implementation "androidx.work:work-runtime-ktx:${versions.androidx.work}"
+    implementation "androidx.work:work-rxjava2:${versions.androidx.work}"
 
     // Explicitly declare room-runtime and lifecycle-common dependencies used by work transitively
     implementation "androidx.room:room-runtime:${versions.androidx.room}"
@@ -60,6 +60,6 @@ dependencies {
     androidTestImplementation "androidx.test:rules:${versions.androidx.test.rules}"
     androidTestImplementation "androidx.test.ext:junit-ktx:${versions.androidx.test.ext.junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${versions.androidx.espresso}"
-    androidTestImplementation "android.arch.work:work-testing:${versions.androidx.work}"
+    androidTestImplementation "androidx.work:work-testing:${versions.androidx.work}"
     androidTestImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
 }

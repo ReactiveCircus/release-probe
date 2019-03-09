@@ -10,7 +10,7 @@ buildscript {
     ]
 
     ext.versions = [
-            androidGradlePlugin       : '3.5.0-alpha05',
+            androidGradlePlugin       : '3.5.0-alpha06',
             googleServicesGradlePlugin: '4.2.0',
             dexcountGradlePlugin      : '0.8.5',
             bugsnag                   : '4.11.0',
@@ -36,8 +36,8 @@ buildscript {
                     lifecycle        : '2.1.0-alpha02',
                     room             : '2.1.0-alpha04',
                     paging           : '2.1.0',
-                    navigation       : '1.0.0-rc01',
-                    work             : '1.0.0-rc02',
+                    navigation       : '2.0.0-rc02',
+                    work             : '2.0.0-rc01',
                     test             : [
                             core   : '1.1.1-alpha01',
                             monitor: '1.1.2-alpha01',
@@ -49,7 +49,7 @@ buildscript {
                     ],
                     espresso         : '3.1.2-alpha01'
             ],
-            material                  : '1.1.0-alpha03',
+            material                  : '1.1.0-alpha04',
             okhttp                    : '3.13.1',
             retrofit                  : '2.5.0',
             moshi                     : '1.8.0',
@@ -78,7 +78,7 @@ buildscript {
         classpath "com.google.gms:google-services:${versions.googleServicesGradlePlugin}"
         classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${versions.dexcountGradlePlugin}"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${versions.detekt}"
-        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:${versions.androidx.navigation}"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.androidx.navigation}"
     }
 }
 

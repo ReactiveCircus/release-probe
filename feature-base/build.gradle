@@ -43,8 +43,8 @@ dependencies {
     api "androidx.lifecycle:lifecycle-common-java8:${versions.androidx.lifecycle}"
     api "androidx.lifecycle:lifecycle-extensions:${versions.androidx.lifecycle}"
     api "androidx.arch.core:core-runtime:${versions.androidx.arch.coreRuntime}"
-    api "android.arch.navigation:navigation-fragment-ktx:${versions.androidx.navigation}"
-    api "android.arch.navigation:navigation-ui-ktx:${versions.androidx.navigation}"
+    api "androidx.navigation:navigation-fragment-ktx:${versions.androidx.navigation}"
+    api "androidx.navigation:navigation-ui-ktx:${versions.androidx.navigation}"
 
     // Material Components
     api "com.google.android.material:material:${versions.material}"
