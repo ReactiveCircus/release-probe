@@ -6,16 +6,15 @@ import io.mockk.mockk
 import io.mockk.verify
 import io.reactivex.Single
 import io.reactivex.schedulers.TestScheduler
-import java.util.concurrent.TimeUnit
 import org.junit.Test
 import ychescale9.infra.SchedulerProvider
-import ychescale9.releaseprobe.data.artifact.mapper.ArtifactGroupWithArtifactsDtosToEntity
 import ychescale9.releaseprobe.persistence.artifact.entity.ArtifactEntity
 import ychescale9.releaseprobe.persistence.artifact.entity.ArtifactGroupEntity
 import ychescale9.releaseprobe.persistence.artifact.entity.ArtifactGroupWithArtifactsEntity
 import ychescale9.releaseprobe.remote.artifact.api.GoogleMavenService
 import ychescale9.releaseprobe.remote.artifact.dto.ArtifactDTO
 import ychescale9.releaseprobe.remote.artifact.dto.ArtifactGroupDTO
+import java.util.concurrent.TimeUnit
 
 class ArtifactGroupsWithArtifactsFetcherTest {
 
@@ -53,15 +52,12 @@ class ArtifactGroupsWithArtifactsFetcherTest {
 
     private val service = mockk<GoogleMavenService>()
 
-    private val mapper = ArtifactGroupWithArtifactsDtosToEntity()
-
     private val schedulerProvider = mockk<SchedulerProvider> {
         every { io() } returns testScheduler
     }
 
     private val fetcher = ArtifactGroupsWithArtifactsFetcher(
             service,
-            mapper,
             schedulerProvider
     )
 

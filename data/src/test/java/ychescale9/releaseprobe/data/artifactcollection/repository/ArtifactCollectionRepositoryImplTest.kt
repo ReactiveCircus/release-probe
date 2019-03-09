@@ -6,12 +6,26 @@ import io.mockk.verify
 import io.reactivex.Flowable
 import org.junit.Test
 import ychescale9.releaseprobe.data.artifactcollection.DefaultArtifactCollections
-import ychescale9.releaseprobe.data.artifactcollection.mapper.ArtifactCollectionEntityToModel
 import ychescale9.releaseprobe.domain.artifactcollection.model.ArtifactCollection
 import ychescale9.releaseprobe.persistence.artifactcollection.dao.ArtifactCollectionDao
 import ychescale9.releaseprobe.persistence.artifactcollection.entity.ArtifactCollectionEntity
 
 class ArtifactCollectionRepositoryImplTest {
+
+    private val artifactCollectionEntities = listOf(
+        ArtifactCollectionEntity(
+            "AndroidX",
+            "Android extension libraries - a repackage of the Android Support Library, following semantic versioning",
+            "#60AF46",
+            listOf("androidx", "com.google.android.material")
+        ),
+        ArtifactCollectionEntity(
+            "Firebase",
+            "Google's mobile platform for developing apps, improving app quality and growing business.",
+            "#D55D09",
+            listOf("com.google.firebase", "com.crashlytics.sdk.android")
+        )
+    )
 
     private val dummyArtifactCollections = listOf(
             ArtifactCollection(
@@ -29,18 +43,13 @@ class ArtifactCollectionRepositoryImplTest {
     )
 
     private val artifactCollectionDao = mockk<ArtifactCollectionDao>(relaxUnitFun = true) {
-        every { allArtifactCollections() } returns Flowable.just(listOf())
+        every { allArtifactCollections() } returns Flowable.just(artifactCollectionEntities)
     }
 
     private val defaultArtifactCollections = DefaultArtifactCollections()
 
-    private val mapper = mockk<ArtifactCollectionEntityToModel> {
-        every { transform(any<List<ArtifactCollectionEntity>>()) } returns dummyArtifactCollections
-    }
-
     private val artifactCollectionRepository = ArtifactCollectionRepositoryImpl(
             artifactCollectionDao,
-            mapper,
             defaultArtifactCollections
     )
 
@@ -49,7 +58,6 @@ class ArtifactCollectionRepositoryImplTest {
         val testObserver = artifactCollectionRepository.getArtifactCollections().test()
         verify(exactly = 1) {
             artifactCollectionDao.allArtifactCollections()
-            mapper.transform(any<List<ArtifactCollectionEntity>>())
         }
         testObserver.assertValue(dummyArtifactCollections)
     }
