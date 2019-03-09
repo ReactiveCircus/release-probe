@@ -6,7 +6,6 @@ import io.mockk.mockk
 import io.mockk.verify
 import io.reactivex.Flowable
 import org.junit.Test
-import ychescale9.releaseprobe.data.artifact.mapper.ArtifactGroupWithArtifactsEntityToModel
 import ychescale9.releaseprobe.domain.artifact.model.Artifact
 import ychescale9.releaseprobe.domain.artifact.model.ArtifactGroup
 import ychescale9.releaseprobe.persistence.artifact.dao.ArtifactGroupDao
@@ -44,11 +43,7 @@ class ArtifactGroupsWithArtifactsPersisterTest {
         every { allArtifactGroupsWithArtifacts() } returns Flowable.just(dummyArtifactGroupsWithArtifactsEntities)
     }
 
-    private val mapper = mockk<ArtifactGroupWithArtifactsEntityToModel> {
-        every { transform(any<List<ArtifactGroupWithArtifactsEntity>>()) } returns dummyArtifactGroups
-    }
-
-    private val persister = ArtifactGroupsWithArtifactsPersister(dao, mapper)
+    private val persister = ArtifactGroupsWithArtifactsPersister(dao)
 
     @Test
     fun `should read`() {
@@ -56,7 +51,6 @@ class ArtifactGroupsWithArtifactsPersisterTest {
 
         verify(exactly = 1) {
             dao.allArtifactGroupsWithArtifacts()
-            mapper.transform(any<List<ArtifactGroupWithArtifactsEntity>>())
         }
         testObserver.assertValue(dummyArtifactGroups)
     }

@@ -4,9 +4,7 @@ import org.amshove.kluent.shouldEqual
 import org.junit.Test
 import ychescale9.releaseprobe.persistence.artifactcollection.entity.ArtifactCollectionEntity
 
-class ArtifactCollectionEntityToModelTest {
-
-    private val mapper = ArtifactCollectionEntityToModel()
+class ArtifactCollectionMappersTest {
 
     @Test
     fun `should transform ArtifactCollectionEntity to ArtifactCollection model`() {
@@ -17,7 +15,7 @@ class ArtifactCollectionEntityToModelTest {
                 listOf("androidx", "com.google.android.material")
         )
 
-        val actual = mapper.transform(artifactCollectionEntity)
+        val actual = artifactCollectionEntity.toModel()
 
         actual.run {
             name shouldEqual artifactCollectionEntity.name

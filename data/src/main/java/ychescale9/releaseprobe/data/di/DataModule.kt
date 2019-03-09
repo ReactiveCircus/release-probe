@@ -10,24 +10,15 @@ import org.koin.experimental.builder.create
 import org.koin.experimental.builder.single
 import ychescale9.releaseprobe.data.BuildConfig
 import ychescale9.releaseprobe.data.artifact.fetcher.ArtifactGroupsWithArtifactsFetcher
-import ychescale9.releaseprobe.data.artifact.mapper.ArtifactGroupWithArtifactsDtosToEntity
-import ychescale9.releaseprobe.data.artifact.mapper.ArtifactGroupWithArtifactsEntityToModel
 import ychescale9.releaseprobe.data.artifact.persister.ArtifactGroupsWithArtifactsPersister
 import ychescale9.releaseprobe.data.artifact.repository.ArtifactRepositoryImpl
 import ychescale9.releaseprobe.data.artifactcollection.DefaultArtifactCollections
-import ychescale9.releaseprobe.data.artifactcollection.mapper.ArtifactCollectionEntityToModel
 import ychescale9.releaseprobe.data.artifactcollection.repository.ArtifactCollectionRepositoryImpl
 import ychescale9.releaseprobe.domain.artifact.model.ArtifactGroup
 import ychescale9.releaseprobe.domain.artifact.repository.ArtifactRepository
 import ychescale9.releaseprobe.domain.artifactcollection.repository.ArtifactCollectionRepository
 
 val dataModule = module {
-
-    single<ArtifactCollectionEntityToModel>()
-
-    single<ArtifactGroupWithArtifactsDtosToEntity>()
-
-    single<ArtifactGroupWithArtifactsEntityToModel>()
 
     single {
         create<ArtifactGroupsWithArtifactsFetcher>()
