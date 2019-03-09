@@ -19,7 +19,7 @@ class UseCaseTest {
 
     @Test
     fun `should receive value when subscribed with params`() {
-        testObserver = useCase.get(UseCaseImpl.Params(true)).test()
+        testObserver = useCase.buildObservable(UseCaseImpl.Params(true)).test()
         testObserver.awaitTerminalEvent()
 
         testObserver.assertValue(dummyResult1)
@@ -28,7 +28,7 @@ class UseCaseTest {
 
     @Test
     fun `should receive value when subscribed with empty params`() {
-        testObserver = emptyParamsUseCase.get(EmptyParams()).test()
+        testObserver = emptyParamsUseCase.buildObservable(EmptyParams()).test()
         testObserver.awaitTerminalEvent()
 
         testObserver.assertValue(dummyResult1)
@@ -37,7 +37,7 @@ class UseCaseTest {
 
     @Test
     fun `should receive value synchronously when subscribed with params`() {
-        testObserver = useCase.getBlocking(UseCaseImpl.Params(true)).test()
+        testObserver = useCase.buildObservable(UseCaseImpl.Params(true), blocking = true).test()
         testObserver.awaitTerminalEvent()
 
         testObserver.assertValue(dummyResult1)
@@ -46,7 +46,7 @@ class UseCaseTest {
 
     @Test
     fun `should receive value synchronously when subscribed with empty params`() {
-        testObserver = emptyParamsUseCase.getBlocking(EmptyParams()).test()
+        testObserver = emptyParamsUseCase.buildObservable(EmptyParams(), blocking = true).test()
         testObserver.awaitTerminalEvent()
 
         testObserver.assertValue(dummyResult1)
@@ -55,7 +55,7 @@ class UseCaseTest {
 
     @Test
     fun `should set params`() {
-        testObserver = useCase.get(UseCaseImpl.Params(true)).test()
+        testObserver = useCase.buildObservable(UseCaseImpl.Params(true)).test()
         useCase.params.flag shouldBe true
     }
 }

@@ -21,7 +21,7 @@ class ArtifactCollectionsViewModelTest {
     private val dummyArtifactCollections = listOf<ArtifactCollection>(mockk(), mockk())
 
     private val getOrCreateArtifactCollections = mockk<GetOrCreateArtifactCollections> {
-        every { get(any<EmptyParams>()) } returns Observable.just(dummyArtifactCollections)
+        every { buildObservable(any<EmptyParams>()) } returns Observable.just(dummyArtifactCollections)
     }
 
     private val artifactCollectionsObserver = mockk<Observer<List<ArtifactCollection>>>(relaxed = true)
@@ -34,7 +34,7 @@ class ArtifactCollectionsViewModelTest {
     fun `should emit Artifact Collections when initialized`() {
         viewModel.artifactCollectionsLiveData.observeForever(artifactCollectionsObserver)
 
-        verify(exactly = 1) { getOrCreateArtifactCollections.get(any()) }
+        verify(exactly = 1) { getOrCreateArtifactCollections.buildObservable(any()) }
         verify(exactly = 1) {
             artifactCollectionsObserver.onChanged(
                     dummyArtifactCollections
