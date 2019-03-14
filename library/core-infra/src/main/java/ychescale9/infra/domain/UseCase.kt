@@ -23,9 +23,13 @@ abstract class UseCase<P : UseCase.Params, T>(private val schedulerProvider: Sch
     fun buildObservable(params: P, blocking: Boolean = false): Observable<T> {
         // update params for the next execution
         this.params = params
-        return createUseCase()
+        return if (blocking) {
+            createUseCase()
+        } else {
+            createUseCase()
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
+        }
     }
 
     /**
