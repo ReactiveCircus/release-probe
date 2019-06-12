@@ -89,6 +89,10 @@ android {
             ext.alwaysUpdateBuildId = false
             testCoverageEnabled enableCoverage
             signingConfig signingConfigs.debug
+
+            // override app name for LeakCanary
+            resValue 'string', 'leak_canary_display_activity_label', "ReleaseProbe Leaks"
+
         }
         release {
             if (rootProject.file('secrets/release-probe.keystore').exists()) {
@@ -201,10 +205,8 @@ dependencies {
     // Firebase core
     prodImplementation "com.google.firebase:firebase-core:${versions.firebase.core}"
 
-    // Leak detection
+    // Enable LeakCanary for debug builds
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}"
-    debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:${versions.leakCanary}"
-    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakCanary}"
 
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"
@@ -216,17 +218,6 @@ dependencies {
 
     // Android tests
     androidTestImplementation project(path: ':testing-infra')
-}
-
-// use no-op LeakCanary dependency in tests
-configurations.all { configuration ->
-    if (configuration.name.contains('UnitTest') || configuration.name.contains('AndroidTest')) {
-        configuration.resolutionStrategy.eachDependency { details ->
-            if (details.requested.group == 'com.squareup.leakcanary' && details.requested.name == 'leakcanary-android') {
-                details.useTarget(group: details.requested.group, name: 'leakcanary-android-no-op', version: details.requested.version)
-            }
-        }
-    }
 }
 
 tasks.whenTaskAdded { task ->

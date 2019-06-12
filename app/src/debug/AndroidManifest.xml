@@ -4,8 +4,6 @@
 
     <application
         tools:replace="android:name"
-        android:name=".DebugReleaseProbeApp">
-        <service android:name=".LeakUploadService" />
-    </application>
+        android:name=".DebugReleaseProbeApp"/>
 
 </manifest>
