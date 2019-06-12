@@ -7,7 +7,7 @@ android_config: &android_config
       - image: ychescale9/android-sdk:latest
   environment:
     JAVA_TOOL_OPTIONS: "-Xmx1g"
-    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1g" -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
+    GRADLE_OPTS: '-Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
     TERM: dumb
 
 # Cache
@@ -97,7 +97,7 @@ jobs:
       - run:
           name: Test
           command: |
-            ./gradlew test -PslimTests
+            ./gradlew test -PslimTests -Pcoverage
             mkdir -p ~/junit/
             find . -type f -regex ".*/build/test-results/.*xml" -exec cp --parents {} ~/junit/ \;
       - store_test_results:
