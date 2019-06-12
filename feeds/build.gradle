@@ -36,7 +36,11 @@ android {
 dependencies {
     implementation project(path: ':feature-base')
 
-    // Paging
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+
+    // AndroidX
+    implementation "androidx.recyclerview:recyclerview:${versions.androidx.recyclerView}"
     implementation "androidx.paging:paging-runtime-ktx:${versions.androidx.paging}"
     implementation "androidx.paging:paging-rxjava2-ktx:${versions.androidx.paging}"
 
