@@ -5,7 +5,6 @@ import android.app.Application
 import android.os.Looper
 import com.bugsnag.android.Bugsnag
 import com.bugsnag.android.Client
-import com.squareup.leakcanary.LeakCanary
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.plugins.RxJavaPlugins
@@ -43,19 +42,11 @@ open class ReleaseProbeApp : Application() {
         // initialize Timber
         initializeTimber()
 
-        // initialize leak detection
-        if (LeakCanary.isInAnalyzerProcess(this)) return
-        installLeakCanary()
-
         // initialize analytics api
         analyticsApi.setEnableAnalytics(BuildConfig.ENABLE_ANALYTICS)
 
         // set up global uncaught error handler for RxJava
         setUpRxJavaUncaughtErrorHandler()
-    }
-
-    protected open fun installLeakCanary() {
-        // no-op, LeakCanary is disabled in production
     }
 
     protected open fun initializeTimber() {

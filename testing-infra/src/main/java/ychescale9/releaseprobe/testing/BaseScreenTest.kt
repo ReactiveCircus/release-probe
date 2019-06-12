@@ -61,7 +61,7 @@ abstract class BaseScreenTest : KoinComponent {
         intent: android.content.Intent? = null
     ): ActivityScenario<A> {
         return launchActivity<A>(intent).also {
-            getInstrumentation().waitForIdleSync()
+            Espresso.onIdle()
         }
     }
 
