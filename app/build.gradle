@@ -3,7 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'com.google.gms.google-services'
-    id 'com.getkeepsafe.dexcount'
+    // id 'com.getkeepsafe.dexcount' TODO https://github.com/KeepSafe/dexcount-gradle-plugin/issues/267
     id 'project-report'
 }
 
@@ -87,7 +87,7 @@ android {
     buildTypes {
         debug {
             ext.alwaysUpdateBuildId = false
-            testCoverageEnabled !isIdeBuild
+            testCoverageEnabled enableCoverage
             signingConfig signingConfigs.debug
         }
         release {
@@ -196,7 +196,7 @@ dependencies {
     testImplementation "io.mockk:mockk:${versions.mockk}"
 
     testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
-    testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch.coreTesting}"
+    testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"
     testImplementation "org.koin:koin-test:${versions.koin}"
 
     // Android tests

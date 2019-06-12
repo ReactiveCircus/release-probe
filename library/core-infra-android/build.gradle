@@ -41,5 +41,5 @@ dependencies {
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "io.mockk:mockk:${versions.mockk}"
-    testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch.coreTesting}"
+    testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"
 }

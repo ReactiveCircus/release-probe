@@ -1,9 +1,7 @@
--android
--dontpreverify
--dontskipnonpubliclibraryclasses
 -verbose
 
--keepattributes *Annotation*
+# Keep annotations with RUNTIME retention and their defaults.
+-keepattributes RuntimeVisible*Annotations, AnnotationDefault
 
 # For crash reporting
 -keepattributes LineNumberTable, SourceFile

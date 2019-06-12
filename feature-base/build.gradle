@@ -42,7 +42,7 @@ dependencies {
     api "androidx.lifecycle:lifecycle-livedata:${versions.androidx.lifecycle}"
     api "androidx.lifecycle:lifecycle-common-java8:${versions.androidx.lifecycle}"
     api "androidx.lifecycle:lifecycle-extensions:${versions.androidx.lifecycle}"
-    api "androidx.arch.core:core-runtime:${versions.androidx.arch.coreRuntime}"
+    api "androidx.arch.core:core-runtime:${versions.androidx.arch}"
     api "androidx.navigation:navigation-fragment-ktx:${versions.androidx.navigation}"
     api "androidx.navigation:navigation-ui-ktx:${versions.androidx.navigation}"
 
