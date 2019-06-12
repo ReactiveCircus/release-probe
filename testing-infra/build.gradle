@@ -31,6 +31,11 @@ dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
 
+    // rx
+    implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${versions.rxKotlin}"
+    implementation "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}"
+
     // Koin
     implementation "org.koin:koin-android:${versions.koin}"
     implementation "org.koin:koin-androidx-viewmodel:${versions.koin}"
@@ -38,6 +43,10 @@ dependencies {
 
     // retrofit-mock
     implementation "com.squareup.retrofit2:retrofit-mock:${versions.retrofit}"
+
+    implementation("androidx.fragment:fragment-testing:${versions.androidx.fragment}") {
+        exclude group: 'androidx.test'
+    }
 
     api "androidx.test:core-ktx:${versions.androidx.test.core}"
     api "androidx.test:monitor:${versions.androidx.test.monitor}"
@@ -47,9 +56,6 @@ dependencies {
     api "androidx.test.espresso:espresso-core:${versions.androidx.espresso}"
     api "androidx.test.espresso:espresso-contrib:${versions.androidx.espresso}"
     api "androidx.test.espresso:espresso-intents:${versions.androidx.espresso}"
-    implementation("androidx.fragment:fragment-testing:${versions.androidx.fragment}") {
-        exclude group: 'androidx.test'
-    }
     api "org.amshove.kluent:kluent-android:${versions.kluent}"
     api project(path: ':analytics-api-no-op')
     api project(path: ':ui-test-helper')
