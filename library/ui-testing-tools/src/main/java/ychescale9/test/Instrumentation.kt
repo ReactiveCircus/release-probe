@@ -1,4 +1,4 @@
-package ychescale9.uitest
+package ychescale9.test
 
 import android.app.Activity
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation

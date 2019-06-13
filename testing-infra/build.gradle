@@ -58,5 +58,5 @@ dependencies {
     api "androidx.test.espresso:espresso-intents:${versions.androidx.espresso}"
     api "org.amshove.kluent:kluent-android:${versions.kluent}"
     api project(path: ':analytics-api-no-op')
-    api project(path: ':ui-test-helper')
+    api project(path: ':ui-testing-tools')
 }

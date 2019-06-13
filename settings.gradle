@@ -35,5 +35,5 @@ project(':analytics-api-firebase').projectDir = new File(rootDir, 'library/analy
 include ':analytics-api-no-op'
 project(':analytics-api-no-op').projectDir = new File(rootDir, 'library/analytics/analytics-api-no-op')
 
-include ':ui-test-helper'
-project(':ui-test-helper').projectDir = new File(rootDir, 'library/ui-test-helper')
+include ':ui-testing-tools'
+project(':ui-testing-tools').projectDir = new File(rootDir, 'library/ui-testing-tools')

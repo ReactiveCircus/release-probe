@@ -3,9 +3,9 @@ package ychescale9.releaseprobe.robot
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import ychescale9.releaseprobe.R
-import ychescale9.uitest.BaseRobot
-import ychescale9.uitest.RobotActions
-import ychescale9.uitest.RobotAssertions
+import ychescale9.test.BaseRobot
+import ychescale9.test.RobotActions
+import ychescale9.test.RobotAssertions
 
 fun mainScreen(block: MainRobot.() -> Unit) = MainRobot().apply { block() }
 
