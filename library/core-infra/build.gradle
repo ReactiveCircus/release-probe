@@ -10,9 +10,13 @@ dependencies {
     // rx
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
 
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinx.coroutines}"
+
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "org.amshove.kluent:kluent:${versions.kluent}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.kotlinx.coroutines}"
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8

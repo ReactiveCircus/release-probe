@@ -19,7 +19,7 @@ class ArtifactCollectionsViewModel(
     private val disposable = CompositeDisposable()
 
     init {
-        disposable += getOrCreateArtifactCollections.buildObservable(EmptyParams())
+        disposable += getOrCreateArtifactCollections.buildObservable(EmptyParams)
                 .subscribeBy(
                         onNext = {
                             artifactCollectionsLiveData.value = it

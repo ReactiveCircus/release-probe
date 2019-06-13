@@ -42,7 +42,7 @@ class GetOrCreateArtifactCollectionsTest {
     fun `should get artifact collections when there are existing artifact collections`() {
         every { artifactCollectionRepository.getArtifactCollections() } returns Observable.just(dummyArtifactCollections)
 
-        val testObserver = getOrCreateArtifactCollections.buildObservable(EmptyParams()).test()
+        val testObserver = getOrCreateArtifactCollections.buildObservable(EmptyParams).test()
         testObserver.awaitTerminalEvent()
 
         verify(exactly = 1) { artifactCollectionRepository.getArtifactCollections() }
@@ -57,7 +57,7 @@ class GetOrCreateArtifactCollectionsTest {
                 Observable.just(dummyArtifactCollections)
         )
 
-        val testObserver = getOrCreateArtifactCollections.buildObservable(EmptyParams()).test()
+        val testObserver = getOrCreateArtifactCollections.buildObservable(EmptyParams).test()
         testObserver.awaitTerminalEvent()
 
         verify(exactly = 2) { artifactCollectionRepository.getArtifactCollections() }

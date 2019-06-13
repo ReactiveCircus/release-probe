@@ -5,10 +5,11 @@ import ychescale9.infra.SchedulerProvider
 
 /**
  * Abstract class for a use case, representing an execution unit of asynchronous work.
+ * This use case type uses [Observable] as the return type.
  * Upon subscription a use case will execute its job in the io thread of the schedulerProvider
  * and will post the result in the UI thread.
  */
-abstract class UseCase<P : UseCase.Params, T>(private val schedulerProvider: SchedulerProvider) {
+abstract class ObservableUseCase<P : UseCaseParams, T>(private val schedulerProvider: SchedulerProvider) {
 
     lateinit var params: P
 
@@ -31,11 +32,4 @@ abstract class UseCase<P : UseCase.Params, T>(private val schedulerProvider: Sch
                 .observeOn(schedulerProvider.ui())
         }
     }
-
-    /**
-     * Params passed in for a use case.
-     */
-    interface Params
 }
-
-class EmptyParams : UseCase.Params
