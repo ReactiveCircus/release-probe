@@ -1,24 +1,3 @@
-autoCorrect: true
-
-test-pattern: # Configure exclusions for test sources
-  active: true
-  patterns: # Test file regexes
-    - '.*/test/.*'
-    - '.*Test.kt'
-    - '.*Spec.kt'
-  exclude-rule-sets:
-    - 'comments'
-  exclude-rules:
-    - 'NamingRules'
-    - 'WildcardImport'
-    - 'MagicNumber'
-    - 'MaxLineLength'
-    - 'LateinitUsage'
-    - 'StringLiteralDuplication'
-    - 'SpreadOperator'
-    - 'TooManyFunctions'
-    - 'ForEachOnRange'
-
 build:
   maxIssues: 0
   weights:
@@ -69,6 +48,7 @@ comments:
     searchInInnerInterface: true
   UndocumentedPublicFunction:
     active: false
+  excludes: "**/test/**, **/androidTest/**"
 
 complexity:
   active: true
@@ -88,9 +68,10 @@ complexity:
   LargeClass:
     active: true
     threshold: 150
+    excludes: "**/test/**, **/androidTest/**"
   LongMethod:
-    active: true
-    threshold: 20
+    active: false
+    threshold: 60
   LongParameterList:
     active: true
     threshold: 6
@@ -107,6 +88,7 @@ complexity:
     ignoreAnnotation: true
     excludeStringsWithLessThan5Characters: true
     ignoreStringsRegex: '$^'
+    excludes: "**/test/**, **/androidTest/**"
   TooManyFunctions:
     active: true
     thresholdInFiles: 11
@@ -117,6 +99,7 @@ complexity:
     ignoreDeprecated: false
     ignorePrivate: false
     ignoreOverridden: true
+    excludes: "**/test/**, **/androidTest/**"
 
 empty-blocks:
   active: true
@@ -212,8 +195,7 @@ formatting:
     active: true
     autoCorrect: true
   ImportOrdering:
-    active: true
-    autoCorrect: true
+    active: false
   Indentation:
     active: true
     autoCorrect: true
@@ -222,6 +204,7 @@ formatting:
   MaximumLineLength:
     active: true
     maxLineLength: 120
+    excludes: "**/test/**, **/androidTest/**"
   ModifierOrdering:
     active: true
     autoCorrect: true
@@ -413,6 +396,7 @@ style:
     ignoreAnnotation: false
     ignoreNamedArgument: true
     ignoreEnums: false
+    excludes: "**/test/**, **/androidTest/**"
   MandatoryBracesIfStatements:
     active: false
   MaxLineLength:
@@ -421,6 +405,7 @@ style:
     excludePackageStatements: false
     excludeImportStatements: false
     excludeCommentStatements: false
+    excludes: "**/test/**, **/androidTest/**"
   MayBeConst:
     active: false
   ModifierOrder:

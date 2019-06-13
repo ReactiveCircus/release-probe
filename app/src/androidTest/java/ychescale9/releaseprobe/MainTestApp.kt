@@ -13,7 +13,6 @@ class MainTestApp : ScreenTestApp() {
         LeakCanary.config = LeakCanary.config.copy(dumpHeap = false)
     }
 
-
     private val mainModule = module(createOnStart = true) {
         // TODO
     }

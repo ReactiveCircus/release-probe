@@ -1,4 +1,4 @@
-@file:Suppress("MaximumLineLength", "MaxLineLength", "LongMethod")
+@file:Suppress("MaximumLineLength", "MaxLineLength")
 
 package ychescale9.releaseprobe.data.artifactcollection
 
