@@ -9,10 +9,10 @@ import org.amshove.kluent.shouldBe
 import org.junit.Test
 import ychescale9.infra.SchedulerProvider
 
-const val dummyResult1 = "result1"
-const val dummyResult2 = "result2"
+class ObservableUseCaseTest {
 
-class UseCaseTest {
+    private val dummyResult1 = "result1"
+    private val dummyResult2 = "result2"
 
     lateinit var testObserver: TestObserver<String>
 
@@ -33,12 +33,12 @@ class UseCaseTest {
         }
     }
 
-    private val useCase = UseCaseImpl(schedulerProvider)
-    private val emptyParamsUseCase = EmptyParamsUseCaseImpl(schedulerProvider)
+    private val useCase = ObservableUseCaseImpl(schedulerProvider)
+    private val emptyParamsUseCase = EmptyParamsObservableUseCaseImpl(schedulerProvider)
 
     @Test
     fun `should receive value when subscribed with params`() {
-        testObserver = useCase.buildObservable(UseCaseImpl.Params(true)).test()
+        testObserver = useCase.buildObservable(ObservableParams(true)).test()
 
         ioScheduler.triggerActions()
         uiScheduler.triggerActions()
@@ -50,7 +50,7 @@ class UseCaseTest {
 
     @Test
     fun `should receive value when subscribed with empty params`() {
-        testObserver = emptyParamsUseCase.buildObservable(EmptyParams()).test()
+        testObserver = emptyParamsUseCase.buildObservable(EmptyParams).test()
 
         ioScheduler.triggerActions()
         uiScheduler.triggerActions()
@@ -62,7 +62,7 @@ class UseCaseTest {
 
     @Test
     fun `should receive value synchronously when subscribed with params`() {
-        testObserver = useCase.buildObservable(UseCaseImpl.Params(true), blocking = true).test()
+        testObserver = useCase.buildObservable(ObservableParams(true), blocking = true).test()
 
         testObserver.awaitTerminalEvent()
         testObserver.assertValue(dummyResult1)
@@ -71,7 +71,7 @@ class UseCaseTest {
 
     @Test
     fun `should receive value synchronously when subscribed with empty params`() {
-        testObserver = emptyParamsUseCase.buildObservable(EmptyParams(), blocking = true).test()
+        testObserver = emptyParamsUseCase.buildObservable(EmptyParams, blocking = true).test()
 
         testObserver.awaitTerminalEvent()
         testObserver.assertValue(dummyResult1)
@@ -80,30 +80,31 @@ class UseCaseTest {
 
     @Test
     fun `should set params`() {
-        testObserver = useCase.buildObservable(UseCaseImpl.Params(true)).test()
+        testObserver = useCase.buildObservable(ObservableParams(true)).test()
         useCase.params.flag shouldBe true
     }
-}
 
-private class UseCaseImpl(schedulerProvider: SchedulerProvider) : UseCase<UseCaseImpl.Params, String>(schedulerProvider) {
+    private inner class ObservableUseCaseImpl(schedulerProvider: SchedulerProvider) :
+        ObservableUseCase<ObservableParams, String>(schedulerProvider) {
 
-    override fun createUseCase(): Observable<String> {
-        // return different results based on params
-        return if (params.flag) {
-            Observable.just(dummyResult1)
-        } else {
-            Observable.just(dummyResult2)
+        override fun createUseCase(): Observable<String> {
+            // return different results based on params
+            return if (params.flag) {
+                Observable.just(dummyResult1)
+            } else {
+                Observable.just(dummyResult2)
+            }
         }
     }
 
-    class Params(val flag: Boolean) : UseCase.Params
-}
+    private inner class ObservableParams(val flag: Boolean) : UseCaseParams
 
-private class EmptyParamsUseCaseImpl(
-    schedulerProvider: SchedulerProvider
-) : UseCase<EmptyParams, String>(schedulerProvider) {
+    private inner class EmptyParamsObservableUseCaseImpl(
+        schedulerProvider: SchedulerProvider
+    ) : ObservableUseCase<EmptyParams, String>(schedulerProvider) {
 
-    override fun createUseCase(): Observable<String> {
-        return Observable.just(dummyResult1)
+        override fun createUseCase(): Observable<String> {
+            return Observable.just(dummyResult1)
+        }
     }
 }

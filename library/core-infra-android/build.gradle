@@ -26,7 +26,6 @@ dependencies {
 
     // AndroidX
     implementation "androidx.appcompat:appcompat:${versions.androidx.appCompat}"
-    implementation "androidx.fragment:fragment-ktx:${versions.androidx.fragment}"
 
     // rx
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
@@ -35,11 +34,10 @@ dependencies {
     // rxlint
     debugImplementation "nl.littlerobots.rxlint:rxlint:${versions.rxLint}"
 
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinx.coroutines}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.kotlinx.coroutines}"
+
     // timber
     implementation "com.jakewharton.timber:timber:${versions.timber}"
-
-    // Unit tests
-    testImplementation "junit:junit:${versions.junit}"
-    testImplementation "io.mockk:mockk:${versions.mockk}"
-    testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"
 }

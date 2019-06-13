@@ -84,9 +84,10 @@ fun Context.isAnimationOn(): Boolean {
     return Settings.Global.getFloat(contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) > 0
 }
 
-fun Activity.getScreenSize(): DisplayMetrics {
-    val display = windowManager.defaultDisplay
-    val metrics = DisplayMetrics()
-    display.getRealMetrics(metrics)
-    return metrics
-}
+val Activity.screenSize: DisplayMetrics
+    get() {
+        val display = windowManager.defaultDisplay
+        val metrics = DisplayMetrics()
+        display.getRealMetrics(metrics)
+        return metrics
+    }
