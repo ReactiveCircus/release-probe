@@ -15,21 +15,17 @@ import androidx.test.espresso.Espresso
 import androidx.test.espresso.FailureHandler
 import androidx.test.espresso.base.DefaultFailureHandler
 import androidx.test.espresso.intent.Intents
-import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.runner.screenshot.Screenshot
 import org.hamcrest.Matcher
 import org.junit.After
-import org.junit.Assume
 import org.junit.Before
 import org.junit.Rule
 import org.junit.rules.TestName
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 import ychescale9.releaseprobe.data.artifactcollection.DefaultArtifactCollections
-import ychescale9.releaseprobe.resources.R as ResourcesR
 import ychescale9.releaseprobe.testing.assumption.assumeNetworkDisconnected
-import ychescale9.uitest.annotation.PhoneTest
-import ychescale9.uitest.annotation.TabletTest
+import ychescale9.releaseprobe.resources.R as ResourcesR
 
 abstract class BaseScreenTest : KoinComponent {
 
@@ -42,9 +38,6 @@ abstract class BaseScreenTest : KoinComponent {
     @Before
     open fun setUp() {
         Intents.init()
-
-        // skip if the test is not for the current device type
-        assertDeviceOrSkip()
 
         // set up global failure handler
         Espresso.setFailureHandler(GlobalFailureHandler(ApplicationProvider.getApplicationContext<Context>()))
@@ -74,7 +67,7 @@ abstract class BaseScreenTest : KoinComponent {
             themeResId = ResourcesR.style.Theme_RP,
             factory = factory
         ).also {
-            getInstrumentation().waitForIdleSync()
+            Espresso.onIdle()
         }
     }
 
@@ -89,21 +82,6 @@ abstract class BaseScreenTest : KoinComponent {
         override fun handle(error: Throwable, viewMatcher: Matcher<View>) {
             Screenshot.capture()
             delegate.handle(error, viewMatcher)
-        }
-    }
-
-    private fun assertDeviceOrSkip() {
-        val m = javaClass.getMethod(testName.methodName)
-        if (m.isAnnotationPresent(PhoneTest::class.java)) {
-            Assume.assumeFalse(
-                ApplicationProvider.getApplicationContext<Context>()
-                    .resources.getBoolean(ResourcesR.bool.isTablet)
-            )
-        } else if (m.isAnnotationPresent(TabletTest::class.java)) {
-            Assume.assumeTrue(
-                ApplicationProvider.getApplicationContext<Context>()
-                    .resources.getBoolean(ResourcesR.bool.isTablet)
-            )
         }
     }
 }

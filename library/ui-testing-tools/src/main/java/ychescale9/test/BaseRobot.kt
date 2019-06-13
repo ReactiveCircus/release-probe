@@ -1,8 +1,9 @@
 @file:Suppress("TooManyFunctions", "LargeClass")
 
-package ychescale9.uitest
+package ychescale9.test
 
 import android.app.Activity
+import android.app.Instrumentation
 import android.content.Context
 import android.view.View
 import androidx.annotation.IdRes
@@ -25,12 +26,13 @@ import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers
 import org.hamcrest.CoreMatchers
 import org.hamcrest.CoreMatchers.allOf
+import org.hamcrest.CoreMatchers.not
 import org.hamcrest.core.AllOf
 import org.hamcrest.core.Is
-import org.hamcrest.core.IsNot
 import org.hamcrest.core.StringContains
 import org.hamcrest.core.StringStartsWith
 import org.junit.Assert
+import ychescale9.test.ActivityNotDisplayedAssertion.Companion.activityNotDisplayed
 
 abstract class BaseRobot<out A : RobotActions, out S : RobotAssertions>(
     private val robotActions: A,
@@ -161,6 +163,11 @@ open class RobotActions {
     fun closeDrawer(@IdRes drawerId: Int) {
         Espresso.onView(ViewMatchers.withId(drawerId)).perform(DrawerActions.close())
     }
+
+    fun interceptIntents() {
+        Intents.intending(not(IntentMatchers.isInternal()))
+            .respondWith(Instrumentation.ActivityResult(Activity.RESULT_OK, null))
+    }
 }
 
 open class RobotAssertions {
@@ -175,7 +182,7 @@ open class RobotAssertions {
     fun viewNotDisplayed(@IdRes vararg viewIds: Int) {
         viewIds.forEach { viewId ->
             Espresso.onView(ViewMatchers.withId(viewId))
-                .check(ViewAssertions.matches(IsNot.not<View>(ViewMatchers.isDisplayed())))
+                .check(ViewAssertions.matches(not<View>(ViewMatchers.isDisplayed())))
         }
     }
 
@@ -190,6 +197,20 @@ open class RobotAssertions {
         texts.forEach { text ->
             Espresso.onView(ViewMatchers.withText(text))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        }
+    }
+
+    fun textNotDisplayed(@StringRes vararg textResIds: Int) {
+        textResIds.forEach { textResId ->
+            Espresso.onView(ViewMatchers.withText(textResId))
+                .check(ViewAssertions.doesNotExist())
+        }
+    }
+
+    fun textNotDisplayed(vararg texts: String) {
+        texts.forEach { text ->
+            Espresso.onView(ViewMatchers.withText(text))
+                .check(ViewAssertions.doesNotExist())
         }
     }
 
@@ -250,7 +271,7 @@ open class RobotAssertions {
 
     fun viewDisabled(@IdRes viewId: Int) {
         Espresso.onView(ViewMatchers.withId(viewId))
-            .check(ViewAssertions.matches(IsNot.not<View>(ViewMatchers.isEnabled())))
+            .check(ViewAssertions.matches(not<View>(ViewMatchers.isEnabled())))
     }
 
     fun viewClickable(@IdRes viewId: Int) {
@@ -260,7 +281,19 @@ open class RobotAssertions {
 
     fun viewNotClickable(@IdRes viewId: Int) {
         Espresso.onView(ViewMatchers.withId(viewId))
-            .check(ViewAssertions.matches(IsNot.not<View>(ViewMatchers.isClickable())))
+            .check(ViewAssertions.matches(not<View>(ViewMatchers.isClickable())))
+    }
+
+    fun dialogWithTextDisplayed(@StringRes titleResId: Int) {
+        Espresso.onView(ViewMatchers.withText(titleResId))
+            .inRoot(RootMatchers.isDialog())
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+    }
+
+    fun dialogWithTextDisplayed(expected: String) {
+        Espresso.onView(ViewMatchers.withText(expected))
+            .inRoot(RootMatchers.isDialog())
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
     fun dialogWithButton1Displayed(@StringRes buttonTextResId: Int) {
@@ -366,7 +399,7 @@ open class RobotAssertions {
 
     fun radioGroupHasNoSelections(@IdRes radioGroupId: Int) {
         Espresso.onView(AllOf.allOf(ViewMatchers.isDisplayed(), ViewMatchers.withId(radioGroupId)))
-            .check(ViewAssertions.matches(IsNot.not<Any>(RadioGroupAssertion.hasSelections())))
+            .check(ViewAssertions.matches(not<Any>(RadioGroupAssertion.hasSelections())))
     }
 
     fun drawableDisplayed(@IdRes resourceId: Int) {
@@ -415,7 +448,7 @@ open class RobotAssertions {
     }
 
     fun noActivityDisplayed() {
-        Assert.assertTrue(currentActivity() == null)
+        activityNotDisplayed(currentActivity())
     }
 
     inline fun <reified A : Activity> activityLaunched() {
@@ -424,6 +457,13 @@ open class RobotAssertions {
 
     inline fun <reified F : Fragment> fragmentDisplayed(tag: String) {
         val fragment = (currentActivity() as FragmentActivity).supportFragmentManager.findFragmentByTag(tag)
+        Assert.assertTrue(fragment != null && fragment.isVisible && fragment is F)
+    }
+
+    inline fun <reified F : Fragment> fragmentDisplayed(@IdRes navHostViewId: Int) {
+        val fragment = (currentActivity() as? FragmentActivity)?.supportFragmentManager
+            ?.findFragmentById(navHostViewId)?.childFragmentManager?.primaryNavigationFragment
+
         Assert.assertTrue(fragment != null && fragment.isVisible && fragment is F)
     }
 }

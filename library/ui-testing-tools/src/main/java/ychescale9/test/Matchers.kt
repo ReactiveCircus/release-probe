@@ -1,6 +1,6 @@
 @file:Suppress("TooManyFunctions", "ReturnCount")
 
-package ychescale9.uitest
+package ychescale9.test
 
 import android.annotation.SuppressLint
 import android.content.res.Resources

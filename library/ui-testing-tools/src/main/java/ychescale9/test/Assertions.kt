@@ -1,5 +1,6 @@
-package ychescale9.uitest
+package ychescale9.test
 
+import android.app.Activity
 import android.view.View
 import android.widget.RadioGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -44,6 +45,26 @@ class RecyclerViewItemCountAssertion(private val expectedCount: Int) : ViewAsser
 
         fun hasSize(expectedCount: Int): RecyclerViewItemCountAssertion {
             return RecyclerViewItemCountAssertion(expectedCount)
+        }
+    }
+}
+
+class ActivityNotDisplayedAssertion(private val activity: Activity?) : ViewAssertion {
+
+    override fun check(view: View, noViewFoundException: NoMatchingViewException?) {
+        if (noViewFoundException != null) {
+            throw noViewFoundException
+        }
+
+        activity?.run {
+            MatcherAssert.assertThat(isFinishing, CoreMatchers.equalTo(true))
+        }
+    }
+
+    companion object {
+
+        fun activityNotDisplayed(activity: Activity?): ActivityNotDisplayedAssertion {
+            return ActivityNotDisplayedAssertion(activity)
         }
     }
 }

@@ -1,4 +1,4 @@
-package ychescale9.uitest
+package ychescale9.test
 
 import org.junit.rules.TestRule
 import org.junit.runner.Description

@@ -7,12 +7,12 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import org.amshove.kluent.shouldEqual
 import ychescale9.releaseprobe.browsecollections.R
 import ychescale9.releaseprobe.persistence.artifactcollection.entity.ArtifactCollectionEntity
-import ychescale9.uitest.BaseRobot
-import ychescale9.uitest.RobotActions
-import ychescale9.uitest.RobotAssertions
-import ychescale9.uitest.currentActivity
-import ychescale9.uitest.scrollToItemInRecyclerView
-import ychescale9.uitest.withRecyclerView
+import ychescale9.test.BaseRobot
+import ychescale9.test.RobotActions
+import ychescale9.test.RobotAssertions
+import ychescale9.test.currentActivity
+import ychescale9.test.scrollToItemInRecyclerView
+import ychescale9.test.withRecyclerView
 
 fun browseArtifactCollectionsScreen(block: BrowseCollectionsRobot.() -> Unit) =
         BrowseCollectionsRobot().apply { block() }
