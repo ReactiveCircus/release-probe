@@ -53,15 +53,14 @@ android {
     lintOptions {
         disable 'ParcelCreator'
         disable 'GoogleAppIndexingWarning'
-        quiet true
-        ignoreWarnings true
+        quiet false
+        ignoreWarnings false
         htmlReport true
         xmlReport true
         htmlOutput file("$buildDir/reports/lint/lint-reports.html")
         xmlOutput file("$buildDir/reports/lint/lint-reports.xml")
         checkDependencies true
         ignoreTestSources true
-        checkReleaseBuilds false
     }
 
     signingConfigs {
