@@ -1,4 +1,4 @@
-@file:Suppress("TooManyFunctions", "ReturnCount", "LongMethod")
+@file:Suppress("TooManyFunctions", "ReturnCount")
 
 package ychescale9.uitest
 

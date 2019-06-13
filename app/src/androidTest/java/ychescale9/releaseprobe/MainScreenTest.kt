@@ -6,7 +6,6 @@ import ychescale9.releaseprobe.main.MainActivity
 import ychescale9.releaseprobe.robot.mainScreen
 import ychescale9.releaseprobe.testing.BaseScreenTest
 
-
 @LargeTest
 class MainScreenTest : BaseScreenTest() {
 

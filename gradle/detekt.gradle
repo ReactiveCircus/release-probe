@@ -8,9 +8,11 @@ if (!isCiBuild) {
 
 detekt {
     toolVersion = versions.detekt
+    input = files("src/")
     failFast = true
+    parallel = true
     config = files("${project.rootDir}/detekt.yml")
-    filters = ".*/resources/.*,.*/build/.*,.*/tmp/.*"
+    filters = "**/resources/**,**/build/**,**/tmp/**"
     reports {
         html.destination = file("${project.buildDir}/reports/detekt/${project.name}.html")
     }

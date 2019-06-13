@@ -3,8 +3,7 @@ package ychescale9.analytics.noop
 import android.app.Activity
 import ychescale9.analytics.AnalyticsApi
 
-fun Activity.setCurrentScreenName(name: String) {
-}
+fun Activity.setCurrentScreenName(name: String) = Unit
 
 class NoOpAnalyticsApi : AnalyticsApi {
 
