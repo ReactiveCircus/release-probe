@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':feature-base')
+    implementation project(path: ':core-ui')
     implementation project(path: ':feeds')
     implementation project(path: ':watchlist')
     implementation project(path: ':browse-collections')

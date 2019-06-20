@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_artifact_collection.view.*
 import ychescale9.infra.android.extension.isAnimationOn
 import ychescale9.releaseprobe.domain.artifactcollection.model.ArtifactCollection
-import ychescale9.releaseprobe.resources.R as ResourcesR
-import ychescale9.releaseprobe.util.AnimationHelper
+import ychescale9.releaseprobe.core.R as ResourcesR
+import ychescale9.releaseprobe.core.util.AnimationHelper
 
 class ArtifactCollectionsAdapter(
     private val actionListener: ActionListener,

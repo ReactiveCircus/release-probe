@@ -1,4 +1,4 @@
-package ychescale9.releaseprobe.base
+package ychescale9.releaseprobe.core.base
 
 import androidx.fragment.app.Fragment
 import org.koin.android.ext.android.inject
@@ -10,8 +10,8 @@ abstract class BaseFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        activity?.let {
-            analyticsApi.setCurrentScreenName(it, javaClass.simpleName, javaClass.simpleName)
+        activity?.run {
+            analyticsApi.setCurrentScreenName(this, javaClass.simpleName, javaClass.simpleName)
         }
     }
 }

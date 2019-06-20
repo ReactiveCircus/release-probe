@@ -11,7 +11,7 @@ import ychescale9.releaseprobe.browsecollections.ArtifactCollectionsViewModel
 import ychescale9.releaseprobe.data.di.dataModule
 import ychescale9.releaseprobe.domain.di.domainModule
 import ychescale9.releaseprobe.persistence.di.persistenceModule
-import ychescale9.releaseprobe.util.AnimationHelper
+import ychescale9.releaseprobe.core.util.AnimationHelper
 
 val appModule = module {
 

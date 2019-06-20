@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':feature-base')
+    implementation project(path: ':core-ui')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
