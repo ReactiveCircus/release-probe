@@ -1,6 +1,6 @@
 package ychescale9.releaseprobe.testing.helper
 
-import ychescale9.releaseprobe.util.AnimationHelper
+import ychescale9.releaseprobe.core.util.AnimationHelper
 
 class ScreenTestAnimationHelper : AnimationHelper() {
 

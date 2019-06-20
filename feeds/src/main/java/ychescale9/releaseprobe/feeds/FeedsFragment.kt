@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ychescale9.releaseprobe.base.BaseFragment
+import ychescale9.releaseprobe.core.base.BaseFragment
 
 class FeedsFragment : BaseFragment() {
 

@@ -1,4 +1,4 @@
-package ychescale9.releaseprobe.util
+package ychescale9.releaseprobe.core.util
 
 open class AnimationHelper {
 

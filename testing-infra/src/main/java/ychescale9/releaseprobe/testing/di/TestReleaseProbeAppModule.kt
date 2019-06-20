@@ -11,7 +11,7 @@ import ychescale9.releaseprobe.domain.di.domainModule
 import ychescale9.releaseprobe.persistence.di.persistenceModule
 import ychescale9.releaseprobe.testing.helper.ScreenTestAnimationHelper
 import ychescale9.releaseprobe.testing.helper.ScreenTestSchedulerProvider
-import ychescale9.releaseprobe.util.AnimationHelper
+import ychescale9.releaseprobe.core.util.AnimationHelper
 
 val testAppModule = module {
 

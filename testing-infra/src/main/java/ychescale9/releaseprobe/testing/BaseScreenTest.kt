@@ -25,7 +25,7 @@ import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 import ychescale9.releaseprobe.data.artifactcollection.DefaultArtifactCollections
 import ychescale9.releaseprobe.testing.assumption.assumeNetworkDisconnected
-import ychescale9.releaseprobe.resources.R as ResourcesR
+import ychescale9.releaseprobe.core.R as ResourcesR
 
 abstract class BaseScreenTest : KoinComponent {
 

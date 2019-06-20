@@ -24,7 +24,6 @@ dependencies {
     api project(path: ':core-infra')
     api project(path: ':core-infra-android')
     api project(path: ':analytics-api-base')
-    api project(path: ':resources')
 
     // AndroidX
     api "androidx.annotation:annotation:${versions.androidx.annotation}"

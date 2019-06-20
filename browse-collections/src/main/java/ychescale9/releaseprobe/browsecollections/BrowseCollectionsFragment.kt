@@ -10,9 +10,9 @@ import kotlinx.android.synthetic.main.fragment_browse_collections.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
-import ychescale9.releaseprobe.base.BaseFragment
+import ychescale9.releaseprobe.core.base.BaseFragment
 import ychescale9.releaseprobe.domain.artifactcollection.model.ArtifactCollection
-import ychescale9.releaseprobe.util.AnimationHelper
+import ychescale9.releaseprobe.core.util.AnimationHelper
 
 class BrowseCollectionsFragment : BaseFragment() {
 
