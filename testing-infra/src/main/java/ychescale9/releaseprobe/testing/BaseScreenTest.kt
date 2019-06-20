@@ -64,7 +64,7 @@ abstract class BaseScreenTest : KoinComponent {
     ): FragmentScenario<F> {
         return launchFragmentInContainer<F>(
             fragmentArgs = fragmentArgs,
-            themeResId = ResourcesR.style.Theme_RP,
+            themeResId = ResourcesR.style.Theme_ReleaseProbe_DayNight,
             factory = factory
         ).also {
             Espresso.onIdle()

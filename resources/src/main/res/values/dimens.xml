@@ -17,18 +17,11 @@
 
     <dimen name="divider_height">1dp</dimen>
 
-    <!-- Default text sizes -->
-    <dimen name="text_display4">112sp</dimen>
-    <dimen name="text_display3">56sp</dimen>
-    <dimen name="text_display2">45sp</dimen>
-    <dimen name="text_display1">34sp</dimen>
-    <dimen name="text_headline">24sp</dimen>
-    <dimen name="text_title">20sp</dimen>
-    <dimen name="text_subheading">16sp</dimen>
-    <dimen name="text_body">14sp</dimen>
-    <dimen name="text_button">14sp</dimen>
-    <dimen name="text_caption">12sp</dimen>
+    <dimen name="toolbar_title_text_size">24sp</dimen>
 
-    <dimen name="title_text_size">24sp</dimen>
+    <!--Emphasis modifiers for "on" colors-->
+    <dimen name="alpha_emphasis_high">@dimen/mtrl_emphasis_high_type</dimen>
+    <dimen name="alpha_emphasis_medium">@dimen/mtrl_emphasis_medium</dimen>
+    <dimen name="alpha_emphasis_disabled">@dimen/mtrl_emphasis_disabled</dimen>
 
 </resources>
