@@ -6,7 +6,7 @@ include ':browse-collections'
 include ':settings'
 include ':testing-infra'
 
-include ':tasks'
+include ':background-work'
 
 include ':data'
 include ':remote-api-base'
