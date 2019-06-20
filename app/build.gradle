@@ -176,7 +176,7 @@ dependencies {
     prodImplementation project(path: ':remote-api-real')
     mockImplementation project(path: ':remote-api-mock')
 
-    implementation project(path: ':tasks')
+    implementation project(path: ':background-work')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
