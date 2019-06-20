@@ -18,14 +18,13 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/Theme.RP.AppBarOverlay">
+            android:translationZ="@dimen/dimen_4">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                style="?toolbarStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:titleTextAppearance="@style/Theme.RP.TitleText"
-                android:popupTheme="@style/Theme.RP.PopupOverlay"/>
+                android:layout_height="wrap_content"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -48,7 +47,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/coordinatorLayout"
         app:layout_constraintBottom_toBottomOf="parent"
-        style="@style/Theme.RP.BottomNavigationView"
         app:menu="@menu/bottom_navigation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

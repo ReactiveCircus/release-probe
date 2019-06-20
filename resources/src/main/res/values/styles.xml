@@ -1,38 +1,40 @@
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
-    <style name="BaseAppTheme" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
-        <item name="colorError">@color/colorError</item>
-
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/colorPrimary</item>
-
-        <item name="android:windowEnableSplitTouch">false</item>
-        <item name="android:splitMotionEvents">false</item>
-        <item name="android:overScrollMode">never</item>
-
-        <item name="android:fontFamily">@font/archivo_narrow</item>
+    <!--Bottom Sheets-->
+    <style name="ThemeOverlay.AppTheme.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="bottomSheetStyle">@style/Widget.AppTheme.BottomSheet.Modal</item>
+        <item name="android:navigationBarColor">?colorSurface</item>
+        <item name="android:navigationBarDividerColor" tools:ignore="NewApi">@android:color/transparent</item>
+    </style>
+    <style name="Widget.AppTheme.BottomSheet.Modal" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="shapeAppearanceOverlay">?shapeAppearanceLargeComponent</item>
     </style>
 
-    <style name="Theme.RP" parent="BaseAppTheme">
-        <item name="android:statusBarColor">?colorPrimary</item>
-        <item name="android:navigationBarColor">?colorPrimaryDark</item>
+    <!--Navigation Drawer-->
+    <style name="Widget.AppTheme.NavigationView" parent="Widget.MaterialComponents.NavigationView">
+        <item name="itemTextAppearance">?textAppearanceBody2</item>
     </style>
 
-    <style name="Theme.RP.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar" />
-    <style name="Theme.RP.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+    <!--Toolbar-->
+    <style name="Widget.AppTheme.Toolbar" parent="Widget.MaterialComponents.Toolbar.Surface">
+        <item name="titleTextAppearance">@style/Widget.AppTheme.Toolbar.Title</item>
+    </style>
+    <style name="Widget.AppTheme.Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/toolbar_title_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
-    <style name="Theme.RP.AppBarOverlay.Dark" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
-    <style name="Theme.RP.PopupOverlay.Dark" parent="ThemeOverlay.MaterialComponents.Dark" />
-
-    <style name="Theme.RP.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">@dimen/title_text_size</item>
+    <!--Bottom Navigation View-->
+    <style name="Widget.AppTheme.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemTextAppearanceActive">@style/Widget.AppTheme.BottomNavigationView.TextAppearanceActive</item>
+        <item name="itemIconTint">@color/bottom_nav_color</item>
+        <item name="itemTextColor">@color/bottom_nav_color</item>
+    </style>
+    <style name="Widget.AppTheme.BottomNavigationView.TextAppearanceActive" parent="TextAppearance.MaterialComponents.Body2">
         <item name="android:textStyle">bold</item>
     </style>
 

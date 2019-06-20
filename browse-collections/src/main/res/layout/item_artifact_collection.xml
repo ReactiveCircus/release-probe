@@ -23,7 +23,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="AndroidX"
-            android:textSize="@dimen/text_headline"
+            android:textAppearance="?textAppearanceHeadline5"
+            android:textColor="@android:color/white"
             android:textStyle="bold"/>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -34,7 +35,9 @@
             tools:text="Android extension libraries - a repackage of the Android Support Library, following semantic versioning"
             android:maxLines="2"
             android:ellipsize="end"
-            android:textSize="@dimen/text_subheading"
+            android:textAppearance="?textAppearanceSubtitle1"
+            android:textColor="@android:color/white"
+            android:alpha="?alphaEmphasisHigh"
             android:textStyle="bold"/>
 
     </LinearLayout>

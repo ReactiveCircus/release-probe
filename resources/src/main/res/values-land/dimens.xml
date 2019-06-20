@@ -1,5 +1,5 @@
 <resources>
 
-    <dimen name="title_text_size">16sp</dimen>
+    <dimen name="toolbar_title_text_size">16sp</dimen>
 
 </resources>
