@@ -1,5 +1,8 @@
 -verbose
 
+# Firebase
+-keep class com.google.firebase.iid.FirebaseInstanceId { zza(...); }
+
 # Keep annotations with RUNTIME retention and their defaults.
 -keepattributes RuntimeVisible*Annotations, AnnotationDefault
 
