@@ -4,15 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_browse_collections.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 import ychescale9.releaseprobe.core.base.BaseFragment
-import ychescale9.releaseprobe.domain.artifactcollection.model.ArtifactCollection
 import ychescale9.releaseprobe.core.util.AnimationHelper
+import ychescale9.releaseprobe.domain.artifactcollection.model.ArtifactCollection
 
 class BrowseCollectionsFragment : BaseFragment() {
 
@@ -38,16 +38,16 @@ class BrowseCollectionsFragment : BaseFragment() {
             adapter = artifactCollectionsAdapter
         }
 
-        viewModel.artifactCollectionsLiveData.observe(this, Observer {
+        viewModel.artifactCollectionsLiveData.observe(this) {
             artifactCollectionsAdapter.submitList(it)
-        })
+        }
     }
 
     private val actionListener: ArtifactCollectionsAdapter.ActionListener =
-            object : ArtifactCollectionsAdapter.ActionListener {
-                override fun onItemClick(artifactCollection: ArtifactCollection) {
-                    // TODO
-                    Timber.d("Clicked artifact collection.")
-                }
+        object : ArtifactCollectionsAdapter.ActionListener {
+            override fun onItemClick(artifactCollection: ArtifactCollection) {
+                // TODO
+                Timber.d("Clicked artifact collection.")
             }
+        }
 }
