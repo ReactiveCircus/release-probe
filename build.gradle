@@ -14,7 +14,7 @@ buildscript {
             androidGradlePlugin       : '3.6.0-alpha03',
             googleServicesGradlePlugin: '4.2.0',
             dexcountGradlePlugin      : '0.8.6',
-            bugsnag                   : '4.14.2',
+            bugsnag                   : '4.15.0',
             detekt                    : '1.0.0-RC15',
             leakCanary                : '2.0-alpha-2',
             kotlin                    : '1.3.31',
@@ -22,7 +22,7 @@ buildscript {
                     coroutines: '1.3.0-M1',
             ],
             firebase                  : [
-                    core: '16.0.8'
+                    core: '17.0.0'
             ],
             androidx                  : [
                     core             : '1.1.0-rc01',
@@ -38,17 +38,17 @@ buildscript {
                     room             : '2.1.0',
                     paging           : '2.1.0',
                     navigation       : '2.1.0-alpha05',
-                    work             : '2.1.0-beta01',
+                    work             : '2.1.0-beta02',
                     test             : [
-                            core   : '1.2.0',
-                            monitor: '1.2.0',
-                            rules  : '1.2.0',
-                            runner : '1.2.0',
+                            core   : '1.2.1-alpha01',
+                            monitor: '1.3.0-alpha01',
+                            rules  : '1.3.0-alpha01',
+                            runner : '1.3.0-alpha01',
                             ext    : [
-                                    junit: '1.1.1'
+                                    junit: '1.1.2-alpha01'
                             ]
                     ],
-                    espresso         : '3.2.0'
+                    espresso         : '3.3.0-alpha01'
             ],
             material                  : '1.1.0-alpha07',
             okhttp                    : '3.14.2',
@@ -64,7 +64,7 @@ buildscript {
             store                     : '3.1.1',
             junit                     : '4.12',
             mockk                     : '1.9.3',
-            kluent                    : '1.49'
+            kluent                    : '1.50'
     ]
 
     repositories {
