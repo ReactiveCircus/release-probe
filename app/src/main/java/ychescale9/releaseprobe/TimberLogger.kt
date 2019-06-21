@@ -1,22 +1,20 @@
 package ychescale9.releaseprobe
 
-import org.koin.log.Logger
+import org.koin.core.logger.Level
+import org.koin.core.logger.Logger
+import org.koin.core.logger.MESSAGE
 import timber.log.Timber
 
 /**
  * Timber Logger for Koin.
  */
-class TimberLogger : Logger {
+class TimberLogger : Logger() {
 
-    override fun debug(msg: String) {
-        Timber.d(msg)
-    }
-
-    override fun err(msg: String) {
-        Timber.e(msg)
-    }
-
-    override fun info(msg: String) {
-        Timber.i(msg)
+    override fun log(level: Level, msg: MESSAGE) {
+        when (level) {
+            Level.DEBUG -> Timber.d(msg)
+            Level.INFO -> Timber.i(msg)
+            Level.ERROR -> Timber.e(msg)
+        }
     }
 }

@@ -1,7 +1,7 @@
 package ychescale9.releaseprobe.di
 
 import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.module.module
+import org.koin.dsl.module
 import ychescale9.analytics.AnalyticsApi
 import ychescale9.analytics.firebase.FirebaseAnalyticsApi
 

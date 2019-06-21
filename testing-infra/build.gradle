@@ -28,6 +28,8 @@ dependencies {
     api project(path: ':data')
     implementation project(path: ':remote-api-mock')
 
+    implementation project(path: ':background-work')
+
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
 
@@ -39,7 +41,6 @@ dependencies {
     // Koin
     implementation "org.koin:koin-android:${versions.koin}"
     implementation "org.koin:koin-androidx-viewmodel:${versions.koin}"
-    implementation "org.koin:koin-core-ext:${versions.koin}"
 
     // retrofit-mock
     implementation "com.squareup.retrofit2:retrofit-mock:${versions.retrofit}"

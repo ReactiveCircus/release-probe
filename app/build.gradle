@@ -157,6 +157,7 @@ android {
     }
 
     testOptions {
+        unitTests.returnDefaultValues = true
         animationsDisabled = true
     }
 }
@@ -201,9 +202,8 @@ dependencies {
     implementation "com.bugsnag:bugsnag-android:${versions.bugsnag}"
 
     // Koin
-    implementation "org.koin:koin-android:${versions.koin}"
+    implementation "org.koin:koin-core:${versions.koin}"
     implementation "org.koin:koin-androidx-viewmodel:${versions.koin}"
-    implementation "org.koin:koin-core-ext:${versions.koin}"
 
     // Firebase core
     prodImplementation "com.google.firebase:firebase-core:${versions.firebase.core}"

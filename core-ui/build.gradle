@@ -48,5 +48,4 @@ dependencies {
     // Koin
     api "org.koin:koin-android:${versions.koin}"
     api "org.koin:koin-androidx-viewmodel:${versions.koin}"
-    api "org.koin:koin-core-ext:${versions.koin}"
 }

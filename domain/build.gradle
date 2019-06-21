@@ -16,7 +16,6 @@ dependencies {
 
     // Koin
     implementation "org.koin:koin-core:${versions.koin}"
-    implementation "org.koin:koin-core-ext:${versions.koin}"
 
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"

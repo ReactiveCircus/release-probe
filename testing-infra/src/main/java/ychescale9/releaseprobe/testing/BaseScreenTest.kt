@@ -21,8 +21,8 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.rules.TestName
-import org.koin.standalone.KoinComponent
-import org.koin.standalone.inject
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 import ychescale9.releaseprobe.data.artifactcollection.DefaultArtifactCollections
 import ychescale9.releaseprobe.testing.assumption.assumeNetworkDisconnected
 import ychescale9.releaseprobe.core.R as ResourcesR

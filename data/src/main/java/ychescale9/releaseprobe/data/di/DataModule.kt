@@ -4,10 +4,7 @@ import com.nytimes.android.external.store3.base.impl.BarCode
 import com.nytimes.android.external.store3.base.impl.MemoryPolicy
 import com.nytimes.android.external.store3.base.impl.StalePolicy
 import com.nytimes.android.external.store3.base.impl.room.StoreRoom
-import java.util.concurrent.TimeUnit
-import org.koin.dsl.module.module
-import org.koin.experimental.builder.create
-import org.koin.experimental.builder.single
+import org.koin.dsl.module
 import ychescale9.releaseprobe.data.BuildConfig
 import ychescale9.releaseprobe.data.artifact.fetcher.ArtifactGroupsWithArtifactsFetcher
 import ychescale9.releaseprobe.data.artifact.persister.ArtifactGroupsWithArtifactsPersister
@@ -17,15 +14,21 @@ import ychescale9.releaseprobe.data.artifactcollection.repository.ArtifactCollec
 import ychescale9.releaseprobe.domain.artifact.model.ArtifactGroup
 import ychescale9.releaseprobe.domain.artifact.repository.ArtifactRepository
 import ychescale9.releaseprobe.domain.artifactcollection.repository.ArtifactCollectionRepository
+import java.util.concurrent.TimeUnit
 
 val dataModule = module {
 
     single {
-        create<ArtifactGroupsWithArtifactsFetcher>()
+        ArtifactGroupsWithArtifactsFetcher(
+            googleMavenService = get(),
+            schedulerProvider = get()
+        )
     }
 
     single {
-        create<ArtifactGroupsWithArtifactsPersister>()
+        ArtifactGroupsWithArtifactsPersister(
+            dao = get()
+        )
     }
 
     single<StoreRoom<List<ArtifactGroup>, BarCode>> {
@@ -33,23 +36,30 @@ val dataModule = module {
         val persister: ArtifactGroupsWithArtifactsPersister = get()
 
         StoreRoom.from(
-                fetcher,
-                persister,
-                StalePolicy.NETWORK_BEFORE_STALE,
-                MemoryPolicy.builder()
-                        .setExpireAfterWrite(BuildConfig.STORE_EXPIRY_DURATION_HOURS)
-                        .setExpireAfterTimeUnit(TimeUnit.HOURS)
-                        .build()
+            fetcher,
+            persister,
+            StalePolicy.NETWORK_BEFORE_STALE,
+            MemoryPolicy.builder()
+                .setExpireAfterWrite(BuildConfig.STORE_EXPIRY_DURATION_HOURS)
+                .setExpireAfterTimeUnit(TimeUnit.HOURS)
+                .build()
         )
     }
 
-    single<DefaultArtifactCollections>()
+    single {
+        DefaultArtifactCollections()
+    }
 
     single<ArtifactCollectionRepository> {
-        create<ArtifactCollectionRepositoryImpl>()
+        ArtifactCollectionRepositoryImpl(
+            artifactCollectionDao = get(),
+            defaultArtifactCollections = get()
+        )
     }
 
     single<ArtifactRepository> {
-        create<ArtifactRepositoryImpl>()
+        ArtifactRepositoryImpl(
+            artifactGroupsWithArtifactsStore = get()
+        )
     }
 }

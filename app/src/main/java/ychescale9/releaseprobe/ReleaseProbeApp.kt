@@ -9,7 +9,8 @@ import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.plugins.RxJavaPlugins
 import org.koin.android.ext.android.inject
-import org.koin.android.ext.android.startKoin
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 import timber.log.Timber
 import ychescale9.analytics.AnalyticsApi
 import ychescale9.bugsnag.BugsnagTree
@@ -29,8 +30,17 @@ open class ReleaseProbeApp : Application() {
         val asyncMainThreadScheduler = AndroidSchedulers.from(Looper.getMainLooper(), true)
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { asyncMainThreadScheduler }
 
-        // start Koin context
-        startKoin(this, modules, logger = TimberLogger())
+        // configure and install Koin modules
+        startKoin {
+            // logger (Timber)
+            logger(TimberLogger())
+
+            // Android context
+            androidContext(this@ReleaseProbeApp)
+
+            // all modules
+            modules(modules)
+        }
 
         // initialize Bugsnag
         if (BuildConfig.ENABLE_BUGSNAG) {

@@ -6,9 +6,10 @@ import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.plugins.RxJavaPlugins
 import org.koin.android.ext.android.inject
-import org.koin.android.ext.android.startKoin
-import org.koin.dsl.module.Module
-import org.koin.log.EmptyLogger
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
+import org.koin.core.logger.EmptyLogger
+import org.koin.core.module.Module
 import timber.log.Timber
 import ychescale9.analytics.AnalyticsApi
 import ychescale9.releaseprobe.testing.di.testModules
@@ -24,8 +25,17 @@ open class ScreenTestApp : Application() {
         val asyncMainThreadScheduler = AndroidSchedulers.from(Looper.getMainLooper(), true)
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { asyncMainThreadScheduler }
 
-        // start Koin context
-        startKoin(this, loadKoinModules(), logger = EmptyLogger())
+        // configure and install Koin modules
+        startKoin {
+            // logger (Timber)
+            logger(EmptyLogger())
+
+            // Android context
+            androidContext(this@ScreenTestApp)
+
+            // all modules
+            modules(loadKoinModules())
+        }
 
         // initialize Timber
         Timber.plant(TestDebugTree())
