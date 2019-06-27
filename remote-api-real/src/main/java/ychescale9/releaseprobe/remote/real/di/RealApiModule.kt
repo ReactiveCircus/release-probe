@@ -9,7 +9,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
 import ychescale9.releaseprobe.remote.artifact.api.GoogleMavenService
-import ychescale9.releaseprobe.remote.extension.build
 import ychescale9.releaseprobe.remote.real.BuildConfig
 import ychescale9.releaseprobe.remote.real.BuildConfig.NETWORK_TIMEOUT_SECONDS
 import ychescale9.releaseprobe.remote.real.artifact.adapter.ArtifactAdapter
@@ -27,22 +26,23 @@ val realApiModule = module {
     }
 
     single {
-        OkHttpClient.Builder().build {
-            callTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+        OkHttpClient.Builder()
+            .callTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
             // add interceptor for converting xml response to json
-            addInterceptor(GoogleMavenResponseInterceptor())
+            .addInterceptor(GoogleMavenResponseInterceptor())
             // add logging interceptor
-            addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
-        }
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BASIC
+            })
+            .build()
     }
 
     single {
-        Retrofit.Builder().build {
-            baseUrl(BuildConfig.API_BASE_URL)
-            addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            addConverterFactory(MoshiConverterFactory.create(get()))
-            client(get())
-        }
+        Retrofit.Builder().baseUrl(BuildConfig.API_BASE_URL)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(get()))
+            .client(get())
+            .build()
     }
 
     single {

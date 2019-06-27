@@ -1,12 +1,12 @@
 package ychescale9.releaseprobe.remote.real.artifact.interceptor
 
-import java.io.IOException
 import okhttp3.Interceptor
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.Response
-import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.json.JSONObject
 import org.json.XML
+import java.io.IOException
 
 /**
  * Converts XML response to JSON for Google Maven API responses
@@ -18,9 +18,9 @@ class GoogleMavenResponseInterceptor : Interceptor {
         val request = chain.request()
         val response = chain.proceed(request)
         if (response.isSuccessful) {
-            val jsonObject: JSONObject = XML.toJSONObject(response.body()?.string())
-            val contentType = MediaType.parse("application/json; charset=utf-8")
-            val newBody = ResponseBody.create(contentType, jsonObject.toString())
+            val jsonObject: JSONObject = XML.toJSONObject(response.body?.string())
+            val contentType = "application/json; charset=utf-8".toMediaTypeOrNull()
+            val newBody = jsonObject.toString().toResponseBody(contentType)
             return response.newBuilder().body(newBody).build()
         }
         return response

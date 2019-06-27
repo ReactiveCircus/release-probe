@@ -46,7 +46,7 @@ class GoogleMavenResponseInterceptorTest {
         val newResponse = client.newCall(request).execute()
 
         newResponse.isSuccessful shouldEqual true
-        newResponse.body()?.string()?.run {
+        newResponse.body?.string().run {
             JSONObject(this).run {
                 has("artifact.group") shouldEqual true
                 getJSONObject("artifact.group")?.run {
@@ -69,6 +69,6 @@ class GoogleMavenResponseInterceptorTest {
         val newResponse = client.newCall(request).execute()
 
         newResponse.isSuccessful shouldEqual false
-        newResponse.body()?.string() shouldEqual ""
+        newResponse.body?.string() shouldEqual ""
     }
 }

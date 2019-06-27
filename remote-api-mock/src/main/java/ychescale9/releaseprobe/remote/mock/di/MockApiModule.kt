@@ -8,7 +8,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.mock.MockRetrofit
 import retrofit2.mock.NetworkBehavior
 import ychescale9.releaseprobe.remote.artifact.api.GoogleMavenService
-import ychescale9.releaseprobe.remote.extension.build
 import ychescale9.releaseprobe.remote.mock.BuildConfig.NETWORK_TIMEOUT_SECONDS
 import ychescale9.releaseprobe.remote.mock.artifact.api.MockGoogleMavenService
 import java.util.concurrent.TimeUnit
@@ -19,19 +18,21 @@ private const val DUMMY_URL = "http://localhost:$MOCK_SERVER_PORT/"
 val mockApiModule = module {
 
     single {
-        OkHttpClient.Builder().build {
-            callTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+        OkHttpClient.Builder()
+            .callTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
             // add logging interceptor
-            addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
-        }
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BASIC
+            })
+            .build()
     }
 
     single {
-        Retrofit.Builder().build {
-            baseUrl(DUMMY_URL)
-            addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            client(get())
-        }
+        Retrofit.Builder()
+            .baseUrl(DUMMY_URL)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(get())
+            .build()
     }
 
     single {
