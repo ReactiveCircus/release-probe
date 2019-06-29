@@ -19,6 +19,3 @@ dependencies {
     // Moshi
     implementation "com.squareup.moshi:moshi:${versions.moshi}"
 }
-
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
