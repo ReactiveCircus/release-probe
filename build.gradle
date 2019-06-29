@@ -90,10 +90,32 @@ allprojects {
         jcenter()
     }
 
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
-        kotlinOptions {
+    plugins.withType(com.android.build.gradle.BasePlugin).configureEach { plugin ->
+        plugin.extension.compileOptions {
+            sourceCompatibility = JavaVersion.VERSION_1_8
+            targetCompatibility = JavaVersion.VERSION_1_8
+        }
+    }
+
+    tasks.withType(JavaCompile).configureEach { task ->
+        task.sourceCompatibility = JavaVersion.VERSION_1_8
+        task.targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile).configureEach { task ->
+        task.kotlinOptions {
             jvmTarget = "1.8"
-            freeCompilerArgs += ["-progressive"]
+        }
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile).configureEach { task ->
+        task.kotlinOptions {
+            freeCompilerArgs += [
+                    '-progressive',
+                    '-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi',
+                    '-XXLanguage:+NewInference',
+                    '-XXLanguage:+InlineClasses',
+            ]
         }
     }
 

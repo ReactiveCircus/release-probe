@@ -17,11 +17,6 @@ android {
         testInstrumentationRunner "ychescale9.releaseprobe.testing.ScreenTestRunner"
     }
 
-    compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
-    }
-
     testOptions {
         animationsDisabled = true
     }
