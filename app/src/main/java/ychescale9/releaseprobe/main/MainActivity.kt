@@ -3,6 +3,7 @@ package ychescale9.releaseprobe.main
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,14 +19,16 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val navController = findNavController(R.id.navHostFragment)
+        val appBarConfig = AppBarConfiguration.Builder(
+            R.id.nav_feeds,
+            R.id.nav_watchlist,
+            R.id.nav_browse,
+            R.id.nav_settings
+        ).build()
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
-        setupActionBarWithNavController(this, navController)
+        setupActionBarWithNavController(this, navController, appBarConfig)
 
-        // TODO check bottom navigation view behavior https://issuetracker.google.com/issues/80029773
-        // TODO SDK bug - fragments should NOT be recreated when re-selecting item in bottom navigation view
-        navController.addOnDestinationChangedListener { _, _, _ ->
-            supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        }
+        // TODO SDK bug - fragments should NOT be recreated when re-selecting item in bottom navigation view - https://issuetracker.google.com/issues/80029773
 
         // TODO navigate to watchlist screen if feeds and watchlist are both empty
     }
