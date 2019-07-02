@@ -90,6 +90,17 @@ allprojects {
         jcenter()
     }
 
+    configurations.all {
+        resolutionStrategy {
+            eachDependency { details ->
+                // Force all Kotlin stdlib artifacts to use the same version.
+                if (details.requested.group == 'org.jetbrains.kotlin' && details.requested.name.startsWith('kotlin-stdlib')) {
+                    details.useVersion versions.kotlin
+                }
+            }
+        }
+    }
+
     plugins.withType(com.android.build.gradle.BasePlugin).configureEach { plugin ->
         plugin.extension.compileOptions {
             sourceCompatibility = JavaVersion.VERSION_1_8
@@ -112,7 +123,6 @@ allprojects {
         task.kotlinOptions {
             freeCompilerArgs += [
                     '-progressive',
-                    '-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi',
                     '-XXLanguage:+NewInference',
                     '-XXLanguage:+InlineClasses',
             ]
@@ -120,6 +130,7 @@ allprojects {
     }
 
     tasks.withType(Test).configureEach {
+        maxParallelForks Runtime.runtime.availableProcessors() * 2
         testLogging {
             events 'passed', 'skipped', 'failed'
         }
