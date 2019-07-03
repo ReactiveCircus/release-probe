@@ -25,6 +25,8 @@ dependencies {
     api "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintLayout}"
     api "androidx.activity:activity-ktx:${versions.androidx.activity}"
     api "androidx.fragment:fragment-ktx:${versions.androidx.fragment}"
+    api "androidx.swiperefreshlayout:swiperefreshlayout:${versions.androidx.swipeRefreshLayout}"
+    api "androidx.recyclerview:recyclerview:${versions.androidx.recyclerView}"
     api "androidx.core:core-ktx:${versions.androidx.core}"
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.androidx.lifecycle}"
     api "androidx.lifecycle:lifecycle-livedata-ktx:${versions.androidx.lifecycle}"

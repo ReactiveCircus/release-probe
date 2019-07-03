@@ -2,7 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
-    id 'androidx.navigation.safeargs'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -33,9 +33,6 @@ dependencies {
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
-
-    // AndroidX
-    implementation "androidx.recyclerview:recyclerview:${versions.androidx.recyclerView}"
 
     // rx
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
