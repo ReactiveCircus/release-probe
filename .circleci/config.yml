@@ -4,7 +4,7 @@ version: 2.0
 android_config: &android_config
   working_directory: ~/release-probe
   docker:
-      - image: ychescale9/android-sdk:latest
+      - image: reactivecircus/android-sdk:latest
   environment:
     JAVA_TOOL_OPTIONS: "-Xmx1g"
     GRADLE_OPTS: '-Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
