@@ -5,7 +5,6 @@ import android.os.Looper
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.plugins.RxJavaPlugins
-import leakcanary.LeakCanary
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -21,8 +20,6 @@ open class ScreenTestApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        LeakCanary.config = LeakCanary.config.copy(dumpHeap = false)
 
         // ask RxAndroid to use async main thread scheduler
         val asyncMainThreadScheduler = AndroidSchedulers.from(Looper.getMainLooper(), true)
