@@ -1,6 +1,6 @@
 # ReleaseProbe
 
-[![CircleCI](https://circleci.com/gh/ychescale9/release-probe.svg?style=svg)](https://circleci.com/gh/ychescale9/release-probe) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/620bc7570cd44f30a9973836cc36df0d)](https://www.codacy.com/project/ychescale9/release-probe/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ychescale9/release-probe&amp;utm_campaign=Badge_Grade_Dashboard) [![Android API](https://img.shields.io/badge/API-23%2B-blue.svg?style=flat-square&label=API&maxAge=300)](https://www.android.com/history/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square&maxAge=3600)](https://opensource.org/licenses/MIT)
+[![CircleCI](https://circleci.com/gh/ReactiveCircus/release-probe.svg?style=svg)](https://circleci.com/gh/ReactiveCircus/release-probe) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c3adc2310a3f4872a08567d32da829da)](https://www.codacy.com/app/ReactiveCircus/release-probe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ReactiveCircus/release-probe&amp;utm_campaign=Badge_Grade) [![Android API](https://img.shields.io/badge/API-23%2B-blue.svg?style=flat-square&label=API&maxAge=300)](https://www.android.com/history/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square&maxAge=3600)](https://opensource.org/licenses/MIT)
 
 An Android app for monitoring new releases of libraries and dependencies such as AndroidX, Firebase and other popular 3rd party libraries on GitHub. Get notified when your favourite library has a new release.
 
@@ -44,7 +44,7 @@ TODO
 
 In addition to Android Lint, [detekt](https://github.com/arturbosch/detekt) has been configured for Kotlin static analysis.
 
-We also use [Codacy](https://app.codacy.com/project/ychescale9/release-probe/dashboard) for automatic PR quality review.
+We also use [Codacy](https://app.codacy.com/project/reactivecircus/release-probe/dashboard) for automatic PR quality review.
 
 ### Continuous Integration
 
@@ -63,7 +63,7 @@ We use CircleCI 2.0 for CI/CD.
 * **deploy_to_play** - deploys the release App Bundle to Google Play's internal 
 
 ### Docker Container
-[ychescale9/android-sdk](https://hub.docker.com/r/ychescale9/android-sdk/) is used for running CI jobs. Dockerfiles are available on [GitHub](https://github.com/ychescale9/docker-android-images)
+[reactivecircus/android-sdk](https://hub.docker.com/r/reactivecircus/android-sdk/) is used for running CI jobs. Dockerfiles are available on [GitHub](https://github.com/reactivecircus/docker-android-images)
 
 ### A Note on Running Instrumented Tests
 
