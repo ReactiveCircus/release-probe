@@ -39,7 +39,7 @@ buildscript {
                     room              : '2.2.0-alpha01',
                     paging            : '2.1.0',
                     navigation        : '2.1.0-alpha06',
-                    work              : '2.1.0-rc01',
+                    work              : '2.1.0',
                     test              : [
                             core   : '1.2.1-alpha01',
                             monitor: '1.3.0-alpha01',
