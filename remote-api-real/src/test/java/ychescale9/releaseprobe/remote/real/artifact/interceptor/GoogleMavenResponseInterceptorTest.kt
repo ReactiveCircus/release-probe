@@ -40,31 +40,31 @@ class GoogleMavenResponseInterceptorTest {
     fun `should convert raw XML response to JSON response when response is successful`() {
         server.enqueue(MockResponse().setResponseCode(200).setBody(dummyRawXmlResponse))
         val request = Request.Builder()
-                .url(server.url("/"))
-                .build()
+            .url(server.url("/"))
+            .build()
 
         val newResponse = client.newCall(request).execute()
 
         newResponse.isSuccessful shouldEqual true
-        newResponse.body?.string().run {
-            JSONObject(this).run {
-                has("artifact.group") shouldEqual true
-                getJSONObject("artifact.group")?.run {
-                    has("artifact1") shouldEqual true
-                    getJSONObject("artifact1").getString("versions") shouldEqual "1.0.0,2.0.0,3.0.0"
-                    has("artifact2") shouldEqual true
-                    getJSONObject("artifact2").getString("versions") shouldEqual "3.0,3.1,3.2"
-                }
+
+        JSONObject(newResponse.body!!.string()).run {
+            has("artifact.group") shouldEqual true
+            getJSONObject("artifact.group").run {
+                has("artifact1") shouldEqual true
+                getJSONObject("artifact1").getString("versions") shouldEqual "1.0.0,2.0.0,3.0.0"
+                has("artifact2") shouldEqual true
+                getJSONObject("artifact2").getString("versions") shouldEqual "3.0,3.1,3.2"
             }
         }
+
     }
 
     @Test
     fun `should NOT convert raw XML response to JSON response when response is unsuccessful`() {
         server.enqueue(MockResponse().setResponseCode(500))
         val request = Request.Builder()
-                .url(server.url("/"))
-                .build()
+            .url(server.url("/"))
+            .build()
 
         val newResponse = client.newCall(request).execute()
 
