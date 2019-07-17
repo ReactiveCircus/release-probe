@@ -126,6 +126,7 @@ allprojects {
                     '-progressive',
                     '-XXLanguage:+NewInference',
                     '-XXLanguage:+InlineClasses',
+                    '-Xuse-experimental=kotlin.Experimental',
             ]
         }
     }

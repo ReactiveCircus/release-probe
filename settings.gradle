@@ -16,6 +16,9 @@ include ':persistence'
 
 include ':domain'
 
+include ':interactor-coroutines'
+project(':interactor-coroutines').projectDir = new File(rootDir, 'library/interactor-coroutines')
+
 include ':core-infra'
 project(':core-infra').projectDir = new File(rootDir, 'library/core-infra')
 
