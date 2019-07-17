@@ -1,6 +1,6 @@
 package ychescale9.bugsnag
 
-import android.util.Log
+import android.util.Log.ASSERT
 import android.util.Log.ERROR
 import android.util.Log.INFO
 import android.util.Log.WARN
@@ -23,7 +23,7 @@ class BugsnagTree(private val client: Client) : Timber.Tree() {
 
     override fun isLoggable(tag: String?, priority: Int): Boolean {
         // only log WARN, ERROR, and WTF
-        return priority == Log.WARN || priority == Log.ERROR || priority == Log.ASSERT
+        return priority == WARN || priority == ERROR || priority == ASSERT
     }
 
     @Suppress("ComplexMethod")

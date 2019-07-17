@@ -3,24 +3,15 @@ plugins {
 }
 
 dependencies {
-    implementation project(path: ':core-infra')
-    implementation project(path: ':interactor-coroutines')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
 
-    // rx
-    implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
-
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinx.coroutines}"
 
-    // Koin
-    implementation "org.koin:koin-core:${versions.koin}"
-
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"
-    testImplementation "io.mockk:mockk:${versions.mockk}"
     testImplementation "org.amshove.kluent:kluent:${versions.kluent}"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.kotlinx.coroutines}"
 }
