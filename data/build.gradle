@@ -24,7 +24,8 @@ android {
 
 dependencies {
     implementation project(path: ':domain')
-    implementation project(path: ':core-infra')
+    implementation project(path: ':blueprint-threading-rx2')
+    implementation project(path: ':blueprint-threading-coroutines')
     implementation project(path: ':remote-api-base')
     api project(path: ':persistence')
 

@@ -57,7 +57,7 @@ jobs:
             echo 'export BUILD_NUMBER="$CIRCLE_BUILD_NUM"' >> $BASH_ENV
             echo 'export APP_VERSION_CODE="$(./gradlew -q showVersionCode | tail -1)"' >> $BASH_ENV
             echo 'export APP_VERSION_NAME="$(./gradlew -q showVersionName | tail -1)"' >> $BASH_ENV
-            echo 'export APP_ID="ychescale9.releaseprobe"' >> $BASH_ENV
+            echo 'export APP_ID="reactivecircus.releaseprobe"' >> $BASH_ENV
 
       - checkout
       - *extract_cache_version

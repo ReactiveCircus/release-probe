@@ -13,8 +13,8 @@ android {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
 
-        testApplicationId 'ychescale9.releaseprobe.settings.test'
-        testInstrumentationRunner "ychescale9.releaseprobe.testing.ScreenTestRunner"
+        testApplicationId 'reactivecircus.releaseprobe.settings.test'
+        testInstrumentationRunner "reactivecircus.releaseprobe.testing.ScreenTestRunner"
     }
 
     buildTypes {

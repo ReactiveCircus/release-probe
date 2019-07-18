@@ -3,8 +3,10 @@ plugins {
 }
 
 dependencies {
-    implementation project(path: ':core-infra')
-    implementation project(path: ':interactor-coroutines')
+    implementation project(path: ':blueprint-interactor-rx2')
+    implementation project(path: ':blueprint-threading-rx2')
+    implementation project(path: ':blueprint-interactor-coroutines')
+    implementation project(path: ':blueprint-threading-coroutines')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"

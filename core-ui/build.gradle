@@ -15,8 +15,11 @@ android {
 
 dependencies {
     api project(path: ':domain')
-    api project(path: ':core-infra')
-    api project(path: ':core-infra-android')
+    api project(path: ':blueprint-interactor-rx2')
+    api project(path: ':blueprint-threading-rx2')
+    api project(path: ':blueprint-interactor-coroutines')
+    api project(path: ':blueprint-threading-coroutines')
+    api project(path: ':blueprint-ui')
     api project(path: ':analytics-api-base')
 
     // AndroidX
@@ -44,4 +47,8 @@ dependencies {
     // Koin
     api "org.koin:koin-android:${versions.koin}"
     api "org.koin:koin-androidx-viewmodel:${versions.koin}"
+
+    // Unit tests
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "org.amshove.kluent:kluent:${versions.kluent}"
 }

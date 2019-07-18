@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:436919122769:android:91aa3dadbdf25859",
+        "mobilesdk_app_id": "1:436919122769:android:251147f5a0de54b4",
         "android_client_info": {
-          "package_name": "ychescale9.releaseprobe"
+          "package_name": "reactivecircus.releaseprobe"
         }
       },
       "oauth_client": [
@@ -25,15 +25,13 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "436919122769-cdcfag26um70i099dr5f86hvhd44kai7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
