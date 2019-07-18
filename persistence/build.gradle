@@ -17,7 +17,7 @@ android {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
 
-        testApplicationId 'ychescale9.releaseprobe.persistence.test'
+        testApplicationId 'reactivecircus.releaseprobe.persistence.test'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {

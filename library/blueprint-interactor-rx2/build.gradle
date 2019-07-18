@@ -1,0 +1,17 @@
+plugins {
+    id 'kotlin'
+}
+
+dependencies {
+    api project(path: ':blueprint-interactor-common')
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+
+    // rx
+    implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
+
+    // Unit tests
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "org.amshove.kluent:kluent:${versions.kluent}"
+}

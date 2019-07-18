@@ -16,14 +16,23 @@ include ':persistence'
 
 include ':domain'
 
-include ':interactor-coroutines'
-project(':interactor-coroutines').projectDir = new File(rootDir, 'library/interactor-coroutines')
+include ':blueprint-interactor-common'
+project(':blueprint-interactor-common').projectDir = new File(rootDir, 'library/blueprint-interactor-common')
+include ':blueprint-interactor-coroutines'
+project(':blueprint-interactor-coroutines').projectDir = new File(rootDir, 'library/blueprint-interactor-coroutines')
+include ':blueprint-interactor-rx2'
+project(':blueprint-interactor-rx2').projectDir = new File(rootDir, 'library/blueprint-interactor-rx2')
 
-include ':core-infra'
-project(':core-infra').projectDir = new File(rootDir, 'library/core-infra')
+include ':blueprint-threading-coroutines'
+project(':blueprint-threading-coroutines').projectDir = new File(rootDir, 'library/blueprint-threading-coroutines')
+include ':blueprint-threading-rx2'
+project(':blueprint-threading-rx2').projectDir = new File(rootDir, 'library/blueprint-threading-rx2')
 
-include ':core-infra-android'
-project(':core-infra-android').projectDir = new File(rootDir, 'library/core-infra-android')
+include ':blueprint-ui'
+project(':blueprint-ui').projectDir = new File(rootDir, 'library/blueprint-ui')
+
+include ':blueprint-testing-robot'
+project(':blueprint-testing-robot').projectDir = new File(rootDir, 'library/blueprint-testing-robot')
 
 include ':bugsnag-tree'
 project(':bugsnag-tree').projectDir = new File(rootDir, 'library/bugsnag-tree')
@@ -36,6 +45,3 @@ project(':analytics-api-firebase').projectDir = new File(rootDir, 'library/analy
 
 include ':analytics-api-no-op'
 project(':analytics-api-no-op').projectDir = new File(rootDir, 'library/analytics/analytics-api-no-op')
-
-include ':ui-testing-tools'
-project(':ui-testing-tools').projectDir = new File(rootDir, 'library/ui-testing-tools')

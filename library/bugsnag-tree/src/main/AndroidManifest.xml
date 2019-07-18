@@ -1,2 +1,2 @@
-<manifest package="ychescale9.bugsnag"
+<manifest package="reactivecircus.bugsnag"
           xmlns:android="http://schemas.android.com/apk/res/android"/>

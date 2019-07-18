@@ -17,13 +17,13 @@ android {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
 
-        applicationId 'ychescale9.releaseprobe'
+        applicationId 'reactivecircus.releaseprobe'
         versionCode buildVersionCode()
         versionName buildVersionName()
         archivesBaseName = "ReleaseProbe-$versionName"
 
-        testApplicationId 'ychescale9.releaseprobe.test'
-        testInstrumentationRunner "ychescale9.releaseprobe.MainTestRunner"
+        testApplicationId 'reactivecircus.releaseprobe.test'
+        testInstrumentationRunner "reactivecircus.releaseprobe.MainTestRunner"
 
         // only support English for now
         resConfigs "en"
