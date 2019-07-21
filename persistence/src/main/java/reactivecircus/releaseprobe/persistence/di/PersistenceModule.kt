@@ -4,7 +4,9 @@ import androidx.room.Room
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import reactivecircus.releaseprobe.persistence.BuildConfig
+import reactivecircus.releaseprobe.persistence.DatabaseTransactionRunner
 import reactivecircus.releaseprobe.persistence.ReleaseProbeDatabase
+import reactivecircus.releaseprobe.persistence.RoomTransactionRunner
 
 val persistenceModule = module {
 
@@ -14,6 +16,10 @@ val persistenceModule = module {
             ReleaseProbeDatabase::class.java,
             BuildConfig.DATABASE_NAME
         ).build()
+    }
+
+    single<DatabaseTransactionRunner> {
+        RoomTransactionRunner(get<ReleaseProbeDatabase>())
     }
 
     single {

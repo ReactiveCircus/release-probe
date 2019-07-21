@@ -3,16 +3,11 @@ plugins {
 }
 
 dependencies {
-    implementation project(path: ':blueprint-interactor-rx2')
-    implementation project(path: ':blueprint-threading-rx2')
     implementation project(path: ':blueprint-interactor-coroutines')
     implementation project(path: ':blueprint-threading-coroutines')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
-
-    // rx
-    implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
 
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinx.coroutines}"

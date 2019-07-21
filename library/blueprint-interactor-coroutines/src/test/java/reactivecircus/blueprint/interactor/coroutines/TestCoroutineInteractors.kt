@@ -1,7 +1,6 @@
 package reactivecircus.blueprint.interactor.coroutines
 
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -9,7 +8,6 @@ import reactivecircus.blueprint.interactor.EmptyParams
 import reactivecircus.blueprint.interactor.InteractorParams
 import java.io.IOException
 
-@ExperimentalCoroutinesApi
 class CalculateSquare(
     override val dispatcher: CoroutineDispatcher
 ) : SuspendingInteractor<CalculateSquare.Params, Int>() {
@@ -21,7 +19,6 @@ class CalculateSquare(
     class Params(val value: Int) : InteractorParams
 }
 
-@ExperimentalCoroutinesApi
 class FailingSuspendingInteractor(
     override val dispatcher: CoroutineDispatcher
 ) : SuspendingInteractor<EmptyParams, Unit>() {
@@ -31,7 +28,6 @@ class FailingSuspendingInteractor(
     }
 }
 
-@ExperimentalCoroutinesApi
 class FlowInteractorWithThreeEmissions(
     override val dispatcher: CoroutineDispatcher
 ) : FlowInteractor<EmptyParams, Int>() {
@@ -45,7 +41,6 @@ class FlowInteractorWithThreeEmissions(
     }
 }
 
-@ExperimentalCoroutinesApi
 class FlowInteractorWithException(
     override val dispatcher: CoroutineDispatcher
 ) : FlowInteractor<EmptyParams, Int>() {

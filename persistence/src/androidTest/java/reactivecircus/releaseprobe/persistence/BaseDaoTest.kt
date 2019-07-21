@@ -1,6 +1,5 @@
 package reactivecircus.releaseprobe.persistence
 
-import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import org.junit.After
@@ -13,7 +12,7 @@ abstract class BaseDaoTest {
     @Before
     open fun setUp() {
         database = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext<Context>(),
+            ApplicationProvider.getApplicationContext(),
             ReleaseProbeDatabase::class.java
         )
             .allowMainThreadQueries()

@@ -24,7 +24,6 @@ android {
 
 dependencies {
     implementation project(path: ':domain')
-    implementation project(path: ':blueprint-threading-rx2')
     implementation project(path: ':blueprint-threading-coroutines')
     implementation project(path: ':remote-api-base')
     api project(path: ':persistence')
@@ -34,6 +33,10 @@ dependencies {
 
     // rx
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinx.coroutines}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${versions.kotlinx.coroutines}"
 
     // timber
     implementation "com.jakewharton.timber:timber:${versions.timber}"
@@ -48,4 +51,5 @@ dependencies {
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "io.mockk:mockk:${versions.mockk}"
     testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.kotlinx.coroutines}"
 }

@@ -16,5 +16,5 @@ abstract class ArtifactCollectionDao {
     abstract fun allArtifactCollections(): Flowable<List<ArtifactCollectionEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun insertArtifactCollections(artifactCollections: List<ArtifactCollectionEntity>)
+    abstract suspend fun insertArtifactCollections(artifactCollections: List<ArtifactCollectionEntity>)
 }

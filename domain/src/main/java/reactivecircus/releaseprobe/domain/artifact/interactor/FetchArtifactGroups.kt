@@ -1,21 +1,20 @@
 package reactivecircus.releaseprobe.domain.artifact.interactor
 
-import io.reactivex.Observable
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
 import reactivecircus.blueprint.interactor.InteractorParams
-import reactivecircus.blueprint.interactor.rx2.ObservableInteractor
-import reactivecircus.blueprint.threading.coroutines.SchedulerProvider
+import reactivecircus.blueprint.interactor.coroutines.FlowInteractor
+import reactivecircus.blueprint.threading.coroutines.CoroutineDispatchers
 import reactivecircus.releaseprobe.domain.artifact.model.ArtifactGroup
 import reactivecircus.releaseprobe.domain.artifact.repository.ArtifactRepository
 
 class FetchArtifactGroups(
     private val artifactRepository: ArtifactRepository,
-    schedulerProvider: SchedulerProvider
-) : ObservableInteractor<FetchArtifactGroups.Params, List<ArtifactGroup>>(
-    ioScheduler = schedulerProvider.io,
-    uiScheduler = schedulerProvider.ui
-) {
+    coroutineDispatchers: CoroutineDispatchers
+) : FlowInteractor<FetchArtifactGroups.Params, List<ArtifactGroup>>() {
+    override val dispatcher: CoroutineDispatcher = coroutineDispatchers.io
 
-    override fun createInteractor(): Observable<List<ArtifactGroup>> {
+    override fun createFlow(params: Params): Flow<List<ArtifactGroup>> {
         return artifactRepository.fetchAllArtifactGroups()
         // TODO filter results, reverse versions: List<String>
     }
