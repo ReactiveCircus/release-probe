@@ -2,19 +2,15 @@ package reactivecircus.releaseprobe
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.os.Looper
 import com.bugsnag.android.Bugsnag
 import com.bugsnag.android.Client
-import io.reactivex.android.plugins.RxAndroidPlugins
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.plugins.RxJavaPlugins
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
-import timber.log.Timber
 import reactivecircus.analytics.AnalyticsApi
 import reactivecircus.bugsnag.BugsnagTree
 import reactivecircus.releaseprobe.di.modules
+import timber.log.Timber
 
 @SuppressLint("Registered")
 open class ReleaseProbeApp : Application() {
@@ -25,10 +21,6 @@ open class ReleaseProbeApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        // ask RxAndroid to use async main thread scheduler
-        val asyncMainThreadScheduler = AndroidSchedulers.from(Looper.getMainLooper(), true)
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler { asyncMainThreadScheduler }
 
         // configure and install Koin modules
         startKoin {
@@ -54,9 +46,6 @@ open class ReleaseProbeApp : Application() {
 
         // initialize analytics api
         analyticsApi.setEnableAnalytics(BuildConfig.ENABLE_ANALYTICS)
-
-        // set up global uncaught error handler for RxJava
-        setUpRxJavaUncaughtErrorHandler()
     }
 
     protected open fun initializeTimber() {
@@ -66,9 +55,5 @@ open class ReleaseProbeApp : Application() {
             tree.update(error)
             return@beforeNotify true
         }
-    }
-
-    private fun setUpRxJavaUncaughtErrorHandler() {
-        RxJavaPlugins.setErrorHandler { throwable -> Timber.w(throwable, "Uncaught RxJava error.") }
     }
 }

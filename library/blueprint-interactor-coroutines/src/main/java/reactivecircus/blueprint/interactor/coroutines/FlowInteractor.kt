@@ -12,11 +12,11 @@ import reactivecircus.blueprint.interactor.InteractorParams
  *
  * Work will be executed on thread as specified by the [dispatcher] of the interactor.
  */
-@ExperimentalCoroutinesApi
 abstract class FlowInteractor<in P : InteractorParams, out R> {
     abstract val dispatcher: CoroutineDispatcher
 
     protected abstract fun createFlow(params: P): Flow<R>
 
+    @ExperimentalCoroutinesApi
     fun buildFlow(params: P): Flow<R> = createFlow(params).flowOn(dispatcher)
 }

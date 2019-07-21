@@ -7,9 +7,6 @@ dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
 
-    // rx
-    implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
-
     // OkHttp
     implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
 
@@ -18,4 +15,8 @@ dependencies {
 
     // Moshi
     implementation "com.squareup.moshi:moshi:${versions.moshi}"
+
+    // Unit tests
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
 }

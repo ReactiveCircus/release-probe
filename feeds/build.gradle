@@ -34,15 +34,20 @@ dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
 
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinx.coroutines}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.kotlinx.coroutines}"
+
     // AndroidX
     implementation "androidx.paging:paging-runtime-ktx:${versions.androidx.paging}"
-    implementation "androidx.paging:paging-rxjava2-ktx:${versions.androidx.paging}"
 
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "io.mockk:mockk:${versions.mockk}"
     testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
     testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.kotlinx.coroutines}"
+    testImplementation project(path: ':coroutines-testing')
 
     // Android tests
     androidTestImplementation project(path: ':testing-infra')

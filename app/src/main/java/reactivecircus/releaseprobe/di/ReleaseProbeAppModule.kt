@@ -1,9 +1,8 @@
 package reactivecircus.releaseprobe.di
 
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module
-import reactivecircus.blueprint.threading.coroutines.SchedulerProvider
+import reactivecircus.blueprint.threading.coroutines.CoroutineDispatchers
 import reactivecircus.releaseprobe.browsecollections.di.browseCollectionsModule
 import reactivecircus.releaseprobe.core.util.AnimationHelper
 import reactivecircus.releaseprobe.data.di.dataModule
@@ -16,10 +15,10 @@ import reactivecircus.releaseprobe.work.di.backgroundWorkModule
 val appModule = module {
 
     single {
-        SchedulerProvider(
-            io = Schedulers.io(),
-            computation = Schedulers.computation(),
-            ui = AndroidSchedulers.mainThread()
+        CoroutineDispatchers(
+            io = Dispatchers.IO,
+            computation = Dispatchers.Default,
+            ui = Dispatchers.Main
         )
     }
 

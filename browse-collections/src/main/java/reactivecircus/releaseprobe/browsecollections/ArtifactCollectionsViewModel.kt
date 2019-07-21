@@ -2,35 +2,31 @@ package reactivecircus.releaseprobe.browsecollections
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.plusAssign
-import io.reactivex.rxkotlin.subscribeBy
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import reactivecircus.blueprint.interactor.EmptyParams
-import timber.log.Timber
+import reactivecircus.releaseprobe.domain.artifactcollection.interactor.StreamArtifactCollections
 import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactCollection
-import reactivecircus.releaseprobe.domain.artifactcollection.interactor.GetOrCreateArtifactCollections
+import timber.log.Timber
 
+@ExperimentalCoroutinesApi
 class ArtifactCollectionsViewModel(
-    getOrCreateArtifactCollections: GetOrCreateArtifactCollections
+    streamArtifactCollections: StreamArtifactCollections
 ) : ViewModel() {
 
     val artifactCollectionsLiveData = MutableLiveData<List<ArtifactCollection>>()
 
-    private val disposable = CompositeDisposable()
-
     init {
-        disposable += getOrCreateArtifactCollections.buildObservable(EmptyParams)
-                .subscribeBy(
-                        onNext = {
-                            artifactCollectionsLiveData.value = it
-                        },
-                        onError = {
-                            Timber.e(it, "Error getting artifact collections.")
-                        }
-                )
-    }
-
-    override fun onCleared() {
-        disposable.clear()
+        streamArtifactCollections.buildFlow(EmptyParams)
+            .onEach {
+                artifactCollectionsLiveData.value = it
+            }
+            .catch {
+                Timber.e(it, "State machine stream terminated.")
+            }
+            .launchIn(viewModelScope)
     }
 }

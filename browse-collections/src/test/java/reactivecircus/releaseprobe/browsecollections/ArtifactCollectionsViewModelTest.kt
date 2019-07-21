@@ -5,39 +5,45 @@ import androidx.lifecycle.Observer
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import io.reactivex.Observable
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Rule
 import org.junit.Test
-import reactivecircus.blueprint.interactor.EmptyParams
+import reactivecircus.coroutines.testing.CoroutinesTestRule
+import reactivecircus.releaseprobe.domain.artifactcollection.interactor.StreamArtifactCollections
 import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactCollection
-import reactivecircus.releaseprobe.domain.artifactcollection.interactor.GetOrCreateArtifactCollections
 
+@ExperimentalCoroutinesApi
 class ArtifactCollectionsViewModelTest {
 
-    @Rule
-    @JvmField
+    @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    @get:Rule
+    val coroutinesTestRule = CoroutinesTestRule()
 
     private val dummyArtifactCollections = listOf<ArtifactCollection>(mockk(), mockk())
 
-    private val getOrCreateArtifactCollections = mockk<GetOrCreateArtifactCollections> {
-        every { buildObservable(any<EmptyParams>()) } returns Observable.just(dummyArtifactCollections)
+    private val streamArtifactCollections = mockk<StreamArtifactCollections> {
+        every { buildFlow(any()) } returns flowOf(dummyArtifactCollections)
     }
 
-    private val artifactCollectionsObserver = mockk<Observer<List<ArtifactCollection>>>(relaxed = true)
+    private val artifactCollectionsObserver =
+        mockk<Observer<List<ArtifactCollection>>>(relaxed = true)
 
     private val viewModel: ArtifactCollectionsViewModel by lazy {
-        ArtifactCollectionsViewModel(getOrCreateArtifactCollections)
+        ArtifactCollectionsViewModel(streamArtifactCollections)
     }
 
     @Test
-    fun `should emit Artifact Collections when initialized`() {
+    fun `should emit Artifact Collections when initialized`() = runBlockingTest {
         viewModel.artifactCollectionsLiveData.observeForever(artifactCollectionsObserver)
 
-        verify(exactly = 1) { getOrCreateArtifactCollections.buildObservable(any()) }
+        verify(exactly = 1) { streamArtifactCollections.buildFlow(any()) }
         verify(exactly = 1) {
             artifactCollectionsObserver.onChanged(
-                    dummyArtifactCollections
+                dummyArtifactCollections
             )
         }
     }

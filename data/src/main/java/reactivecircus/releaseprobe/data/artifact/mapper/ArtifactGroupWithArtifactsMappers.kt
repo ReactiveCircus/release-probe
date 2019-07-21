@@ -27,7 +27,7 @@ fun ArtifactGroupWithArtifactsEntity.toModel(): ArtifactGroup {
     val artifactGroupEntity = artifactGroup
     val artifactEntities = artifacts
     return ArtifactGroup(
-        requireNotNull(artifactGroupEntity).groupId,
+        artifactGroupEntity.groupId,
         artifactEntities.map { artifactEntity ->
             Artifact(
                 artifactEntity.groupId,

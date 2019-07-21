@@ -1,4 +1,4 @@
-package reactivecircus.blueprint.threading.coroutines
+package reactivecircus.blueprint.threading.rx
 
 import io.reactivex.Scheduler
 

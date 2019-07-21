@@ -9,7 +9,8 @@ import java.util.concurrent.atomic.AtomicReference
 fun currentActivity(): Activity? {
     val currentActivityReference = AtomicReference<Activity>()
     getInstrumentation().runOnMainSync {
-        val resumedActivities = ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(RESUMED)
+        val resumedActivities = ActivityLifecycleMonitorRegistry.getInstance()
+            .getActivitiesInStage(RESUMED)
         if (resumedActivities.iterator().hasNext()) {
             currentActivityReference.set(resumedActivities.iterator().next() as Activity)
         }

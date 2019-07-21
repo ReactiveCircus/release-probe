@@ -3,13 +3,12 @@ package reactivecircus.releaseprobe.remote.mock.di
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.mock.MockRetrofit
-import retrofit2.mock.NetworkBehavior
 import reactivecircus.releaseprobe.remote.artifact.api.GoogleMavenService
 import reactivecircus.releaseprobe.remote.mock.BuildConfig.NETWORK_TIMEOUT_SECONDS
 import reactivecircus.releaseprobe.remote.mock.artifact.api.MockGoogleMavenService
+import retrofit2.Retrofit
+import retrofit2.mock.MockRetrofit
+import retrofit2.mock.NetworkBehavior
 import java.util.concurrent.TimeUnit
 
 private const val MOCK_SERVER_PORT = 5_000
@@ -30,7 +29,6 @@ val mockApiModule = module {
     single {
         Retrofit.Builder()
             .baseUrl(DUMMY_URL)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(get())
             .build()
     }

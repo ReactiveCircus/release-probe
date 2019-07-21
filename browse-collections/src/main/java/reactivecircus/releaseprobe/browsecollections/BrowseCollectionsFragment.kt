@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_browse_collections.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -17,6 +18,7 @@ class BrowseCollectionsFragment : BaseFragment() {
 
     private lateinit var artifactCollectionsAdapter: ArtifactCollectionsAdapter
 
+    @ExperimentalCoroutinesApi
     private val viewModel by viewModel<ArtifactCollectionsViewModel>()
 
     private val animationHelper: AnimationHelper by inject()

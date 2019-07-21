@@ -1,10 +1,10 @@
 package reactivecircus.releaseprobe.testing.di
 
 import android.os.AsyncTask
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.asCoroutineDispatcher
 import org.koin.dsl.module
-import reactivecircus.blueprint.threading.coroutines.SchedulerProvider
+import reactivecircus.blueprint.threading.coroutines.CoroutineDispatchers
 import reactivecircus.releaseprobe.browsecollections.di.browseCollectionsModule
 import reactivecircus.releaseprobe.core.util.AnimationHelper
 import reactivecircus.releaseprobe.data.di.dataModule
@@ -19,12 +19,11 @@ import reactivecircus.releaseprobe.work.di.backgroundWorkModule
 val testAppModule = module {
 
     single {
-        // use AsyncTask.THREAD_POOL_EXECUTOR for io scheduler
-        // as Espresso by default waits for async tasks to complete
-        SchedulerProvider(
-            io = Schedulers.from(AsyncTask.THREAD_POOL_EXECUTOR),
-            computation = Schedulers.computation(),
-            ui = AndroidSchedulers.mainThread()
+        // TODO use proper io dispatcher https://github.com/Kotlin/kotlinx.coroutines/issues/242
+        CoroutineDispatchers(
+            io = AsyncTask.THREAD_POOL_EXECUTOR.asCoroutineDispatcher(),
+            computation = Dispatchers.Default,
+            ui = Dispatchers.Main
         )
     }
 

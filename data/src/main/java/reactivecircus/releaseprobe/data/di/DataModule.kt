@@ -21,12 +21,13 @@ val dataModule = module {
     single {
         ArtifactGroupsWithArtifactsFetcher(
             googleMavenService = get(),
-            schedulerProvider = get()
+            coroutineDispatchers = get()
         )
     }
 
     single {
         ArtifactGroupsWithArtifactsPersister(
+            transactionRunner = get(),
             dao = get()
         )
     }
@@ -52,6 +53,7 @@ val dataModule = module {
 
     single<ArtifactCollectionRepository> {
         ArtifactCollectionRepositoryImpl(
+            databaseTransactionRunner = get(),
             artifactCollectionDao = get(),
             defaultArtifactCollections = get()
         )

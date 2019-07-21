@@ -40,7 +40,7 @@ abstract class BaseScreenTest : KoinComponent {
         Intents.init()
 
         // set up global failure handler
-        Espresso.setFailureHandler(GlobalFailureHandler(ApplicationProvider.getApplicationContext<Context>()))
+        Espresso.setFailureHandler(GlobalFailureHandler(ApplicationProvider.getApplicationContext()))
     }
 
     @After

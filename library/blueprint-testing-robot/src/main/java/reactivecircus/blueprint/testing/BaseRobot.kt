@@ -24,7 +24,6 @@ import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers
-import org.hamcrest.CoreMatchers
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.core.AllOf
@@ -139,9 +138,15 @@ open class RobotActions {
 
     fun selectBottomNavigationItem(@IdRes bottomNavigationViewResId: Int, navItemTitle: String) {
         Espresso.onView(
-            CoreMatchers.allOf(
+            allOf(
                 ViewMatchers.withId(com.google.android.material.R.id.icon),
-                ViewMatchers.hasSibling(ViewMatchers.hasDescendant(ViewMatchers.withText(navItemTitle))),
+                ViewMatchers.hasSibling(
+                    ViewMatchers.hasDescendant(
+                        ViewMatchers.withText(
+                            navItemTitle
+                        )
+                    )
+                ),
                 ViewMatchers.isDescendantOfA(ViewMatchers.withId(bottomNavigationViewResId))
             )
         )
@@ -226,7 +231,15 @@ open class RobotAssertions {
 
     fun viewContainsText(@IdRes viewId: Int, expected: String) {
         Espresso.onView(ViewMatchers.withId(viewId))
-            .check(ViewAssertions.matches(ViewMatchers.withText(StringContains.containsString(expected))))
+            .check(
+                ViewAssertions.matches(
+                    ViewMatchers.withText(
+                        StringContains.containsString(
+                            expected
+                        )
+                    )
+                )
+            )
     }
 
     fun viewStartsWithText(expected: String, @IdRes parentResId: Int) {
@@ -318,19 +331,30 @@ open class RobotAssertions {
     }
 
     fun recyclerViewHasSize(@IdRes recyclerViewId: Int, size: Int) {
-        Espresso.onView(AllOf.allOf<View>(ViewMatchers.withId(recyclerViewId), ViewMatchers.isDisplayed()))
+        Espresso.onView(
+            AllOf.allOf<View>(
+                ViewMatchers.withId(recyclerViewId),
+                ViewMatchers.isDisplayed()
+            )
+        )
             .check(RecyclerViewItemCountAssertion.hasSize(size))
     }
 
     fun viewDisplayedInRecyclerView(@IdRes recyclerViewId: Int, @IdRes vararg viewIds: Int) {
-        val recyclerView = requireNotNull(currentActivity()).findViewById(recyclerViewId) as RecyclerView
+        val recyclerView =
+            requireNotNull(currentActivity()).findViewById(recyclerViewId) as RecyclerView
         val layoutManager = recyclerView.layoutManager as LinearLayoutManager
         val visibleCount = layoutManager.findLastVisibleItemPosition() + 1
 
         Assert.assertTrue(visibleCount > 0)
         (0 until visibleCount).forEach { index ->
             // scroll to the item to make sure it's visible
-            Espresso.onView(AllOf.allOf(ViewMatchers.withId(recyclerViewId), ViewMatchers.isDisplayed()))
+            Espresso.onView(
+                AllOf.allOf(
+                    ViewMatchers.withId(recyclerViewId),
+                    ViewMatchers.isDisplayed()
+                )
+            )
                 .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(index))
 
             viewIds.forEach { viewId ->
@@ -456,7 +480,8 @@ open class RobotAssertions {
     }
 
     inline fun <reified F : Fragment> fragmentDisplayed(tag: String) {
-        val fragment = (currentActivity() as FragmentActivity).supportFragmentManager.findFragmentByTag(tag)
+        val fragment =
+            (currentActivity() as FragmentActivity).supportFragmentManager.findFragmentByTag(tag)
         Assert.assertTrue(fragment != null && fragment.isVisible && fragment is F)
     }
 

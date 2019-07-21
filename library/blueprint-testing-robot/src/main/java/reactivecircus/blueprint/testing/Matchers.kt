@@ -340,7 +340,7 @@ class RecyclerViewMatcher(private val recyclerViewId: Int) {
             var itemView: View? = null
 
             override fun describeTo(description: Description) {
-                var idDescription = Integer.toString(recyclerViewId)
+                var idDescription = recyclerViewId.toString()
                 if (resources != null) {
                     idDescription = try {
                         requireNotNull(resources).getResourceName(recyclerViewId)
