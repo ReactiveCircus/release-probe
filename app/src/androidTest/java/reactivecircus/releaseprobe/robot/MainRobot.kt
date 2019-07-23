@@ -2,36 +2,40 @@ package reactivecircus.releaseprobe.robot
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
-import reactivecircus.releaseprobe.R
 import reactivecircus.blueprint.testing.BaseRobot
 import reactivecircus.blueprint.testing.RobotActions
 import reactivecircus.blueprint.testing.RobotAssertions
+import reactivecircus.releaseprobe.R
 
 fun mainScreen(block: MainRobot.() -> Unit) = MainRobot().apply { block() }
 
 class MainRobot : BaseRobot<MainRobotActions, MainRobotAssertions>(
-        MainRobotActions(), MainRobotAssertions()
+    MainRobotActions(), MainRobotAssertions()
 )
 
 class MainRobotActions : RobotActions() {
 
     fun selectFeedsNavItem() {
-        val navItemTitle = getApplicationContext<Context>().resources.getString(R.string.menu_title_feeds)
+        val navItemTitle =
+            getApplicationContext<Context>().resources.getString(R.string.menu_title_feeds)
         selectBottomNavigationItem(R.id.bottomNavigationView, navItemTitle)
     }
 
     fun selectWatchlistNavItem() {
-        val navItemTitle = getApplicationContext<Context>().resources.getString(R.string.menu_title_watchlist)
+        val navItemTitle =
+            getApplicationContext<Context>().resources.getString(R.string.menu_title_watchlist)
         selectBottomNavigationItem(R.id.bottomNavigationView, navItemTitle)
     }
 
     fun selectBrowseCollectionsNavItem() {
-        val navItemTitle = getApplicationContext<Context>().resources.getString(R.string.menu_title_browse)
+        val navItemTitle =
+            getApplicationContext<Context>().resources.getString(R.string.menu_title_browse)
         selectBottomNavigationItem(R.id.bottomNavigationView, navItemTitle)
     }
 
     fun selectSettingsNavItem() {
-        val navItemTitle = getApplicationContext<Context>().resources.getString(R.string.menu_title_settings)
+        val navItemTitle =
+            getApplicationContext<Context>().resources.getString(R.string.menu_title_settings)
         selectBottomNavigationItem(R.id.bottomNavigationView, navItemTitle)
     }
 }
