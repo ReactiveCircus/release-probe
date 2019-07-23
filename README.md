@@ -58,9 +58,9 @@ We use CircleCI 2.0 for CI/CD.
 * **unit_tests** - runs all unit tests
 * **static_analysis** - runs Android Lint and detekt
 
-#### On master branch only
+#### On release branches only
 
-* **deploy_to_play** - deploys the release App Bundle to Google Play's internal 
+* **deploy_to_play** - deploys the release App Bundle to Google Play's internal test channel
 
 ### Docker Container
 [reactivecircus/android-sdk](https://hub.docker.com/r/reactivecircus/android-sdk/) is used for running CI jobs. Dockerfiles are available on [GitHub](https://github.com/reactivecircus/docker-android-images)
