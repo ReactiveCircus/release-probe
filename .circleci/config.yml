@@ -1,14 +1,4 @@
-version: 2.0
-
-# Docker configs
-android_config: &android_config
-  working_directory: ~/release-probe
-  docker:
-      - image: reactivecircus/android-sdk:latest
-  environment:
-    JAVA_TOOL_OPTIONS: "-Xmx1g"
-    GRADLE_OPTS: '-Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
-    TERM: dumb
+version: 2.1
 
 # Cache
 extract_cache_version: &extract_cache_version
@@ -41,15 +31,19 @@ persist_android_workspace: &persist_android_workspace
       - app/build/outputs/bundle/
       - app/build/outputs/mapping/
 
-# Branching filters
-master_only: &master_only
-  filters:
-    branches:
-      only: master
+executors:
+  android:
+    docker:
+      - image: reactivecircus/android-sdk:latest
+    working_directory: ~/release-probe
+    environment:
+      JAVA_TOOL_OPTIONS: "-Xmx1g"
+      GRADLE_OPTS: '-Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
+      TERM: dumb
 
 jobs:
   build:
-    <<: *android_config
+    executor: android
     steps:
       - run:
           name: Setup Environment Variables
@@ -89,7 +83,7 @@ jobs:
       - *save_gradle_cache
 
   unit_tests:
-    <<: *android_config
+    executor: android
     steps:
       - checkout
       - *extract_cache_version
@@ -107,7 +101,7 @@ jobs:
       - *save_gradle_cache
 
   static_analysis:
-    <<: *android_config
+    executor: android
     steps:
       - checkout
       - *extract_cache_version
@@ -128,24 +122,25 @@ jobs:
       - *save_gradle_cache
 
   deploy_to_play:
-    <<: *android_config
+    executor: android
     steps:
       - checkout
       - *extract_cache_version
       - *restore_gradle_cache
       - *attach_workspace
-      # TODO use gradle-play-publisher once custom archivesBaseName is supported for app bundles, and publishing existing apk without building is supported.
+      # TODO use gradle-play-publisher to deploy to internal test track.
       - *save_gradle_cache
 
 workflows:
-  version: 2
-  build_test_deploy:
+  build-test-deploy:
     jobs:
       - build
       - unit_tests
       - static_analysis
       - deploy_to_play:
-          <<: *master_only
+          filters:
+            branches:
+              only: /release\/*/
           requires:
             - build
             - unit_tests
