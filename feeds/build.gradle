@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':core-ui')
+    implementation project(':core-ui')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
@@ -47,10 +47,10 @@ dependencies {
     testImplementation "org.amshove.kluent:kluent-android:${versions.kluent}"
     testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.kotlinx.coroutines}"
-    testImplementation project(path: ':coroutines-testing')
+    testImplementation project(':coroutines-testing')
 
     // Android tests
-    androidTestImplementation project(path: ':testing-infra')
+    androidTestImplementation project(':testing-infra')
     debugImplementation("androidx.fragment:fragment-testing:${versions.androidx.fragment}") {
         exclude group: 'androidx.test'
     }

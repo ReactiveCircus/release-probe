@@ -14,11 +14,11 @@ import reactivecircus.releaseprobe.core.base.BaseFragment
 import reactivecircus.releaseprobe.core.util.AnimationHelper
 import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactCollection
 
+@ExperimentalCoroutinesApi
 class BrowseCollectionsFragment : BaseFragment() {
 
     private lateinit var artifactCollectionsAdapter: ArtifactCollectionsAdapter
 
-    @ExperimentalCoroutinesApi
     private val viewModel by viewModel<ArtifactCollectionsViewModel>()
 
     private val animationHelper: AnimationHelper by inject()

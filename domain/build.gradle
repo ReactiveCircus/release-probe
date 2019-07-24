@@ -3,8 +3,9 @@ plugins {
 }
 
 dependencies {
-    implementation project(path: ':blueprint-interactor-coroutines')
-    implementation project(path: ':blueprint-threading-coroutines')
+    // Blueprint
+    implementation "io.github.reactivecircus.blueprint:blueprint-interactor-coroutines:${versions.blueprint}"
+    implementation "io.github.reactivecircus.blueprint:blueprint-threading-coroutines:${versions.blueprint}"
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"

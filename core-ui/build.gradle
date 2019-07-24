@@ -14,11 +14,13 @@ android {
 }
 
 dependencies {
-    api project(path: ':domain')
-    api project(path: ':blueprint-interactor-coroutines')
-    api project(path: ':blueprint-threading-coroutines')
-    api project(path: ':blueprint-ui')
-    api project(path: ':analytics-api-base')
+    api project(':domain')
+    api project(':analytics-api-base')
+
+    // Blueprint
+    api "io.github.reactivecircus.blueprint:blueprint-interactor-coroutines:${versions.blueprint}"
+    api "io.github.reactivecircus.blueprint:blueprint-threading-coroutines:${versions.blueprint}"
+    api "io.github.reactivecircus.blueprint:blueprint-ui:${versions.blueprint}"
 
     // AndroidX
     api "androidx.annotation:annotation:${versions.androidx.annotation}"

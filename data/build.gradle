@@ -23,10 +23,12 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':domain')
-    implementation project(path: ':blueprint-threading-coroutines')
-    implementation project(path: ':remote-api-base')
-    api project(path: ':persistence')
+    implementation project(':domain')
+    implementation project(':remote-api-base')
+    api project(':persistence')
+
+    // Blueprint
+    implementation "io.github.reactivecircus.blueprint:blueprint-threading-coroutines:${versions.blueprint}"
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
