@@ -17,7 +17,7 @@ android {
 }
 
 dependencies {
-    api project(path: ':remote-api-base')
+    api project(':remote-api-base')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"

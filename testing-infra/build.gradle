@@ -14,16 +14,16 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':core-ui')
-    implementation project(path: ':feeds')
-    implementation project(path: ':watchlist')
-    implementation project(path: ':browse-collections')
-    implementation project(path: ':settings')
+    implementation project(':core-ui')
+    implementation project(':feeds')
+    implementation project(':watchlist')
+    implementation project(':browse-collections')
+    implementation project(':settings')
 
-    api project(path: ':data')
-    implementation project(path: ':remote-api-mock')
+    api project(':data')
+    implementation project(':remote-api-mock')
 
-    implementation project(path: ':background-work')
+    implementation project(':background-work')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
@@ -48,6 +48,6 @@ dependencies {
     api "androidx.test.espresso:espresso-contrib:${versions.androidx.espresso}"
     api "androidx.test.espresso:espresso-intents:${versions.androidx.espresso}"
     api "org.amshove.kluent:kluent-android:${versions.kluent}"
-    api project(path: ':analytics-api-no-op')
-    api project(path: ':blueprint-testing-robot')
+    api project(':analytics-api-no-op')
+    api "io.github.reactivecircus.blueprint:blueprint-testing-robot:${versions.blueprint}"
 }

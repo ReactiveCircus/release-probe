@@ -158,21 +158,21 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':bugsnag-tree')
-    prodImplementation project(path: ':analytics-api-firebase')
-    mockImplementation project(path: ':analytics-api-no-op')
+    implementation project(':bugsnag-tree')
+    prodImplementation project(':analytics-api-firebase')
+    mockImplementation project(':analytics-api-no-op')
 
-    implementation project(path: ':core-ui')
-    implementation project(path: ':feeds')
-    implementation project(path: ':watchlist')
-    implementation project(path: ':browse-collections')
-    implementation project(path: ':settings')
+    implementation project(':core-ui')
+    implementation project(':feeds')
+    implementation project(':watchlist')
+    implementation project(':browse-collections')
+    implementation project(':settings')
 
-    implementation project(path: ':data')
-    prodImplementation project(path: ':remote-api-real')
-    mockImplementation project(path: ':remote-api-mock')
+    implementation project(':data')
+    prodImplementation project(':remote-api-real')
+    mockImplementation project(':remote-api-mock')
 
-    implementation project(path: ':background-work')
+    implementation project(':background-work')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
@@ -205,10 +205,10 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:${versions.androidx.arch}"
     testImplementation "org.koin:koin-test:${versions.koin}"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.kotlinx.coroutines}"
-    testImplementation project(path: ':coroutines-testing')
+    testImplementation project(':coroutines-testing')
 
     // Android tests
-    androidTestImplementation project(path: ':testing-infra')
+    androidTestImplementation project(':testing-infra')
 }
 
 tasks.whenTaskAdded { task ->

@@ -27,7 +27,7 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':domain')
+    implementation project(':domain')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
