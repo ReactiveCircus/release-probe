@@ -1,13 +1,11 @@
 package reactivecircus.releaseprobe.browsecollections.robot
 
-import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import reactivecircus.blueprint.testing.BaseRobot
 import reactivecircus.blueprint.testing.RobotActions
 import reactivecircus.blueprint.testing.RobotAssertions
-import reactivecircus.blueprint.testing.currentActivity
 import reactivecircus.blueprint.testing.scrollToItemInRecyclerView
 import reactivecircus.blueprint.testing.withRecyclerView
 import reactivecircus.releaseprobe.browsecollections.R
@@ -32,11 +30,8 @@ class BrowseCollectionsRobotAssertions : RobotAssertions() {
 
     fun artifactCollectionsDisplayed(artifactCollections: List<ArtifactCollectionEntity>) {
         val recyclerViewId = R.id.artifactCollectionsRecyclerView
-        val recyclerView: RecyclerView =
-            requireNotNull(currentActivity()).findViewById(recyclerViewId)
         val artifactCollectionNameTextViewId = R.id.artifactCollectionNameTextView
         val artifactCollectionDescriptionTextViewId = R.id.artifactCollectionDescriptionTextView
-        val adapter = requireNotNull(recyclerView.adapter)
 
         recyclerViewHasSize(recyclerViewId, artifactCollections.size)
 
