@@ -7,15 +7,15 @@ import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import reactivecircus.blueprint.interactor.EmptyParams
 import reactivecircus.blueprint.interactor.coroutines.FlowInteractor
-import reactivecircus.blueprint.threading.coroutines.CoroutineDispatchers
+import reactivecircus.blueprint.threading.coroutines.CoroutineDispatcherProvider
 import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactCollection
 import reactivecircus.releaseprobe.domain.artifactcollection.repository.ArtifactCollectionRepository
 
 class StreamArtifactCollections(
     private val artifactCollectionRepository: ArtifactCollectionRepository,
-    coroutineDispatchers: CoroutineDispatchers
+    dispatcherProvider: CoroutineDispatcherProvider
 ) : FlowInteractor<EmptyParams, List<ArtifactCollection>>() {
-    override val dispatcher: CoroutineDispatcher = coroutineDispatchers.io
+    override val dispatcher: CoroutineDispatcher = dispatcherProvider.io
 
     @ExperimentalCoroutinesApi
     override fun createFlow(params: EmptyParams): Flow<List<ArtifactCollection>> {

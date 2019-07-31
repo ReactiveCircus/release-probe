@@ -10,21 +10,21 @@ val domainModule = module {
     single {
         FetchArtifactGroups(
             artifactRepository = get(),
-            coroutineDispatchers = get()
+            dispatcherProvider = get()
         )
     }
 
     single {
         StreamArtifactGroups(
             artifactRepository = get(),
-            coroutineDispatchers = get()
+            dispatcherProvider = get()
         )
     }
 
     single {
         StreamArtifactCollections(
             artifactCollectionRepository = get(),
-            coroutineDispatchers = get()
+            dispatcherProvider = get()
         )
     }
 }
