@@ -1,9 +1,9 @@
 include ':app'
 include ':core-ui'
-include ':feeds'
-include ':watchlist'
-include ':browse-collections'
-include ':settings'
+include ':ui-feeds'
+include ':ui-watchlist'
+include ':ui-browse-collections'
+include ':ui-settings'
 include ':testing-infra'
 
 include ':background-work'

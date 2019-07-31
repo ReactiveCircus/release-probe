@@ -162,10 +162,10 @@ dependencies {
     mockImplementation project(':analytics-api-no-op')
 
     implementation project(':core-ui')
-    implementation project(':feeds')
-    implementation project(':watchlist')
-    implementation project(':browse-collections')
-    implementation project(':settings')
+    implementation project(':ui-feeds')
+    implementation project(':ui-watchlist')
+    implementation project(':ui-browse-collections')
+    implementation project(':ui-settings')
 
     implementation project(':data')
     prodImplementation project(':remote-api-real')
