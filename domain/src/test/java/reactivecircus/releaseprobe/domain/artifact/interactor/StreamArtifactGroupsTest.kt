@@ -5,7 +5,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.TestCoroutineDispatcher
-import reactivecircus.blueprint.threading.coroutines.CoroutineDispatchers
+import reactivecircus.blueprint.threading.coroutines.CoroutineDispatcherProvider
 import reactivecircus.releaseprobe.domain.artifact.model.ArtifactGroup
 import reactivecircus.releaseprobe.domain.artifact.repository.ArtifactRepository
 
@@ -18,13 +18,13 @@ class StreamArtifactGroupsTest {
         every { streamAllArtifactGroups() } returns flowOf(artifactGroups)
     }
 
-    private val coroutineDispatchers = mockk<CoroutineDispatchers> {
+    private val dispatcherProvider = mockk<CoroutineDispatcherProvider> {
         every { io } returns TestCoroutineDispatcher()
     }
 
     val streamArtifactGroups = StreamArtifactGroups(
         artifactRepository,
-        coroutineDispatchers
+        dispatcherProvider
     )
 
     // TODO test filtering by keywords, versions order etc

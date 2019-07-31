@@ -21,7 +21,7 @@ val dataModule = module {
     single {
         ArtifactGroupsWithArtifactsFetcher(
             googleMavenService = get(),
-            coroutineDispatchers = get()
+            dispatcherProvider = get()
         )
     }
 

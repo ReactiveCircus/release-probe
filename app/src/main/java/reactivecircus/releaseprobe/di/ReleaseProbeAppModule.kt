@@ -2,7 +2,7 @@ package reactivecircus.releaseprobe.di
 
 import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module
-import reactivecircus.blueprint.threading.coroutines.CoroutineDispatchers
+import reactivecircus.blueprint.threading.coroutines.CoroutineDispatcherProvider
 import reactivecircus.releaseprobe.browsecollections.di.browseCollectionsModule
 import reactivecircus.releaseprobe.core.util.AnimationHelper
 import reactivecircus.releaseprobe.data.di.dataModule
@@ -15,7 +15,7 @@ import reactivecircus.releaseprobe.work.di.backgroundWorkModule
 val appModule = module {
 
     single {
-        CoroutineDispatchers(
+        CoroutineDispatcherProvider(
             io = Dispatchers.IO,
             computation = Dispatchers.Default,
             ui = Dispatchers.Main

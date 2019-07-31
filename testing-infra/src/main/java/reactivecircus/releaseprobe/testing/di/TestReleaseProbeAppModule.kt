@@ -4,7 +4,7 @@ import android.os.AsyncTask
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
 import org.koin.dsl.module
-import reactivecircus.blueprint.threading.coroutines.CoroutineDispatchers
+import reactivecircus.blueprint.threading.coroutines.CoroutineDispatcherProvider
 import reactivecircus.releaseprobe.browsecollections.di.browseCollectionsModule
 import reactivecircus.releaseprobe.core.util.AnimationHelper
 import reactivecircus.releaseprobe.data.di.dataModule
@@ -20,7 +20,7 @@ val testAppModule = module {
 
     single {
         // TODO use proper io dispatcher https://github.com/Kotlin/kotlinx.coroutines/issues/242
-        CoroutineDispatchers(
+        CoroutineDispatcherProvider(
             io = AsyncTask.THREAD_POOL_EXECUTOR.asCoroutineDispatcher(),
             computation = Dispatchers.Default,
             ui = Dispatchers.Main

@@ -13,7 +13,7 @@ import kotlinx.coroutines.test.runBlockingTest
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
 import reactivecircus.blueprint.interactor.EmptyParams
-import reactivecircus.blueprint.threading.coroutines.CoroutineDispatchers
+import reactivecircus.blueprint.threading.coroutines.CoroutineDispatcherProvider
 import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactCollection
 import reactivecircus.releaseprobe.domain.artifactcollection.repository.ArtifactCollectionRepository
 
@@ -40,13 +40,13 @@ class StreamArtifactCollectionsTest {
         coEvery { insertDefaultArtifactCollections() } returns Unit
     }
 
-    private val coroutineDispatchers = mockk<CoroutineDispatchers> {
+    private val dispatcherProvider = mockk<CoroutineDispatcherProvider> {
         every { io } returns TestCoroutineDispatcher()
     }
 
     private val streamArtifactCollections = StreamArtifactCollections(
         artifactCollectionRepository,
-        coroutineDispatchers
+        dispatcherProvider
     )
 
     @Test

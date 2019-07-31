@@ -14,7 +14,7 @@ import org.amshove.kluent.invoking
 import org.amshove.kluent.shouldEqual
 import org.amshove.kluent.shouldThrow
 import org.junit.Test
-import reactivecircus.blueprint.threading.coroutines.CoroutineDispatchers
+import reactivecircus.blueprint.threading.coroutines.CoroutineDispatcherProvider
 import reactivecircus.releaseprobe.persistence.artifact.entity.ArtifactEntity
 import reactivecircus.releaseprobe.persistence.artifact.entity.ArtifactGroupEntity
 import reactivecircus.releaseprobe.persistence.artifact.entity.ArtifactGroupWithArtifactsEntity
@@ -61,13 +61,13 @@ class ArtifactGroupsWithArtifactsFetcherTest {
 
     private val service = mockk<GoogleMavenService>()
 
-    private val coroutineDispatchers = mockk<CoroutineDispatchers> {
+    private val dispatcherProvider = mockk<CoroutineDispatcherProvider> {
         every { io } returns testDispatcher
     }
 
     private val fetcher = ArtifactGroupsWithArtifactsFetcher(
         service,
-        coroutineDispatchers
+        dispatcherProvider
     )
 
     @Test
