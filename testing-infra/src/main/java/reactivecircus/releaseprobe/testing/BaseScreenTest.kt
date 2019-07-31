@@ -19,8 +19,6 @@ import androidx.test.runner.screenshot.Screenshot
 import org.hamcrest.Matcher
 import org.junit.After
 import org.junit.Before
-import org.junit.Rule
-import org.junit.rules.TestName
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import reactivecircus.releaseprobe.data.artifactcollection.DefaultArtifactCollections
@@ -30,10 +28,6 @@ import reactivecircus.releaseprobe.core.R as ResourcesR
 abstract class BaseScreenTest : KoinComponent {
 
     val defaultArtifactCollections: DefaultArtifactCollections by inject()
-
-    @Rule
-    @JvmField
-    val testName = TestName()
 
     @Before
     open fun setUp() {
