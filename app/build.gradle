@@ -23,7 +23,7 @@ android {
         archivesBaseName = "ReleaseProbe-$versionName"
 
         testApplicationId 'reactivecircus.releaseprobe.test'
-        testInstrumentationRunner "reactivecircus.releaseprobe.MainTestRunner"
+        testInstrumentationRunner "reactivecircus.releaseprobe.IntegrationTestRunner"
 
         // only support English for now
         resConfigs "en"
@@ -124,8 +124,8 @@ android {
     // filter out mockRelease and prodDebug (when on CI) builds.
     android.variantFilter { variant ->
         variant.getFlavors().each { flavor ->
-            if (flavor.name != 'prod' && variant.buildType.name == 'release' ||
-                    isCiBuild && flavor.name == 'prod' && variant.buildType.name == 'debug') {
+            if (flavor.name != "prod" && variant.buildType.name == "release" ||
+                    isCiBuild && flavor.name == "prod" && variant.buildType.name == "debug") {
                 variant.setIgnore(true)
             }
         }
@@ -222,6 +222,13 @@ tasks.whenTaskAdded { task ->
 android.applicationVariants.all { variant ->
     // disable google services plugin for mock flavor
     tasks.named("process${variant.name.capitalize()}GoogleServices").configure {
-        it.enabled = !variant.name.contains("mock")
+        it.enabled = variant.flavorName != "mock"
+    }
+
+    // disable android tests for prod flavor
+    if (variant.flavorName == "prod" && variant.buildType.name == "debug") {
+        tasks.named("connected${variant.name.capitalize()}AndroidTest").configure {
+            it.enabled = false
+        }
     }
 }

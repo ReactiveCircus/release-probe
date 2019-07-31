@@ -12,7 +12,7 @@ import reactivecircus.releaseprobe.persistence.di.persistenceModule
 import reactivecircus.releaseprobe.watchlist.di.watchlistModule
 import reactivecircus.releaseprobe.work.di.backgroundWorkModule
 
-val appModule = module {
+private val appModule = module {
 
     single {
         CoroutineDispatcherProvider(
@@ -25,14 +25,14 @@ val appModule = module {
     single { AnimationHelper() }
 }
 
-val featureModules = listOf(
+val uiModules = listOf(
     feedsModule,
     watchlistModule,
     browseCollectionsModule,
     settingsModule
 )
 
-val modules = featureModules + listOf(
+val modules = uiModules + listOf(
     appModule,
     backgroundWorkModule,
     domainModule,

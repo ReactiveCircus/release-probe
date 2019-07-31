@@ -10,7 +10,7 @@ import reactivecircus.analytics.AnalyticsApi
 import reactivecircus.releaseprobe.testing.di.testModules
 import timber.log.Timber
 
-open class ScreenTestApp : Application() {
+abstract class BaseTestApp : Application() {
 
     private val analyticsApi: AnalyticsApi by inject()
 
@@ -23,10 +23,10 @@ open class ScreenTestApp : Application() {
             logger(EmptyLogger())
 
             // Android context
-            androidContext(this@ScreenTestApp)
+            androidContext(this@BaseTestApp)
 
             // all modules
-            modules(loadKoinModules())
+            modules(testModules + loadUiModules())
         }
 
         // initialize Timber
@@ -36,7 +36,8 @@ open class ScreenTestApp : Application() {
         analyticsApi.setEnableAnalytics(false)
     }
 
-    protected open fun loadKoinModules(): List<Module> {
-        return testModules
-    }
+    /**
+     * Provide the UI modules required for the test app.
+     */
+    protected abstract fun loadUiModules(): List<Module>
 }

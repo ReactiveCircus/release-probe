@@ -15,10 +15,6 @@ android {
 
 dependencies {
     implementation project(':core-ui')
-    implementation project(':ui-feeds')
-    implementation project(':ui-watchlist')
-    implementation project(':ui-browse-collections')
-    implementation project(':ui-settings')
 
     api project(':data')
     implementation project(':remote-api-mock')
