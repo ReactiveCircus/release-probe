@@ -5,11 +5,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
 import org.koin.dsl.module
 import reactivecircus.blueprint.threading.coroutines.CoroutineDispatcherProvider
-import reactivecircus.releaseprobe.core.util.AnimationHelper
+import reactivecircus.releaseprobe.core.util.AnimationConfigs
 import reactivecircus.releaseprobe.data.di.dataModule
 import reactivecircus.releaseprobe.domain.di.domainModule
 import reactivecircus.releaseprobe.persistence.di.persistenceModule
-import reactivecircus.releaseprobe.testing.helper.ScreenTestAnimationHelper
+import reactivecircus.releaseprobe.testing.TestAnimationConfigs
 import reactivecircus.releaseprobe.work.di.backgroundWorkModule
 
 private val testAppModule = module {
@@ -23,7 +23,7 @@ private val testAppModule = module {
         )
     }
 
-    single<AnimationHelper> { ScreenTestAnimationHelper() }
+    single<AnimationConfigs> { TestAnimationConfigs() }
 }
 
 val testModules = listOf(

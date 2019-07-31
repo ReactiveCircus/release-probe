@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonReader
 import java.io.IOException
 import reactivecircus.releaseprobe.remote.artifact.dto.ArtifactDTO
 
-class ArtifactAdapter {
+class ArtifactJsonAdapter {
 
     @FromJson
     @Throws(IOException::class)

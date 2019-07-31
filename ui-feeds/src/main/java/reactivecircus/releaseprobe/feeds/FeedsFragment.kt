@@ -11,8 +11,6 @@ class FeedsFragment : BaseFragment() {
 //    private lateinit var feedsAdapter: FeedsAdapter
 //
 //    private val viewModel: FeedsViewModel
-//
-//    private val animationHelper: AnimationHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

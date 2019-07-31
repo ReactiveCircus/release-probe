@@ -9,8 +9,6 @@ import reactivecircus.releaseprobe.core.base.BaseFragment
 class SettingsFragment : BaseFragment() {
 
 //    private val viewModel by viewModel<SettingsViewModel>()
-//
-//    private val animationHelper: AnimationHelper by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

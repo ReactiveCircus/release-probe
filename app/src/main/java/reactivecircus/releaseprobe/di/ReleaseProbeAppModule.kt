@@ -4,7 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module
 import reactivecircus.blueprint.threading.coroutines.CoroutineDispatcherProvider
 import reactivecircus.releaseprobe.browsecollections.di.browseCollectionsModule
-import reactivecircus.releaseprobe.core.util.AnimationHelper
+import reactivecircus.releaseprobe.core.util.AnimationConfigs
 import reactivecircus.releaseprobe.data.di.dataModule
 import reactivecircus.releaseprobe.domain.di.domainModule
 import reactivecircus.releaseprobe.feeds.di.feedsModule
@@ -22,7 +22,7 @@ private val appModule = module {
         )
     }
 
-    single { AnimationHelper() }
+    single { AnimationConfigs() }
 }
 
 val uiModules = listOf(

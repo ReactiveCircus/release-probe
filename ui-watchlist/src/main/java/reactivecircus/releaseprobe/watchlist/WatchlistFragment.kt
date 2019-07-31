@@ -11,8 +11,6 @@ class WatchlistFragment : BaseFragment() {
 //    private lateinit var watchlistAdapter: WatchlistAdapter
 //
 //    private val viewModel by viewModel<WatchlistViewModel>()
-//
-//    private val animationHelper: AnimationHelper by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
