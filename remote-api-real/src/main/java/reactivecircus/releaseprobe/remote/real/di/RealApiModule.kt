@@ -7,8 +7,8 @@ import org.koin.dsl.module
 import reactivecircus.releaseprobe.remote.artifact.api.GoogleMavenService
 import reactivecircus.releaseprobe.remote.real.BuildConfig
 import reactivecircus.releaseprobe.remote.real.BuildConfig.NETWORK_TIMEOUT_SECONDS
-import reactivecircus.releaseprobe.remote.real.artifact.adapter.ArtifactAdapter
-import reactivecircus.releaseprobe.remote.real.artifact.adapter.ArtifactGroupAdapter
+import reactivecircus.releaseprobe.remote.real.artifact.adapter.ArtifactGroupJsonAdapter
+import reactivecircus.releaseprobe.remote.real.artifact.adapter.ArtifactJsonAdapter
 import reactivecircus.releaseprobe.remote.real.artifact.interceptor.GoogleMavenResponseInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -19,8 +19,8 @@ val realApiModule = module {
 
     single {
         Moshi.Builder()
-            .add(ArtifactGroupAdapter())
-            .add(ArtifactAdapter())
+            .add(ArtifactGroupJsonAdapter())
+            .add(ArtifactJsonAdapter())
             .build()
     }
 

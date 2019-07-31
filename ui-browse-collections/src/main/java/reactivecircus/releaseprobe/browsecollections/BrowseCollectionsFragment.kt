@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_browse_collections.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 import reactivecircus.releaseprobe.core.base.BaseFragment
-import reactivecircus.releaseprobe.core.util.AnimationHelper
 import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactCollection
+import timber.log.Timber
 
 @ExperimentalCoroutinesApi
 class BrowseCollectionsFragment : BaseFragment() {
@@ -20,8 +18,6 @@ class BrowseCollectionsFragment : BaseFragment() {
     private lateinit var artifactCollectionsAdapter: ArtifactCollectionsAdapter
 
     private val viewModel by viewModel<ArtifactCollectionsViewModel>()
-
-    private val animationHelper: AnimationHelper by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +29,7 @@ class BrowseCollectionsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        artifactCollectionsAdapter = ArtifactCollectionsAdapter(actionListener, animationHelper)
+        artifactCollectionsAdapter = ArtifactCollectionsAdapter(actionListener)
         artifactCollectionsRecyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = artifactCollectionsAdapter

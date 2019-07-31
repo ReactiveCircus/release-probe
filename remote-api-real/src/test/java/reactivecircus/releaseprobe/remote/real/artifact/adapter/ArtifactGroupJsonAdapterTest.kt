@@ -5,7 +5,7 @@ import okio.Buffer
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
 
-class ArtifactGroupAdapterTest {
+class ArtifactGroupJsonAdapterTest {
 
     private val artifactGroupsJson = "{\"metadata\":" +
             "{\"androidx.core\":\"\"," +
@@ -13,7 +13,7 @@ class ArtifactGroupAdapterTest {
             "\"androidx.room\":\"\"}" +
             "}"
 
-    private val adapter = ArtifactGroupAdapter()
+    private val adapter = ArtifactGroupJsonAdapter()
 
     @Test
     fun `should convert json to list of ArtifactGroups`() {

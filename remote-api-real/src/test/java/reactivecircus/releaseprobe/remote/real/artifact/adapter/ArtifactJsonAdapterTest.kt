@@ -5,7 +5,7 @@ import okio.Buffer
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
 
-class ArtifactAdapterTest {
+class ArtifactJsonAdapterTest {
 
     private val artifactsJson = "{\"android.arch.lifecycle\":{" +
             "\"livedata\":{\"versions\":\"1.1.0,1.1.1\"}," +
@@ -13,7 +13,7 @@ class ArtifactAdapterTest {
             "\"compiler\":{\"versions\":\"1.0.0-alpha1,1.0.0-alpha2,1.0.0-alpha3\"}" +
             "}}"
 
-    private val adapter = ArtifactAdapter()
+    private val adapter = ArtifactJsonAdapter()
 
     @Test
     fun `should convert json to list of Artifacts`() {

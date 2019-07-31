@@ -1,8 +1,8 @@
-package reactivecircus.releaseprobe.testing.helper
+package reactivecircus.releaseprobe.testing
 
-import reactivecircus.releaseprobe.core.util.AnimationHelper
+import reactivecircus.releaseprobe.core.util.AnimationConfigs
 
-class ScreenTestAnimationHelper : AnimationHelper() {
+class TestAnimationConfigs : AnimationConfigs() {
 
     override val defaultStartOffset: Int
         get() = 0

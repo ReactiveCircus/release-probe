@@ -2,10 +2,10 @@ package reactivecircus.releaseprobe.remote.real.artifact.adapter
 
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.JsonReader
-import java.io.IOException
 import reactivecircus.releaseprobe.remote.artifact.dto.ArtifactGroupDTO
+import java.io.IOException
 
-class ArtifactGroupAdapter {
+class ArtifactGroupJsonAdapter {
 
     @FromJson
     @Throws(IOException::class)

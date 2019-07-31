@@ -11,15 +11,19 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_artifact_collection.view.*
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 import reactivecircus.blueprint.ui.extension.isAnimationOn
+import reactivecircus.releaseprobe.core.util.AnimationConfigs
 import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactCollection
 import reactivecircus.releaseprobe.core.R as ResourcesR
-import reactivecircus.releaseprobe.core.util.AnimationHelper
 
 class ArtifactCollectionsAdapter(
-    private val actionListener: ActionListener,
-    private val animationHelper: AnimationHelper
-) : ListAdapter<ArtifactCollection, ArtifactCollectionViewHolder>(diffCallback) {
+    private val actionListener: ActionListener
+) : ListAdapter<ArtifactCollection, ArtifactCollectionViewHolder>(diffCallback), KoinComponent {
+
+    private val animationConfigs: AnimationConfigs by inject()
+
     private var lastAnimatedPosition = -1
 
     interface ActionListener {
@@ -37,7 +41,7 @@ class ArtifactCollectionsAdapter(
 
         if (holder.adapterPosition > lastAnimatedPosition && holder.itemView.context.isAnimationOn()) {
             val animation = AnimationUtils.loadAnimation(holder.itemView.context, ResourcesR.anim.slide_in_and_fade_in)
-            animation.startOffset = (animationHelper.defaultListItemAnimationStartOffset *
+            animation.startOffset = (animationConfigs.defaultListItemAnimationStartOffset *
                     holder.adapterPosition).toLong()
             holder.itemView.startAnimation(animation)
             lastAnimatedPosition = holder.adapterPosition
