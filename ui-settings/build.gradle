@@ -14,7 +14,7 @@ android {
         targetSdkVersion buildConfig.targetSdk
 
         testApplicationId 'reactivecircus.releaseprobe.settings.test'
-        testInstrumentationRunner "reactivecircus.releaseprobe.testing.ScreenTestRunner"
+        testInstrumentationRunner "reactivecircus.releaseprobe.settings.ScreenTestRunner"
     }
 
     buildTypes {
