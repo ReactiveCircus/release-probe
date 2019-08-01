@@ -24,7 +24,7 @@ buildscript {
             firebase                  : [
                     core: '17.0.1'
             ],
-            blueprint                 : '1.0.0-SNAPSHOT',
+            blueprint                 : '1.0.1',
             androidx                  : [
                     core              : '1.2.0-alpha02',
                     annotation        : '1.1.0',
@@ -54,7 +54,7 @@ buildscript {
             ],
             material                  : '1.1.0-alpha09',
             okhttp                    : '4.0.1',
-            retrofit                  : '2.6.0',
+            retrofit                  : '2.6.1',
             moshi                     : '1.8.0',
             json                      : '20180130',
             rxJava                    : '2.2.10',
@@ -87,7 +87,6 @@ allprojects {
         mavenCentral()
         google()
         jcenter()
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 
     configurations.all {
