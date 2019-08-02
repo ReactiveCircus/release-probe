@@ -7,7 +7,7 @@ import reactivecircus.releaseprobe.persistence.artifactcollection.entity.Artifac
 class ArtifactCollectionMappersTest {
 
     @Test
-    fun `should transform ArtifactCollectionEntity to ArtifactCollection model`() {
+    fun `transform ArtifactCollectionEntity to ArtifactCollection model`() {
         val artifactCollectionEntity = ArtifactCollectionEntity(
                 "AndroidX",
                 "Android extension libraries - a repackage of the Android Support Library, following semantic versioning",

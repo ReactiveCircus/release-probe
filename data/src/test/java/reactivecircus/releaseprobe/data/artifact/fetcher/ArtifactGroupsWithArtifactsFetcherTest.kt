@@ -71,7 +71,7 @@ class ArtifactGroupsWithArtifactsFetcherTest {
     )
 
     @Test
-    fun `should fetch all artifact groups, followed by the artifacts for each group concurrently, maintaining order`() =
+    fun `fetch all artifact groups, followed by the artifacts for each group concurrently, maintaining order`() =
         testDispatcher.runBlockingTest {
             val fetchArtifactsDuration1 = 1000L
             val fetchArtifactsDuration2 = 5000L
@@ -178,7 +178,7 @@ class ArtifactGroupsWithArtifactsFetcherTest {
         }
 
     @Test
-    fun `should throw exception when fetching all artifact groups fails`() =
+    fun `throw exception when fetching all artifact groups fails`() =
         testDispatcher.runBlockingTest {
             coEvery { service.fetchArtifactGroups() } throws IOException()
 
@@ -193,7 +193,7 @@ class ArtifactGroupsWithArtifactsFetcherTest {
         }
 
     @Test
-    fun `should throw exception when fetching any artifact fails`() =
+    fun `throw exception when fetching any artifact fails`() =
         testDispatcher.runBlockingTest {
             // all artifact groups
             coEvery { service.fetchArtifactGroups() } returns listOf(

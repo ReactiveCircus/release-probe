@@ -50,7 +50,7 @@ class StreamArtifactCollectionsTest {
     )
 
     @Test
-    fun `should stream artifact collections from repository when there are existing artifact collections`() =
+    fun `stream artifact collections from repository when there are existing artifact collections`() =
         runBlockingTest {
             coEvery { artifactCollectionRepository.getArtifactCollections() } returns dummyArtifactCollections
             coEvery { artifactCollectionRepository.streamArtifactCollections() } returns flowOf(
@@ -68,7 +68,7 @@ class StreamArtifactCollectionsTest {
         }
 
     @Test
-    fun `should create default and stream artifact collections when no artifact collections exist`() =
+    fun `create default and stream artifact collections when no artifact collections exist`() =
         runBlockingTest {
             coEvery { artifactCollectionRepository.getArtifactCollections() } returns emptyList()
             coEvery { artifactCollectionRepository.streamArtifactCollections() } returns flowOf(

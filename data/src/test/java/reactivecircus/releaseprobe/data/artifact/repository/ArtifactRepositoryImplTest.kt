@@ -43,14 +43,14 @@ class ArtifactRepositoryImplTest {
     private val artifactRepository = ArtifactRepositoryImpl(artifactGroupsWithArtifactsStore)
 
     @Test
-    fun `should get all artifact groups from store`() = testDispatcher.runBlockingTest {
+    fun `get all artifact groups from store`() = testDispatcher.runBlockingTest {
         val results = artifactRepository.streamAllArtifactGroups().single()
         verify(exactly = 1) { artifactGroupsWithArtifactsStore.get(BarCode.empty()) }
         results shouldEqual dummyArtifactGroups
     }
 
     @Test
-    fun `should fetch artifact groups from store`() = testDispatcher.runBlockingTest {
+    fun `fetch artifact groups from store`() = testDispatcher.runBlockingTest {
         val results = artifactRepository.fetchAllArtifactGroups().single()
         verify(exactly = 1) { artifactGroupsWithArtifactsStore.fetch(BarCode.empty()) }
         results shouldEqual dummyArtifactGroups

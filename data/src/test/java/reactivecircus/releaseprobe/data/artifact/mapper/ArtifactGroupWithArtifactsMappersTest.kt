@@ -12,7 +12,7 @@ import reactivecircus.releaseprobe.remote.artifact.dto.ArtifactGroupDTO
 class ArtifactGroupWithArtifactsMappersTest {
 
     @Test
-    fun `should transform pair of ArtifactGroupDTO and list of ArtifactDTOs to ArtifactGroupWithArtifactsEntity`() {
+    fun `transform pair of ArtifactGroupDTO and list of ArtifactDTOs to ArtifactGroupWithArtifactsEntity`() {
         val artifactGroupDTO = ArtifactGroupDTO("androidx.test")
         val artifactDTOs = listOf(
                 ArtifactDTO(
@@ -52,7 +52,7 @@ class ArtifactGroupWithArtifactsMappersTest {
     }
 
     @Test
-    fun `should transform ArtifactGroupWithArtifactsEntity to ArtifactGroup model`() {
+    fun `transform ArtifactGroupWithArtifactsEntity to ArtifactGroup model`() {
         val artifactGroupEntity = ArtifactGroupEntity("androidx.test")
         val artifactEntities = listOf(
             ArtifactEntity(

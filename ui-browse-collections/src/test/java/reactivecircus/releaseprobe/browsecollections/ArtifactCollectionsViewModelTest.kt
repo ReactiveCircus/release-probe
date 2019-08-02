@@ -37,7 +37,7 @@ class ArtifactCollectionsViewModelTest {
     }
 
     @Test
-    fun `should emit Artifact Collections when initialized`() = runBlockingTest {
+    fun `emit Artifact Collections when initialized`() = runBlockingTest {
         viewModel.artifactCollectionsLiveData.observeForever(artifactCollectionsObserver)
 
         verify(exactly = 1) { streamArtifactCollections.buildFlow(any()) }

@@ -62,7 +62,7 @@ class ArtifactCollectionRepositoryImplTest {
     )
 
     @Test
-    fun `should stream artifact collections from dao`() = runBlockingTest {
+    fun `stream artifact collections from dao`() = runBlockingTest {
         val result = artifactCollectionRepository.streamArtifactCollections().single()
         verify(exactly = 1) {
             artifactCollectionDao.allArtifactCollections()
@@ -71,7 +71,7 @@ class ArtifactCollectionRepositoryImplTest {
     }
 
     @Test
-    fun `should get artifact collections from dao`() = runBlockingTest {
+    fun `get artifact collections from dao`() = runBlockingTest {
         val result = artifactCollectionRepository.getArtifactCollections()
         verify(exactly = 1) {
             artifactCollectionDao.allArtifactCollections()
@@ -80,7 +80,7 @@ class ArtifactCollectionRepositoryImplTest {
     }
 
     @Test
-    fun `should insert default artifact collections to dao when subscribed`() = runBlockingTest {
+    fun `insert default artifact collections to dao when subscribed`() = runBlockingTest {
         artifactCollectionRepository.insertDefaultArtifactCollections()
         coVerify(exactly = 1) {
             artifactCollectionDao.insertArtifactCollections(defaultArtifactCollections.get())
