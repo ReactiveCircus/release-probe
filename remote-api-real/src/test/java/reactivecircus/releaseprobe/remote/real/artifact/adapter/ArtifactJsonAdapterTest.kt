@@ -16,7 +16,7 @@ class ArtifactJsonAdapterTest {
     private val adapter = ArtifactJsonAdapter()
 
     @Test
-    fun `should convert json to list of Artifacts`() {
+    fun `convert json to list of Artifacts`() {
         val reader = JsonReader.of(Buffer().writeUtf8(artifactsJson))
         adapter.fromJson(reader).sortedWith(compareBy { it.artifactId }).run {
             size shouldEqual 3

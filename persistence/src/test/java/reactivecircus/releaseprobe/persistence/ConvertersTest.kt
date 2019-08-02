@@ -8,28 +8,28 @@ class ConvertersTest {
     private val converters = Converters()
 
     @Test
-    fun `fromCommaSeparatedString should convert valid comma separated string to list of strings`() {
+    fun `convert valid comma separated string to list of strings`() {
         val commaSeparatedString = "1.0.0-alpha1, 1.0.0-alpha2, 1.0.0-alpha3, 1.1.0"
-        val result = converters.fromCommaSeparatedString(commaSeparatedString)
+        val result = converters.commaSeparatedStringToListOfStrings(commaSeparatedString)
         result shouldEqual listOf("1.0.0-alpha1", "1.0.0-alpha2", "1.0.0-alpha3", "1.1.0")
     }
 
     @Test
-    fun `fromCommaSeparatedString should convert string with no comma to a single-item list of strings`() {
+    fun `convert string with no comma to a single-item list of strings`() {
         val commaSeparatedString = "1.0.0"
-        val result = converters.fromCommaSeparatedString(commaSeparatedString)
+        val result = converters.commaSeparatedStringToListOfStrings(commaSeparatedString)
         result shouldEqual listOf("1.0.0")
     }
 
     @Test
-    fun `listOfStringsToCommaSeparatedString should convert list of strings to comma separated string`() {
+    fun `convert list of strings to comma separated string`() {
         val listOfStrings = listOf("1.0.0-alpha1", "1.0.0-alpha2", "1.0.0-alpha3", "1.1.0")
         val result = converters.listOfStringsToCommaSeparatedString(listOfStrings)
         result shouldEqual "1.0.0-alpha1,1.0.0-alpha2,1.0.0-alpha3,1.1.0"
     }
 
     @Test
-    fun `listOfStringsToCommaSeparatedString should convert single-item list of strings a string with no comma`() {
+    fun `convert single-item list of strings a string with no comma`() {
         val listOfStrings = listOf("1.0.0")
         val result = converters.listOfStringsToCommaSeparatedString(listOfStrings)
         result shouldEqual "1.0.0"

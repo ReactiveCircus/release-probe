@@ -37,7 +37,7 @@ class GoogleMavenResponseInterceptorTest {
     }
 
     @Test
-    fun `should convert raw XML response to JSON response when response is successful`() {
+    fun `convert raw XML response to JSON response when response is successful`() {
         server.enqueue(MockResponse().setResponseCode(200).setBody(dummyRawXmlResponse))
         val request = Request.Builder()
             .url(server.url("/"))
@@ -59,7 +59,7 @@ class GoogleMavenResponseInterceptorTest {
     }
 
     @Test
-    fun `should NOT convert raw XML response to JSON response when response is unsuccessful`() {
+    fun `does not convert raw XML response to JSON response when response is unsuccessful`() {
         server.enqueue(MockResponse().setResponseCode(500))
         val request = Request.Builder()
             .url(server.url("/"))

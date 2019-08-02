@@ -56,7 +56,7 @@ class ArtifactGroupsWithArtifactsPersisterTest {
     private val persister = ArtifactGroupsWithArtifactsPersister(TestTransactionRunner, dao)
 
     @Test
-    fun `should read`() {
+    fun `read from persister`() {
         val testObserver = persister.read(BarCode.empty()).test()
 
         verify(exactly = 1) {
@@ -66,7 +66,7 @@ class ArtifactGroupsWithArtifactsPersisterTest {
     }
 
     @Test
-    fun `should write`() {
+    fun `write to persister`() {
         persister.write(BarCode.empty(), dummyArtifactGroupsWithArtifactsEntities)
         coVerify(exactly = 1) {
             dao.insertArtifactGroupsWithArtifacts(dummyArtifactGroupsWithArtifactsEntities)

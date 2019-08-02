@@ -5,7 +5,7 @@ import androidx.room.TypeConverter
 class Converters {
 
     @TypeConverter
-    fun fromCommaSeparatedString(value: String): List<String> {
+    fun commaSeparatedStringToListOfStrings(value: String): List<String> {
         return value.split(",").map { it.trim() }
     }
 
