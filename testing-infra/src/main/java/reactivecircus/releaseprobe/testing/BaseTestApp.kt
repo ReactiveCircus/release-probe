@@ -6,7 +6,9 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.logger.EmptyLogger
 import org.koin.core.module.Module
+import org.koin.dsl.module
 import reactivecircus.analytics.AnalyticsApi
+import reactivecircus.releaseprobe.core.AppNavigator
 import reactivecircus.releaseprobe.testing.di.testModules
 import timber.log.Timber
 
@@ -26,7 +28,7 @@ abstract class BaseTestApp : Application() {
             androidContext(this@BaseTestApp)
 
             // all modules
-            modules(testModules + loadUiModules())
+            modules(testModules + loadUiModules() + listOf(loadNavigatorModule()))
         }
 
         // initialize Timber
@@ -40,4 +42,13 @@ abstract class BaseTestApp : Application() {
      * Provide the UI modules required for the test app.
      */
     protected abstract fun loadUiModules(): List<Module>
+
+    /**
+     * Provide the navigator module - use [NoOpAppNavigator] by default for tests.
+     */
+    protected open fun loadNavigatorModule(): Module {
+        return module {
+            single<AppNavigator> { NoOpAppNavigator() }
+        }
+    }
 }

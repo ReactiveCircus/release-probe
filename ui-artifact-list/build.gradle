@@ -12,14 +12,8 @@ android {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
 
-        testApplicationId 'reactivecircus.releaseprobe.feeds.test'
-        testInstrumentationRunner "reactivecircus.releaseprobe.feeds.ScreenTestRunner"
-    }
-
-    buildTypes {
-        debug {
-            testCoverageEnabled enableCoverage
-        }
+        testApplicationId 'reactivecircus.releaseprobe.artifactlist.test'
+        testInstrumentationRunner "reactivecircus.releaseprobe.artifactlist.ScreenTestRunner"
     }
 
     testOptions {
@@ -36,9 +30,6 @@ dependencies {
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinx.coroutines}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.kotlinx.coroutines}"
-
-    // AndroidX
-    implementation "androidx.paging:paging-runtime-ktx:${versions.androidx.paging}"
 
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"

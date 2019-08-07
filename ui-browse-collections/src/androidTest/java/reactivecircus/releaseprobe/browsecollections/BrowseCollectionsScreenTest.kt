@@ -22,16 +22,4 @@ class BrowseCollectionsScreenTest : BaseScreenTest() {
             }
         }
     }
-
-    @Test
-    fun clickArtifactCollection_browseArtifactsScreenLaunched() {
-        browseArtifactCollectionsScreen {
-            perform {
-                launchFragmentScenario<BrowseCollectionsFragment>().asViewAction()
-                // select the first artifact collection
-                clickArtifactCollection(0)
-            }
-            // TODO
-        }
-    }
 }

@@ -15,41 +15,36 @@ fun browseArtifactCollectionsScreen(block: BrowseCollectionsRobot.() -> Unit) =
     BrowseCollectionsRobot().apply { block() }
 
 class BrowseCollectionsRobot :
-    BaseRobot<BrowseCollectionsRobotActions, BrowseCollectionsRobotAssertions>(
+    BaseRobot<BrowseCollectionsRobot.BrowseCollectionsRobotActions, BrowseCollectionsRobot.BrowseCollectionsRobotAssertions>(
         BrowseCollectionsRobotActions(), BrowseCollectionsRobotAssertions()
-    )
+    ) {
+    class BrowseCollectionsRobotActions : RobotActions()
 
-class BrowseCollectionsRobotActions : RobotActions() {
+    class BrowseCollectionsRobotAssertions : RobotAssertions() {
 
-    fun clickArtifactCollection(position: Int) {
-        clickRecyclerViewItem(R.id.artifactCollectionsRecyclerView, position)
-    }
-}
+        fun artifactCollectionsDisplayed(artifactCollections: List<ArtifactCollectionEntity>) {
+            val recyclerViewId = R.id.artifactCollectionsRecyclerView
+            val artifactCollectionNameTextViewId = R.id.artifactCollectionNameTextView
+            val artifactCollectionDescriptionTextViewId = R.id.artifactCollectionDescriptionTextView
 
-class BrowseCollectionsRobotAssertions : RobotAssertions() {
+            recyclerViewHasSize(recyclerViewId, artifactCollections.size)
 
-    fun artifactCollectionsDisplayed(artifactCollections: List<ArtifactCollectionEntity>) {
-        val recyclerViewId = R.id.artifactCollectionsRecyclerView
-        val artifactCollectionNameTextViewId = R.id.artifactCollectionNameTextView
-        val artifactCollectionDescriptionTextViewId = R.id.artifactCollectionDescriptionTextView
+            artifactCollections.forEachIndexed { index, artifactCollection ->
+                // scroll to the item to make sure it's visible
+                scrollToItemInRecyclerView(recyclerViewId, index)
 
-        recyclerViewHasSize(recyclerViewId, artifactCollections.size)
+                onView(
+                    withRecyclerView(recyclerViewId)
+                        .atPositionOnView(index, artifactCollectionNameTextViewId)
+                )
+                    .check(matches(withText(artifactCollection.name)))
 
-        artifactCollections.forEachIndexed { index, artifactCollection ->
-            // scroll to the item to make sure it's visible
-            scrollToItemInRecyclerView(recyclerViewId, index)
-
-            onView(
-                withRecyclerView(recyclerViewId)
-                    .atPositionOnView(index, artifactCollectionNameTextViewId)
-            )
-                .check(matches(withText(artifactCollection.name)))
-
-            onView(
-                withRecyclerView(recyclerViewId)
-                    .atPositionOnView(index, artifactCollectionDescriptionTextViewId)
-            )
-                .check(matches(withText(artifactCollection.description)))
+                onView(
+                    withRecyclerView(recyclerViewId)
+                        .atPositionOnView(index, artifactCollectionDescriptionTextViewId)
+                )
+                    .check(matches(withText(artifactCollection.description)))
+            }
         }
     }
 }

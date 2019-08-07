@@ -1,31 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/nav_feeds">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navGraph"
+    app:startDestination="@id/feedsFragment">
 
     <fragment
-        android:id="@+id/nav_feeds"
+        android:id="@+id/feedsFragment"
         android:name="reactivecircus.releaseprobe.feeds.FeedsFragment"
         android:label="@string/title_feeds"
-        tools:layout="@layout/fragment_feeds"/>
+        tools:layout="@layout/fragment_feeds" />
 
     <fragment
-        android:id="@+id/nav_watchlist"
+        android:id="@+id/watchlistFragment"
         android:name="reactivecircus.releaseprobe.watchlist.WatchlistFragment"
         android:label="@string/title_watchlist"
-        tools:layout="@layout/fragment_watchlist"/>
+        tools:layout="@layout/fragment_watchlist" />
 
     <fragment
-        android:id="@+id/nav_browse"
+        android:id="@+id/browseCollectionsFragment"
         android:name="reactivecircus.releaseprobe.browsecollections.BrowseCollectionsFragment"
         android:label="@string/title_browse"
-        tools:layout="@layout/fragment_browse_collections"/>
+        tools:layout="@layout/fragment_browse_collections" />
 
     <fragment
-        android:id="@+id/nav_settings"
+        android:id="@+id/settingsFragment"
         android:name="reactivecircus.releaseprobe.settings.SettingsFragment"
         android:label="@string/title_settings"
-        tools:layout="@layout/fragment_settings"/>
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/artifactListFragment"
+        android:name="reactivecircus.releaseprobe.artifactlist.ArtifactListFragment"
+        tools:layout="@layout/fragment_artifact_list" />
+
+    <action android:id="@+id/action_global_artifactListFragment"
+        app:destination="@id/artifactListFragment"
+        app:enterAnim="@android:animator/fade_in"
+        app:exitAnim="@android:animator/fade_out"/>
 
 </navigation>

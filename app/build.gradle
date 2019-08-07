@@ -165,6 +165,7 @@ dependencies {
     implementation project(':ui-feeds')
     implementation project(':ui-watchlist')
     implementation project(':ui-browse-collections')
+    implementation project(':ui-artifact-list')
     implementation project(':ui-settings')
 
     implementation project(':data')
