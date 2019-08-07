@@ -15,7 +15,7 @@ import reactivecircus.releaseprobe.domain.artifactcollection.interactor.StreamAr
 import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactCollection
 
 @ExperimentalCoroutinesApi
-class ArtifactCollectionsViewModelTest {
+class BrowseCollectionsViewModelTest {
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -32,8 +32,8 @@ class ArtifactCollectionsViewModelTest {
     private val artifactCollectionsObserver =
         mockk<Observer<List<ArtifactCollection>>>(relaxed = true)
 
-    private val viewModel: ArtifactCollectionsViewModel by lazy {
-        ArtifactCollectionsViewModel(streamArtifactCollections)
+    private val viewModel: BrowseCollectionsViewModel by lazy {
+        BrowseCollectionsViewModel(streamArtifactCollections)
     }
 
     @Test

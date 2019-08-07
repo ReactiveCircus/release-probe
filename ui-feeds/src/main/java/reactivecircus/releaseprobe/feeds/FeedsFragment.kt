@@ -1,24 +1,15 @@
 package reactivecircus.releaseprobe.feeds
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import reactivecircus.releaseprobe.core.base.BaseFragment
 
-class FeedsFragment : BaseFragment() {
+class FeedsFragment : BaseFragment(R.layout.fragment_feeds) {
 
 //    private lateinit var feedsAdapter: FeedsAdapter
-//
-//    private val viewModel: FeedsViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_feeds, container, false)
-    }
+    private val viewModel by viewModel<FeedsViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

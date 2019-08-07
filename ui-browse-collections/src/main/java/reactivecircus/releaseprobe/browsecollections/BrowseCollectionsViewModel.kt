@@ -13,7 +13,7 @@ import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactColle
 import timber.log.Timber
 
 @UseExperimental(ExperimentalCoroutinesApi::class)
-class ArtifactCollectionsViewModel(
+class BrowseCollectionsViewModel(
     streamArtifactCollections: StreamArtifactCollections
 ) : ViewModel() {
 

@@ -2,12 +2,12 @@ package reactivecircus.releaseprobe
 
 import androidx.test.filters.LargeTest
 import org.junit.Test
-import reactivecircus.releaseprobe.main.MainActivity
+import reactivecircus.releaseprobe.artifactlist.ArtifactListFragment
 import reactivecircus.releaseprobe.robot.mainScreen
 import reactivecircus.releaseprobe.testing.BaseScreenTest
 
 @LargeTest
-class MainScreenTest : BaseScreenTest() {
+class NavigationTest : BaseScreenTest() {
 
     @Test
     fun openMainScreenWithEmptyFeedsAndWatchlist_watchlistDestinationSelected() {
@@ -69,6 +69,23 @@ class MainScreenTest : BaseScreenTest() {
             }
             check {
                 feedsDestinationSelected()
+            }
+        }
+    }
+
+    @Test
+    fun clickArtifactCollection_browseArtifactsScreenLaunched() {
+        mainScreen {
+            given {
+                // TODO given some feeds and watchlist
+            }
+            perform {
+                launchActivityScenario<MainActivity>()
+                selectBrowseCollectionsNavItem()
+                clickArtifactCollection(0)
+            }
+            check {
+                fragmentDisplayed<ArtifactListFragment>(navHostViewId)
             }
         }
     }

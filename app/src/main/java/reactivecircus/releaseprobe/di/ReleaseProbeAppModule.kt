@@ -3,7 +3,10 @@ package reactivecircus.releaseprobe.di
 import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module
 import reactivecircus.blueprint.threading.coroutines.CoroutineDispatcherProvider
+import reactivecircus.releaseprobe.ReleaseProbeAppNavigator
+import reactivecircus.releaseprobe.artifactlist.di.artifactListModule
 import reactivecircus.releaseprobe.browsecollections.di.browseCollectionsModule
+import reactivecircus.releaseprobe.core.AppNavigator
 import reactivecircus.releaseprobe.core.util.AnimationConfigs
 import reactivecircus.releaseprobe.data.di.dataModule
 import reactivecircus.releaseprobe.domain.di.domainModule
@@ -23,13 +26,18 @@ private val appModule = module {
     }
 
     single { AnimationConfigs() }
+
+    single<AppNavigator> {
+        ReleaseProbeAppNavigator()
+    }
 }
 
 val uiModules = listOf(
     feedsModule,
     watchlistModule,
     browseCollectionsModule,
-    settingsModule
+    settingsModule,
+    artifactListModule
 )
 
 val modules = uiModules + listOf(

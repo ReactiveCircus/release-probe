@@ -19,7 +19,8 @@ import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactColle
 import reactivecircus.releaseprobe.core.R as ResourcesR
 
 class ArtifactCollectionsAdapter(
-    private val actionListener: ActionListener
+    private val actionListener: ActionListener,
+    private val animate: Boolean
 ) : ListAdapter<ArtifactCollection, ArtifactCollectionViewHolder>(diffCallback), KoinComponent {
 
     private val animationConfigs: AnimationConfigs by inject()
@@ -39,7 +40,7 @@ class ArtifactCollectionsAdapter(
         val artifactCollection = getItem(position)
         holder.bind(artifactCollection, actionListener)
 
-        if (holder.adapterPosition > lastAnimatedPosition && holder.itemView.context.isAnimationOn()) {
+        if (animate && holder.itemView.context.isAnimationOn()) {
             val animation = AnimationUtils.loadAnimation(holder.itemView.context, ResourcesR.anim.slide_in_and_fade_in)
             animation.startOffset = (animationConfigs.defaultListItemAnimationStartOffset *
                     holder.adapterPosition).toLong()

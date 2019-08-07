@@ -10,7 +10,7 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/Theme.ReleaseProbe.DayNight">
+            android:theme="@style/Theme.ReleaseProbe.Splash">
 
         <provider
                 android:name="androidx.work.impl.WorkManagerInitializer"
@@ -20,15 +20,12 @@
 
         <meta-data android:name="com.bugsnag.android.API_KEY" android:value="${bugsnagApiKey}"/>
 
-        <activity android:name="reactivecircus.releaseprobe.launch.LaunchActivity"
-                  android:theme="@style/Theme.ReleaseProbe.Splash">
+        <activity android:name="reactivecircus.releaseprobe.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity android:name="reactivecircus.releaseprobe.main.MainActivity"/>
 
     </application>
 
