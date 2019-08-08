@@ -1,5 +1,6 @@
 package reactivecircus.releaseprobe.core
 
+import android.app.Activity
 import androidx.navigation.NavController
 
 /**
@@ -7,5 +8,5 @@ import androidx.navigation.NavController
  */
 interface AppNavigator {
 
-    fun navigateToArtifactListScreen(navController: NavController, collectionName: String)
+    fun navigateToArtifactListScreen(activity: Activity, collectionName: String)
 }

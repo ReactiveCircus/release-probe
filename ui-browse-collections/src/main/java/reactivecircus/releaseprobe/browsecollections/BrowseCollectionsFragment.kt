@@ -2,7 +2,6 @@ package reactivecircus.releaseprobe.browsecollections
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_browse_collections.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -40,7 +39,7 @@ class BrowseCollectionsFragment : BaseFragment(R.layout.fragment_browse_collecti
     private val actionListener: ArtifactCollectionsAdapter.ActionListener =
         object : ArtifactCollectionsAdapter.ActionListener {
             override fun onItemClick(artifactCollection: ArtifactCollection) {
-                navigator.navigateToArtifactListScreen(findNavController(), artifactCollection.name)
+                navigator.navigateToArtifactListScreen(requireActivity(), artifactCollection.name)
             }
         }
 }

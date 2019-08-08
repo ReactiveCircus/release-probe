@@ -12,7 +12,7 @@ fun mainScreen(block: MainRobot.() -> Unit) = MainRobot().apply { block() }
 class MainRobot : BaseRobot<MainRobot.MainRobotActions, MainRobot.MainRobotAssertions>(
     MainRobotActions(), MainRobotAssertions()
 ) {
-    val navHostViewId = R.id.navHostFragment
+    val navHostViewId = R.id.mainNavHostFragment
 
     class MainRobotActions : RobotActions() {
 
