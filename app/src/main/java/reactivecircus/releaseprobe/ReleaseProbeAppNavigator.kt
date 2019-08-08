@@ -1,7 +1,8 @@
 package reactivecircus.releaseprobe
 
+import android.app.Activity
 import androidx.core.os.bundleOf
-import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import reactivecircus.releaseprobe.artifactlist.ARG_COLLECTION_KEY
 import reactivecircus.releaseprobe.core.AppNavigator
 
@@ -11,10 +12,10 @@ import reactivecircus.releaseprobe.core.AppNavigator
 class ReleaseProbeAppNavigator : AppNavigator {
 
     override fun navigateToArtifactListScreen(
-        navController: NavController,
+        activity: Activity,
         collectionName: String
     ) {
-        navController.navigate(
+        activity.findNavController(R.id.mainNavHostFragment).navigate(
             R.id.action_global_artifactListFragment,
             bundleOf(ARG_COLLECTION_KEY to collectionName)
         )

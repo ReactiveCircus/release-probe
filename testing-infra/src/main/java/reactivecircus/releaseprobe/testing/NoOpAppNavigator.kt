@@ -1,14 +1,12 @@
 package reactivecircus.releaseprobe.testing
 
-import androidx.navigation.NavController
+import android.app.Activity
 import reactivecircus.releaseprobe.core.AppNavigator
 
 class NoOpAppNavigator : AppNavigator {
 
     override fun navigateToArtifactListScreen(
-        navController: NavController,
+        activity: Activity,
         collectionName: String
-    ) {
-        // TODO
-    }
+    ) = Unit
 }
