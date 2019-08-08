@@ -15,12 +15,13 @@ fun browseArtifactCollectionsScreen(block: BrowseCollectionsRobot.() -> Unit) =
     BrowseCollectionsRobot().apply { block() }
 
 class BrowseCollectionsRobot :
-    BaseRobot<BrowseCollectionsRobot.BrowseCollectionsRobotActions, BrowseCollectionsRobot.BrowseCollectionsRobotAssertions>(
-        BrowseCollectionsRobotActions(), BrowseCollectionsRobotAssertions()
+    BaseRobot<BrowseCollectionsRobot.Actions, BrowseCollectionsRobot.Assertions>(
+        Actions(), Assertions()
     ) {
-    class BrowseCollectionsRobotActions : RobotActions()
 
-    class BrowseCollectionsRobotAssertions : RobotAssertions() {
+    class Actions : RobotActions()
+
+    class Assertions : RobotAssertions() {
 
         fun artifactCollectionsDisplayed(artifactCollections: List<ArtifactCollectionEntity>) {
             val recyclerViewId = R.id.artifactCollectionsRecyclerView

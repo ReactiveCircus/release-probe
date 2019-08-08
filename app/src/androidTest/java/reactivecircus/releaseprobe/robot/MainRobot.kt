@@ -9,12 +9,10 @@ import reactivecircus.releaseprobe.R
 
 fun mainScreen(block: MainRobot.() -> Unit) = MainRobot().apply { block() }
 
-class MainRobot : BaseRobot<MainRobot.MainRobotActions, MainRobot.MainRobotAssertions>(
-    MainRobotActions(), MainRobotAssertions()
-) {
+class MainRobot : BaseRobot<MainRobot.Actions, MainRobot.Assertions>(Actions(), Assertions()) {
     val navHostViewId = R.id.mainNavHostFragment
 
-    class MainRobotActions : RobotActions() {
+    class Actions : RobotActions() {
 
         fun selectFeedsNavItem() {
             val navItemTitle =
@@ -45,7 +43,7 @@ class MainRobot : BaseRobot<MainRobot.MainRobotActions, MainRobot.MainRobotAsser
         }
     }
 
-    class MainRobotAssertions : RobotAssertions() {
+    class Assertions : RobotAssertions() {
 
         fun feedsDestinationSelected() {
             toolbarHasTitle(R.string.title_feeds)
