@@ -3,7 +3,9 @@ package reactivecircus.releaseprobe.persistence.artifactcollection.dao
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.MediumTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runBlockingTest
+import org.amshove.kluent.shouldEqual
 import org.junit.Rule
 import org.junit.Test
 import reactivecircus.releaseprobe.persistence.BaseDaoTest
@@ -46,12 +48,14 @@ class ArtifactCollectionDaoTest : BaseDaoTest() {
 
     @Test
     fun insertArtifactCollections_newItems() = runBlockingTest {
-        dao.allArtifactCollections().test().assertValue(emptyList())
+        dao.allArtifactCollections().first() shouldEqual emptyList()
 
         dao.insertArtifactCollections(listOf(artifactCollectionEntity1, artifactCollectionEntity2))
 
-        dao.allArtifactCollections().test()
-            .assertValue(listOf(artifactCollectionEntity1, artifactCollectionEntity2))
+        dao.allArtifactCollections().first() shouldEqual listOf(
+            artifactCollectionEntity1,
+            artifactCollectionEntity2
+        )
     }
 
     @Test
@@ -62,7 +66,9 @@ class ArtifactCollectionDaoTest : BaseDaoTest() {
         dao.insertArtifactCollections(listOf(artifactCollectionEntity1B))
 
         // same collection should NOT be inserted or updated
-        dao.allArtifactCollections().test()
-            .assertValue(listOf(artifactCollectionEntity1, artifactCollectionEntity2))
+        dao.allArtifactCollections().first() shouldEqual listOf(
+            artifactCollectionEntity1,
+            artifactCollectionEntity2
+        )
     }
 }

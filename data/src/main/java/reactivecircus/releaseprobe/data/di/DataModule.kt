@@ -4,6 +4,7 @@ import com.nytimes.android.external.store3.base.impl.BarCode
 import com.nytimes.android.external.store3.base.impl.MemoryPolicy
 import com.nytimes.android.external.store3.base.impl.StalePolicy
 import com.nytimes.android.external.store3.base.impl.room.StoreRoom
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.dsl.module
 import reactivecircus.releaseprobe.data.BuildConfig
 import reactivecircus.releaseprobe.data.artifact.fetcher.ArtifactGroupsWithArtifactsFetcher
@@ -16,6 +17,7 @@ import reactivecircus.releaseprobe.domain.artifact.repository.ArtifactRepository
 import reactivecircus.releaseprobe.domain.artifactcollection.repository.ArtifactCollectionRepository
 import java.util.concurrent.TimeUnit
 
+@UseExperimental(ExperimentalCoroutinesApi::class)
 val dataModule = module {
 
     single {

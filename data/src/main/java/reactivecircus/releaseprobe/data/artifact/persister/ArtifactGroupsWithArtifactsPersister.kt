@@ -3,14 +3,18 @@ package reactivecircus.releaseprobe.data.artifact.persister
 import com.nytimes.android.external.store3.base.impl.BarCode
 import com.nytimes.android.external.store3.base.room.RoomPersister
 import io.reactivex.Observable
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.rx2.asObservable
 import reactivecircus.releaseprobe.data.artifact.mapper.toModel
 import reactivecircus.releaseprobe.domain.artifact.model.ArtifactGroup
 import reactivecircus.releaseprobe.persistence.DatabaseTransactionRunner
 import reactivecircus.releaseprobe.persistence.artifact.dao.ArtifactGroupDao
 import reactivecircus.releaseprobe.persistence.artifact.entity.ArtifactGroupWithArtifactsEntity
 
+@ExperimentalCoroutinesApi
 class ArtifactGroupsWithArtifactsPersister(
     private val transactionRunner: DatabaseTransactionRunner,
     private val dao: ArtifactGroupDao
@@ -23,7 +27,7 @@ class ArtifactGroupsWithArtifactsPersister(
                     item.toModel()
                 }
             }
-            .toObservable()
+            .asObservable()
     }
 
     override fun write(key: BarCode, raw: List<ArtifactGroupWithArtifactsEntity>) {
