@@ -5,7 +5,7 @@ import com.nytimes.android.external.store3.base.impl.room.StoreRoom
 import io.reactivex.BackpressureStrategy
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.reactive.flow.asFlow
+import kotlinx.coroutines.reactive.asFlow
 import reactivecircus.releaseprobe.domain.artifact.model.ArtifactGroup
 import reactivecircus.releaseprobe.domain.artifact.repository.ArtifactRepository
 
