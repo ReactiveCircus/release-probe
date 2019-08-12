@@ -17,7 +17,7 @@
 
     <dimen name="divider_height">1dp</dimen>
 
-    <dimen name="toolbar_title_text_size">24sp</dimen>
+    <dimen name="toolbar_title_text_size">20sp</dimen>
 
     <!--Emphasis modifiers for "on" colors-->
     <dimen name="alpha_emphasis_high">@dimen/mtrl_emphasis_high_type</dimen>
