@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.reactive.flow.asFlow
+import kotlinx.coroutines.reactive.asFlow
 import reactivecircus.releaseprobe.data.artifactcollection.DefaultArtifactCollections
 import reactivecircus.releaseprobe.data.artifactcollection.mapper.toModel
 import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactCollection
