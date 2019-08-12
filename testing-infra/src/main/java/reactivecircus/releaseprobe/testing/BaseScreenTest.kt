@@ -22,7 +22,7 @@ import org.junit.Before
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import reactivecircus.releaseprobe.data.artifactcollection.DefaultArtifactCollections
-import reactivecircus.releaseprobe.testing.assumption.assumeNetworkDisconnected
+import reactivecircus.releaseprobe.testing.assumption.assumeNetworkConnected
 import reactivecircus.releaseprobe.core.R as ResourcesR
 
 abstract class BaseScreenTest : KoinComponent {
@@ -41,7 +41,7 @@ abstract class BaseScreenTest : KoinComponent {
     open fun tearDown() {
         Intents.release()
         // reset network connectivity
-        assumeNetworkDisconnected()
+        assumeNetworkConnected()
     }
 
     inline fun <reified A : Activity> launchActivityScenario(
