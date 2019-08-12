@@ -16,7 +16,7 @@
     <color name="color_error">#cf6679</color>
 
     <color name="color_on_primary">#254449</color>
-    <color name="color_on_secondary">#000000</color>
+    <color name="color_on_secondary">#ffffff</color>
     <color name="color_on_background">#ffffff</color>
     <color name="color_on_surface">#ffffff</color>
     <color name="color_on_error">#000000</color>
