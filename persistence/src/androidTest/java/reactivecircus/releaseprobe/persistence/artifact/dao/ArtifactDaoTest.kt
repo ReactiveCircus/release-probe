@@ -3,7 +3,10 @@ package reactivecircus.releaseprobe.persistence.artifact.dao
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.MediumTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runBlockingTest
+import org.amshove.kluent.shouldContainAll
+import org.amshove.kluent.shouldEqual
 import org.junit.Rule
 import org.junit.Test
 import reactivecircus.releaseprobe.persistence.BaseDaoTest
@@ -73,15 +76,11 @@ class ArtifactDaoTest : BaseDaoTest() {
             )
         )
 
-        artifactDao.artifactsByGroupId(artifactGroup1.groupId).test().assertValue { artifacts ->
-            // order doesn't matter
-            artifacts.containsAll(listOf(artifactA, artifactB))
-        }
+        val result1 = artifactDao.artifactsByGroupId(artifactGroup1.groupId).first()
+        result1 shouldContainAll listOf(artifactA, artifactB) // order doesn't matter
 
-        artifactDao.artifactsByGroupId(artifactGroup2.groupId).test().assertValue { artifacts ->
-            // order doesn't matter
-            artifacts.containsAll(listOf(artifactC, artifactD))
-        }
+        val result2 = artifactDao.artifactsByGroupId(artifactGroup2.groupId).first()
+        result2 shouldContainAll listOf(artifactC, artifactD) // order doesn't matter
     }
 
     @Test
@@ -92,8 +91,7 @@ class ArtifactDaoTest : BaseDaoTest() {
             )
         )
 
-        artifactDao.artifactsByGroupId(artifactGroup2.groupId).test().assertValue(
-            emptyList()
-        )
+        val result = artifactDao.artifactsByGroupId(artifactGroup2.groupId).first()
+        result shouldEqual emptyList()
     }
 }

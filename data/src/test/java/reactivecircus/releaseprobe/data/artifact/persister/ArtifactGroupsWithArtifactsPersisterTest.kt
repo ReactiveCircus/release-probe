@@ -5,7 +5,8 @@ import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import io.reactivex.Flowable
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
 import org.junit.Test
 import reactivecircus.releaseprobe.data.testutil.TestTransactionRunner
 import reactivecircus.releaseprobe.domain.artifact.model.Artifact
@@ -15,6 +16,7 @@ import reactivecircus.releaseprobe.persistence.artifact.entity.ArtifactEntity
 import reactivecircus.releaseprobe.persistence.artifact.entity.ArtifactGroupEntity
 import reactivecircus.releaseprobe.persistence.artifact.entity.ArtifactGroupWithArtifactsEntity
 
+@ExperimentalCoroutinesApi
 class ArtifactGroupsWithArtifactsPersisterTest {
 
     private val dummyArtifactGroupsWithArtifactsEntities = listOf(
@@ -48,7 +50,7 @@ class ArtifactGroupsWithArtifactsPersisterTest {
     )
 
     private val dao = mockk<ArtifactGroupDao>(relaxUnitFun = true) {
-        every { allArtifactGroupsWithArtifacts() } returns Flowable.just(
+        every { allArtifactGroupsWithArtifacts() } returns flowOf(
             dummyArtifactGroupsWithArtifactsEntities
         )
     }

@@ -3,7 +3,9 @@ package reactivecircus.releaseprobe.persistence.artifact.dao
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.MediumTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runBlockingTest
+import org.amshove.kluent.shouldContainAll
 import org.amshove.kluent.shouldEqual
 import org.junit.Rule
 import org.junit.Test
@@ -85,17 +87,15 @@ class ArtifactGroupDaoTest : BaseDaoTest() {
         dao.insertArtifactGroups(listOf(artifactGroup1))
         dao.insertArtifacts(listOf(artifactA, artifactB))
 
-        dao.allArtifactGroupsWithArtifacts().test().assertValue(listOf(artifactGroupWithArtifacts1))
+        dao.allArtifactGroupsWithArtifacts().first() shouldEqual listOf(artifactGroupWithArtifacts1)
 
         // more artifact groups and their artifacts
         dao.insertArtifactGroups(listOf(artifactGroup2, artifactGroup3))
         dao.insertArtifacts(listOf(artifactC, artifactD, artifactE))
-        dao.allArtifactGroupsWithArtifacts().test().assertValue(
-            listOf(
-                artifactGroupWithArtifacts1,
-                artifactGroupWithArtifacts2,
-                artifactGroupWithArtifacts3
-            )
+        dao.allArtifactGroupsWithArtifacts().first() shouldEqual listOf(
+            artifactGroupWithArtifacts1,
+            artifactGroupWithArtifacts2,
+            artifactGroupWithArtifacts3
         )
     }
 
@@ -105,16 +105,12 @@ class ArtifactGroupDaoTest : BaseDaoTest() {
         dao.insertArtifactGroups(listOf(artifactGroup1))
         dao.insertArtifacts(listOf(artifactA, artifactB))
 
-        dao.allArtifactGroupsWithArtifacts().test().assertValue(listOf(artifactGroupWithArtifacts1))
+        dao.allArtifactGroupsWithArtifacts().first() shouldEqual listOf(artifactGroupWithArtifacts1)
 
         // insert same artifact group again
         dao.insertArtifactGroups(listOf(artifactGroup1))
         dao.insertArtifacts(listOf(artifactA, artifactB))
-        dao.allArtifactGroupsWithArtifacts().test().assertValue(
-            listOf(
-                artifactGroupWithArtifacts1
-            )
-        )
+        dao.allArtifactGroupsWithArtifacts().first() shouldEqual listOf(artifactGroupWithArtifacts1)
     }
 
     @Test
@@ -127,12 +123,10 @@ class ArtifactGroupDaoTest : BaseDaoTest() {
             )
         )
 
-        dao.allArtifactGroupsWithArtifacts().test().assertValue(
-            listOf(
-                artifactGroupWithArtifacts1,
-                artifactGroupWithArtifacts2,
-                artifactGroupWithArtifacts3
-            )
+        dao.allArtifactGroupsWithArtifacts().first() shouldEqual listOf(
+            artifactGroupWithArtifacts1,
+            artifactGroupWithArtifacts2,
+            artifactGroupWithArtifacts3
         )
     }
 
@@ -153,16 +147,13 @@ class ArtifactGroupDaoTest : BaseDaoTest() {
         )
         dao.insertArtifactGroupsWithArtifacts(listOf(newArtifactGroupWithArtifacts1))
 
-        dao.allArtifactGroupsWithArtifacts().test().assertValue { artifacts ->
-            // order doesn't matter
-            artifacts.containsAll(
-                listOf(
-                    newArtifactGroupWithArtifacts1,
-                    artifactGroupWithArtifacts2,
-                    artifactGroupWithArtifacts3
-                )
-            )
-        }
+        val result = dao.allArtifactGroupsWithArtifacts().first()
+        // order doesn't matter
+        result shouldContainAll listOf(
+            newArtifactGroupWithArtifacts1,
+            artifactGroupWithArtifacts2,
+            artifactGroupWithArtifacts3
+        )
     }
 
     @Test

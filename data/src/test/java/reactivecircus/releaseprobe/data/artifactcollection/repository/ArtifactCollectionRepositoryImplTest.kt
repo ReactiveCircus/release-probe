@@ -4,8 +4,8 @@ import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import io.reactivex.Flowable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.test.runBlockingTest
 import org.amshove.kluent.shouldEqual
@@ -50,7 +50,7 @@ class ArtifactCollectionRepositoryImplTest {
     )
 
     private val artifactCollectionDao = mockk<ArtifactCollectionDao>(relaxUnitFun = true) {
-        every { allArtifactCollections() } returns Flowable.just(artifactCollectionEntities)
+        every { allArtifactCollections() } returns flowOf(artifactCollectionEntities)
     }
 
     private val defaultArtifactCollections = DefaultArtifactCollections()
