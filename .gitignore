@@ -21,9 +21,6 @@ reports/
 # Local configuration file (sdk path, etc)
 local.properties
 
-# Jacoco
-jacoco.exec
-
 # Log Files
 *.log
 
