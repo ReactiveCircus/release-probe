@@ -40,6 +40,14 @@ executors:
       JAVA_TOOL_OPTIONS: "-Xmx1g"
       GRADLE_OPTS: '-Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
       TERM: dumb
+  android-emulator:
+    docker:
+      - image: reactivecircus/android-emulator-23:latest
+    working_directory: ~/release-probe
+    environment:
+      JAVA_TOOL_OPTIONS: "-Xmx2g"
+      GRADLE_OPTS: '-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
+      TERM: dumb
 
 jobs:
   build:
@@ -89,8 +97,29 @@ jobs:
       - *extract_cache_version
       - *restore_gradle_cache
       - run:
-          name: Test
+          name: Unit Tests
           command: ./gradlew test -PslimTests -Pcoverage
+      - *save_gradle_cache
+
+  instrumented_tests:
+    executor: android-emulator
+    steps:
+      - checkout
+      - *extract_cache_version
+      - *restore_gradle_cache
+      - run:
+          name: Instrumented Tests
+          command: |
+            ./gradlew assembleMockDebugAndroidTest assembleDebugAndroidTest -Dorg.gradle.jvmargs=-Xmx1g
+            $ANDROID_HOME/tools/bin/avdmanager create avd --force --name "api-${API_LEVEL_23}" --abi "${IMG_TYPE}/${SYS_IMG}" --package "system-images;android-${API_LEVEL_23};${IMG_TYPE};${SYS_IMG}" --device "Nexus 6P"
+            $ANDROID_HOME/emulator/emulator-headless -avd "api-${API_LEVEL_23}" -no-accel -gpu swiftshader -no-snapshot -noaudio -no-window -no-boot-anim -timezone Australia/Melbourne &
+            $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'
+            $ANDROID_HOME/platform-tools/adb shell settings put global window_animation_scale 0.0
+            $ANDROID_HOME/platform-tools/adb shell settings put global transition_animation_scale 0.0
+            $ANDROID_HOME/platform-tools/adb shell settings put global animator_duration_scale 0.0
+            $ANDROID_HOME/platform-tools/adb shell service list
+            $ANDROID_HOME/platform-tools/adb install -r app/build/outputs/apk/androidTest/mock/debug/*.apk
+            $ANDROID_HOME/platform-tools/adb shell am instrument -w reactivecircus.releaseprobe.test/reactivecircus.releaseprobe.IntegrationTestRunner
       - *save_gradle_cache
 
   static_analysis:
@@ -122,6 +151,7 @@ workflows:
     jobs:
       - build
       - unit_tests
+      - instrumented_tests
       - static_analysis
       - deploy_to_play:
           filters:
@@ -130,4 +160,5 @@ workflows:
           requires:
             - build
             - unit_tests
+            - instrumented_tests
             - static_analysis
