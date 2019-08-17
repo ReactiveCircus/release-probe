@@ -22,7 +22,7 @@ buildscript {
                     coroutines: '1.3.0-RC2',
             ],
             firebase                  : [
-                    core: '17.0.1'
+                    core: '17.1.0'
             ],
             blueprint                 : '1.0.1',
             androidx                  : [
