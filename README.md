@@ -48,31 +48,32 @@ We also use [Codacy](https://app.codacy.com/project/reactivecircus/release-probe
 
 ### Continuous Integration
 
-We use CircleCI 2.0 for CI/CD.
+We use **CircleCI** for CI/CD. We also have a separate pipeline for running instrumented tests on **Bitrise**.
 
 ### Workflow
 
-#### All pull requests
+#### All pull requests and pushes to master
 
-* **build** - assembles the release APK and App Bundle
-* **unit_tests** - runs all unit tests
-* **static_analysis** - runs Android Lint and detekt
+* **build (CircleCI)** - assembles the release APK and App Bundle
+* **unit_tests (CircleCI)** - runs all unit tests
+* **static_analysis (CircleCI)** - runs Android Lint and detekt
+* **Run Instrumented Tests (Bitrise)** - runs instrumented tests on a virtual device
+* **PR Quality Review (Codacy)**
 
 #### On release branches only
 
-* **deploy_to_play** - deploys the release App Bundle to Google Play's internal test channel
+* **deploy_to_play (CircleCI)** - deploys the release App Bundle to Google Play's internal test channel
 
 ### Docker Container
 [reactivecircus/android-sdk](https://hub.docker.com/r/reactivecircus/android-sdk/) is used for running CI jobs. Dockerfiles are available on [GitHub](https://github.com/reactivecircus/docker-android-images)
 
-### A Note on Running Instrumented Tests
+### Running Instrumented Tests on Bitrise
 
-Running proper automated UI tests on CI remains a challenge especially when operating with free plans for side projects. We are not running UI tests on CI at this point for lack of feasible options:
+Running proper automated UI tests on CI remains a challenge especially when operating with free plans for side projects. We are using **Bitrise** to run all instrumented tests as one of the GitHub PR **checks**, as it's the only service that supports running x86 emulators with hardware acceleration (they offer 1 free container for open-source projects). Other solutions we've looked at:
 
 * CircleCI (and most other hosted CI providers) does not yet support running x86 emulators on their host machines (even if they do, free plans usually wouldn't provide enough RAM for running emulators in the containers).
 * Firebase Test Lab only allows 10 tests/day on virtual device and 5 tests/day on physical device with the Spark (free) Plan.
-
-Apparently Google / Robolectric are working on support for running Espresso tests off-device as part of [Nitrogen](https://youtu.be/wYMIadv9iF8?t=1843), which might change the landscape quite a bit depending on what we value in doing automated UI testing.
+* [Robolectric 4.x](https://github.com/robolectric/robolectric) introduced support for running Espresso tests. While sharing test source between JVM and on-device tests mostly works, robolectric's shadowed environment is still too unstable / immature to be considered useful as they often have very different behaviors than when running on an emulator or real device. 
 
 ## Building
 
