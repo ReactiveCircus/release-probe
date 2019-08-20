@@ -2,17 +2,21 @@ package reactivecircus.releaseprobe.robot
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
-import reactivecircus.blueprint.testing.BaseRobot
 import reactivecircus.blueprint.testing.RobotActions
 import reactivecircus.blueprint.testing.RobotAssertions
+import reactivecircus.blueprint.testing.ScreenRobot
+import reactivecircus.blueprint.testing.action.clickRecyclerViewItem
+import reactivecircus.blueprint.testing.action.selectBottomNavigationItem
+import reactivecircus.blueprint.testing.assertion.bottomNavigationViewItemSelected
+import reactivecircus.blueprint.testing.assertion.toolbarHasTitle
 import reactivecircus.releaseprobe.R
 
 fun mainScreen(block: MainRobot.() -> Unit) = MainRobot().apply { block() }
 
-class MainRobot : BaseRobot<MainRobot.Actions, MainRobot.Assertions>(Actions(), Assertions()) {
+class MainRobot : ScreenRobot<MainRobot.Actions, MainRobot.Assertions>(Actions(), Assertions()) {
     val navHostViewId = R.id.mainNavHostFragment
 
-    class Actions : RobotActions() {
+    class Actions : RobotActions {
 
         fun selectFeedsNavItem() {
             val navItemTitle =
@@ -43,7 +47,7 @@ class MainRobot : BaseRobot<MainRobot.Actions, MainRobot.Assertions>(Actions(), 
         }
     }
 
-    class Assertions : RobotAssertions() {
+    class Assertions : RobotAssertions {
 
         fun feedsDestinationSelected() {
             toolbarHasTitle(R.string.title_feeds)
