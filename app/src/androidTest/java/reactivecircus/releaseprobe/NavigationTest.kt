@@ -2,6 +2,7 @@ package reactivecircus.releaseprobe
 
 import androidx.test.filters.LargeTest
 import org.junit.Test
+import reactivecircus.blueprint.testing.assertion.fragmentDisplayed
 import reactivecircus.releaseprobe.artifactlist.ArtifactListFragment
 import reactivecircus.releaseprobe.robot.mainScreen
 import reactivecircus.releaseprobe.testing.BaseScreenTest
