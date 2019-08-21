@@ -1,6 +1,6 @@
 # ReleaseProbe
 
-[![CircleCI](https://circleci.com/gh/ReactiveCircus/release-probe.svg?style=svg)](https://circleci.com/gh/ReactiveCircus/release-probe) [![Build Status](https://app.bitrise.io/app/4ffe96455db1c357/status.svg?token=APH0_JyYDtw37bY1fgKnYg&branch=master)](https://app.bitrise.io/app/4ffe96455db1c357) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c3adc2310a3f4872a08567d32da829da)](https://www.codacy.com/app/ReactiveCircus/release-probe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ReactiveCircus/release-probe&amp;utm_campaign=Badge_Grade) [![Android API](https://img.shields.io/badge/API-23%2B-blue.svg?style=flat-square&label=API&maxAge=300)](https://www.android.com/history/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square&maxAge=3600)](https://opensource.org/licenses/MIT)
+[![CircleCI](https://circleci.com/gh/ReactiveCircus/release-probe.svg?style=svg)](https://circleci.com/gh/ReactiveCircus/release-probe) [![Build Status](https://app.bitrise.io/app/4ffe96455db1c357/status.svg?token=APH0_JyYDtw37bY1fgKnYg&branch=master)](https://app.bitrise.io/app/4ffe96455db1c357) [![Android API](https://img.shields.io/badge/API-23%2B-blue.svg?style=flat-square&label=API&maxAge=300)](https://www.android.com/history/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square&maxAge=3600)](https://opensource.org/licenses/MIT)
 
 An Android app for monitoring new releases of libraries and dependencies such as AndroidX, Firebase and other popular 3rd party libraries on GitHub. Get notified when your favourite library has a new release.
 
@@ -44,8 +44,6 @@ TODO
 
 In addition to Android Lint, [detekt](https://github.com/arturbosch/detekt) has been configured for Kotlin static analysis.
 
-We also use [Codacy](https://app.codacy.com/project/reactivecircus/release-probe/dashboard) for automatic PR quality review.
-
 ### Continuous Integration
 
 We use **CircleCI** for CI/CD. We also have a separate pipeline for running instrumented tests on **Bitrise**.
@@ -58,7 +56,6 @@ We use **CircleCI** for CI/CD. We also have a separate pipeline for running inst
 * **unit_tests (CircleCI)** - runs all unit tests
 * **static_analysis (CircleCI)** - runs Android Lint and detekt
 * **Run Instrumented Tests (Bitrise)** - runs instrumented tests on a virtual device
-* **PR Quality Review (Codacy)**
 
 #### On release branches only
 
