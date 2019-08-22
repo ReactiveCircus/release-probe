@@ -21,7 +21,7 @@ private val appModule = module {
         CoroutineDispatcherProvider(
             io = Dispatchers.IO,
             computation = Dispatchers.Default,
-            ui = Dispatchers.Main
+            ui = Dispatchers.Main.immediate
         )
     }
 
