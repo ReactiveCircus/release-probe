@@ -11,7 +11,6 @@ import reactivecircus.releaseprobe.core.AppNavigator
 import reactivecircus.releaseprobe.core.base.BaseFragment
 import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactCollection
 
-@ExperimentalCoroutinesApi
 class BrowseCollectionsFragment : BaseFragment(R.layout.fragment_browse_collections) {
 
     private lateinit var artifactCollectionsAdapter: ArtifactCollectionsAdapter
