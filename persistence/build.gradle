@@ -60,7 +60,7 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinx.coroutines}"
 
     // Koin
-    implementation "org.koin:koin-android:${versions.koin}"
+    implementation "org.koin:koin-core:${versions.koin}"
 
     // AndroidX
     implementation "androidx.annotation:annotation:${versions.androidx.annotation}"

@@ -45,7 +45,7 @@ dependencies {
     api "com.jakewharton.timber:timber:${versions.timber}"
 
     // Koin
-    api "org.koin:koin-android:${versions.koin}"
+    api "org.koin:koin-core:${versions.koin}"
     api "org.koin:koin-androidx-viewmodel:${versions.koin}"
 
     // Unit tests
