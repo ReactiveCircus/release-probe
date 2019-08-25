@@ -30,7 +30,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit-mock:${versions.retrofit}"
 
     // Koin
-    implementation "org.koin:koin-android:${versions.koin}"
+    implementation "org.koin:koin-core:${versions.koin}"
 
     // timber
     implementation "com.jakewharton.timber:timber:${versions.timber}"

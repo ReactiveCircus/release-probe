@@ -42,7 +42,7 @@ dependencies {
     implementation "com.jakewharton.timber:timber:${versions.timber}"
 
     // Koin
-    implementation "org.koin:koin-android:${versions.koin}"
+    implementation "org.koin:koin-core:${versions.koin}"
 
     // Android tests
     androidTestImplementation "androidx.test:core-ktx:${versions.androidx.test.core}"
