@@ -20,6 +20,13 @@ android {
             testCoverageEnabled enableCoverage
         }
     }
+
+    libraryVariants.all { variant ->
+        // TODO replace with https://issuetracker.google.com/issues/72050365 once released.
+        variant.generateBuildConfigProvider.configure { task ->
+            task.enabled = true
+        }
+    }
 }
 
 dependencies {
