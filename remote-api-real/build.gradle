@@ -14,6 +14,13 @@ android {
         buildConfigField "long", "NETWORK_TIMEOUT_SECONDS", "10"
         buildConfigField "String", "API_BASE_URL", "\"https://dl.google.com/dl/android/maven2/\""
     }
+
+    libraryVariants.all { variant ->
+        // TODO replace with https://issuetracker.google.com/issues/72050365 once released.
+        variant.generateBuildConfigProvider.configure { task ->
+            task.enabled = true
+        }
+    }
 }
 
 dependencies {
