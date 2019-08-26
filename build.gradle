@@ -57,7 +57,7 @@ buildscript {
             retrofit                  : '2.6.1',
             moshi                     : '1.8.0',
             json                      : '20180130',
-            rxJava                    : '2.2.11',
+            rxJava                    : '2.2.12',
             koin                      : '2.0.1',
             timber                    : '4.7.1',
             store                     : '3.1.1',
