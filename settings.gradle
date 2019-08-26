@@ -1,33 +1,37 @@
-include ':app'
-include ':core-ui'
-include ':ui-feeds'
-include ':ui-watchlist'
-include ':ui-browse-collections'
-include ':ui-settings'
-include ':ui-artifact-list'
-include ':testing-infra'
+include ":app"
+include ":core-ui"
+include ":ui-feeds"
+include ":ui-watchlist"
+include ":ui-browse-collections"
+include ":ui-settings"
+include ":ui-artifact-list"
+include ":testing-infra"
+include ":background-work"
+include ":data"
+include ":remote-api-base"
+include ":remote-api-real"
+include ":remote-api-mock"
+include ":persistence"
+include ":domain"
+includeProject(":bugsnag-tree", "library/bugsnag-tree")
+includeProject(":analytics-api-base", "library/analytics/analytics-api-base")
+includeProject(":analytics-api-firebase", "library/analytics/analytics-api-firebase")
+includeProject(":analytics-api-no-op", "library/analytics/analytics-api-no-op")
+includeProject(":coroutines-testing", "library/coroutines-testing")
 
-include ':background-work'
-
-include ':data'
-include ':remote-api-base'
-include ':remote-api-real'
-include ':remote-api-mock'
-include ':persistence'
-
-include ':domain'
-
-include ':bugsnag-tree'
-project(':bugsnag-tree').projectDir = new File(rootDir, 'library/bugsnag-tree')
-
-include ':analytics-api-base'
-project(':analytics-api-base').projectDir = new File(rootDir, 'library/analytics/analytics-api-base')
-
-include ':analytics-api-firebase'
-project(':analytics-api-firebase').projectDir = new File(rootDir, 'library/analytics/analytics-api-firebase')
-
-include ':analytics-api-no-op'
-project(':analytics-api-no-op').projectDir = new File(rootDir, 'library/analytics/analytics-api-no-op')
-
-include ':coroutines-testing'
-project(':coroutines-testing').projectDir = new File(rootDir, 'library/coroutines-testing')
+/**
+ * Calling includeProject(name, filePath) is shorthand for:
+ *
+ * include(name)
+ * project(name).projectDir = new File(filePath)
+ */
+def includeProject(name, filePath) {
+    settings.include(name)
+    def file
+    if (filePath instanceof String) {
+        file = new File(filePath)
+    } else {
+        file = filePath
+    }
+    project(name).projectDir = file
+}
