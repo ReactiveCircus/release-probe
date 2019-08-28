@@ -8,6 +8,7 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import reactivecircus.releaseprobe.core.AppNavigator
 import reactivecircus.releaseprobe.core.base.BaseFragment
+import reactivecircus.releaseprobe.core.util.ItemClickedCallback
 import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactCollection
 
 class BrowseCollectionsFragment : BaseFragment(R.layout.fragment_browse_collections) {
@@ -21,7 +22,7 @@ class BrowseCollectionsFragment : BaseFragment(R.layout.fragment_browse_collecti
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         artifactCollectionsAdapter = ArtifactCollectionsAdapter(
-            actionListener = actionListener,
+            itemClickedCallback = itemClickedCallback,
             animate = savedInstanceState == null
         )
         artifactCollectionsRecyclerView.apply {
@@ -34,10 +35,7 @@ class BrowseCollectionsFragment : BaseFragment(R.layout.fragment_browse_collecti
         }
     }
 
-    private val actionListener: ArtifactCollectionsAdapter.ActionListener =
-        object : ArtifactCollectionsAdapter.ActionListener {
-            override fun onItemClick(artifactCollection: ArtifactCollection) {
-                navigator.navigateToArtifactListScreen(requireActivity(), artifactCollection.name)
-            }
-        }
+    private val itemClickedCallback: ItemClickedCallback<ArtifactCollection> = { collection ->
+        navigator.navigateToArtifactListScreen(requireActivity(), collection.name)
+    }
 }
