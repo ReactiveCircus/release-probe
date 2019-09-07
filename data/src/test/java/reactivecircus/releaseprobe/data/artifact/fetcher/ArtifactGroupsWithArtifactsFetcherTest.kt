@@ -10,7 +10,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.rx2.await
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
-import org.amshove.kluent.invoking
+import org.amshove.kluent.coInvoking
 import org.amshove.kluent.shouldEqual
 import org.amshove.kluent.shouldThrow
 import org.junit.Test
@@ -182,10 +182,8 @@ class ArtifactGroupsWithArtifactsFetcherTest {
         testDispatcher.runBlockingTest {
             coEvery { service.fetchArtifactGroups() } throws IOException()
 
-            invoking {
-                runBlockingTest {
-                    fetcher.fetch(BarCode.empty()).await()
-                }
+            coInvoking {
+                fetcher.fetch(BarCode.empty()).await()
             } shouldThrow IOException::class
 
             coVerify(exactly = 1) { service.fetchArtifactGroups() }
@@ -230,10 +228,8 @@ class ArtifactGroupsWithArtifactsFetcherTest {
                 listOf(artifactE)
             }
 
-            invoking {
-                runBlockingTest {
-                    fetcher.fetch(BarCode.empty()).await()
-                }
+            coInvoking {
+                fetcher.fetch(BarCode.empty()).await()
             } shouldThrow IOException::class
 
             coVerify(exactly = 1) { service.fetchArtifactGroups() }
