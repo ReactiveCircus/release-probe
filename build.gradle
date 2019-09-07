@@ -13,7 +13,7 @@ buildscript {
     ext.versions = [
             androidGradlePlugin       : '3.6.0-alpha10',
             googleServicesGradlePlugin: '4.3.1',
-            dexcountGradlePlugin      : '0.8.6',
+            dexcountGradlePlugin      : '0.8.7-SNAPSHOT',
             bugsnag                   : '4.19.0',
             detekt                    : '1.0.1',
             leakCanary                : '2.0-beta-3',
@@ -70,6 +70,8 @@ buildscript {
         mavenCentral()
         google()
         gradlePluginPortal()
+        // TODO remove once dexcount-gradle-plugin 0.8.7 is released.
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
 
     dependencies {

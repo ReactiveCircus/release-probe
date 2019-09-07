@@ -3,7 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'com.google.gms.google-services'
-    // id 'com.getkeepsafe.dexcount' TODO https://github.com/KeepSafe/dexcount-gradle-plugin/issues/267
+    id 'com.getkeepsafe.dexcount'
     id 'project-report'
 }
 
