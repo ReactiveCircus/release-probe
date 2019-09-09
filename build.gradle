@@ -91,6 +91,8 @@ allprojects {
     }
 
     configurations.all {
+        exclude group: "com.bugsnag", module: "bugsnag-plugin-android-anr"
+        exclude group: "com.bugsnag", module: "bugsnag-plugin-android-ndk"
         resolutionStrategy {
             eachDependency { details ->
                 // Force all Kotlin stdlib artifacts to use the same version.

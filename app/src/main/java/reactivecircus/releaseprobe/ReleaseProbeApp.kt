@@ -38,6 +38,8 @@ open class ReleaseProbeApp : Application() {
         if (BuildConfig.ENABLE_BUGSNAG) {
             bugsnagClient = Bugsnag.init(this).apply {
                 setReleaseStage(BuildConfig.BUILD_TYPE)
+                config.detectAnrs = false
+                config.detectNdkCrashes = false
             }
         }
 
