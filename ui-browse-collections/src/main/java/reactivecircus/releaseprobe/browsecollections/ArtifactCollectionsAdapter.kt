@@ -1,18 +1,17 @@
 package reactivecircus.releaseprobe.browsecollections
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_artifact_collection.view.*
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import reactivecircus.blueprint.ui.extension.isAnimationOn
 import reactivecircus.blueprint.ui.extension.setPrecomputedTextFuture
+import reactivecircus.releaseprobe.browsecollections.databinding.ItemArtifactCollectionBinding
 import reactivecircus.releaseprobe.core.util.AnimationConfigs
 import reactivecircus.releaseprobe.core.util.ItemClickedCallback
 import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactCollection
@@ -31,9 +30,12 @@ class ArtifactCollectionsAdapter(
         parent: ViewGroup,
         viewType: Int
     ): ArtifactCollectionViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_artifact_collection, parent, false)
-        return ArtifactCollectionViewHolder(view)
+        val binding = ItemArtifactCollectionBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return ArtifactCollectionViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ArtifactCollectionViewHolder, position: Int) {
@@ -53,20 +55,22 @@ class ArtifactCollectionsAdapter(
     }
 }
 
-class ArtifactCollectionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class ArtifactCollectionViewHolder(
+    private val binding: ItemArtifactCollectionBinding
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
         artifactCollection: ArtifactCollection,
         itemClickedCallback: ItemClickedCallback<ArtifactCollection>
     ) {
         val cardColor = artifactCollection.themeColor.toColorInt()
-        itemView.run {
+        binding.run {
             rootCardView.setCardBackgroundColor(cardColor)
             artifactCollectionNameTextView.setPrecomputedTextFuture(artifactCollection.name)
             artifactCollectionDescriptionTextView.setPrecomputedTextFuture(artifactCollection.description)
-        }
 
-        itemView.setOnClickListener { itemClickedCallback(artifactCollection) }
+            root.setOnClickListener { itemClickedCallback(artifactCollection) }
+        }
     }
 }
 
