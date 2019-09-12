@@ -5,7 +5,7 @@ import android.view.View
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import reactivecircus.releaseprobe.core.base.BaseFragment
 
 class HomeFragment : BaseFragment(R.layout.fragment_home) {
@@ -27,11 +27,14 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         ).build()
 
         // setup NavController with BottomNavigationView
-        NavigationUI.setupWithNavController(bottomNavigationView, navController)
+        NavigationUI.setupWithNavController(
+            view.findViewById<BottomNavigationView>(R.id.bottomNavigationView),
+            navController
+        )
 
         // setup NavController with Toolbar
         NavigationUI.setupWithNavController(
-            toolbar,
+            view.findViewById(R.id.toolbar),
             navController,
             appBarConfig
         )
