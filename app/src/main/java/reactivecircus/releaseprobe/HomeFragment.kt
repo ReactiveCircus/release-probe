@@ -1,14 +1,27 @@
 package reactivecircus.releaseprobe
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import reactivecircus.releaseprobe.core.base.BaseFragment
+import reactivecircus.releaseprobe.databinding.FragmentHomeBinding
 
-class HomeFragment : BaseFragment(R.layout.fragment_home) {
+class HomeFragment : BaseFragment() {
+
+    private lateinit var binding: FragmentHomeBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ) = FragmentHomeBinding.inflate(inflater, container, false).let {
+        binding = it
+        it.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,13 +41,13 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
         // setup NavController with BottomNavigationView
         NavigationUI.setupWithNavController(
-            view.findViewById<BottomNavigationView>(R.id.bottomNavigationView),
+            binding.bottomNavigationView,
             navController
         )
 
         // setup NavController with Toolbar
         NavigationUI.setupWithNavController(
-            view.findViewById(R.id.toolbar),
+            binding.toolbar,
             navController,
             appBarConfig
         )
