@@ -1,15 +1,10 @@
 package reactivecircus.releaseprobe.core.base
 
-import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import org.koin.android.ext.android.inject
 import reactivecircus.analytics.AnalyticsApi
 
-abstract class BaseFragment : Fragment {
-
-    constructor() : super()
-
-    constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
+abstract class BaseFragment : Fragment() {
 
     private val analyticsApi: AnalyticsApi by inject()
 
