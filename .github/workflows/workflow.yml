@@ -1,0 +1,25 @@
+name: Instrumented test workflow
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+      - release/*
+
+jobs:
+  instrumented-tests:
+    name: Run Instrumented Tests
+    runs-on: ubuntu-latest
+    container:
+      image: reactivecircus/android-sdk:latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Start Android Emulator
+        uses: reactivecircus/setup-android-emulator@master
+        with:
+          api-level: 23
+      - name: Run Instrumented Tests
+        run: ./gradlew connectedCheck
