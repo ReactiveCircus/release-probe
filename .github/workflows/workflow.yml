@@ -12,7 +12,7 @@ on:
 jobs:
   instrumented-tests:
     name: Run Instrumented Tests
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: Start Android Emulator
