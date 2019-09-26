@@ -54,7 +54,7 @@ buildscript {
             ],
             material                  : '1.1.0-alpha10',
             okhttp                    : '4.2.0',
-            retrofit                  : '2.6.1',
+            retrofit                  : '2.6.2',
             moshi                     : '1.8.0',
             json                      : '20180130',
             rxJava                    : '2.2.12',
