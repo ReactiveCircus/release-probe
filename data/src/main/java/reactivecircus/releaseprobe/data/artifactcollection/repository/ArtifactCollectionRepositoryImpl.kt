@@ -1,10 +1,8 @@
 package reactivecircus.releaseprobe.data.artifactcollection.repository
 
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 import reactivecircus.releaseprobe.data.artifactcollection.DefaultArtifactCollections
 import reactivecircus.releaseprobe.data.artifactcollection.mapper.toModel
 import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactCollection
@@ -36,10 +34,8 @@ class ArtifactCollectionRepositoryImpl(
     }
 
     override suspend fun insertDefaultArtifactCollections() {
-        GlobalScope.launch {
-            databaseTransactionRunner {
-                artifactCollectionDao.insertArtifactCollections(defaultArtifactCollections.get())
-            }
+        databaseTransactionRunner {
+            artifactCollectionDao.insertArtifactCollections(defaultArtifactCollections.get())
         }
     }
 }
