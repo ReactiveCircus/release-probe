@@ -14,7 +14,7 @@ buildscript {
             androidGradlePlugin       : '3.6.0-beta01',
             googleServicesGradlePlugin: '4.3.2',
             dexcountGradlePlugin      : '0.8.7-SNAPSHOT',
-            bugsnag                   : '4.20.0',
+            bugsnag                   : '4.21.1',
             detekt                    : '1.1.0',
             leakCanary                : '2.0-beta-3',
             kotlin                    : '1.3.50',
