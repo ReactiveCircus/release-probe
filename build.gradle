@@ -52,7 +52,7 @@ buildscript {
                     ],
                     espresso          : '3.3.0-alpha02'
             ],
-            material                  : '1.1.0-beta01',
+            material                  : '1.2.0-alpha01',
             okhttp                    : '4.2.2',
             retrofit                  : '2.6.2',
             moshi                     : '1.8.0',
