@@ -12,6 +12,7 @@ detekt {
     failFast = true
     parallel = true
     config = files("${project.rootDir}/detekt.yml")
+    buildUponDefaultConfig = true
     reports {
         html.destination = file("${project.buildDir}/reports/detekt/${project.name}.html")
     }
