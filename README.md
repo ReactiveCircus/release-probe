@@ -1,6 +1,9 @@
 # ReleaseProbe
 
-[![CircleCI](https://circleci.com/gh/ReactiveCircus/release-probe.svg?style=svg)](https://circleci.com/gh/ReactiveCircus/release-probe) [![Build Status](https://app.bitrise.io/app/4ffe96455db1c357/status.svg?token=APH0_JyYDtw37bY1fgKnYg&branch=master)](https://app.bitrise.io/app/4ffe96455db1c357) [![Android API](https://img.shields.io/badge/API-23%2B-blue.svg?style=flat-square&label=API&maxAge=300)](https://www.android.com/history/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square&maxAge=3600)](https://opensource.org/licenses/MIT)
+[![CircleCI](https://circleci.com/gh/ReactiveCircus/release-probe.svg?style=svg)](https://circleci.com/gh/ReactiveCircus/release-probe) 
+[![Build Status](https://app.bitrise.io/app/4ffe96455db1c357/status.svg?token=APH0_JyYDtw37bY1fgKnYg&branch=master)](https://app.bitrise.io/app/4ffe96455db1c357)
+[![Android API](https://img.shields.io/badge/API-23%2B-blue.svg?style=flat-square&label=API&maxAge=300)](https://www.android.com/history/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square&maxAge=3600)](https://opensource.org/licenses/MIT)
 
 An Android app for monitoring new releases of libraries and dependencies such as AndroidX, Firebase and other popular 3rd party libraries on GitHub. Get notified when your favourite library has a new release.
 
