@@ -22,6 +22,12 @@ dependencies {
     api "io.github.reactivecircus.blueprint:blueprint-threading-coroutines:${versions.blueprint}"
     api "io.github.reactivecircus.blueprint:blueprint-ui:${versions.blueprint}"
 
+    // FlowBinding
+    api "io.github.reactivecircus.flowbinding:flowbinding-android:${versions.flowbinding}"
+    api "io.github.reactivecircus.flowbinding:flowbinding-appcompat:${versions.flowbinding}"
+    api "io.github.reactivecircus.flowbinding:flowbinding-material:${versions.flowbinding}"
+    api "io.github.reactivecircus.flowbinding:flowbinding-swiperefreshlayout:${versions.flowbinding}"
+
     // AndroidX
     api "androidx.annotation:annotation:${versions.androidx.annotation}"
     api "androidx.appcompat:appcompat:${versions.androidx.appCompat}"
