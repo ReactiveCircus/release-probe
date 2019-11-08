@@ -26,6 +26,12 @@ jobs:
       - uses: actions/checkout@v1
         with:
           fetch-depth: 1
+      - uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}-${{ hashFiles('**/*.gradle.kts') }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
       - uses: reactivecircus/android-emulator-runner@release/v1
         with:
           api-level: ${{ matrix.api-level }}
@@ -36,5 +42,5 @@ jobs:
           disable-animations: true
           script: ./gradlew app:connectedMockDebugAndroidTest connectedDebugAndroidTest
         env:
-          JAVA_TOOL_OPTIONS: -Xmx4g
+          JAVA_TOOL_OPTIONS: -Xmx3g
           GRADLE_OPTS: -Dorg.gradle.daemon=false -Dkotlin.incremental=false
