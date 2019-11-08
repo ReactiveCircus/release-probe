@@ -23,6 +23,11 @@ jobs:
       - uses: reactivecircus/android-emulator-runner@release/v1
         with:
           api-level: ${{ matrix.api-level }}
+          target: default
+          arch: x86
+          profile: Nexus 6
+          headless: true
+          disable-animations: true
           script: ./gradlew connectedCheck
         env:
           GRADLE_OPTS: -Dkotlin.incremental=false
