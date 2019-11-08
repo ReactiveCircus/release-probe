@@ -36,5 +36,5 @@ jobs:
           disable-animations: true
           script: ./gradlew app:connectedMockDebugAndroidTest connectedDebugAndroidTest
         env:
-          JAVA_TOOL_OPTIONS: -Xmx3g
+          JAVA_TOOL_OPTIONS: -Xmx4g
           GRADLE_OPTS: -Dorg.gradle.daemon=false -Dkotlin.incremental=false
