@@ -1,0 +1,28 @@
+name: Instrumented test workflow
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+      - release/*
+
+jobs:
+  instrumented-tests:
+    name: Run instrumented tests
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        api-level: [23, 29]
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - uses: reactivecircus/android-emulator-runner@master
+        with:
+          api-level: ${{ matrix.api-level }}
+          script: ./gradlew connectedCheck
+        env:
+          GRADLE_OPTS: -Dkotlin.incremental=false
