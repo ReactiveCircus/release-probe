@@ -1,0 +1,46 @@
+name: Instrumented test workflow
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+      - release/*
+
+jobs:
+  instrumented-tests:
+    name: Run tests
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        api-level: [23, 29]
+        arch: [x86, x86_64]
+        exclude:
+          - api-level: 23
+            arch: x86_64
+          - api-level: 29
+            arch: x86
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - uses: reactivecircus/android-emulator-runner@release/v1
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: default
+          arch: ${{ matrix.arch }}
+          profile: Nexus 6
+          headless: true
+          disable-animations: true
+          script: ./gradlew app:connectedMockDebugAndroidTest connectedDebugAndroidTest
+        env:
+          JAVA_TOOL_OPTIONS: -Xmx3g
+          GRADLE_OPTS: -Dorg.gradle.daemon=false -Dkotlin.incremental=false
