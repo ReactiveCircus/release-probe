@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v1
         with:
           fetch-depth: 1
-      - uses: reactivecircus/android-emulator-runner@releases/v1
+      - uses: reactivecircus/android-emulator-runner@release/v1
         with:
           api-level: ${{ matrix.api-level }}
           script: ./gradlew connectedCheck
