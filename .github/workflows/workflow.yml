@@ -11,12 +11,17 @@ on:
 
 jobs:
   instrumented-tests:
-    name: Run instrumented tests
+    name: Run tests
     runs-on: macOS-latest
     strategy:
       matrix:
         api-level: [23, 29]
         arch: [x86, x86_64]
+        exclude:
+          - api-level: 23
+            arch: x86_64
+          - api-level: 29
+            arch: x86
     steps:
       - uses: actions/checkout@v1
         with:
@@ -29,7 +34,7 @@ jobs:
           profile: Nexus 6
           headless: true
           disable-animations: true
-          script: ./gradlew connectedCheck
+          script: ./gradlew app:connectedMockDebugAndroidTest connectedDebugAndroidTest
         env:
-          JAVA_TOOL_OPTIONS: -Xmx4g
-          GRADLE_OPTS: -Dkotlin.incremental=false
+          JAVA_TOOL_OPTIONS: -Xmx2g
+          GRADLE_OPTS: -Dorg.gradle.daemon=false -Dkotlin.incremental=false
