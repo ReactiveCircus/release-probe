@@ -16,6 +16,7 @@ jobs:
     strategy:
       matrix:
         api-level: [23, 29]
+        arch: [x86, x86_64]
     steps:
       - uses: actions/checkout@v1
         with:
@@ -24,10 +25,11 @@ jobs:
         with:
           api-level: ${{ matrix.api-level }}
           target: default
-          arch: x86
+          arch: ${{ matrix.arch }}
           profile: Nexus 6
           headless: true
           disable-animations: true
           script: ./gradlew connectedCheck
         env:
+          JAVA_TOOL_OPTIONS: -Xmx4g
           GRADLE_OPTS: -Dkotlin.incremental=false
