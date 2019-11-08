@@ -11,7 +11,7 @@ buildscript {
     ]
 
     ext.versions = [
-            androidGradlePlugin       : '3.6.0-beta03',
+            androidGradlePlugin       : '4.0.0-alpha02',
             googleServicesGradlePlugin: '4.3.2',
             dexcountGradlePlugin      : '0.8.7-SNAPSHOT',
             bugsnag                   : '4.21.1',
