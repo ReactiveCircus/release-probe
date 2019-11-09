@@ -34,3 +34,4 @@ jobs:
         env:
           JAVA_TOOL_OPTIONS: -Xmx3g
           GRADLE_OPTS: -Dorg.gradle.daemon=false -Dkotlin.incremental=false
+          CI: true
