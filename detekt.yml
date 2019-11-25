@@ -59,3 +59,5 @@ style:
     ignoreNamedArgument: true
     ignoreEnums: false
     excludes: "**/test/**, **/androidTest/**"
+  UnnecessaryAbstractClass:
+    active: false
