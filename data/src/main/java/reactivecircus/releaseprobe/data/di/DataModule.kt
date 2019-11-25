@@ -4,7 +4,10 @@ import com.nytimes.android.external.store3.base.impl.BarCode
 import com.nytimes.android.external.store3.base.impl.MemoryPolicy
 import com.nytimes.android.external.store3.base.impl.StalePolicy
 import com.nytimes.android.external.store3.base.impl.room.StoreRoom
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.SupervisorJob
 import org.koin.dsl.module
 import reactivecircus.releaseprobe.data.BuildConfig
 import reactivecircus.releaseprobe.data.artifact.fetcher.ArtifactGroupsWithArtifactsFetcher
@@ -30,7 +33,8 @@ val dataModule = module {
     single {
         ArtifactGroupsWithArtifactsPersister(
             transactionRunner = get(),
-            dao = get()
+            dao = get(),
+            coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
         )
     }
 

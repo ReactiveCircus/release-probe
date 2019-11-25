@@ -7,6 +7,7 @@ import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.TestCoroutineScope
 import org.junit.Test
 import reactivecircus.releaseprobe.data.testutil.TestTransactionRunner
 import reactivecircus.releaseprobe.domain.artifact.model.Artifact
@@ -55,7 +56,11 @@ class ArtifactGroupsWithArtifactsPersisterTest {
         )
     }
 
-    private val persister = ArtifactGroupsWithArtifactsPersister(TestTransactionRunner, dao)
+    private val persister = ArtifactGroupsWithArtifactsPersister(
+        transactionRunner = TestTransactionRunner,
+        dao = dao,
+        coroutineScope = TestCoroutineScope()
+    )
 
     @Test
     fun `read from persister`() {

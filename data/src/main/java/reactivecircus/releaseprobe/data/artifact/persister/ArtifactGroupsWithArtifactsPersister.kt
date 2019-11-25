@@ -3,8 +3,8 @@ package reactivecircus.releaseprobe.data.artifact.persister
 import com.nytimes.android.external.store3.base.impl.BarCode
 import com.nytimes.android.external.store3.base.room.RoomPersister
 import io.reactivex.Observable
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx2.asObservable
@@ -17,7 +17,8 @@ import reactivecircus.releaseprobe.persistence.artifact.entity.ArtifactGroupWith
 @ExperimentalCoroutinesApi
 class ArtifactGroupsWithArtifactsPersister(
     private val transactionRunner: DatabaseTransactionRunner,
-    private val dao: ArtifactGroupDao
+    private val dao: ArtifactGroupDao,
+    private val coroutineScope: CoroutineScope
 ) : RoomPersister<List<ArtifactGroupWithArtifactsEntity>, List<ArtifactGroup>, BarCode> {
 
     override fun read(key: BarCode): Observable<List<ArtifactGroup>> {
@@ -31,7 +32,7 @@ class ArtifactGroupsWithArtifactsPersister(
     }
 
     override fun write(key: BarCode, raw: List<ArtifactGroupWithArtifactsEntity>) {
-        GlobalScope.launch {
+        coroutineScope.launch {
             transactionRunner {
                 dao.insertArtifactGroupsWithArtifacts(raw)
             }
