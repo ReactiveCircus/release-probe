@@ -64,7 +64,7 @@ buildscript {
             store                     : '3.1.1',
             junit                     : '4.12',
             mockk                     : '1.9.3',
-            kluent                    : '1.56'
+            kluent                    : '1.58'
     ]
 
     repositories {
