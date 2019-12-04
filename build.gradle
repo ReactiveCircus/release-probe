@@ -57,7 +57,7 @@ buildscript {
             okhttp                    : '4.2.2',
             retrofit                  : '2.6.2',
             moshi                     : '1.9.2',
-            json                      : '20180130',
+            json                      : '20190722',
             rxJava                    : '2.2.15',
             koin                      : '2.0.1',
             timber                    : '4.7.1',
