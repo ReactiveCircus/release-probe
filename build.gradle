@@ -103,13 +103,20 @@ allprojects {
     }
 
     plugins.withType(com.android.build.gradle.LibraryPlugin) {
-        project.android.buildFeatures.buildConfig = false
+        // TODO disable buildConfig once androidTest works without it
+        project.android.buildFeatures.buildConfig = true
     }
 
     plugins.withType(com.android.build.gradle.BasePlugin).configureEach { plugin ->
         plugin.extension.compileOptions {
             sourceCompatibility = JavaVersion.VERSION_1_8
             targetCompatibility = JavaVersion.VERSION_1_8
+        }
+        plugin.extension.packagingOptions {
+            exclude 'kotlin/**'
+            exclude '**/*.kotlin_metadata'
+            exclude 'META-INF/*.kotlin_module'
+            exclude 'META-INF/*.version'
         }
     }
 

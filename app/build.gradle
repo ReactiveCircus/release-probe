@@ -40,13 +40,6 @@ android {
         preDexLibraries !isCiBuild
     }
 
-    packagingOptions {
-        exclude 'kotlin/**'
-        exclude '**/*.kotlin_metadata'
-        exclude 'META-INF/*.kotlin_module'
-        exclude 'META-INF/*.version'
-    }
-
     lintOptions {
         disable 'ParcelCreator'
         disable 'GoogleAppIndexingWarning'
