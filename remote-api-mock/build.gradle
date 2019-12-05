@@ -7,18 +7,15 @@ android {
     compileSdkVersion buildConfig.compileSdk
     buildToolsVersion buildConfig.buildTools
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
 
         buildConfigField "long", "NETWORK_TIMEOUT_SECONDS", "10"
-    }
-
-    libraryVariants.all { variant ->
-        // TODO replace with https://issuetracker.google.com/issues/72050365 once released.
-        variant.generateBuildConfigProvider.configure { task ->
-            task.enabled = true
-        }
     }
 }
 
