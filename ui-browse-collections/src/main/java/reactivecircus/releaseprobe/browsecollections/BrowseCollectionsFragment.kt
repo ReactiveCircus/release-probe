@@ -44,7 +44,7 @@ class BrowseCollectionsFragment : BaseFragment() {
             adapter = artifactCollectionsAdapter
         }
 
-        viewModel.artifactCollectionsLiveData.observe(this) {
+        viewModel.artifactCollectionsLiveData.observe(viewLifecycleOwner) {
             artifactCollectionsAdapter.submitList(it)
         }
     }
