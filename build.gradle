@@ -92,14 +92,6 @@ allprojects {
     configurations.all {
         exclude group: "com.bugsnag", module: "bugsnag-plugin-android-anr"
         exclude group: "com.bugsnag", module: "bugsnag-plugin-android-ndk"
-        resolutionStrategy {
-            eachDependency { details ->
-                // Force all Kotlin stdlib artifacts to use the same version.
-                if (details.requested.group == 'org.jetbrains.kotlin' && details.requested.name.startsWith('kotlin-stdlib')) {
-                    details.useVersion versions.kotlin
-                }
-            }
-        }
     }
 
     plugins.withType(com.android.build.gradle.LibraryPlugin) {
