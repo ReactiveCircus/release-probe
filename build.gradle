@@ -95,8 +95,7 @@ allprojects {
     }
 
     plugins.withType(com.android.build.gradle.LibraryPlugin) {
-        // TODO disable buildConfig once androidTest works without it
-        project.android.buildFeatures.buildConfig = true
+        project.android.buildFeatures.buildConfig = false
     }
 
     plugins.withType(com.android.build.gradle.BasePlugin).configureEach { plugin ->
