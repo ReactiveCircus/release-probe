@@ -103,6 +103,11 @@ allprojects {
             sourceCompatibility = JavaVersion.VERSION_1_8
             targetCompatibility = JavaVersion.VERSION_1_8
         }
+        plugin.extension.packagingOptions {
+            exclude '**/*.kotlin_metadata'
+            exclude 'META-INF/*.kotlin_module'
+            exclude 'META-INF/*.version'
+        }
     }
 
     tasks.withType(JavaCompile).configureEach { task ->
