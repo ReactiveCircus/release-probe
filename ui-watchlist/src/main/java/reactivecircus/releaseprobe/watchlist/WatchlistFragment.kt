@@ -21,7 +21,6 @@ class WatchlistFragment : BaseFragment<FragmentWatchlistBinding>() {
         return FragmentWatchlistBinding.inflate(inflater, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // TODO
