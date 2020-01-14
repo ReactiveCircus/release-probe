@@ -144,11 +144,9 @@ subprojects {
      * and all tests in JVM projects.
      */
     if (project.hasProperty('slimTests')) {
-        tasks.whenTaskAdded { task ->
+        tasks.configureEach { task ->
             if (task.name ==~ /test.*(?i)(debug|mock).*/) {
-                task.configure {
-                    it.enabled = false
-                }
+                task.enabled = false
             }
         }
     }

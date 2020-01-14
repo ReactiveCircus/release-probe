@@ -8,22 +8,19 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import reactivecircus.releaseprobe.core.base.BaseFragment
 import reactivecircus.releaseprobe.watchlist.databinding.FragmentWatchlistBinding
 
-class WatchlistFragment : BaseFragment() {
-
-    private lateinit var binding: FragmentWatchlistBinding
+class WatchlistFragment : BaseFragment<FragmentWatchlistBinding>() {
 
 //    private lateinit var watchlistAdapter: WatchlistAdapter
 
     private val viewModel by viewModel<WatchlistViewModel>()
 
-    override fun onCreateView(
+    override fun provideViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = FragmentWatchlistBinding.inflate(inflater, container, false).let {
-        binding = it
-        it.root
+        container: ViewGroup?
+    ): FragmentWatchlistBinding {
+        return FragmentWatchlistBinding.inflate(inflater, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

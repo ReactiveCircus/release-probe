@@ -10,17 +10,13 @@ import androidx.navigation.ui.NavigationUI
 import reactivecircus.releaseprobe.core.base.BaseFragment
 import reactivecircus.releaseprobe.databinding.FragmentHomeBinding
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
-    private lateinit var binding: FragmentHomeBinding
-
-    override fun onCreateView(
+    override fun provideViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = FragmentHomeBinding.inflate(inflater, container, false).let {
-        binding = it
-        it.root
+        container: ViewGroup?
+    ): FragmentHomeBinding {
+        return FragmentHomeBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

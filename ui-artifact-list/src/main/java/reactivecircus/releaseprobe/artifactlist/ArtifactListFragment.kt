@@ -11,9 +11,7 @@ import reactivecircus.releaseprobe.core.base.BaseFragment
 
 const val ARG_COLLECTION_KEY = "ARG_COLLECTION_KEY"
 
-class ArtifactListFragment : BaseFragment() {
-
-    private lateinit var binding: FragmentArtifactListBinding
+class ArtifactListFragment : BaseFragment<FragmentArtifactListBinding>() {
 
     private val viewModel by viewModel<ArtifactListViewModel> {
         parametersOf(
@@ -21,13 +19,11 @@ class ArtifactListFragment : BaseFragment() {
         )
     }
 
-    override fun onCreateView(
+    override fun provideViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = FragmentArtifactListBinding.inflate(inflater, container, false).let {
-        binding = it
-        it.root
+        container: ViewGroup?
+    ): FragmentArtifactListBinding {
+        return FragmentArtifactListBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

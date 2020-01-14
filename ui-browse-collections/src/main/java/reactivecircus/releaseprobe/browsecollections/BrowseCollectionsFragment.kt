@@ -13,9 +13,7 @@ import reactivecircus.releaseprobe.core.base.BaseFragment
 import reactivecircus.releaseprobe.core.util.ItemClickedCallback
 import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactCollection
 
-class BrowseCollectionsFragment : BaseFragment() {
-
-    private lateinit var binding: FragmentBrowseCollectionsBinding
+class BrowseCollectionsFragment : BaseFragment<FragmentBrowseCollectionsBinding>() {
 
     private lateinit var artifactCollectionsAdapter: ArtifactCollectionsAdapter
 
@@ -23,13 +21,11 @@ class BrowseCollectionsFragment : BaseFragment() {
 
     private val viewModel by viewModel<BrowseCollectionsViewModel>()
 
-    override fun onCreateView(
+    override fun provideViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = FragmentBrowseCollectionsBinding.inflate(inflater, container, false).let {
-        binding = it
-        it.root
+        container: ViewGroup?
+    ): FragmentBrowseCollectionsBinding {
+        return FragmentBrowseCollectionsBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

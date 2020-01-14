@@ -8,19 +8,15 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import reactivecircus.releaseprobe.core.base.BaseFragment
 import reactivecircus.releaseprobe.settings.databinding.FragmentSettingsBinding
 
-class SettingsFragment : BaseFragment() {
-
-    private lateinit var binding: FragmentSettingsBinding
+class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
 
     private val viewModel by viewModel<SettingsViewModel>()
 
-    override fun onCreateView(
+    override fun provideViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = FragmentSettingsBinding.inflate(inflater, container, false).let {
-        binding = it
-        it.root
+        container: ViewGroup?
+    ): FragmentSettingsBinding {
+        return FragmentSettingsBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

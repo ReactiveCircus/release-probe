@@ -8,21 +8,17 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import reactivecircus.releaseprobe.core.base.BaseFragment
 import reactivecircus.releaseprobe.feeds.databinding.FragmentFeedsBinding
 
-class FeedsFragment : BaseFragment() {
-
-    private lateinit var binding: FragmentFeedsBinding
+class FeedsFragment : BaseFragment<FragmentFeedsBinding>() {
 
 //    private lateinit var feedsAdapter: FeedsAdapter
 
     private val viewModel by viewModel<FeedsViewModel>()
 
-    override fun onCreateView(
+    override fun provideViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = FragmentFeedsBinding.inflate(inflater, container, false).let {
-        binding = it
-        it.root
+        container: ViewGroup?
+    ): FragmentFeedsBinding {
+        return FragmentFeedsBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

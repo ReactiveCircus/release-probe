@@ -207,25 +207,17 @@ dependencies {
     androidTestImplementation project(':testing-infra')
 }
 
-tasks.whenTaskAdded { task ->
+tasks.configureEach { task ->
     // don't count dex methods for debug builds
     if (task.name.endsWith("DebugDexMethods")) {
-        task.configure {
-            it.enabled = false
-        }
+        task.enabled = false
     }
-}
-
-android.applicationVariants.all { variant ->
     // disable google services plugin for mock flavor
-    tasks.named("process${variant.name.capitalize()}GoogleServices").configure {
-        it.enabled = variant.flavorName != "mock"
+    else if (task.name ==~ /process(?i)mock.+GoogleServices/) {
+        task.enabled = false
     }
-
-    // disable android tests for prod flavor
-    if (variant.flavorName == "prod" && variant.buildType.name == "debug") {
-        tasks.named("connected${variant.name.capitalize()}AndroidTest").configure {
-            it.enabled = false
-        }
+    // disable all AndroidTest tasks for prod flavor
+    else if (task.name ==~ /.*(?i)prod.+AndroidTest.*/) {
+        task.enabled = false
     }
 }
