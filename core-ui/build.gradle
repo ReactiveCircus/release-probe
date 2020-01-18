@@ -23,7 +23,7 @@ dependencies {
 
     // Blueprint
     api "io.github.reactivecircus.blueprint:blueprint-interactor-coroutines:${versions.blueprint}"
-    api "io.github.reactivecircus.blueprint:blueprint-threading-coroutines:${versions.blueprint}"
+    api "io.github.reactivecircus.blueprint:blueprint-async-coroutines:${versions.blueprint}"
     api "io.github.reactivecircus.blueprint:blueprint-ui:${versions.blueprint}"
 
     // FlowBinding

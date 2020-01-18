@@ -2,7 +2,7 @@ package reactivecircus.releaseprobe.di
 
 import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module
-import reactivecircus.blueprint.threading.coroutines.CoroutineDispatcherProvider
+import reactivecircus.blueprint.async.coroutines.CoroutineDispatcherProvider
 import reactivecircus.releaseprobe.ReleaseProbeAppNavigator
 import reactivecircus.releaseprobe.artifactlist.di.artifactListModule
 import reactivecircus.releaseprobe.browsecollections.di.browseCollectionsModule

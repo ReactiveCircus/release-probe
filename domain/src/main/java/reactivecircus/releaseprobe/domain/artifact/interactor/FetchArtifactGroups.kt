@@ -4,7 +4,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import reactivecircus.blueprint.interactor.InteractorParams
 import reactivecircus.blueprint.interactor.coroutines.FlowInteractor
-import reactivecircus.blueprint.threading.coroutines.CoroutineDispatcherProvider
+import reactivecircus.blueprint.async.coroutines.CoroutineDispatcherProvider
 import reactivecircus.releaseprobe.domain.artifact.model.ArtifactGroup
 import reactivecircus.releaseprobe.domain.artifact.repository.ArtifactRepository
 

@@ -5,7 +5,7 @@ plugins {
 dependencies {
     // Blueprint
     implementation "io.github.reactivecircus.blueprint:blueprint-interactor-coroutines:${versions.blueprint}"
-    implementation "io.github.reactivecircus.blueprint:blueprint-threading-coroutines:${versions.blueprint}"
+    implementation "io.github.reactivecircus.blueprint:blueprint-async-coroutines:${versions.blueprint}"
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"

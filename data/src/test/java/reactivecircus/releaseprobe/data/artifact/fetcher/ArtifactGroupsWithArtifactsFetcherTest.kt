@@ -14,7 +14,7 @@ import org.amshove.kluent.coInvoking
 import org.amshove.kluent.shouldEqual
 import org.amshove.kluent.shouldThrow
 import org.junit.Test
-import reactivecircus.blueprint.threading.coroutines.CoroutineDispatcherProvider
+import reactivecircus.blueprint.async.coroutines.CoroutineDispatcherProvider
 import reactivecircus.releaseprobe.persistence.artifact.entity.ArtifactEntity
 import reactivecircus.releaseprobe.persistence.artifact.entity.ArtifactGroupEntity
 import reactivecircus.releaseprobe.persistence.artifact.entity.ArtifactGroupWithArtifactsEntity

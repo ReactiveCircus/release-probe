@@ -6,7 +6,7 @@ import io.reactivex.Single
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.rx2.rxSingle
-import reactivecircus.blueprint.threading.coroutines.CoroutineDispatcherProvider
+import reactivecircus.blueprint.async.coroutines.CoroutineDispatcherProvider
 import reactivecircus.releaseprobe.data.artifact.mapper.toEntity
 import reactivecircus.releaseprobe.persistence.artifact.entity.ArtifactGroupWithArtifactsEntity
 import reactivecircus.releaseprobe.remote.artifact.api.GoogleMavenService

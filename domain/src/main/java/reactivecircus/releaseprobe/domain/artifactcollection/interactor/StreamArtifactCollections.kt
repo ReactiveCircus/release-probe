@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import reactivecircus.blueprint.interactor.EmptyParams
 import reactivecircus.blueprint.interactor.coroutines.FlowInteractor
-import reactivecircus.blueprint.threading.coroutines.CoroutineDispatcherProvider
+import reactivecircus.blueprint.async.coroutines.CoroutineDispatcherProvider
 import reactivecircus.releaseprobe.domain.artifactcollection.model.ArtifactCollection
 import reactivecircus.releaseprobe.domain.artifactcollection.repository.ArtifactCollectionRepository
 

@@ -4,7 +4,7 @@ import android.os.AsyncTask
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
 import org.koin.dsl.module
-import reactivecircus.blueprint.threading.coroutines.CoroutineDispatcherProvider
+import reactivecircus.blueprint.async.coroutines.CoroutineDispatcherProvider
 import reactivecircus.releaseprobe.core.util.AnimationConfigs
 import reactivecircus.releaseprobe.data.di.dataModule
 import reactivecircus.releaseprobe.domain.di.domainModule
