@@ -209,15 +209,15 @@ dependencies {
 
 tasks.configureEach { task ->
     // don't count dex methods for debug builds
-    if (task.name.endsWith("DebugDexMethods")) {
-        task.enabled = false
+    if (task.name ==~ /count(?i).+debugDexMethods/) {
+        task.onlyIf { false}
     }
     // disable google services plugin for mock flavor
     else if (task.name ==~ /process(?i)mock.+GoogleServices/) {
-        task.enabled = false
+        task.onlyIf { false}
     }
     // disable all AndroidTest tasks for prod flavor
     else if (task.name ==~ /.*(?i)prod.+AndroidTest.*/) {
-        task.enabled = false
+        task.onlyIf { false}
     }
 }

@@ -1,26 +1,18 @@
 package reactivecircus.releaseprobe
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import reactivecircus.releaseprobe.core.base.BaseFragment
 import reactivecircus.releaseprobe.databinding.FragmentHomeBinding
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
-
-    override fun provideViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(inflater, container, false)
-    }
+class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val binding = FragmentHomeBinding.bind(view)
 
         val topLevelDestinations = listOf(
             R.id.feedsFragment,
