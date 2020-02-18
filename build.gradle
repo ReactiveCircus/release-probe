@@ -54,7 +54,7 @@ buildscript {
                     espresso          : '3.3.0-alpha03'
             ],
             material                  : '1.2.0-alpha04',
-            okhttp                    : '4.3.1',
+            okhttp                    : '4.4.0',
             retrofit                  : '2.7.1',
             moshi                     : '1.9.2',
             json                      : '20190722',
