@@ -31,7 +31,7 @@ dependencies {
     // retrofit-mock
     implementation "com.squareup.retrofit2:retrofit-mock:${versions.retrofit}"
 
-    implementation("androidx.fragment:fragment-testing:${versions.androidx.fragment}") {
+    debugImplementation("androidx.fragment:fragment-testing:${versions.androidx.fragment}") {
         exclude group: 'androidx.test'
     }
 
