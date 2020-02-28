@@ -20,5 +20,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
 
     // Firebase
-    implementation "com.google.firebase:firebase-core:${versions.firebase.core}"
+    implementation "com.google.firebase:firebase-analytics:${versions.firebase.analytics}"
 }
