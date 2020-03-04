@@ -20,7 +20,7 @@ import reactivecircus.releaseprobe.domain.artifact.repository.ArtifactRepository
 import reactivecircus.releaseprobe.domain.artifactcollection.repository.ArtifactCollectionRepository
 import java.util.concurrent.TimeUnit
 
-@UseExperimental(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 val dataModule = module {
 
     single {

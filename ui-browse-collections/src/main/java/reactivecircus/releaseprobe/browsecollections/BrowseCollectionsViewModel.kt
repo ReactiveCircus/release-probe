@@ -8,7 +8,7 @@ import reactivecircus.blueprint.interactor.EmptyParams
 import reactivecircus.releaseprobe.domain.artifactcollection.interactor.StreamArtifactCollections
 import timber.log.Timber
 
-@UseExperimental(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 class BrowseCollectionsViewModel(
     streamArtifactCollections: StreamArtifactCollections
 ) : ViewModel() {
