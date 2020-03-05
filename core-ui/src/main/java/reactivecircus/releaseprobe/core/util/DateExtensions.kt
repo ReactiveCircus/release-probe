@@ -9,7 +9,7 @@ import java.util.TimeZone
  * Converts the timestamp to a formatted String
  */
 fun Long.toFormattedDateString(pattern: String): String {
-    return SimpleDateFormat(pattern, Locale.getDefault()).apply {
+    return SimpleDateFormat(pattern, Locale.ENGLISH).apply {
         timeZone = TimeZone.getDefault()
     }.format(Date(this))
 }
