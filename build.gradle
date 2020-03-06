@@ -19,7 +19,7 @@ buildscript {
             leakCanary                : '2.2',
             kotlin                    : '1.3.70',
             kotlinx                   : [
-                    coroutines: '1.3.3',
+                    coroutines: '1.3.4',
             ],
             firebase                  : [
                     analytics: '17.2.3'
