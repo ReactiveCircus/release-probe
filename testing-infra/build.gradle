@@ -11,6 +11,12 @@ android {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
     }
+
+    android {
+        lintOptions {
+            disable 'FragmentGradleConfiguration'
+        }
+    }
 }
 
 dependencies {
@@ -31,9 +37,7 @@ dependencies {
     // retrofit-mock
     implementation "com.squareup.retrofit2:retrofit-mock:${versions.retrofit}"
 
-    debugImplementation("androidx.fragment:fragment-testing:${versions.androidx.fragment}") {
-        exclude group: 'androidx.test'
-    }
+    implementation "androidx.fragment:fragment-testing:${versions.androidx.fragment}"
 
     api "io.github.reactivecircus.blueprint:blueprint-testing-robot:${versions.blueprint}"
     api "androidx.test:core-ktx:${versions.androidx.test.core}"
