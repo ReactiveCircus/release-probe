@@ -8,6 +8,7 @@ import reactivecircus.blueprint.testing.RobotAssertions
 import reactivecircus.blueprint.testing.ScreenRobot
 import reactivecircus.blueprint.testing.assertion.recyclerViewHasSize
 import reactivecircus.blueprint.testing.matcher.withRecyclerView
+import reactivecircus.blueprint.testing.onRecyclerViewIdle
 import reactivecircus.blueprint.testing.scrollToItemInRecyclerView
 import reactivecircus.releaseprobe.browsecollections.R
 import reactivecircus.releaseprobe.persistence.artifactcollection.entity.ArtifactCollectionEntity
@@ -29,6 +30,7 @@ class BrowseCollectionsRobot :
             val artifactCollectionNameTextViewId = R.id.artifactCollectionNameTextView
             val artifactCollectionDescriptionTextViewId = R.id.artifactCollectionDescriptionTextView
 
+            onRecyclerViewIdle(recyclerViewId)
             recyclerViewHasSize(recyclerViewId, artifactCollections.size)
 
             artifactCollections.forEachIndexed { index, artifactCollection ->
