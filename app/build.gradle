@@ -75,7 +75,6 @@ android {
 
     buildTypes {
         debug {
-            ext.alwaysUpdateBuildId = false
             testCoverageEnabled enableCoverage
             signingConfig signingConfigs.debug
 
@@ -210,14 +209,14 @@ dependencies {
 tasks.configureEach { task ->
     // don't count dex methods for debug builds
     if (task.name ==~ /count(?i).+debugDexMethods/) {
-        task.onlyIf { false}
+        task.onlyIf { false }
     }
     // disable google services plugin for mock flavor
     else if (task.name ==~ /process(?i)mock.+GoogleServices/) {
-        task.onlyIf { false}
+        task.onlyIf { false }
     }
     // disable all AndroidTest tasks for prod flavor
     else if (task.name ==~ /.*(?i)prod.+AndroidTest.*/) {
-        task.onlyIf { false}
+        task.onlyIf { false }
     }
 }
