@@ -5,7 +5,7 @@ import reactivecircus.analytics.AnalyticsApi
 
 fun Activity.setCurrentScreenName(name: String) = Unit
 
-class NoOpAnalyticsApi : AnalyticsApi {
+object NoOpAnalyticsApi : AnalyticsApi {
 
     override fun setCurrentScreenName(activity: Activity, name: String, className: String?) = Unit
 

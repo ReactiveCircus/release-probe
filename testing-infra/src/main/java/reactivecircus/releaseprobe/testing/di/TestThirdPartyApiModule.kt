@@ -5,5 +5,5 @@ import reactivecircus.analytics.AnalyticsApi
 import reactivecircus.analytics.noop.NoOpAnalyticsApi
 
 val testThirdPartyApiModule = module {
-    single<AnalyticsApi> { NoOpAnalyticsApi() }
+    single<AnalyticsApi> { NoOpAnalyticsApi }
 }

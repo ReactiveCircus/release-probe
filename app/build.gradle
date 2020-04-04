@@ -188,7 +188,7 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:${versions.koin}"
 
     // Firebase analytics
-    prodImplementation "com.google.firebase:firebase-analytics:${versions.firebase.analytics}"
+    prodImplementation "com.google.firebase:firebase-analytics-ktx:${versions.firebase.analytics}"
 
     // Enable LeakCanary for debug builds
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}"
