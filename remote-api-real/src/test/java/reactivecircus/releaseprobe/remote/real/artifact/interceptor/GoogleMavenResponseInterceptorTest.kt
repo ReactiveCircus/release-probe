@@ -10,8 +10,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
-private const val MOCK_SERVER_PORT = 5000
-
 class GoogleMavenResponseInterceptorTest {
 
     private val server = MockWebServer()
@@ -28,7 +26,7 @@ class GoogleMavenResponseInterceptorTest {
     @Before
     fun setUp() {
         // start mock server
-        server.start(MOCK_SERVER_PORT)
+        server.start()
     }
 
     @After
