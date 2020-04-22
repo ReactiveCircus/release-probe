@@ -3,7 +3,8 @@ package reactivecircus.releaseprobe
 import android.annotation.SuppressLint
 import android.app.Application
 import com.bugsnag.android.Bugsnag
-import com.bugsnag.android.Client
+import com.bugsnag.android.Configuration
+import com.bugsnag.android.OnErrorCallback
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -14,8 +15,6 @@ import timber.log.Timber
 
 @SuppressLint("Registered")
 open class ReleaseProbeApp : Application() {
-
-    private lateinit var bugsnagClient: Client
 
     private val analyticsApi: AnalyticsApi by inject()
 
@@ -34,15 +33,6 @@ open class ReleaseProbeApp : Application() {
             modules(modules)
         }
 
-        // initialize Bugsnag
-        if (BuildConfig.ENABLE_BUGSNAG) {
-            bugsnagClient = Bugsnag.init(this).apply {
-                setReleaseStage(BuildConfig.BUILD_TYPE)
-                config.detectAnrs = false
-                config.detectNdkCrashes = false
-            }
-        }
-
         // initialize Timber
         initializeTimber()
 
@@ -51,11 +41,20 @@ open class ReleaseProbeApp : Application() {
     }
 
     protected open fun initializeTimber() {
-        val tree = BugsnagTree(bugsnagClient)
+        val tree = BugsnagTree()
         Timber.plant(tree)
-        bugsnagClient.beforeNotify { error ->
-            tree.update(error)
-            return@beforeNotify true
+
+        // initialize Bugsnag
+        if (BuildConfig.ENABLE_BUGSNAG) {
+            val config = Configuration.load(this).apply {
+                enabledReleaseStages = setOf(BuildConfig.BUILD_TYPE)
+                enabledErrorTypes.ndkCrashes = false
+                addOnError(OnErrorCallback { event ->
+                    tree.update(event)
+                    true
+                })
+            }
+            Bugsnag.start(this, config)
         }
     }
 }

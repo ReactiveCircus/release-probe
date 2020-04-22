@@ -92,8 +92,6 @@ android {
     productFlavors {
         mock {
             applicationIdSuffix ".mock"
-            // disable Bugsnag plugin for mock builds
-            ext.enableBugsnag = false
             // Bugsnag API key for mock builds
             manifestPlaceholders = [bugsnagApiKey: ""]
             // disable Bugsnag for mock builds
