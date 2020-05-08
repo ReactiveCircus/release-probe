@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'com.google.gms.google-services'
-    id 'com.getkeepsafe.dexcount'
     id 'project-report'
 }
 
@@ -200,12 +199,8 @@ dependencies {
 }
 
 tasks.configureEach { task ->
-    // don't count dex methods for debug builds
-    if (task.name ==~ /count(?i).+debugDexMethods/) {
-        task.onlyIf { false }
-    }
     // disable google services plugin for mock flavor
-    else if (task.name ==~ /process(?i)mock.+GoogleServices/) {
+    if (task.name ==~ /process(?i)mock.+GoogleServices/) {
         task.onlyIf { false }
     }
     // disable all AndroidTest tasks for prod flavor
