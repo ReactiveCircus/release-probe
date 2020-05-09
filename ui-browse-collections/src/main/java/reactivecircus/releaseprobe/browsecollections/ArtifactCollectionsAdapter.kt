@@ -42,7 +42,7 @@ class ArtifactCollectionsAdapter(
         val artifactCollection = getItem(position)
         holder.bind(artifactCollection, itemClickedCallback)
 
-        if (animate && holder.itemView.context.isAnimationOn()) {
+        if (animate && holder.itemView.context.isAnimationOn) {
             val animation = AnimationUtils.loadAnimation(
                 holder.itemView.context,
                 ResourcesR.anim.slide_in_and_fade_in
