@@ -11,7 +11,7 @@ buildscript {
     ]
 
     ext.versions = [
-            androidGradlePlugin       : '4.1.0-alpha09',
+            androidGradlePlugin       : '4.1.0-alpha10',
             googleServicesGradlePlugin: '4.3.3',
             bugsnag                   : '5.0.0',
             detekt                    : '1.9.1',
@@ -24,7 +24,7 @@ buildscript {
                     analytics: '17.4.2'
             ],
             blueprint                 : '1.8.1',
-            flowbinding               : '0.11.1',
+            flowbinding               : '0.12.0',
             androidx                  : [
                     core              : '1.4.0-alpha01',
                     annotation        : '1.2.0-alpha01',
