@@ -34,7 +34,7 @@ persist_android_workspace: &persist_android_workspace
 executors:
   android:
     docker:
-      - image: reactivecircus/android-sdk:latest
+      - image: reactivecircus/android-sdk-30:latest
     working_directory: ~/release-probe
     environment:
       JAVA_TOOL_OPTIONS: "-Xmx2g"
