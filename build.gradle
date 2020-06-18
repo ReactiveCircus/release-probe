@@ -1,3 +1,8 @@
+import com.android.build.gradle.AppPlugin
+import com.android.build.gradle.LibraryPlugin
+import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile
+
 buildscript {
     ext.isCiBuild = System.getenv("CI") == "true"
     ext.isIdeBuild = project.hasProperty('android.injected.invoked.from.ide')
@@ -87,8 +92,15 @@ allprojects {
         jcenter()
     }
 
-    plugins.withType(com.android.build.gradle.BasePlugin).configureEach { plugin ->
-        plugin.extension.compileOptions {
+    plugins.withType(AppPlugin).configureEach { plugin ->
+        extensions.getByName("android").compileOptions {
+            sourceCompatibility = JavaVersion.VERSION_1_8
+            targetCompatibility = JavaVersion.VERSION_1_8
+        }
+    }
+
+    plugins.withType(LibraryPlugin).configureEach { plugin ->
+        extensions.getByName("android").compileOptions {
             sourceCompatibility = JavaVersion.VERSION_1_8
             targetCompatibility = JavaVersion.VERSION_1_8
         }
@@ -99,13 +111,13 @@ allprojects {
         task.targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile).configureEach { task ->
+    tasks.withType(KotlinJvmCompile).configureEach { task ->
         task.kotlinOptions {
             jvmTarget = "1.8"
         }
     }
 
-    tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile).configureEach { task ->
+    tasks.withType(KotlinCompile).configureEach { task ->
         task.kotlinOptions {
             freeCompilerArgs += [
                     '-progressive',
