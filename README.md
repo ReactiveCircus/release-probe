@@ -53,7 +53,7 @@ We use **CircleCI** for CI/CD. We also have a separate workflow for running inst
 
 ### Workflow
 
-#### All pull requests and pushes to master
+#### All pull requests and pushes to main
 
 * **build (CircleCI)** - assembles the release APK and App Bundle
 * **unit_tests (CircleCI)** - runs all unit tests
