@@ -87,10 +87,6 @@ allprojects {
         jcenter()
     }
 
-    plugins.withType(com.android.build.gradle.LibraryPlugin) {
-        project.android.buildFeatures.buildConfig = false
-    }
-
     plugins.withType(com.android.build.gradle.BasePlugin).configureEach { plugin ->
         plugin.extension.compileOptions {
             sourceCompatibility = JavaVersion.VERSION_1_8

@@ -12,7 +12,9 @@ android {
     buildToolsVersion buildConfig.buildTools
 
     buildFeatures {
+        buildConfig = true
         viewBinding = true
+        resValues = true
     }
 
     defaultConfig {
