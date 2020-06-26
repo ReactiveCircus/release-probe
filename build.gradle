@@ -29,7 +29,7 @@ buildscript {
                     analytics: '17.4.3'
             ],
             blueprint                 : '1.9.0',
-            flowbinding               : '0.12.0',
+            flowbinding               : '1.0.0-alpha01',
             androidx                  : [
                     core              : '1.5.0-alpha01',
                     annotation        : '1.2.0-alpha01',
