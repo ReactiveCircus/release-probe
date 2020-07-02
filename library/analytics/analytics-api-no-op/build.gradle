@@ -17,5 +17,5 @@ dependencies {
     api project(':analytics-api-base')
 
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 }

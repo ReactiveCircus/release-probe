@@ -15,7 +15,7 @@ android {
 
 dependencies {
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
     // timber
     implementation "com.jakewharton.timber:timber:${versions.timber}"

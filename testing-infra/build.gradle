@@ -28,7 +28,7 @@ dependencies {
     implementation project(':background-work')
 
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
     // Koin
     implementation "org.koin:koin-core:${versions.koin}"

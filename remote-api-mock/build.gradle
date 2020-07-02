@@ -23,7 +23,7 @@ dependencies {
     api project(':remote-api-base')
 
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
     // OkHttp
     implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
