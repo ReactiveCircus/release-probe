@@ -31,9 +31,6 @@ android {
 
         // only support English for now
         resConfigs "en"
-
-        // app name
-        resValue 'string', 'app_name', "ReleaseProbe"
     }
 
     lintOptions {
@@ -74,9 +71,6 @@ android {
             testCoverageEnabled enableCoverage
             signingConfig signingConfigs.debug
 
-            // override app name for LeakCanary
-            resValue 'string', 'leak_canary_display_activity_label', "ReleaseProbe Leaks"
-
         }
         release {
             if (rootProject.file('secrets/release-probe.keystore').exists()) {
@@ -93,20 +87,39 @@ android {
     productFlavors {
         mock {
             applicationIdSuffix ".mock"
-            // Bugsnag API key for mock builds
-            manifestPlaceholders = [bugsnagApiKey: ""]
-            // disable Bugsnag for mock builds
-            buildConfigField 'boolean', 'ENABLE_BUGSNAG', 'Boolean.parseBoolean("false")'
-            // disable analytics for mock builds
-            buildConfigField 'boolean', 'ENABLE_ANALYTICS', 'Boolean.parseBoolean("false")'
         }
-        prod {
-            manifestPlaceholders = [
-                    bugsnagApiKey: "${envOrProp('RELEASE_PROBE_BUGSNAG_API_KEY')}"
-            ]
+        prod {}
+    }
 
-            buildConfigField 'boolean', 'ENABLE_BUGSNAG', 'Boolean.parseBoolean("true")'
-            buildConfigField 'boolean', 'ENABLE_ANALYTICS', 'Boolean.parseBoolean("true")'
+    onVariantProperties {
+        // default app_name
+        def appName = "ReleaseProbe"
+
+        if (buildType == "debug") {
+            // override app name for LeakCanary
+            addResValue("leak_canary_display_activity_label", "string", "ReleaseProbe Leaks", null)
+            
+            // concatenate productFlavor to app name for non-production builds
+            if (flavorName != "prod") {
+                appName += "-${flavorName}"
+            }
+
+            // concatenate buildType to app name for non-release builds
+            appName += "-${buildType}"
+        }
+
+        // set app_name
+        addResValue("app_name", "string", appName, null)
+
+        if (flavorName == "mock") {
+            addBuildConfigField("ENABLE_BUGSNAG", false, null)
+            addBuildConfigField("ENABLE_ANALYTICS", false, null)
+            manifestPlaceholders.put("bugsnagApiKey", "")
+        }
+        else if (flavorName == "prod") {
+            addBuildConfigField("ENABLE_BUGSNAG", true, null)
+            addBuildConfigField("ENABLE_ANALYTICS", true, null)
+            manifestPlaceholders.put("bugsnagApiKey", "${envOrProp("RELEASE_PROBE_BUGSNAG_API_KEY")}")
         }
     }
 
@@ -117,25 +130,6 @@ android {
                     isCiBuild && flavor.name == "prod" && variant.buildType.name == "debug") {
                 variant.setIgnore(true)
             }
-        }
-    }
-
-    android.applicationVariants.all { variant ->
-        // customize app name for debug builds
-        if (variant.buildType.name == "debug") {
-            // get app_name field from defaultConfig
-            def appName = variant.mergedFlavor.resValues.get('app_name').getValue()
-
-            // concatenate productFlavor to app name for non-production builds
-            if (variant.flavorName != "prod") {
-                appName += "-${variant.flavorName}"
-            }
-
-            // concatenate buildType to app name for non-release builds
-            appName += "-${variant.buildType.name}"
-
-            // set new app_name
-            variant.resValue 'string', 'app_name', appName
         }
     }
 
