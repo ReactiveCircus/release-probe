@@ -94,7 +94,7 @@ android {
     onVariantProperties {
         // default app_name
         def appName = "ReleaseProbe"
-
+        
         if (buildType == "debug") {
             // override app name for LeakCanary
             addResValue("leak_canary_display_activity_label", "string", "ReleaseProbe Leaks", null)

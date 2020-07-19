@@ -47,7 +47,7 @@ val dataModule = module {
             persister,
             StalePolicy.NETWORK_BEFORE_STALE,
             MemoryPolicy.builder()
-                .setExpireAfterWrite(BuildConfig.STORE_EXPIRY_DURATION_HOURS)
+                .setExpireAfterWrite(BuildConfig.STORE_EXPIRY_DURATION_HOURS.toLong())
                 .setExpireAfterTimeUnit(TimeUnit.HOURS)
                 .build()
         )

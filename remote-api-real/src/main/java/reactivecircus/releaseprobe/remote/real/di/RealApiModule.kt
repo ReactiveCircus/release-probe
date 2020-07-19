@@ -26,7 +26,7 @@ val realApiModule = module {
 
     single {
         OkHttpClient.Builder()
-            .callTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+            .callTimeout(NETWORK_TIMEOUT_SECONDS.toLong(), TimeUnit.SECONDS)
             // add interceptor for converting xml response to json
             .addInterceptor(GoogleMavenResponseInterceptor())
             // add logging interceptor

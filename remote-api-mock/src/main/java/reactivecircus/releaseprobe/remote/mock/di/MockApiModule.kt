@@ -18,7 +18,7 @@ val mockApiModule = module {
 
     single {
         OkHttpClient.Builder()
-            .callTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+            .callTimeout(NETWORK_TIMEOUT_SECONDS.toLong(), TimeUnit.SECONDS)
             // add logging interceptor
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BASIC

@@ -14,15 +14,17 @@ android {
     defaultConfig {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
-
-        // expiration time for store - 2 hours
-        buildConfigField "long", "STORE_EXPIRY_DURATION_HOURS", "2"
     }
 
     buildTypes {
         debug {
             testCoverageEnabled enableCoverage
         }
+    }
+
+    onVariantProperties {
+        // expiration time for store - 2 hours
+        addBuildConfigField("STORE_EXPIRY_DURATION_HOURS", 2, null)
     }
 }
 

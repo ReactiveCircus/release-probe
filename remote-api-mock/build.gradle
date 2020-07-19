@@ -14,8 +14,10 @@ android {
     defaultConfig {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
+    }
 
-        buildConfigField "long", "NETWORK_TIMEOUT_SECONDS", "10"
+    onVariantProperties {
+        addBuildConfigField("NETWORK_TIMEOUT_SECONDS", 10, null)
     }
 }
 

@@ -14,9 +14,11 @@ android {
     defaultConfig {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
+    }
 
-        buildConfigField "long", "NETWORK_TIMEOUT_SECONDS", "10"
-        buildConfigField "String", "API_BASE_URL", "\"https://dl.google.com/dl/android/maven2/\""
+    onVariantProperties {
+        addBuildConfigField("NETWORK_TIMEOUT_SECONDS", 10, null)
+        addBuildConfigField("API_BASE_URL", "\"https://dl.google.com/dl/android/maven2/\"", null)
     }
 }
 
