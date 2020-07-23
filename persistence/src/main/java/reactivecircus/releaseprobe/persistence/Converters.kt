@@ -2,7 +2,7 @@ package reactivecircus.releaseprobe.persistence
 
 import androidx.room.TypeConverter
 
-class Converters {
+object Converters {
 
     @TypeConverter
     fun commaSeparatedStringToListOfStrings(value: String): List<String> {
