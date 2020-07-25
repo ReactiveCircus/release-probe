@@ -92,6 +92,16 @@ allprojects {
         jcenter()
     }
 
+    configurations.configureEach {
+        resolutionStrategy {
+            eachDependency { details ->
+                if (details.requested.group == "org.jetbrains.kotlin" && details.requested.name.startsWith("kotlin-stdlib")) {
+                    details.useVersion versions.kotlin
+                }
+            }
+        }
+    }
+
     plugins.withType(AppPlugin).configureEach { plugin ->
         extensions.getByName("android").compileOptions {
             sourceCompatibility = JavaVersion.VERSION_1_8
