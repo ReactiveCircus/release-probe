@@ -21,9 +21,9 @@ buildscript {
             bugsnag                   : '5.0.1',
             detekt                    : '1.10.0',
             leakCanary                : '2.4',
-            kotlin                    : '1.3.72',
+            kotlin                    : '1.4.0-rc',
             kotlinx                   : [
-                    coroutines: '1.3.8',
+                    coroutines: '1.3.8-1.4.0-rc',
             ],
             firebase                  : [
                     analytics: '17.4.3'
@@ -90,16 +90,6 @@ allprojects {
         mavenCentral()
         google()
         jcenter()
-    }
-
-    configurations.configureEach {
-        resolutionStrategy {
-            eachDependency { details ->
-                if (details.requested.group == "org.jetbrains.kotlin" && details.requested.name.startsWith("kotlin-stdlib")) {
-                    details.useVersion versions.kotlin
-                }
-            }
-        }
     }
 
     plugins.withType(AppPlugin).configureEach { plugin ->

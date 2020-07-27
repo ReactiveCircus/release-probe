@@ -15,7 +15,4 @@ android {
 
 dependencies {
     api project(':analytics-api-base')
-
-    // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 }

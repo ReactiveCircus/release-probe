@@ -36,9 +36,6 @@ dependencies {
     // Blueprint
     implementation "io.github.reactivecircus.blueprint:blueprint-async-coroutines:${versions.blueprint}"
 
-    // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-
     // rx
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
 

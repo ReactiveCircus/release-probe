@@ -3,10 +3,6 @@ plugins {
 }
 
 dependencies {
-
-    // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-
     // OkHttp
     implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
 

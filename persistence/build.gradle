@@ -58,10 +58,6 @@ android {
 }
 
 dependencies {
-
-    // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-
     // rx
     implementation "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
 

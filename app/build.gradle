@@ -157,9 +157,6 @@ dependencies {
 
     implementation project(':background-work')
 
-    // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-
     // AndroidX
     implementation "androidx.coordinatorlayout:coordinatorlayout:${versions.androidx.coordinatorLayout}"
     implementation "androidx.work:work-runtime:${versions.androidx.work}"
