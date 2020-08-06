@@ -37,9 +37,6 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinx.coroutines}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.kotlinx.coroutines}"
 
-    // AndroidX
-    implementation "androidx.paging:paging-runtime-ktx:${versions.androidx.paging}"
-
     // Unit tests
     testImplementation "junit:junit:${versions.junit}"
     testImplementation "io.mockk:mockk:${versions.mockk}"
