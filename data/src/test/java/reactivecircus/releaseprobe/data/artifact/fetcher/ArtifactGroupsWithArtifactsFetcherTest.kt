@@ -172,7 +172,7 @@ class ArtifactGroupsWithArtifactsFetcherTest {
                 fetchArtifactsDuration1,
                 fetchArtifactsDuration2,
                 fetchArtifactsDuration3
-            ).max()
+            ).maxOrNull()
 
             currentTime - startTime shouldEqual expectedDuration
         }
