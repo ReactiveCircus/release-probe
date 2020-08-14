@@ -19,7 +19,7 @@ buildscript {
             androidGradlePlugin       : '4.1.0-rc01',
             googleServicesGradlePlugin: '4.3.3',
             bugsnag                   : '5.0.1',
-            detekt                    : '1.10.0',
+            detekt                    : '1.11.0',
             leakCanary                : '2.4',
             kotlin                    : '1.4.0-rc',
             kotlinx                   : [
