@@ -26,7 +26,7 @@ buildscript {
                     coroutines: '1.3.9',
             ],
             firebase                  : [
-                    analytics: '17.4.3'
+                    analytics: '17.5.0'
             ],
             blueprint                 : '1.11.0',
             flowbinding               : '1.0.0-alpha02',

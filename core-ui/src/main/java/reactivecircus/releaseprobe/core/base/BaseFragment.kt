@@ -12,7 +12,7 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
     override fun onResume() {
         super.onResume()
         activity?.run {
-            analyticsApi.setCurrentScreenName(this, javaClass.simpleName, javaClass.simpleName)
+            analyticsApi.setCurrentScreenName(javaClass.simpleName, javaClass.simpleName)
         }
     }
 }
