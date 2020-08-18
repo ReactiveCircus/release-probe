@@ -106,6 +106,7 @@ allprojects {
 
     tasks.withType(KotlinCompile).configureEach { task ->
         task.kotlinOptions {
+            useIR = true
             jvmTarget = "1.8"
             freeCompilerArgs += [
                     '-progressive',
