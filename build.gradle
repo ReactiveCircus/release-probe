@@ -110,6 +110,7 @@ allprojects {
             freeCompilerArgs += [
                     '-progressive',
                     '-XXLanguage:+InlineClasses',
+                    '-Xjvm-default=all',
                     '-Xopt-in=kotlin.Experimental',
             ]
         }
