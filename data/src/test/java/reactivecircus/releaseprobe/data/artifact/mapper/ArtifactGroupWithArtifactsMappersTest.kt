@@ -15,21 +15,21 @@ class ArtifactGroupWithArtifactsMappersTest {
     fun `transform pair of ArtifactGroupDTO and list of ArtifactDTOs to ArtifactGroupWithArtifactsEntity`() {
         val artifactGroupDTO = ArtifactGroupDTO("androidx.test")
         val artifactDTOs = listOf(
-                ArtifactDTO(
-                        artifactGroupDTO.groupId,
-                        "core",
-                        "1.0, 2.0, 3.0"
-                ),
-                ArtifactDTO(
-                        artifactGroupDTO.groupId,
-                        "rules",
-                        "1.0, 2.0, 3.0, 3.1"
-                ),
-                ArtifactDTO(
-                        artifactGroupDTO.groupId,
-                        "runner",
-                        "1.0, 2.0, 3.0, 3.1-RC"
-                )
+            ArtifactDTO(
+                artifactGroupDTO.groupId,
+                "core",
+                "1.0, 2.0, 3.0"
+            ),
+            ArtifactDTO(
+                artifactGroupDTO.groupId,
+                "rules",
+                "1.0, 2.0, 3.0, 3.1"
+            ),
+            ArtifactDTO(
+                artifactGroupDTO.groupId,
+                "runner",
+                "1.0, 2.0, 3.0, 3.1-RC"
+            )
         )
 
         val actual = Pair(artifactGroupDTO, artifactDTOs).toEntity()

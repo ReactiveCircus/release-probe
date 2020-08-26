@@ -30,9 +30,11 @@ val realApiModule = module {
             // add interceptor for converting xml response to json
             .addInterceptor(GoogleMavenResponseInterceptor())
             // add logging interceptor
-            .addInterceptor(HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BASIC
-            })
+            .addInterceptor(
+                HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BASIC
+                }
+            )
             .build()
     }
 

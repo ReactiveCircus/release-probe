@@ -59,19 +59,22 @@ class ArtifactGroupDaoTest : BaseDaoTest() {
     )
 
     private val artifactGroupWithArtifacts1 = ArtifactGroupWithArtifactsEntity(
-        artifactGroup1, listOf(
+        artifactGroup1,
+        listOf(
             artifactA,
             artifactB
         )
     )
     private val artifactGroupWithArtifacts2 = ArtifactGroupWithArtifactsEntity(
-        artifactGroup2, listOf(
+        artifactGroup2,
+        listOf(
             artifactC,
             artifactD
         )
     )
     private val artifactGroupWithArtifacts3 = ArtifactGroupWithArtifactsEntity(
-        artifactGroup3, listOf(
+        artifactGroup3,
+        listOf(
             artifactE
         )
     )
@@ -143,7 +146,8 @@ class ArtifactGroupDaoTest : BaseDaoTest() {
 
         // insert one of the existing artifact groups with NEW version of the same artifacts
         val newArtifactGroupWithArtifacts1 = ArtifactGroupWithArtifactsEntity(
-            artifactGroup1, listOf(artifactA2, artifactB)
+            artifactGroup1,
+            listOf(artifactA2, artifactB)
         )
         dao.insertArtifactGroupsWithArtifacts(listOf(newArtifactGroupWithArtifacts1))
 

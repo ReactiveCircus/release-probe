@@ -79,7 +79,9 @@ class ArtifactGroupsWithArtifactsFetcherTest {
 
             // all artifact groups
             coEvery { service.fetchArtifactGroups() } returns listOf(
-                artifactGroup1, artifactGroup2, artifactGroup3
+                artifactGroup1,
+                artifactGroup2,
+                artifactGroup3
             )
 
             // artifacts for artifact group 1
@@ -123,7 +125,8 @@ class ArtifactGroupsWithArtifactsFetcherTest {
 
             result shouldEqual listOf(
                 ArtifactGroupWithArtifactsEntity(
-                    ArtifactGroupEntity("androidx.arch.core"), listOf(
+                    ArtifactGroupEntity("androidx.arch.core"),
+                    listOf(
                         ArtifactEntity(
                             "androidx.arch.core",
                             "core-common",
@@ -137,7 +140,8 @@ class ArtifactGroupsWithArtifactsFetcherTest {
                     )
                 ),
                 ArtifactGroupWithArtifactsEntity(
-                    ArtifactGroupEntity("androidx.test"), listOf(
+                    ArtifactGroupEntity("androidx.test"),
+                    listOf(
                         ArtifactEntity(
                             "androidx.test",
                             "core",
@@ -156,7 +160,8 @@ class ArtifactGroupsWithArtifactsFetcherTest {
                     )
                 ),
                 ArtifactGroupWithArtifactsEntity(
-                    ArtifactGroupEntity("com.google.firebase"), listOf(
+                    ArtifactGroupEntity("com.google.firebase"),
+                    listOf(
                         ArtifactEntity(
                             "com.google.firebase",
                             "firebase-analytics",
@@ -195,7 +200,9 @@ class ArtifactGroupsWithArtifactsFetcherTest {
         testDispatcher.runBlockingTest {
             // all artifact groups
             coEvery { service.fetchArtifactGroups() } returns listOf(
-                artifactGroup1, artifactGroup2, artifactGroup3
+                artifactGroup1,
+                artifactGroup2,
+                artifactGroup3
             )
 
             // fetching artifacts for artifact group 1 is successful

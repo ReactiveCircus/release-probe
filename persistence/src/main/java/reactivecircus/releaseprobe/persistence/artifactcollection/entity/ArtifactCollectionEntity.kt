@@ -5,10 +5,12 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "artifact_collection",
-        indices = [
-            Index(value = ["name"], unique = true)
-        ])
+@Entity(
+    tableName = "artifact_collection",
+    indices = [
+                Index(value = ["name"], unique = true)
+            ]
+)
 data class ArtifactCollectionEntity(
     @PrimaryKey
     @ColumnInfo(name = "name") val name: String,

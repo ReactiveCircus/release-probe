@@ -9,10 +9,10 @@ class ArtifactCollectionMappersTest {
     @Test
     fun `transform ArtifactCollectionEntity to ArtifactCollection model`() {
         val artifactCollectionEntity = ArtifactCollectionEntity(
-                "AndroidX",
-                "Android extension libraries - a repackage of the Android Support Library, following semantic versioning",
-                "#60AF46",
-                listOf("androidx", "com.google.android.material")
+            "AndroidX",
+            "Android extension libraries - a repackage of the Android Support Library, following semantic versioning",
+            "#60AF46",
+            listOf("androidx", "com.google.android.material")
         )
 
         val actual = artifactCollectionEntity.toModel()

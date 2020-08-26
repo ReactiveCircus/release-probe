@@ -18,7 +18,8 @@ fun browseArtifactCollectionsScreen(block: BrowseCollectionsRobot.() -> Unit) =
 
 class BrowseCollectionsRobot :
     ScreenRobot<BrowseCollectionsRobot.Actions, BrowseCollectionsRobot.Assertions>(
-        Actions(), Assertions()
+        Actions(),
+        Assertions()
     ) {
 
     class Actions : RobotActions

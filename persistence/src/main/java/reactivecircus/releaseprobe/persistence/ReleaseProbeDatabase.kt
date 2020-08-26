@@ -11,12 +11,12 @@ import reactivecircus.releaseprobe.persistence.artifactcollection.dao.ArtifactCo
 import reactivecircus.releaseprobe.persistence.artifactcollection.entity.ArtifactCollectionEntity
 
 @Database(
-        entities = [
-            ArtifactCollectionEntity::class,
-            ArtifactGroupEntity::class,
-            ArtifactEntity::class
-        ],
-        version = BuildConfig.DATABASE_SCHEMA_VERSION
+    entities = [
+                ArtifactCollectionEntity::class,
+                ArtifactGroupEntity::class,
+                ArtifactEntity::class
+            ],
+    version = BuildConfig.DATABASE_SCHEMA_VERSION
 )
 @TypeConverters(Converters::class)
 abstract class ReleaseProbeDatabase : RoomDatabase() {

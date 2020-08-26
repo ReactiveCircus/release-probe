@@ -22,13 +22,15 @@ class ArtifactRepositoryImplTest {
 
     private val dummyArtifactGroups = listOf(
         ArtifactGroup(
-            "androidx.core", listOf(
+            "androidx.core",
+            listOf(
                 Artifact("androidx.core", "core", listOf("2.0")),
                 Artifact("androidx.core", "core-ktx", listOf("2.0"))
             )
         ),
         ArtifactGroup(
-            "androidx.test", listOf(
+            "androidx.test",
+            listOf(
                 Artifact("androidx.test", "runner", listOf("1.0")),
                 Artifact("androidx.test", "rules", listOf("1.0"))
             )

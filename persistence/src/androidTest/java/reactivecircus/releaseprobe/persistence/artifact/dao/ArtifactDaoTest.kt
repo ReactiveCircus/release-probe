@@ -49,13 +49,15 @@ class ArtifactDaoTest : BaseDaoTest() {
     )
 
     private val artifactGroupWithArtifacts1 = ArtifactGroupWithArtifactsEntity(
-        artifactGroup1, listOf(
+        artifactGroup1,
+        listOf(
             artifactA,
             artifactB
         )
     )
     private val artifactGroupWithArtifacts2 = ArtifactGroupWithArtifactsEntity(
-        artifactGroup2, listOf(
+        artifactGroup2,
+        listOf(
             artifactC,
             artifactD
         )

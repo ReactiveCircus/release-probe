@@ -22,13 +22,15 @@ class ArtifactGroupsWithArtifactsPersisterTest {
 
     private val dummyArtifactGroupsWithArtifactsEntities = listOf(
         ArtifactGroupWithArtifactsEntity(
-            ArtifactGroupEntity("androidx.core"), listOf(
+            ArtifactGroupEntity("androidx.core"),
+            listOf(
                 ArtifactEntity("androidx.core", "core", listOf("2.0")),
                 ArtifactEntity("androidx.core", "core-ktx", listOf("2.0"))
             )
         ),
         ArtifactGroupWithArtifactsEntity(
-            ArtifactGroupEntity("androidx.test"), listOf(
+            ArtifactGroupEntity("androidx.test"),
+            listOf(
                 ArtifactEntity("androidx.test", "runner", listOf("1.0")),
                 ArtifactEntity("androidx.test", "rules", listOf("1.0"))
             )
@@ -37,13 +39,15 @@ class ArtifactGroupsWithArtifactsPersisterTest {
 
     private val dummyArtifactGroups = listOf(
         ArtifactGroup(
-            "androidx.core", listOf(
+            "androidx.core",
+            listOf(
                 Artifact("androidx.core", "core", listOf("2.0")),
                 Artifact("androidx.core", "core-ktx", listOf("2.0"))
             )
         ),
         ArtifactGroup(
-            "androidx.test", listOf(
+            "androidx.test",
+            listOf(
                 Artifact("androidx.test", "runner", listOf("1.0")),
                 Artifact("androidx.test", "rules", listOf("1.0"))
             )

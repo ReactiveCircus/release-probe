@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Application
 import com.bugsnag.android.Bugsnag
 import com.bugsnag.android.Configuration
-import com.bugsnag.android.OnErrorCallback
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -49,10 +48,10 @@ open class ReleaseProbeApp : Application() {
             val config = Configuration.load(this).apply {
                 enabledReleaseStages = setOf(BuildConfig.BUILD_TYPE)
                 enabledErrorTypes.ndkCrashes = false
-                addOnError(OnErrorCallback { event ->
+                addOnError { event ->
                     tree.update(event)
                     true
-                })
+                }
             }
             Bugsnag.start(this, config)
         }
