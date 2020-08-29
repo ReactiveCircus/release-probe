@@ -27,7 +27,7 @@ buildscript {
             firebase                  : [
                     analytics: '17.5.0'
             ],
-            blueprint                 : '1.12.0',
+            blueprint                 : '1.13.0',
             flowbinding               : '1.0.0-alpha04',
             androidx                  : [
                     core              : '1.5.0-alpha02',
