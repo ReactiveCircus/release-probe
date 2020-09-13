@@ -49,8 +49,7 @@ val mockApiModule = module {
     single<GoogleMavenService> {
         MockGoogleMavenService(
             MockRetrofit.Builder(get())
-.apply { networkBehavior(get()) }
-.let { builder -> builder.build().create(GoogleMavenService::class.java) }
+            .apply { networkBehavior(get()) }.build().create(GoogleMavenService::class.java)
         )
     }
 }
