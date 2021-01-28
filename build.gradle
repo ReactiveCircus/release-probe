@@ -17,7 +17,7 @@ buildscript {
     ext.versions = [
             androidGradlePlugin       : '4.1.0-rc03',
             googleServicesGradlePlugin: '4.3.3',
-            bugsnag                   : '5.1.0',
+            bugsnag                   : '5.5.2',
             detekt                    : '1.14.0',
             leakCanary                : '2.4',
             kotlin                    : '1.4.10',
